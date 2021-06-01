@@ -1,0 +1,13 @@
+/source/front-end/back-office/bootstrap-container/*.lock
+/source/back-end/Account/.vs
+/source/back-end/Account/MicroArchitecture.Account.API/bin
+/source/back-end/Account/MicroArchitecture.Account.API/obj
+/source/back-end/Account/MicroArchitecture.Account.Domain/bin
+/source/back-end/Account/MicroArchitecture.Account.Domain/obj
+/source/back-end/Account/MicroArchitecture.Account.Infrastructure/bin
+/source/back-end/Account/MicroArchitecture.Account.Infrastructure/obj
+/source/back-end/Account/MicroArchitecture.Account.Application/bin
+/source/back-end/Account/MicroArchitecture.Account.Application/obj
+
+/source/front-end/back-office/modules/mra-authentication/*.lock
+/source/front-end/back-office/modules/mra-utility/*.lock

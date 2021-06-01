@@ -1,0 +1,68 @@
+version: '3.4'
+
+services:
+  # product-service:
+  #   container_name: product-service
+  #   build: 
+  #     context: ../
+  #     dockerfile: src/Product/Dockerfile
+  #   environment: 
+  #     - ASPNETCORE_ENVIRONMENT=Debug
+  #     - Mssql__ConnectionString=Server=${SQL_DATABASE_HOST},${SQL_DATABASE_PORT};Database=${SQL_DATABASE_PRODUCT_SERVICE};User Id=${SQL_DATABASE_USER_ID};Password=${SQL_DATABASE_PASSWORD};
+  #   networks:
+  #     - pet-system
+  #   ports: 
+  #     - "3333:80"
+  #   restart: always
+  person-service:
+    container_name: person-service
+    build:
+      context: ../
+      dockerfile: src/PersonalData/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Debug
+      - ConnectionStrings__SqlConnection=Server=${SQL_DATABASE_HOST},${SQL_DATABASE_PORT};Database=${SQL_DATABASE_PERSON_SERVICE};User Id=${SQL_DATABASE_USER_ID};Password=${SQL_DATABASE_PASSWORD};
+    networks: 
+      - pet-system
+    ports: 
+      - "4444:80"
+    restart: always
+  # connect-service:
+  #   container_name: connect-service
+  #   build:
+  #     context: ../src
+  #     dockerfile: /Connect/Dockerfile
+  #   environment: 
+  #     - ASPNETCORE_ENVIRONMENT=Debug
+  #     - GrpcChannelSetting__Product__Host=http://${HOST_BASE_IP}
+  #     - GrpcChannelSetting__Product__Port=${CONNECTSERVICE_GRPC_PRODUCT_PORT}
+  #     - GrpcChannelSetting__Person__Host=http://${HOST_BASE_IP}
+  #     - GrpcChannelSetting__Person__Port=${CONNECTSERVICE_GRPC_PERSON_PORT}
+  #     - GrpcChannelSetting__Account__Host=http://${HOST_BASE_IP}
+  #     - GrpcChannelSetting__Account__Port=${CONNECTSERVICE_GRPC_ACCOUNT_PORT}
+  #     - Authentication__IdentityServer=http://${HOST_BASE_IP}:${IDENTITYSERVICE_HTTP_PORT}
+  #     - Authentication__AdminPortal=http://${ADMIN_PORTAL_WEB_HOST}:${ADMIN_PORTAL_WEB_PORT}
+  #     - Mssql__ConnectionString=Server=${SQL_DATABASE_HOST},${SQL_DATABASE_PORT};Database=${SQL_DATABASE_CONNECT_SERVICE};User Id=${SQL_DATABASE_USER_ID};Password=${SQL_DATABASE_PASSWORD};
+  #   networks: 
+  #     - pet-system
+  #   ports: 
+  #     - "6666:80"
+  identity-service:
+    container_name: identity-service
+    build:
+      context: ../
+      dockerfile: src/Identity/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Debug
+      - Clients__AdminPortal__Url=http://${ADMIN_PORTAL_WEB_HOST}:${ADMIN_PORTAL_WEB_PORT}
+      - Kestrel__Endpoints__Http__Url=http://0.0.0.0:80
+      - Kestrel__Endpoints__Http2__Url=http://0.0.0.0:${IDENTITYSERVICE_HTTP2_PORT}
+      - ConnectionStrings__SqlConnection=Server=${SQL_DATABASE_HOST},${SQL_DATABASE_PORT};Database=${SQL_DATABASE_IDENTITY_SERVICE};User Id=${SQL_DATABASE_USER_ID};Password=${SQL_DATABASE_PASSWORD};
+    networks: 
+      - pet-system
+    ports: 
+      - "${IDENTITYSERVICE_HTTP_PORT}:80"
+      - "${IDENTITYSERVICE_HTTP2_PORT}:${IDENTITYSERVICE_HTTP2_PORT}"
+    restart: always
+networks: 
+  pet-system:

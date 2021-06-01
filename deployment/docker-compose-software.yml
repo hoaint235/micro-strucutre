@@ -1,0 +1,57 @@
+version: "3.4"
+services: 
+    sql-server:
+        container_name: sqlserver
+        image: "mcr.microsoft.com/mssql/server"
+        environment:
+            SA_PASSWORD: "P@ssw0rd"
+            ACCEPT_EULA: "Y"
+        ports: 
+            - "1433:1433"
+        restart: on-failure
+        networks: 
+            - software
+    # rabbitmq:
+    #     container_name: rabbitmq
+    #     image: "rabbitmq:3-management-alpine"
+    #     restart: on-failure
+    #     environment:
+    #         - RABBITMQ_DEFAULT_USER=admin 
+    #         - RABBITMQ_DEFAULT_PASS=P@ssw0rd
+    #         - RABBITMQ_ERLANG_COOKIE=s3cr3tc00ki3
+    #     networks:
+    #         - software
+    #     ports: 
+    #         - 5672:5672
+    #         - 15672:15672
+    smtp4dev:
+        container_name: smtp
+        image: rnwood/smtp4dev:v3
+        ports:
+            - "3000:80"
+            - "2525:25"
+        networks: 
+            - software
+        restart: on-failure
+    zipkin:
+        image: openzipkin/zipkin:latest
+        container_name: zipkin
+        ports: 
+            - "9411:9411"
+        networks: 
+            - software
+        restart: on-failure
+    # redis:
+    #     container_name: redis
+    #     image: 'bitnami/redis:latest'
+    #     ports:
+    #         - "6379:6379"
+    #     environment:
+    #         - ALLOW_EMPTY_PASSWORD=yes
+    #         - REDIS_REPLICATION_MODE=master
+    #         - REDIS_PASSWORD=P@ssw0rd
+    #     networks:
+    #         - software
+    #     restart: on-failure
+networks: 
+    software:
