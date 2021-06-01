@@ -1,9 +1,13 @@
+using HealthChecks.UI.Client;
+using MicroArchitecture.Account.API.Infrastructures;
+using MicroArchitecture.Account.API.Infrastructures.Middlewares;
+using MicroArchitecture.Account.Infrastructure.Commons;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace MicroArchitecture.Account.API
 {
@@ -19,12 +23,15 @@ namespace MicroArchitecture.Account.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddCors(o => o.AddPolicy(Constants.Common.AllowAllPolicy, builder =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicroArchitecture.Account.API", Version = "v1" });
-            });
+                builder.AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .SetIsOriginAllowed((host) => true);
+            }));
+
+            services.AddModules(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,19 +40,30 @@ namespace MicroArchitecture.Account.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroArchitecture.Account.API v1"));
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
+            app.UseCors(Constants.Common.AllowAllPolicy);
+            app.UseMiddleware<ExceptionMiddleware>();
+
+            app.UseCookiePolicy();
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseHealthChecks("/healthcheck", new HealthCheckOptions()
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
+            app.UseHealthChecksUI();
+
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapHealthChecks("/health").RequireAuthorization();
             });
         }
     }

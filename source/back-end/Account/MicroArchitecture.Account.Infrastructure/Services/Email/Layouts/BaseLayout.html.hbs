@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            font-size: 14px;
+            font-family: 'Verdana', Geneva, sans-serif;
+        }
+
+        .table-container {
+            width: 100%;
+            background-color: #e9e9e9;
+            border-collapse: separate !important;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .body-container {
+            display: block;
+            margin: 0 auto;
+            max-width: 700px;
+            padding: 10px;
+            width: 700px;
+        }
+
+        .email-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .email-body {
+            padding: 10px 20px;
+            background-color: #fff;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="table-container">
+        <tbody>
+            <tr>
+                <td></td>
+                <td class="body-container" valign="top">
+                    <div class="email-container">
+                        <table>
+                            {{>@partial-block}}
+                        </table>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
