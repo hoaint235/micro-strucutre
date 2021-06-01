@@ -11,3 +11,5 @@
 
 /source/front-end/back-office/modules/mra-authentication/*.lock
 /source/front-end/back-office/modules/mra-utility/*.lock
+/source/front-end/back-office/*.lock
+/source/front-end/back-office/node_modules
