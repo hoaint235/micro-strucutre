@@ -1,26 +1,62 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MicroArchitecture.Account.API.Migration;
+using Microsoft.AspNetCore;
+using Serilog;
 
 namespace MicroArchitecture.Account.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            try
+            {
+                Console.WriteLine(@"Starting application");
+                var host = CreateHostBuilder(args);
+                SeedData.EnsureSeedData(host);
+
+                Console.WriteLine(@"Start host");
+                host.Run();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Log.Fatal(ex, "Host terminated unexpectedly");
+                return 1;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+        public static IWebHost CreateHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseSerilog()
+                .UseStartup<Startup>()
+                .ConfigureAppConfiguration((hostContext, options) =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    options.AddJsonFile("appsettings.json", true, true);
+                    options.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", true, false);
+                    options.AddJsonFile("logging-default/serilog.json", true, false);
+                    options.AddEnvironmentVariables();
+                    options.AddCommandLine(args);
+                })
+                .UseSerilog((hostingContext, loggerConfiguration) =>
+                {
+                    loggerConfiguration
+                        .ReadFrom.Configuration(hostingContext.Configuration)
+                        .Enrich.FromLogContext();
+                })
+                .ConfigureLogging(loggingBuilder =>
+                {
+                    loggingBuilder.ClearProviders();
+                    loggingBuilder.AddSerilog();
+                })
+                .Build();
     }
 }

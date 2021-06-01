@@ -16,8 +16,8 @@
     This CSP allows any SSL-enabled host and for arbitrary eval(), but you should limit these directives further to increase your app's security.
     Learn more about CSP policies at https://content-security-policy.com/#directive
   -->
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
+  <!-- <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';"> -->
   <meta name="importmap-type" content="systemjs-importmap" />
   <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
   <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
@@ -39,9 +39,18 @@
     }
   </script>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
+
+  <style>
+    html {
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
 
   <% if (isLocal) { %>
   <script type="systemjs-importmap">
@@ -49,9 +58,9 @@
       "imports": {
         "@mra/root-config": "//localhost:9000/mra-root-config.js",
 
-        "@mar/authentication": "//localhost:1000/mra-authentication.js",
+        "@mra/authentication": "//localhost:1000/mra-authentication.js",
 
-        "@mar/utility": "//localhost:2000/mra-utility.js",
+        "@mra/utility": "//localhost:2000/mra-utility.js",
 
         "react" : "https://cdn.jsdelivr.net/npm/react@17.0.0/umd/react.production.min.js",
         "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.0/umd/react-dom.production.min.js"

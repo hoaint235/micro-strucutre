@@ -1,5 +1,5 @@
 version: "3.4"
-services: 
+services:
     sql-server:
         container_name: sqlserver
         image: "mcr.microsoft.com/mssql/server"
@@ -41,17 +41,5 @@ services:
         networks: 
             - software
         restart: on-failure
-    # redis:
-    #     container_name: redis
-    #     image: 'bitnami/redis:latest'
-    #     ports:
-    #         - "6379:6379"
-    #     environment:
-    #         - ALLOW_EMPTY_PASSWORD=yes
-    #         - REDIS_REPLICATION_MODE=master
-    #         - REDIS_PASSWORD=P@ssw0rd
-    #     networks:
-    #         - software
-    #     restart: on-failure
 networks: 
     software:

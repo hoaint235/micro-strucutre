@@ -1,0 +1,14 @@
+{
+  "name": "cdl-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "author": "micro-architecture",
+  "scripts": {
+    "kill-port": "npx kill-port 9000 1000 2000",
+    "install": "lerna bootstrap",
+    "start": "yarn kill-port && lerna run start --stream"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
