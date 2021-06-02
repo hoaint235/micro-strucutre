@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Amazon;
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 using MicroArchitecture.Account.Domain.Services.Authentication;
@@ -14,10 +15,9 @@ namespace MicroArchitecture.Account.Infrastructure.Services.Authentication
         private readonly IAmazonCognitoIdentityProvider _providerClient;
         private readonly CognitoConfiguration _config;
 
-        public AwsCognitoService(AmazonCognitoIdentityProviderClient providerClient
-            , IOptions<CognitoConfiguration> options)
+        public AwsCognitoService(IOptions<CognitoConfiguration> options)
         {
-            _providerClient = providerClient;
+            _providerClient = new AmazonCognitoIdentityProviderClient(RegionEndpoint.SAEast1);
             _config = options?.Value;
         }
 
