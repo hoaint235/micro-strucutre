@@ -41,7 +41,7 @@
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  
+
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
@@ -49,6 +49,15 @@
     html {
       font-size: 14px;
       font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      box-sizing: border-box;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
     }
   </style>
 
@@ -58,7 +67,7 @@
       "imports": {
         "@mra/root-config": "//localhost:9000/mra-root-config.js",
 
-        "@mra/authentication": "//localhost:1000/mra-authentication.js",
+        "@mra/account": "//localhost:1000/mra-account.js",
 
         "@mra/utility": "//localhost:2000/mra-utility.js",
 
