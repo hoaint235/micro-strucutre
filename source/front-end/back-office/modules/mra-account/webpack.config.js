@@ -1,6 +1,20 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 
+const extendConfig = {
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: require.resolve("file-loader"),
+        options: {
+          name: "[path][name].[ext]",
+        },
+      },
+    ],
+  },
+};
+
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "mra",
@@ -10,6 +24,6 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
-    // modify the webpack config however you'd like to by adding to this object
+    ...extendConfig,
   });
 };

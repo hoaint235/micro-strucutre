@@ -1,4 +1,4 @@
-import { makeStyles, fade } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 const useStylesReddit = makeStyles((theme) => ({
   root: {
@@ -12,7 +12,7 @@ const useStylesReddit = makeStyles((theme) => ({
     },
     "&$focused": {
       backgroundColor: "#fff",
-      boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
+      boxShadow: `${theme.palette.primary.main} 0 0 0 1px`,
       borderColor: theme.palette.primary.main,
     },
   },

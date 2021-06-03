@@ -1,1 +1,1 @@
-declare module "@mra-utility";
+declare module "@mra/utility";

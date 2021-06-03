@@ -1,3 +1,4 @@
+declare module "@mra/utility";
 declare type PartialRecord<K extends string | number | symbol, T> = {
   [P in K]?: T;
 };
@@ -18,3 +19,8 @@ declare type HandleStepProps<TStatus> = {
 
 declare type SignInStatus = "NO_LOGIN" | "FIRST_LOGIN";
 declare type ForgotStatus = "SEND_ACTIVATION" | "CONFIRMATION_CODE";
+
+declare interface Certificate {
+  email: string;
+  password: string;
+}

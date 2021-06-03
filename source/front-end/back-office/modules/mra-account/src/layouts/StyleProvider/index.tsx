@@ -15,10 +15,10 @@ const theme = createMuiTheme({
       paper: colors.common.white,
     },
     primary: {
-      main: "rgb(46 91 255)",
+      main: colors.indigo[500],
     },
     secondary: {
-      main: "#f5c1bc",
+      main: colors.lightBlue.A400,
     },
     text: {
       primary: colors.blueGrey[900],

@@ -5,6 +5,7 @@ import ContentForm from "../../../components/commons/ContentForm";
 import CheckboxField from "../../../components/controls/CheckboxField";
 import InputForm from "../../../components/forms/InputForm";
 import PasswordForm from "../../../components/forms/PasswordForm";
+import { API } from "@mra/utility";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const SignInForm = () => {
+const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const classes = useStyles();
   const {
     control,
@@ -29,7 +30,13 @@ const SignInForm = () => {
     reValidateMode: "onChange",
   });
 
-  const onSignIn = (data) => {};
+  const onSignIn = (data: Certificate) => {
+    props.onNavigateStep({
+      status: "FIRST_LOGIN",
+    });
+
+    // history.pushState({}, '', '/home');
+  };
 
   return (
     <ContentForm title="Sign In with email">
@@ -39,6 +46,7 @@ const SignInForm = () => {
             <InputForm
               control={control}
               errors={errors}
+              defaultValue="hoai.nt235@gmail.com"
               label="Email address"
               name="email"
             />
@@ -47,6 +55,7 @@ const SignInForm = () => {
             <PasswordForm
               control={control}
               errors={errors}
+              defaultValue="@Lavender235"
               label="Password"
               name="password"
             />
@@ -64,7 +73,14 @@ const SignInForm = () => {
             </Grid>
           </Grid>
           <Grid item xs={12}>
-            <Button variant="contained" color="primary" fullWidth size="large">
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              size="large"
+              disabled={!isValid && !isDirty}
+            >
               Sign In
             </Button>
           </Grid>
