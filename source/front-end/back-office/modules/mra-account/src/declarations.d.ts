@@ -17,7 +17,4 @@ declare type HandleStepProps<TStatus> = {
 };
 
 declare type SignInStatus = "NO_LOGIN" | "FIRST_LOGIN";
-declare type ForgotStatus =
-  | "SEND_ACTIVATION"
-  | "CONFIRMATION_CODE"
-  | "CHANGE_SUCCESS";
+declare type ForgotStatus = "SEND_ACTIVATION" | "CONFIRMATION_CODE";

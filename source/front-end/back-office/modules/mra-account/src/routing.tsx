@@ -1,5 +1,6 @@
 import React from "react";
 import MainLayout from "./layouts/MainLayout";
+import ForgotPassword from "./pages/ForgotPassword";
 import SignIn from "./pages/SignIn";
 
 type Pages = {
@@ -8,6 +9,7 @@ type Pages = {
 
 const pages: Pages = {
   SIGN_IN: SignIn,
+  FORGOT_PASSWORD: ForgotPassword,
 };
 
 export function renderPage(props) {

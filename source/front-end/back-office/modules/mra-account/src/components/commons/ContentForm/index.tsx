@@ -9,6 +9,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: 1.2,
     color: theme.palette.primary.main,
   },
+  logo: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
 }));
 
 const ContentForm = (props) => {
@@ -18,9 +22,14 @@ const ContentForm = (props) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Grid container>
-          <Grid item>
+        <Grid container alignItems="center">
+          <Grid item md={7}>
             <Typography className={classes.header}>{title}</Typography>
+          </Grid>
+          <Grid item md={5} className={classes.logo}>
+            <a href="/">
+              <img src="/images/logo.png" alt="logo" />
+            </a>
           </Grid>
         </Grid>
       </Grid>

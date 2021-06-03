@@ -4,7 +4,10 @@ import React from "react";
 const CheckboxField = () => {
   return (
     <FormControl component="fieldset">
-      <FormControlLabel control={<Checkbox />} label="Custom size" />
+      <FormControlLabel
+        control={<Checkbox color="primary" />}
+        label="Remember me"
+      />
       {/* <FormHelperText>Be careful</FormHelperText> */}
     </FormControl>
   );

@@ -9,12 +9,12 @@ import PasswordForm from "../../../components/forms/PasswordForm";
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
     display: "flex",
-    alignItems: "center",
     justifyContent: "flex-end",
   },
   linkForgotText: {
     cursor: "pointer",
     color: theme.palette.primary.main,
+    textDecoration: "none",
   },
 }));
 
@@ -52,7 +52,7 @@ const SignInForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Grid container>
+            <Grid container alignItems="center">
               <Grid item xs={12} md={6}>
                 <CheckboxField />
               </Grid>
