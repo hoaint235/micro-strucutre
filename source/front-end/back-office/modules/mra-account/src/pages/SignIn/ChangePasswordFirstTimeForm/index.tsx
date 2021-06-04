@@ -3,11 +3,20 @@ import ContentForm from "../../../components/commons/ContentForm";
 import { t } from "@mra/utility";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { PasswordForm } from "../../../components/forms";
+import { EmailForm, PasswordForm } from "../../../components/forms";
+import useMatchPassword from "../../../hooks/useMatchPassword";
+import { AuthenService } from "../../../services/account.service";
 
 const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
   const {
+    stepObj: {
+      data: { email, session },
+    },
+  } = props;
+
+  const {
     control,
+    getValues,
     formState: { errors, isValid, isDirty },
     handleSubmit,
   } = useForm({
@@ -15,8 +24,23 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
     reValidateMode: "onChange",
   });
 
-  const onSubmit = (data: Certificate) => {
-    history.pushState({}, "", "/sign-in");
+  const { password, confirmPassword } = getValues();
+  const isMatch = useMatchPassword({
+    leftPassword: password,
+    rightPassword: confirmPassword,
+  });
+
+  const onSubmit = async ({ password, newPassword }) => {
+    const payload = {
+      session: session,
+      certificate: {
+        email: email,
+        password: password,
+      },
+    };
+
+    await AuthenService.changePwFirstTime(payload);
+    history.pushState({}, "", "/forgot-password");
   };
 
   return (
@@ -29,11 +53,26 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
+            <EmailForm
+              disabled
+              defaultValue={email}
+              control={control}
+              errors={errors}
+              label={t("fields.emailAddress")}
+              name="email"
+            />
+          </Grid>
+          <Grid item xs={12}>
             <PasswordForm
               control={control}
               errors={errors}
               label={t("fields.password")}
               name="password"
+              rules={{
+                validate: {
+                  matchPassword: () => isMatch(),
+                },
+              }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -42,6 +81,11 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
               errors={errors}
               label={t("fields.confirmPassword")}
               name="confirmPassword"
+              rules={{
+                validate: {
+                  matchPassword: () => isMatch(),
+                },
+              }}
             />
           </Grid>
           <Grid item xs={12}>

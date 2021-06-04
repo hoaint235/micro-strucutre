@@ -5,14 +5,18 @@ function initHttpInterceptor() {
     (requestConfig) => {
       return requestConfig;
     },
-    (error) => {}
+    (error) => {
+      return Promise.reject(error);
+    }
   );
 
   axios.interceptors.response.use(
     (response) => {
       return response;
     },
-    (error) => {}
+    (error) => {
+      return Promise.reject(error);
+    }
   );
 }
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Amazon;
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
+using AutoMapper;
 using MicroArchitecture.Account.Domain.Services.Authentication;
 using MicroArchitecture.Account.Domain.Services.Authentication.Models;
 using MicroArchitecture.Account.Infrastructure.Services.Authentication.Models;
@@ -12,17 +12,26 @@ namespace MicroArchitecture.Account.Infrastructure.Services.Authentication
 {
     public class AwsCognitoService : IAuthenticationService
     {
+        private const string NewPasswordRequired = "NEW_PASSWORD_REQUIRED";
+        private const string UserName = "USERNAME";
+        private const string Password = "PASSWORD";
+        private const string NewPassword = "NEW_PASSWORD";
+        
         private readonly IAmazonCognitoIdentityProvider _providerClient;
         private readonly CognitoConfiguration _config;
+        private readonly IMapper _mapper;
 
-        public AwsCognitoService(IOptions<CognitoConfiguration> options)
+        public AwsCognitoService(IOptions<CognitoConfiguration> options
+            , IAmazonCognitoIdentityProvider providerClient
+            , IMapper mapper)
         {
-            _providerClient = new AmazonCognitoIdentityProviderClient(RegionEndpoint.SAEast1);
+            _providerClient = providerClient;
+            _mapper = mapper;
             _config = options?.Value;
         }
 
 
-        public async Task<UserSignIned> LoginAsync(UserCertificate user)
+        public async Task<UserAuthenticated> LoginAsync(UserCertificate user)
         {
             var request = new InitiateAuthRequest
             {
@@ -30,15 +39,17 @@ namespace MicroArchitecture.Account.Infrastructure.Services.Authentication
                 ClientId = _config.ClientId,
             };
 
-            request.AuthParameters.Add("USERNAME", user.Email);
-            request.AuthParameters.Add("PASSWORD", user.Password);
-            request.AuthParameters.Add("SECRET_HASH", GetSecretHash(user.Email));
-            var result = await _providerClient.InitiateAuthAsync(request);
-            return new UserSignIned
+            request.AuthParameters.Add(UserName, user.Email);
+            request.AuthParameters.Add(Password, user.Password);
+            var response = await _providerClient.InitiateAuthAsync(request);
+            var result = new UserAuthenticated(response.ChallengeName.Value, response.Session);
+            
+            if (response.ChallengeName != NewPasswordRequired)
             {
-                AccessToken = result.AuthenticationResult.AccessToken,
-                Status = result.ChallengeName.Value
-            };
+                result.AuthenResult = _mapper.Map<AuthenResult>(response.AuthenticationResult);
+            }
+
+            return result;
         }
 
         public async Task ForgotPasswordAsync(string email)
@@ -52,15 +63,21 @@ namespace MicroArchitecture.Account.Infrastructure.Services.Authentication
             await _providerClient.ForgotPasswordAsync(request);
         }
 
-        public async Task ChangePasswordFirstTimeAsync(UserCertificate user)
+        public async Task<AuthenResult> ChangePasswordFirstTimeAsync(UserCertificate user, string session)
         {
-            await _providerClient.AdminSetUserPasswordAsync(new AdminSetUserPasswordRequest
+            var request = new RespondToAuthChallengeRequest
             {
-                Username = user.Email,
-                Password = user.Password,
-                Permanent = false,
-                UserPoolId = _config.PoolId
-            });
+                ClientId = _config.ClientId,
+                ChallengeName = NewPasswordRequired,
+                Session = session
+            };
+
+            request.ChallengeResponses.Add(UserName, user.Email);
+            request.ChallengeResponses.Add(NewPassword, user.Password);
+
+            var response = await _providerClient.RespondToAuthChallengeAsync(request);
+
+            return _mapper.Map<AuthenResult>(response.AuthenticationResult);
         }
 
         public async Task ConfirmationPasswordAsync(UserCertificate user, string code)
