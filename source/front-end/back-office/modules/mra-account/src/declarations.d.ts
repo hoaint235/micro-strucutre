@@ -1,4 +1,8 @@
-declare module "@mra/utility";
+declare module "@mra/utility" {
+  const API: any;
+  export function t(key: string, options?): string;
+}
+
 declare type PartialRecord<K extends string | number | symbol, T> = {
   [P in K]?: T;
 };

@@ -3,9 +3,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import ContentForm from "../../../components/commons/ContentForm";
 import CheckboxField from "../../../components/controls/CheckboxField";
-import InputForm from "../../../components/forms/InputForm";
-import PasswordForm from "../../../components/forms/PasswordForm";
-import { API } from "@mra/utility";
+import { t } from "@mra/utility";
+import { EmailForm, PasswordForm } from "../../../components/forms";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -39,15 +38,14 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   return (
-    <ContentForm title="Sign In with email">
+    <ContentForm title={t("auth.signInTitle")}>
       <form onSubmit={handleSubmit(onSignIn)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <InputForm
+            <EmailForm
               control={control}
               errors={errors}
-              defaultValue="hoai.nt235@gmail.com"
-              label="Email address"
+              label={t("fields.emailAddress")}
               name="email"
             />
           </Grid>
@@ -55,19 +53,18 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
             <PasswordForm
               control={control}
               errors={errors}
-              defaultValue="@Lavender235"
-              label="Password"
+              label={t("fields.password")}
               name="password"
             />
           </Grid>
           <Grid item xs={12}>
             <Grid container alignItems="center">
               <Grid item xs={12} md={6}>
-                <CheckboxField />
+                <CheckboxField name={t("fields.rememberMe")} />
               </Grid>
               <Grid item xs={12} md={6} className={classes.linkForgotContainer}>
                 <a href="/forgot-password" className={classes.linkForgotText}>
-                  Forgot password ?
+                  {t("auth.forgotPasswordLink")}
                 </a>
               </Grid>
             </Grid>
@@ -79,9 +76,9 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
               color="primary"
               fullWidth
               size="large"
-              disabled={!isValid && !isDirty}
+              // disabled={!isDirty || !isValid}
             >
-              Sign In
+              {t("buttons.signIn")}
             </Button>
           </Grid>
         </Grid>

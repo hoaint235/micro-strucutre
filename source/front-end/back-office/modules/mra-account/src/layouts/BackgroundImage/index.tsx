@@ -11,7 +11,7 @@ const BackgroundImage = () => {
         <Grid item className={classes.imageContainer}>
           <img
             alt="background"
-            className={classes.imgOne}
+            className={classes.image}
             src="https://berrydashboard.io/static/media/img-a2-login.bf703b4f.svg"
           />
         </Grid>

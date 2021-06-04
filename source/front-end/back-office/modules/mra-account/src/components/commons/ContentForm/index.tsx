@@ -2,7 +2,12 @@ import { Grid } from "@material-ui/core";
 import React, { Fragment, useMemo } from "react";
 import HeaderForm from "../Header";
 
-const ContentForm = (props) => {
+type Props = {
+  title: string;
+  children?: React.ReactNode | React.FunctionComponent;
+};
+
+const ContentForm = (props: Props) => {
   const { children, title } = props;
 
   const renderContent = useMemo(

@@ -1,16 +1,17 @@
 import { start } from "single-spa";
 import { Account } from "./modules/account";
-import { initHttpInterceptor } from "@mra/utility";
+import { Common } from "./modules/common";
+import { Routing } from "./modules/routing";
 
-const forceImport = ["react", "react-dom"];
+const forceImport = ["react", "react-dom", "@mra/utility"];
 
 Promise.all(
   forceImport.map((pkg) => {
     return System.import(pkg);
   })
 ).then(() => {
-  initHttpInterceptor();
-
+  Routing.register();
+  Common.register();
   Account.register();
 
   start({
