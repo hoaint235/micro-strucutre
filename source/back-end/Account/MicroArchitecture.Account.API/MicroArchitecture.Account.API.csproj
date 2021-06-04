@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Migration\Scripts\V20210601_Initialize_Database.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210601_Initialize_Database.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MicroArchitecture.Account.Application\MicroArchitecture.Account.Application.csproj" />
     <ProjectReference Include="..\MicroArchitecture.Account.Infrastructure\MicroArchitecture.Account.Infrastructure.csproj" />
   </ItemGroup>
 

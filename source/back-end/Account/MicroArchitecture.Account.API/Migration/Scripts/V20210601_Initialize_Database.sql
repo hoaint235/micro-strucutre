@@ -18,7 +18,7 @@ GO
 
 CREATE TABLE [dbo].[UserHistory] (
   Id NVARCHAR(50) PRIMARY KEY,
-  UserId NVARCHAR(50) FOREIGN KEY REFERENCES Users(Id),
+  UserId NVARCHAR(50) FOREIGN KEY REFERENCES [dbo].[User](Id),
   LogginedTime DATETIME,
   Device NVARCHAR(255)
 )
