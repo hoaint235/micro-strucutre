@@ -1,0 +1,21 @@
+{
+  "auth": {
+    "signInTitle": "Đăng nhập với email",
+    "forgotPasswordLink": "Quên mật khẩu ?",
+    "forgotPasswordTitle": "Quên mật khẩu",
+    "forgotPasswordSubtitle": "Nhập địa chỉ email của bạn và chúng tôi sẽ gửi cho bạn mã OTP để đặt lại mật khẩu",
+    "changePasswordFirstTimeTitle": "Đặt mới mật khẩu",
+    "changePasswordFirstTimeSubtitle": "Vui lòng chọn mật khẩu mới"
+  },
+  "buttons": {
+    "signIn": "Đăng nhập",
+    "submit": "Xác nhận",
+    "sendActivation": "Gửi xác thực"
+  },
+  "fields": {
+    "emailAddress": "Email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "rememberMe": "Nhớ tài khoản"
+  }
+}

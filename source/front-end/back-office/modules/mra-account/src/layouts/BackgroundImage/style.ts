@@ -26,10 +26,11 @@ const useStyles = makeStyles(() => ({
     maxWidth: "none",
     boxSizing: "border-box",
     margin: 0,
+    display: "flex",
+    justifyContent: "center",
   },
-  imgOne: {
+  image: {
     top: "20%",
-    left: "35%",
     width: "280px",
     height: "350px",
     position: "absolute",

@@ -21,6 +21,7 @@ const useStylesReddit = makeStyles((theme) => ({
   },
   focused: {
     "&$error": {
+      boxShadow: "none",
       borderColor: theme.palette.error.main,
     },
   },

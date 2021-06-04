@@ -1,14 +1,32 @@
-import { Checkbox, FormControl, FormControlLabel } from "@material-ui/core";
+import {
+  Checkbox,
+  CheckboxProps,
+  FormControl,
+  FormControlLabel,
+  FormControlLabelProps,
+  FormHelperText,
+} from "@material-ui/core";
 import React from "react";
 
-const CheckboxField = () => {
+type Props = {
+  name: string;
+  error?: boolean;
+  helperText?: string;
+  CheckBoxProps?: CheckboxProps;
+  FormControlProps?: FormControlLabelProps;
+};
+
+const CheckboxField = (props: Props) => {
+  const { name, error, helperText, CheckBoxProps, FormControlProps } = props;
+
   return (
-    <FormControl component="fieldset">
+    <FormControl component="fieldset" error={error}>
       <FormControlLabel
-        control={<Checkbox color="primary" />}
-        label="Remember me"
+        control={<Checkbox color="primary" {...CheckBoxProps} />}
+        label={name}
+        {...FormControlProps}
       />
-      {/* <FormHelperText>Be careful</FormHelperText> */}
+      {!error && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   );
 };

@@ -24,10 +24,10 @@ const Header = (props: Props) => {
 
   return (
     <Grid container alignItems="center">
-      <Grid item md={7}>
+      <Grid item sm={7} xs={12}>
         <Typography className={classes.header}>{props.title}</Typography>
       </Grid>
-      <Grid item md={5} className={classes.logo}>
+      <Grid item sm={5} xs={12} className={classes.logo}>
         <a href="/">
           <img src="#" alt="logo" />
         </a>

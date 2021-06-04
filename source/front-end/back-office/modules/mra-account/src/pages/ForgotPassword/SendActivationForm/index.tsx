@@ -1,8 +1,9 @@
 import { Button, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { t } from "@mra/utility";
 import ContentForm from "../../../components/commons/ContentForm";
-import InputForm from "../../../components/forms/InputForm";
+import { EmailForm } from "../../../components/forms";
 
 const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
   const {
@@ -23,7 +24,7 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
   };
 
   return (
-    <ContentForm title="Forgot password?">
+    <ContentForm title={t("auth.forgotPasswordTitle")}>
       <form onSubmit={handleSubmit(onSendActivation)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -32,16 +33,14 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
               variant="subtitle1"
               component="h2"
             >
-              Enter your email address below and we'll send you password reset
-              OTP.
+              {t("auth.forgotPasswordSubtitle")}
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <InputForm
+            <EmailForm
               control={control}
               errors={errors}
-              defaultValue="hoai.nt235@gmail.com"
-              label="Email address"
+              label={t("fields.emailAddress")}
               name="email"
             />
           </Grid>
@@ -54,7 +53,7 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
               size="large"
               disabled={!isValid && !isDirty}
             >
-              Send Activation
+              {t("buttons.sendActivation")}
             </Button>
           </Grid>
         </Grid>

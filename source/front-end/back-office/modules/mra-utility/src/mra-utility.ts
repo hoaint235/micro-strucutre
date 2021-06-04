@@ -1,7 +1,8 @@
 import { API, initHttpInterceptor } from "./http-interceptor/axios-interceptor";
+import { I18n, t, changeLanguage } from "./international";
 
 export function publicApiFunction() {
   return true;
 }
 
-export { API, initHttpInterceptor };
+export { API, initHttpInterceptor, I18n, t, changeLanguage };
