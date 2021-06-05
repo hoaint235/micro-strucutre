@@ -1,7 +1,9 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
+const Dotenv = require("dotenv-webpack");
 
 const extendConfig = {
+  plugins: [new Dotenv()],
   module: {
     rules: [
       {

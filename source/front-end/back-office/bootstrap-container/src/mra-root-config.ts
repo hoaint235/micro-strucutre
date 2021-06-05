@@ -10,8 +10,8 @@ Promise.all(
     return System.import(pkg);
   })
 ).then(() => {
-  Routing.register();
   Common.register();
+  Routing.register();
   Account.register();
 
   start({
