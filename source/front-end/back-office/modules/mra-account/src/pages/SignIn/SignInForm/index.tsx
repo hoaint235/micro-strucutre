@@ -3,9 +3,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import ContentForm from "../../../components/commons/ContentForm";
 import CheckboxField from "../../../components/controls/CheckboxField";
-import { t } from "@mra/utility";
+import { t, Cognito } from "@mra/utility";
 import { EmailForm, PasswordForm } from "../../../components/forms";
-import { AuthenService } from "../../../services/account.service";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -31,14 +30,13 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   });
 
   const onSignIn = async (data: Certificate) => {
-    const result = await AuthenService.login(data);
+    const result = await Cognito.signIn(data.email, data.password);
 
-    if (result.status === "NEW_PASSWORD_REQUIRED") {
+    if (result.ChallengeName === "NEW_PASSWORD_REQUIRED") {
       props.onNavigateStep({
         status: "FIRST_LOGIN",
         data: {
-          email: data.email,
-          session: result.session,
+          user: { ...result },
         },
       });
       return;

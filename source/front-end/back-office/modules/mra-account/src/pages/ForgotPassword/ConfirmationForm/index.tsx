@@ -1,12 +1,18 @@
 import { Button, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import ContentForm from "../../../components/commons/ContentForm";
-import { t } from "@mra/utility";
+import { Cognito, t } from "@mra/utility";
 import { InputForm, PasswordForm } from "../../../components/forms";
 import { useForm } from "react-hook-form";
 import useMatchPassword from "../../../hooks/useMatchPassword";
 
-const ConfirmationForm = () => {
+const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
+  const {
+    stepObj: {
+      data: { email },
+    },
+  } = props;
+
   const {
     control,
     getValues,
@@ -23,7 +29,12 @@ const ConfirmationForm = () => {
     rightPassword: confirmPassword,
   });
 
-  const onConfirmationCode = (data) => {};
+  const onConfirmationCode = async (data) => {
+    const { confirmationCode: code, password } = data;
+    await Cognito.forgotPasswordSubmit(email, code, password);
+
+    history.pushState({}, "", "/sign-in");
+  };
 
   return (
     <ContentForm title={t("auth.confirmationCodeTitle")}>
@@ -40,10 +51,20 @@ const ConfirmationForm = () => {
           </Grid>
           <Grid item xs={12}>
             <InputForm
+              defaultValue={email}
               control={control}
               errors={errors}
+              disabled={true}
               label={t("fields.emailAddress")}
               name="email"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <InputForm
+              control={control}
+              errors={errors}
+              label={t("fields.confirmationCode")}
+              name="confirmationCode"
             />
           </Grid>
           <Grid item xs={12}>

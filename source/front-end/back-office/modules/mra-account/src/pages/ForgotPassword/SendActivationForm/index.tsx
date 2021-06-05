@@ -1,7 +1,7 @@
 import { Button, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { t } from "@mra/utility";
+import { Cognito, t } from "@mra/utility";
 import ContentForm from "../../../components/commons/ContentForm";
 import { EmailForm } from "../../../components/forms";
 
@@ -15,9 +15,14 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
     reValidateMode: "onChange",
   });
 
-  const onSendActivation = (data) => {
+  const onSendActivation = async ({ email }) => {
+    await Cognito.forgotPassword(email);
+
     props.onNavigateStep({
       status: "CONFIRMATION_CODE",
+      data: {
+        email: email,
+      },
     });
 
     // history.pushState({}, '', '/home');

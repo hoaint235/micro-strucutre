@@ -14,7 +14,7 @@ const resources = {
 let trans: TFunction;
 
 export const I18n = {
-  initInternational() {
+  init() {
     i18next.createInstance(
       {
         fallbackLng: "vn",

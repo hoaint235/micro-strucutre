@@ -1,16 +1,15 @@
 import React from "react";
 import ContentForm from "../../../components/commons/ContentForm";
-import { t } from "@mra/utility";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { EmailForm, PasswordForm } from "../../../components/forms";
+import { PasswordForm } from "../../../components/forms";
 import useMatchPassword from "../../../hooks/useMatchPassword";
-import { AuthenService } from "../../../services/account.service";
+import { Cognito, t } from "@mra/utility";
 
 const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
   const {
     stepObj: {
-      data: { email, session },
+      data: { user },
     },
   } = props;
 
@@ -30,16 +29,8 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
     rightPassword: confirmPassword,
   });
 
-  const onSubmit = async ({ password, newPassword }) => {
-    const payload = {
-      session: session,
-      certificate: {
-        email: email,
-        password: password,
-      },
-    };
-
-    await AuthenService.changePwFirstTime(payload);
+  const onSubmit = async ({ password }) => {
+    await Cognito.completeNewPassword(user, password);
     history.pushState({}, "", "/forgot-password");
   };
 
@@ -51,16 +42,6 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
             <Typography variant="subtitle1" component="h2">
               {t("auth.changePasswordFirstTimeSubtitle")}
             </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <EmailForm
-              disabled
-              defaultValue={email}
-              control={control}
-              errors={errors}
-              label={t("fields.emailAddress")}
-              name="email"
-            />
           </Grid>
           <Grid item xs={12}>
             <PasswordForm
