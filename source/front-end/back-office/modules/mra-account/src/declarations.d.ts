@@ -1,6 +1,29 @@
 declare module "@mra/utility" {
-  const API: any;
+  type ClientMedata = { [key: string]: string };
+  type AwsCognito = {
+    signIn(
+      userName: string,
+      password: string,
+      clientMedata?: ClientMedata
+    ): Promise<any>;
+    completeNewPassword(
+      user: any,
+      password: string,
+      requiredAttributes?: any,
+      clientMedata?: ClientMedata
+    ): Promise<any>;
+    forgotPassword(userName: string, clientMedata?: ClientMedata): Promise<any>;
+    forgotPasswordSubmit(
+      userName: string,
+      code: string,
+      password: string,
+      clientMedata?: ClientMedata
+    ): Promise<any>;
+  };
+
   export function t(key: string, options?): string;
+  export const API: any;
+  export const Cognito: AwsCognito;
 }
 
 declare type PartialRecord<K extends string | number | symbol, T> = {

@@ -16,6 +16,7 @@
   },
   "fields": {
     "emailAddress": "Email address",
+    "confirmationCode": "Confirmation Code",
     "password": "Password",
     "confirmPassword": "Confirm password",
     "rememberMe": "Remember me"

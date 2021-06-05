@@ -1,7 +1,25 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 
-require("dotenv").config();
+const extendConfig = {
+  module: {
+    rules: [
+      {
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
+        resolve: {
+          fullySpecified: false,
+        },
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".wasm", ".mjs", ".js", ".jsx", ".ts", ".tsx", ".json"],
+    alias: {
+      stream: "stream-browserify",
+      crypto: "crypto-browserify",
+    },
+  },
+};
 
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
@@ -12,6 +30,6 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
-    // modify the webpack config however you'd like to by adding to this object
+    ...extendConfig,
   });
 };

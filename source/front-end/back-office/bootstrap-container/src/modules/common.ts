@@ -1,8 +1,9 @@
-import { I18n, initHttpInterceptor } from "@mra/utility";
+import { I18n, initHttpInterceptor, initAwsCognito } from "@mra/utility";
 
 export const Common = {
   register() {
-    I18n.initInternational();
+    I18n.init();
+    initAwsCognito();
     initHttpInterceptor();
   },
 };
