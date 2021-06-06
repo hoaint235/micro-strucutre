@@ -18,7 +18,7 @@ const extendConfig = {
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "mra",
-    projectName: "account",
+    projectName: "authentication",
     webpackConfigEnv,
     argv,
   });
