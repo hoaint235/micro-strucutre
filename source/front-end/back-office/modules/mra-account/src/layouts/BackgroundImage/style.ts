@@ -43,7 +43,7 @@ const useStyles = makeStyles(() => ({
     overflow: "hidden",
     position: "relative",
     textAlign: "center",
-    paddingBottom: "80px",
+    paddingBottom: "50px",
   },
 }));
 

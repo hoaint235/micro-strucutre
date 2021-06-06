@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import BackgroundImage from "./BackgroundImage";
+import LoadingProvider from "./LoadingProvider";
 import StyleProvider from "./StyleProvider";
 
 const useStyles = makeStyles(() => ({
@@ -56,6 +57,8 @@ const MainLayout = (props) => {
           </Grid>
         </Hidden>
       </Grid>
+
+      <LoadingProvider />
     </StyleProvider>
   );
 };

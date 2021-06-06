@@ -19,6 +19,11 @@ declare module "@mra/utility" {
       password: string,
       clientMedata?: ClientMedata
     ): Promise<any>;
+    confirmMFACode(
+      user: any,
+      code: string,
+      clientMedata?: ClientMedata
+    ): Promise<any>;
   };
 
   export function t(key: string, options?): string;
@@ -44,7 +49,7 @@ declare type HandleStepProps<TStatus> = {
   onNavigateStep?: (obj: StepProps<TStatus>) => void;
 };
 
-declare type SignInStatus = "NO_LOGIN" | "FIRST_LOGIN";
+declare type SignInStatus = "NO_LOGIN" | "FIRST_LOGIN" | "VERIFY_CODE";
 declare type ForgotStatus = "SEND_ACTIVATION" | "CONFIRMATION_CODE";
 
 declare interface Certificate {

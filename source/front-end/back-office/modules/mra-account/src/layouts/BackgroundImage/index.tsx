@@ -16,7 +16,7 @@ const BackgroundImage = () => {
           />
         </Grid>
         <Grid item>
-          <Box pb={15}>
+          <Box pb={10}>
             <div className={classes.contentContainer}>
               <Typography component="h2" variant="h3">
                 Micro Architecture

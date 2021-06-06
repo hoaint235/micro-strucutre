@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import ContentForm from "../../../components/commons/ContentForm";
 import CheckboxField from "../../../components/controls/CheckboxField";
 import { t, Cognito } from "@mra/utility";
-import { EmailForm, PasswordForm } from "../../../components/forms";
+import { EmailForm, InputForm, PasswordForm } from "../../../components/forms";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -31,12 +31,14 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
 
   const onSignIn = async (data: Certificate) => {
     const result = await Cognito.signIn(data.email, data.password);
+    const status = result.challengeName;
 
-    if (result.ChallengeName === "NEW_PASSWORD_REQUIRED") {
+    if (["NEW_PASSWORD_REQUIRED", "SMS_MFA"].includes(status)) {
+      const changePasswordRequired = status === "NEW_PASSWORD_REQUIRED";
       props.onNavigateStep({
-        status: "FIRST_LOGIN",
+        status: changePasswordRequired ? "FIRST_LOGIN" : "VERIFY_CODE",
         data: {
-          user: { ...result },
+          user: result,
         },
       });
       return;
@@ -63,6 +65,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
               errors={errors}
               label={t("fields.password")}
               name="password"
+              requiredRulePassword={false}
             />
           </Grid>
           <Grid item xs={12}>

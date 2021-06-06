@@ -26,11 +26,11 @@ module.exports = (webpackConfigEnv, argv) => {
     ],
     devServer: {
       proxy: {
-        "/authen": {
+        "/user": {
           target: "http://localhost:7000",
           changeOrigin: true,
           pathRewrite: {
-            "^/authen": "/api/authentication",
+            "^/user": "/api/user",
           },
         },
       },

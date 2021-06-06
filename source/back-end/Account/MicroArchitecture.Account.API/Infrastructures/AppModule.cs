@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using MicroArchitecture.Account.Application.Account.Commands;
 using MicroArchitecture.Account.Domain.Core.Domain;
 using MicroArchitecture.Account.Infrastructure.Database.DbContext;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +14,6 @@ namespace MicroArchitecture.Account.API.Infrastructures
             var types = new[]
             {
                 typeof(Startup),
-                typeof(Login),
                 typeof(IAggregateRoot),
                 typeof(AccountDbContext)
             };
