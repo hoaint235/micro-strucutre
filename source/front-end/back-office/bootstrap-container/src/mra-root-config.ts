@@ -1,5 +1,5 @@
 import { start } from "single-spa";
-import { Account } from "./modules/account";
+import { Authentication } from "./modules/authentication";
 import { Common } from "./modules/common";
 import { Routing } from "./modules/routing";
 
@@ -12,7 +12,7 @@ Promise.all(
 ).then(() => {
   Common.register();
   Routing.register();
-  Account.register();
+  Authentication.register();
 
   start({
     urlRerouteOnly: true,
