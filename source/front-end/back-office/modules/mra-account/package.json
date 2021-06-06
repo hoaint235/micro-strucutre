@@ -2,7 +2,7 @@
   "name": "@mra/account",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack serve",
+    "start": "webpack serve --port 1001",
     "start:standalone": "webpack serve --env standalone",
     "build": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
@@ -59,9 +59,12 @@
     "@types/jest": "^26.0.16",
     "@types/react": "^16.9.32",
     "@types/react-dom": "^16.9.6",
+    "@types/react-router-dom": "^5.1.7",
     "@types/systemjs": "^6.1.0",
     "@types/webpack-env": "^1.16.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-hook-form": "^7.8.1",
+    "react-router-dom": "^5.2.0"
   }
 }
