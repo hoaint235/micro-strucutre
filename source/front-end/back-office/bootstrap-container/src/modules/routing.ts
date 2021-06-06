@@ -1,5 +1,5 @@
 import { navigateToUrl } from "single-spa";
-// import { canAccess } from '@cdl-app-console/utility';
+import { isAuthenticated } from "@mra/utility";
 
 const defaultPaths = ["/"];
 
@@ -11,15 +11,15 @@ const validateWhiteList = (url: string) => {
 export const Routing = {
   register() {
     window.addEventListener("single-spa:before-routing-event", async (evt) => {
-      const {
+      let {
         detail: { newUrl },
       } = evt as CustomEvent;
-      // await canAccess();
-
       if (validateWhiteList(newUrl)) {
-        navigateToUrl("/sign-in");
-        return;
+        const canAccess = await isAuthenticated();
+        newUrl = canAccess ? "/home" : "/sign-in";
       }
+
+      navigateToUrl(newUrl);
     });
   },
 };

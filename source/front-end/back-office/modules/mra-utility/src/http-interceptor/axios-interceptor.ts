@@ -1,20 +1,38 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import { getAccessToken } from "../authentication/cognito";
+import { WindowEvent } from "../constants";
+
+const delayHideLoading = () => {
+  setTimeout(() => {
+    window.dispatchEvent(new CustomEvent(WindowEvent.DECREASE_LOADING));
+  }, 500);
+};
 
 function initHttpInterceptor() {
   axios.interceptors.request.use(
-    (requestConfig) => {
-      return requestConfig;
+    async (request: AxiosRequestConfig) => {
+      const token = await getAccessToken();
+      if (token) {
+        request.headers.common["Authorization"] = `Bearer ${token}`;
+      }
+
+      window.dispatchEvent(new CustomEvent(WindowEvent.INCREASE_LOADING));
+
+      return request;
     },
     (error) => {
+      window.dispatchEvent(new CustomEvent(WindowEvent.DECREASE_LOADING));
       return Promise.reject(error);
     }
   );
 
   axios.interceptors.response.use(
     (response) => {
+      delayHideLoading();
       return response;
     },
     (error) => {
+      delayHideLoading();
       return Promise.reject(error);
     }
   );

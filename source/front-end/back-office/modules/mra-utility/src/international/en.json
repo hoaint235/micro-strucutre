@@ -7,7 +7,9 @@
     "changePasswordFirstTimeTitle": "Change new password",
     "changePasswordFirstTimeSubtitle": "Please choose new password.",
     "confirmationCodeTitle": "Confirmation code",
-    "confirmationCodeSubtitle": "Enter code at your mail and choose new password"
+    "confirmationCodeSubtitle": "Enter code at your mail and choose new password",
+    "verifyOtpCodeTitle": "Confirm OTP Code",
+    "verifyOtpCodeSubtitle": "Enter otp code that the system sends you via the phone number in your profile"
   },
   "buttons": {
     "signIn": "Sign In",
@@ -19,6 +21,8 @@
     "confirmationCode": "Confirmation Code",
     "password": "Password",
     "confirmPassword": "Confirm password",
-    "rememberMe": "Remember me"
+    "rememberMe": "Remember me",
+    "phoneNumber": "Phone number",
+    "otpCode": "OTP Code"
   }
 }

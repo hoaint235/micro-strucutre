@@ -2,7 +2,7 @@ import React from "react";
 import ContentForm from "../../../components/commons/ContentForm";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { PasswordForm } from "../../../components/forms";
+import { InputForm, PasswordForm } from "../../../components/forms";
 import useMatchPassword from "../../../hooks/useMatchPassword";
 import { Cognito, t } from "@mra/utility";
 
@@ -11,6 +11,7 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
     stepObj: {
       data: { user },
     },
+    onNavigateStep,
   } = props;
 
   const {
@@ -30,8 +31,18 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
   });
 
   const onSubmit = async ({ password }) => {
-    await Cognito.completeNewPassword(user, password);
-    history.pushState({}, "", "/forgot-password");
+    const result = await Cognito.completeNewPassword(user, password);
+
+    if (result.challengeName && result.challengeName === "SMS_MFA") {
+      onNavigateStep({
+        status: "VERIFY_CODE",
+        data: {
+          user: user,
+        },
+      });
+    }
+
+    history.pushState({}, "", "/home");
   };
 
   return (
@@ -43,6 +54,14 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
               {t("auth.changePasswordFirstTimeSubtitle")}
             </Typography>
           </Grid>
+          {/* <Grid item xs={12}>
+            <InputForm
+              control={control}
+              errors={errors}
+              label={t("fields.phoneNumber")}
+              name="phoneNumber"
+            />
+          </Grid> */}
           <Grid item xs={12}>
             <PasswordForm
               control={control}

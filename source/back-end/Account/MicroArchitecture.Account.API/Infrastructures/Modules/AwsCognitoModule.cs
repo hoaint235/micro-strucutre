@@ -2,8 +2,6 @@
 using Amazon;
 using Amazon.CognitoIdentityProvider;
 using Amazon.Runtime;
-using MicroArchitecture.Account.Domain.Services.Authentication;
-using MicroArchitecture.Account.Infrastructure.Services.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,7 +15,6 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 
             var instance = new AmazonCognitoIdentityProviderClient(awsCredentials, RegionEndpoint.APSoutheast1);
             service.AddSingleton<IAmazonCognitoIdentityProvider>(instance);
-            service.AddScoped<IAuthenticationService, AwsCognitoService>();
         }
     }
 }

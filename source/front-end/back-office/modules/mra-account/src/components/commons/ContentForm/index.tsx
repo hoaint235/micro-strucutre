@@ -1,6 +1,6 @@
 import { Grid } from "@material-ui/core";
 import React, { Fragment, useMemo } from "react";
-import HeaderForm from "../Header";
+import Header from "../Header";
 
 type Props = {
   title: string;
@@ -14,7 +14,7 @@ const ContentForm = (props: Props) => {
     () => (
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <HeaderForm title={title} />
+          <Header title={title} />
         </Grid>
         <Grid item xs={12}>
           {children}

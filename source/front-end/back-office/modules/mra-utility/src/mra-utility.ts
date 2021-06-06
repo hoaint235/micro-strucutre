@@ -1,6 +1,10 @@
 import { API, initHttpInterceptor } from "./http-interceptor/axios-interceptor";
 import { I18n, t, changeLanguage } from "./international";
-import { Cognito, initAwsCognito } from "./authentication/cognito";
+import {
+  Cognito,
+  initAwsCognito,
+  isAuthenticated,
+} from "./authentication/cognito";
 
 export function publicApiFunction() {
   return true;
@@ -14,4 +18,5 @@ export {
   changeLanguage,
   initAwsCognito,
   Cognito,
+  isAuthenticated,
 };

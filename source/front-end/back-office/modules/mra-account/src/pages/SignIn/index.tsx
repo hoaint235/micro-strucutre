@@ -1,6 +1,7 @@
 import useStepForm from "../../utils/custom-hooks/useStepForm";
 import ChangeFirstTimePasswordForm from "./ChangePasswordFirstTimeForm";
 import SignInForm from "./SignInForm";
+import VerifySMSForm from "./VerifySMSForm";
 
 const SignIn = () => {
   const Component = useStepForm<SignInStatus>({
@@ -10,6 +11,7 @@ const SignIn = () => {
     formSteps: {
       NO_LOGIN: SignInForm,
       FIRST_LOGIN: ChangeFirstTimePasswordForm,
+      VERIFY_CODE: VerifySMSForm,
     },
   });
 
