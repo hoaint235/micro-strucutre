@@ -1,3 +1,4 @@
+import { Account } from "./modules/account";
 import { start } from "single-spa";
 import { Authentication } from "./modules/authentication";
 import { Common } from "./modules/common";
@@ -13,6 +14,7 @@ Promise.all(
   Common.register();
   Routing.register();
   Authentication.register();
+  Account.register();
 
   start({
     urlRerouteOnly: true,
