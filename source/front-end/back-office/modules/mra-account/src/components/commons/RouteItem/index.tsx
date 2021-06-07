@@ -1,11 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-const RouteItem = (route) => {
+const RouteItem = ({ path, component: Component, routes, ...restProps }) => {
   return (
     <Route
-      path={route.path}
-      render={(props) => <route.component {...props} routes={route.routes} />}
+      path={path}
+      render={(renderProps) => (
+        <Component {...restProps} {...renderProps} routes={routes} />
+      )}
     />
   );
 };

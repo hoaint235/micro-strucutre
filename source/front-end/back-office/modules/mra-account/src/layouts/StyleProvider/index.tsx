@@ -20,8 +20,7 @@ const theme = createMuiTheme({
       main: colors.lightBlue.A400,
     },
     text: {
-      primary: colors.blueGrey[900],
-      secondary: colors.blueGrey[600],
+      primary: colors.blueGrey[500],
     },
   },
   typography: {

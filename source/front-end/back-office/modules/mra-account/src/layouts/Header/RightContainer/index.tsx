@@ -1,7 +1,13 @@
-import { Hidden, IconButton, makeStyles, Theme } from "@material-ui/core";
+import {
+  Hidden,
+  IconButton,
+  makeStyles,
+  Theme,
+  useMediaQuery,
+} from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import React from "react";
-import Logo from "./Logo";
+import Logo from "../../../components/commons/Logo";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -29,6 +35,13 @@ type Props = {
 
 const RightContainer = (props: Props) => {
   const classes = useStyles();
+  const matches = useMediaQuery<Theme>((theme) => theme.breakpoints.down("md"));
+
+  const onToggle = () => {
+    if (matches) {
+      props.onToggleMenu();
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -40,7 +53,7 @@ const RightContainer = (props: Props) => {
       <IconButton
         color="primary"
         className={classes.toggleMenu}
-        onClick={props.onToggleMenu}
+        onClick={onToggle}
       >
         <Menu />
       </IconButton>

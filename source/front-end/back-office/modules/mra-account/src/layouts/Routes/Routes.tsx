@@ -14,11 +14,11 @@ const routes = [
   },
 ];
 
-const Routes = () => {
+const Routes = (props) => {
   return (
     <Fragment>
       {routes.map((route) => (
-        <RouteItem key={route.path} {...route} />
+        <RouteItem key={route.path} {...route} {...props} />
       ))}
     </Fragment>
   );

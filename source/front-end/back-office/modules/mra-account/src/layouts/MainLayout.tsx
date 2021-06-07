@@ -1,5 +1,5 @@
 import { Box, makeStyles, Theme } from "@material-ui/core";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Header from "./Header";
 import NavBar from "./NavBar";
@@ -8,10 +8,10 @@ import StyleProvider from "./StyleProvider";
 
 const useStyles = makeStyles((theme: Theme) => ({
   mainContainer: {
-    marginTop: 88,
+    marginTop: 80,
     backgroundColor: "rgb(227, 242, 253)",
     flexGrow: 1,
-    minHeight: "calc(100vh - 88px)",
+    minHeight: "calc(100vh - 80px)",
     transition: "margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
     marginRight: 20,
     borderRadius: 12,
@@ -36,11 +36,11 @@ const MainLayout = (props) => {
       <Router>
         <div style={{ display: "flex" }}>
           <Header onToggle={onToggleMenu} />
-          <NavBar openMenu={openMenu} contentHide={() => setOpenMenu(false)} />;
+          <NavBar openMenu={openMenu} contentHide={() => setOpenMenu(false)} />
           <div className={classes.mainContainer}>
-            <Box p={2}>
+            <Box component="div" p={3}>
               <Switch>
-                <Routes />
+                <Routes {...props} />
               </Switch>
             </Box>
           </div>

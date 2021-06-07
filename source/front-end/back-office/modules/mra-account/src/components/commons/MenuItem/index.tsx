@@ -4,7 +4,6 @@ import {
   ListItemText,
   makeStyles,
   Theme,
-  withStyles,
 } from "@material-ui/core";
 import React from "react";
 import { t } from "@mra/utility";
@@ -24,6 +23,12 @@ const useStyleListItem = makeStyles((theme: Theme) => ({
     marginBottom: 5,
     paddingLeft: 23,
     fontWeight: 400,
+    "&> .mra-account-MuiListItemIcon-root": {
+      color: theme.palette.text.primary,
+    },
+    "&> .mra-account-MuiListItemText-root": {
+      color: theme.palette.text.primary,
+    },
     "&:hover": {
       backgroundColor: "rgb(237, 231, 246)",
       color: theme.palette.primary.main,
@@ -34,7 +39,7 @@ const useStyleListItem = makeStyles((theme: Theme) => ({
   },
 }));
 
-const StyledListItemIcon = withStyles((theme: Theme) => ({
+const useStyleItemIcon = makeStyles((theme: Theme) => ({
   root: {
     flexShrink: 0,
     display: "inline-flex",
@@ -43,23 +48,16 @@ const StyledListItemIcon = withStyles((theme: Theme) => ({
       color: theme.palette.primary.main,
     },
   },
-}))(ListItemIcon);
+}));
 
-const StyledListItemText = withStyles((theme: Theme) => ({
+const useStyleItemText = makeStyles(() => ({
   root: {
     flex: "1 1 auto",
     minWidth: 0,
     marginTop: 4,
     marginBottom: 4,
   },
-}))(ListItemText);
-
-type MenuItemProps = {
-  label: string;
-  icon: any;
-  path?: string;
-  exact?: boolean;
-};
+}));
 
 const useStyles = makeStyles((theme: Theme) => ({
   activeLink: {
@@ -74,8 +72,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+type MenuItemProps = {
+  label: string;
+  icon: any;
+  path?: string;
+  exact?: boolean;
+};
+
 const MenuItem = ({ label, path, icon: Icon }: MenuItemProps) => {
   const classesListItem = useStyleListItem();
+  const classesItemIcon = useStyleItemIcon();
+  const classesItemText = useStyleItemText();
   const classes = useStyles();
 
   return (
@@ -86,10 +93,10 @@ const MenuItem = ({ label, path, icon: Icon }: MenuItemProps) => {
       to={path}
       activeClassName={classes.activeLink}
     >
-      <StyledListItemIcon>
+      <ListItemIcon classes={{ ...classesItemIcon }}>
         <Icon />
-      </StyledListItemIcon>
-      <StyledListItemText>{t(label)}</StyledListItemText>
+      </ListItemIcon>
+      <ListItemText classes={{ ...classesItemText }}>{t(label)}</ListItemText>
     </ListItem>
   );
 };
