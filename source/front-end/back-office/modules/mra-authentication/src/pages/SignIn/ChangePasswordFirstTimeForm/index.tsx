@@ -42,7 +42,7 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
       });
     }
 
-    history.pushState({}, "", "/home");
+    history.pushState({}, "", "/users");
   };
 
   return (

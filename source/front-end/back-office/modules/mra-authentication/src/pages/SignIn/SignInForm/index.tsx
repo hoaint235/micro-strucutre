@@ -44,7 +44,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
       return;
     }
 
-    history.pushState({}, "", "/home");
+    history.pushState({}, "", "/users");
   };
 
   return (
