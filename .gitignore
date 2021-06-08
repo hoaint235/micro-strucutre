@@ -14,3 +14,6 @@
 /source/front-end/back-office/*.lock
 /source/front-end/back-office/node_modules
 /source/front-end/back-office/modules/mra-account/*.lock
+/source/back-end/Core/.vs
+/source/back-end/Core/MicroArchitecture.Core/obj
+/source/back-end/Core/MicroArchitecture.Core/bin

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MicroArchitecture.Core": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
