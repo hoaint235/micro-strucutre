@@ -1,4 +1,5 @@
 import {
+  fade,
   ListItem,
   ListItemIcon,
   ListItemText,
@@ -10,14 +11,6 @@ import { t } from "@mra/utility";
 import { NavLink } from "react-router-dom";
 
 const useStyleListItem = makeStyles((theme: Theme) => ({
-  selected: {
-    color: theme.palette.primary.main,
-    fontWeight: 600,
-    backgroundColor: "rgb(237, 231, 246)",
-    "&:hover": {
-      color: "rgb(237, 231, 246)",
-    },
-  },
   root: {
     borderRadius: 12,
     marginBottom: 5,
@@ -33,7 +26,13 @@ const useStyleListItem = makeStyles((theme: Theme) => ({
       backgroundColor: "rgb(237, 231, 246)",
       color: theme.palette.primary.main,
       "&> .mra-account-MuiListItemIcon-root": {
-        color: theme.palette.primary.main,
+        color: fade(theme.palette.primary.main, 0.8),
+      },
+      "&> .mra-account-MuiListItemText-root": {
+        color: fade(theme.palette.primary.main, 0.8),
+        "&> .mra-account-MuiTypography-root": {
+          color: fade(theme.palette.primary.main, 0.8),
+        },
       },
     },
   },

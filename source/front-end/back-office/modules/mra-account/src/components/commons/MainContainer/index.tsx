@@ -22,7 +22,7 @@ type Props = {
   action?: any;
 };
 
-const ContentForm = (props: Props) => {
+const MainContainer = (props: Props) => {
   const classesPaper = useStylePaper();
   const { title, children, action } = props;
 
@@ -35,4 +35,4 @@ const ContentForm = (props: Props) => {
   );
 };
 
-export default ContentForm;
+export default MainContainer;

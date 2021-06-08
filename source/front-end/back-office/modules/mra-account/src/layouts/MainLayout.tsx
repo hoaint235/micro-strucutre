@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginLeft: 20,
       width: "calc(100% - 260px)",
-      padding: theme.spacing(2),
     },
   },
 }));

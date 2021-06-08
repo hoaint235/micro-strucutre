@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import RouteItem from "../../components/commons/RouteItem";
 import AddUser from "../../pages/AddUser";
+import EditUser from "../../pages/EditUser";
 import ListUsers from "../../pages/ListUsers";
 
 const routes = [
@@ -11,6 +12,10 @@ const routes = [
   {
     path: "/add-user",
     component: AddUser,
+  },
+  {
+    path: "/user/:userId",
+    component: EditUser,
   },
 ];
 

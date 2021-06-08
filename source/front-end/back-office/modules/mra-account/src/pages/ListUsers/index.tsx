@@ -1,11 +1,76 @@
+import { Box, Button, Grid } from "@material-ui/core";
 import React from "react";
-import ContentForm from "../../components/commons/ContentForm";
+import MainContainer from "../../components/commons/MainContainer";
+import DynamicTable from "../../components/controls/DynamicTable";
+import { HeaderProps } from "../../components/controls/DynamicTableHeader/DynamicTableHeader.type";
+
+const headers: HeaderProps[] = [
+  {
+    id: "id",
+    label: "Id",
+    align: "left",
+  },
+  {
+    id: "name",
+    label: "Name",
+    align: "left",
+    sort: true,
+  },
+  {
+    id: "action",
+    label: "Action",
+  },
+];
+
+const data = [
+  {
+    id: "123",
+    name: "Hello",
+  },
+  {
+    id: "456",
+    name: "Hello 1",
+  },
+  {
+    id: "789",
+    name: "Hello 2",
+  },
+];
 
 const ListUsers = () => {
+  const renderAction = (data) => {
+    return (
+      <Grid container spacing={1}>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => history.pushState({}, "", `/user/${data.id}`)}
+          >
+            Edit
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" color="inherit">
+            Delete
+          </Button>
+        </Grid>
+      </Grid>
+    );
+  };
+
   return (
-    <ContentForm title="List Users">
-      <div>This is a user page</div>
-    </ContentForm>
+    <MainContainer title="List Users">
+      <DynamicTable
+        keyRow="id"
+        defaultOrderBy="name"
+        defaultOrder="asc"
+        source={data}
+        headers={headers}
+        totalItems={data.length}
+        bodyTemplate={{ bodyAction: renderAction }}
+      ></DynamicTable>
+    </MainContainer>
   );
 };
 
