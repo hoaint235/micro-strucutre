@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="User\NewFolder\**" />
+    <EmbeddedResource Remove="User\NewFolder\**" />
+    <None Remove="User\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.0" />
     <PackageReference Include="MediatR" Version="8.1.0" />
   </ItemGroup>

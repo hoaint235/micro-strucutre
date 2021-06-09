@@ -1,0 +1,14 @@
+﻿USE MRA_Account
+GO
+
+CREATE TABLE Roles (
+	Id NVARCHAR(50) PRIMARY KEY,
+	Name NVARCHAR(50),
+	Description NVARCHAR(50) NULL,
+	CreatedBy NVARCHAR(50),
+	CreatedDate DATETIME,
+	UpdatedBy NVARCHAR(50) NULL,
+	UpdatedDate DATETIME NULL,
+	IsDeleted BIT DEFAULT 0,
+)
+GO

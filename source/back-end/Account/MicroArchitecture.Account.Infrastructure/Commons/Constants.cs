@@ -12,10 +12,11 @@ namespace MicroArchitecture.Account.Infrastructure.Commons
             public const string ConnectionString = "SqlConnection";
             public const string XCorrelationId = "x-correlation-id";
             public const string XRequestId = "x-request-id";
-            public const string CognitoConfig = "AwsCognito";
+            public const string AwsConfig = "Aws";
             public const string EmailConfig = "Email:Providers:SMTP";
             public const string CacheConfig = "Cache";
             public const string DefaultCreatedBy = "326a1f62-8b86-4304-9aed-38cbcc24ef5d";
+            public const string AuthorizationHeader = "Authorization";
         }
     }
 }

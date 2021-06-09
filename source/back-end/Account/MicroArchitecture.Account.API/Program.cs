@@ -2,9 +2,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
-using MicroArchitecture.Account.API.Migration;
 using Microsoft.AspNetCore;
 using Serilog;
+using MicroArchitecture.Core.Implementations;
+using MicroArchitecture.Account.Infrastructure.Commons;
 
 namespace MicroArchitecture.Account.API
 {
@@ -16,7 +17,7 @@ namespace MicroArchitecture.Account.API
             {
                 Console.WriteLine(@"Starting application");
                 var host = CreateHostBuilder(args);
-                SeedData.EnsureSeedData(host);
+                SeedData.Initialize(host, Constants.Common.ConnectionString);
 
                 Console.WriteLine(@"Start host");
                 host.Run();

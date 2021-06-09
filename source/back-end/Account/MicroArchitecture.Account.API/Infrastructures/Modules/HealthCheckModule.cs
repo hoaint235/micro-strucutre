@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using MicroArchitecture.Account.Infrastructure.Commons;
+using MicroArchitecture.Core.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;

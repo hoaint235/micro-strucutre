@@ -4,22 +4,13 @@ GO
 CREATE TABLE [dbo].[User] (
   Id NVARCHAR(50) PRIMARY KEY,
   Email NVARCHAR(100),
-  FirstName NVARCHAR(30),
-  LastName NVARCHAR(30),
   CreatedBy NVARCHAR(50),
   CreatedDate DATETIME NOT NULL,
   UpdatedBy NVARCHAR(50) NULL,
   UpdatedDate DATETIME NULL,
   IsDeleted BIT DEFAULT 0,
+  IsActivate BIT DEFAULT 0,
   Address NVARCHAR(200) NULL,
   PhoneNumber NVARCHAR(15) NULL
-)
-GO
-
-CREATE TABLE [dbo].[UserHistory] (
-  Id NVARCHAR(50) PRIMARY KEY,
-  UserId NVARCHAR(50) FOREIGN KEY REFERENCES [dbo].[User](Id),
-  LogginedTime DATETIME,
-  Device NVARCHAR(255)
 )
 GO

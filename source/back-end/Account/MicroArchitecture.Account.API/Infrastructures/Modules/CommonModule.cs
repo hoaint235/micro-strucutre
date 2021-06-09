@@ -2,6 +2,10 @@
 using AutoMapper;
 using FluentValidation;
 using MediatR;
+using MicroArchitecture.Account.Domain.Commons;
+using MicroArchitecture.Account.Domain.Services.UserManager;
+using MicroArchitecture.Account.Infrastructure.Services.UserManager;
+using MicroArchitecture.Core.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -16,6 +20,9 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
             service.AddMediatR(assemblies);
             service.AddAutoMapper(assemblies);
             service.AddValidatorsFromAssemblies(assemblies);
+
+            service.AddScoped<IAppContext, AppContext>();
+            service.AddScoped<IUserManager, AwsCognitoService>();
 
             service.AddControllersWithViews();
             service.AddHttpContextAccessor();

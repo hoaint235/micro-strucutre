@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using MicroArchitecture.Account.Application.User.Queries;
 using Microsoft.AspNetCore.Authorization;
 
 namespace MicroArchitecture.Account.API.Controllers
@@ -10,9 +12,7 @@ namespace MicroArchitecture.Account.API.Controllers
     {
         [Authorize(Policy = "Admin")]
         [HttpGet]
-        public Task<string> ListUser([FromQuery] string query)
-        {
-            return Task.FromResult(query);
-        }
+        public async Task<IActionResult> ListUser([FromQuery] ListUsers request, CancellationToken cancellationToken) =>
+            await SendAsync(request, cancellationToken);
     }
 }
