@@ -11,9 +11,9 @@ namespace MicroArchitecture.Account.Domain.Core.Database
         IUnitOfWork UnitOfWork { get; }
         Task<TEntity> GetAsync(Guid id);
         Task<bool> AnyAsync(ISpecification<TEntity> specification);
-        void Add(TEntity user);
-        void Update(TEntity user);
-        void Delete(TEntity user);
+        void Add(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
         Task<TEntity> FindAsync(ISpecification<TEntity> specification);
         Task<IEnumerable<TEntity>> QueryAsync(ISpecification<TEntity> specification);
     }

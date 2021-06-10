@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Reflection;
-using System.Text;
 using MicroArchitecture.Account.Infrastructure.Commons;
+using MicroArchitecture.Account.Infrastructure.Services.UserManager.Models;
+using MicroArchitecture.Core.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,17 +15,10 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 {
     public class AuthenticationModule : IAppModule
     {
-        public class CognitoConfiguration
-        {
-            public string ClientId { get; set; }
-            public string Region { get; set; }
-            public string PoolId { get; set; }
-        }
-
         public void RegisterServices(IServiceCollection service, IConfiguration configuration, Assembly[] assemblies)
         {
-            var authConfig = new CognitoConfiguration();
-            configuration.GetSection(Constants.Common.CognitoConfig).Bind(authConfig);
+            var authConfig = new AwsConfig();
+            configuration.GetSection(Constants.Common.AwsConfig).Bind(authConfig);
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
@@ -35,7 +28,6 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -54,13 +46,6 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
                     ValidAudience = authConfig.ClientId,
                 };
             });
-
-            service
-                .AddAuthorization(options =>
-                {
-                    options.AddPolicy("Admin", policy => policy.RequireClaim("cognito:groups", new List<string> { "admin" }));
-                    options.AddPolicy("User", policy => policy.RequireClaim("cognito:groups", new List<string> { "user" }));
-                });
         }
     }
 }

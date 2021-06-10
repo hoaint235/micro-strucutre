@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using MicroArchitecture.Core.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

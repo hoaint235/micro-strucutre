@@ -4,7 +4,14 @@ export const Account = {
     registerApplication({
       name: "@mra/account",
       app: () => System.import("@mra/account"),
-      activeWhen: ["/users", "/user/:userId", "/add-user"],
+      activeWhen: [
+        "/users",
+        "/users/:userId",
+        "/add-user",
+        "/roles",
+        "/add-role",
+        "/roles/:roleId",
+      ],
     });
   },
 };

@@ -1,6 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using MicroArchitecture.Account.Infrastructure.Commons;
+using MicroArchitecture.Account.Infrastructure.Commons.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
@@ -36,6 +39,33 @@ namespace MicroArchitecture.Account.API.Infrastructures.Extensions
             result = (TResult)TypeDescriptor.GetConverter(typeof(TResult))
                 .ConvertFromInvariantString(arguments[argument]?.ToString());
             return true;
+        }
+
+        public static async Task Forbidden(this HttpContext httpContext, string code)
+        {
+            var error = BuildErrorResponse(code);
+            await WriteErrorMessageToResponse(httpContext, error, Constants.StatusCode.Forbidden);
+        }
+
+        public static async Task Unauthorized(this HttpContext httpContext, string code)
+        {
+            var error = BuildErrorResponse(code);
+            await WriteErrorMessageToResponse(httpContext, error, Constants.StatusCode.Unauthorized);
+        }
+
+        private static ApiResult BuildErrorResponse(string code)
+        {
+            return new ApiResult
+            {
+                IsSuccess = false,
+                ErrorCodes = new List<ErrorCode>
+                {
+                    new ErrorCode
+                    {
+                        Code = code
+                    }
+                }
+            };
         }
 
         private static async Task WriteErrorMessageToResponse(HttpContext context, object error, int code)

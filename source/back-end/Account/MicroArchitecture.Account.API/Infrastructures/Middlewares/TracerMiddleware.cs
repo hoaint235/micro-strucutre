@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MicroArchitecture.Account.API.Infrastructures.Extensions;
-using MicroArchitecture.Account.Infrastructure.Commons;
+using MicroArchitecture.Account.Domain.Core.AppContext;
 using Microsoft.AspNetCore.Http;
 using Serilog.Context;
+using Constants = MicroArchitecture.Account.Infrastructure.Commons.Constants;
 
 namespace MicroArchitecture.Account.API.Infrastructures.Middlewares
 {
-    public class TracerMiddlewares
+    public class TracerMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public TracerMiddlewares(RequestDelegate next)
+        public TracerMiddleware(RequestDelegate next)
         {
             _next = next;
         }
 
-        public async Task Invoke(HttpContext httpContext)
+        public async Task Invoke(HttpContext httpContext, IAppContext appContext)
         {
             var correlationId = Guid.NewGuid().ToString();
             var requestId = Guid.NewGuid().ToString();
