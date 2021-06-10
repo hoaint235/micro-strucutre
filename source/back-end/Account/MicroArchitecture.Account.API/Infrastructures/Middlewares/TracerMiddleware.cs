@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MicroArchitecture.Account.API.Infrastructures.Extensions;
-using MicroArchitecture.Account.Domain.Commons;
-using MicroArchitecture.Account.Infrastructure.Commons;
+using MicroArchitecture.Account.Domain.Core.AppContext;
 using Microsoft.AspNetCore.Http;
 using Serilog.Context;
+using Constants = MicroArchitecture.Account.Infrastructure.Commons.Constants;
 
 namespace MicroArchitecture.Account.API.Infrastructures.Middlewares
 {
-    public class TracerMiddlewares
+    public class TracerMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public TracerMiddlewares(RequestDelegate next)
+        public TracerMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -24,11 +24,6 @@ namespace MicroArchitecture.Account.API.Infrastructures.Middlewares
 
             httpContext.SetHeader(Constants.Common.XCorrelationId, correlationId, "CorrelationId");
             httpContext.SetHeader(Constants.Common.XRequestId, requestId, "RequestId");
-
-            if(httpContext.Request.Headers.TryGetValue(Constants.Common.AuthorizationHeader, out var token))
-            {
-                appContext.SetAccessToken(token.ToString().Replace("Bearer","").Trim());
-            }
 
             using (LogContext.PushProperty("CorrelationId", correlationId))
             {

@@ -4,12 +4,12 @@ using Amazon;
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 using Amazon.Runtime;
-using MicroArchitecture.Account.Domain.Commons;
+using MicroArchitecture.Account.Domain.Core.AppContext;
 using MicroArchitecture.Account.Domain.Services.UserManager;
 using MicroArchitecture.Account.Domain.Services.UserManager.Models;
-using MicroArchitecture.Account.Infrastructure.Commons;
 using MicroArchitecture.Account.Infrastructure.Services.UserManager.Models;
 using Microsoft.Extensions.Options;
+using Constants = MicroArchitecture.Account.Infrastructure.Commons.Constants;
 
 namespace MicroArchitecture.Account.Infrastructure.Services.UserManager
 {

@@ -2,7 +2,7 @@
 using AutoMapper;
 using FluentValidation;
 using MediatR;
-using MicroArchitecture.Account.Domain.Commons;
+using MicroArchitecture.Account.Domain.Core.AppContext;
 using MicroArchitecture.Account.Domain.Services.UserManager;
 using MicroArchitecture.Account.Infrastructure.Services.UserManager;
 using MicroArchitecture.Core.Interfaces;

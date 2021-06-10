@@ -5,12 +5,10 @@
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Migration\Scripts\V20210601_Create_Table_User.sql" />
-    <None Remove="Migration\Scripts\V20210609_Create_Table_Role.sql" />
+    <None Remove="Migration\Scripts\V20210609_Initialize_Table.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migration\Scripts\V20210601_Create_Table_User.sql" />
-    <EmbeddedResource Include="Migration\Scripts\V20210609_Create_Table_Role.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210609_Initialize_Table.sql" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.0" />
@@ -31,7 +29,7 @@
     <PackageReference Include="Serilog" Version="2.9.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0-dev-00173" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.2-dev-10280" />
-    <PackageReference Include="MicroArchitecture.Core" Version="1.0.0" />
+    <PackageReference Include="MicroArchitecture.Core" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MicroArchitecture.Account.Application\MicroArchitecture.Account.Application.csproj" />

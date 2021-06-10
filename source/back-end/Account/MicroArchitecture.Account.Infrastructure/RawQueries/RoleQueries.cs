@@ -12,8 +12,7 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
                                 , r.Name
                                 , r.Description
                                 , r.CreatedDate
-                                , r.CreatedBy
-                           From Roles r
+                           From [dbo].[Role] r
                            WHERE r.IsDeleted = 0",
             };
         }

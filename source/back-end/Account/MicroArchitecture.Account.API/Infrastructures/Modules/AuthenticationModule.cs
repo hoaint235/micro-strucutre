@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Reflection;
@@ -47,13 +46,6 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
                     ValidAudience = authConfig.ClientId,
                 };
             });
-
-            service
-                .AddAuthorization(options =>
-                {
-                    options.AddPolicy("Admin", policy => policy.RequireClaim("cognito:groups", new List<string> { "admin" }));
-                    options.AddPolicy("User", policy => policy.RequireClaim("cognito:groups", new List<string> { "user" }));
-                });
         }
     }
 }

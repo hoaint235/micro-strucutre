@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MicroArchitecture.Account.Infrastructure.Commons
+﻿namespace MicroArchitecture.Account.Infrastructure.Commons
 {
     public class Constants
     {
@@ -17,6 +13,14 @@ namespace MicroArchitecture.Account.Infrastructure.Commons
             public const string CacheConfig = "Cache";
             public const string DefaultCreatedBy = "326a1f62-8b86-4304-9aed-38cbcc24ef5d";
             public const string AuthorizationHeader = "Authorization";
+        }
+
+        public static class StatusCode
+        {
+            public const int InternalServerError = 500;
+            public const int Forbidden = 403;
+            public const int Unauthorized = 401;
+            public const int BadRequest = 400;
         }
     }
 }

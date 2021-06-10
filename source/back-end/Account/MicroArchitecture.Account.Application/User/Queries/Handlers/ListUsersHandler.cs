@@ -18,7 +18,6 @@ namespace MicroArchitecture.Account.Application.User.Queries.Handlers
         public async Task<ApiResult<Unit>> Handle(ListUsers request, CancellationToken cancellationToken)
         {
             await _userManager.ListUsersAsync(cancellationToken);
-
             return ApiResult<Unit>.Ok(Unit.Value);
         }
     }

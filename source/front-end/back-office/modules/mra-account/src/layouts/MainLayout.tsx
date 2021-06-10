@@ -1,10 +1,12 @@
 import { Box, makeStyles, Theme } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { StrictMode, useState } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Header from "./Header";
 import NavBar from "./NavBar";
 import Routes from "./Routes/Routes";
 import StyleProvider from "./StyleProvider";
+import "react-toastify/dist/ReactToastify.css";
+import ToastMessageContainer from "./ToastMessageContainer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   mainContainer: {
@@ -32,19 +34,26 @@ const MainLayout = (props) => {
 
   return (
     <StyleProvider>
-      <Router>
-        <div style={{ display: "flex" }}>
-          <Header onToggle={onToggleMenu} />
-          <NavBar openMenu={openMenu} contentHide={() => setOpenMenu(false)} />
-          <div className={classes.mainContainer}>
-            <Box component="div" p={3}>
-              <Switch>
-                <Routes {...props} />
-              </Switch>
-            </Box>
+      <StrictMode>
+        <Router>
+          <div style={{ display: "flex" }}>
+            <Header onToggle={onToggleMenu} />
+            <NavBar
+              openMenu={openMenu}
+              contentHide={() => setOpenMenu(false)}
+            />
+            <div className={classes.mainContainer}>
+              <Box component="div" p={3}>
+                <Switch>
+                  <Routes {...props} />
+                </Switch>
+              </Box>
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+
+        <ToastMessageContainer />
+      </StrictMode>
     </StyleProvider>
   );
 };

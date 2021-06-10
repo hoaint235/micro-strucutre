@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import RouteItem from "../../components/commons/RouteItem";
 import AddUser from "../../pages/AddUser";
 import EditUser from "../../pages/EditUser";
+import ListRoles from "../../pages/ListRoles";
 import ListUsers from "../../pages/ListUsers";
 
 const routes = [
@@ -14,8 +15,12 @@ const routes = [
     component: AddUser,
   },
   {
-    path: "/user/:userId",
+    path: "/users/:userId",
     component: EditUser,
+  },
+  {
+    path: "/roles",
+    component: ListRoles,
   },
 ];
 

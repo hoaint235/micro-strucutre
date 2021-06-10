@@ -39,13 +39,13 @@ const data = [
 ];
 
 const ListUsers = () => {
-  const fetchUsers = async () => {
-    await API.get("/account/users");
-  };
+  // const fetchUsers = async () => {
+  //   await API.get("/account/users");
+  // };
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []);
 
   const renderAction = (data) => {
     return (

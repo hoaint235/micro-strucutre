@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Reflection;
 using Dapper;
+using MicroArchitecture.Account.Domain.Core.AppContext;
 using MicroArchitecture.Account.Domain.Core.Database;
+using MicroArchitecture.Account.Domain.Roles;
 using MicroArchitecture.Account.Infrastructure.Commons;
 using MicroArchitecture.Account.Infrastructure.Database.Dapper;
 using MicroArchitecture.Account.Infrastructure.Database.DbContext;
+using MicroArchitecture.Account.Infrastructure.Database.DbContext.Repositories;
 using MicroArchitecture.Core.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -26,12 +29,12 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 
             service.AddScoped<IDapperQuery, DapperQuery>();
             service.AddScoped<IUnitOfWork, AccountDbContext>();
-            //service.AddScoped<IDistributorRepository, DistributorRepository>();
+            service.AddScoped<IRoleRepository, RoleRepository>();
             //service.AddScoped<IUserRepository, UserRepository>();
 
             new List<Type>
             {
-                typeof(IEnumerable<Guid>)
+                typeof(ICollection<CurrentUserRole>)
             }.ForEach(type => SqlMapper.AddTypeHandler(type, new JsonObjectTypeHandler()));
         }
     }

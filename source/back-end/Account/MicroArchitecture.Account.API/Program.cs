@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Reflection;
 using Microsoft.AspNetCore;
 using Serilog;
 using MicroArchitecture.Core.Implementations;
@@ -17,7 +18,7 @@ namespace MicroArchitecture.Account.API
             {
                 Console.WriteLine(@"Starting application");
                 var host = CreateHostBuilder(args);
-                SeedData.Initialize(host, Constants.Common.ConnectionString);
+                SeedData.Initialize(host, Assembly.GetExecutingAssembly(),  Constants.Common.ConnectionString);
 
                 Console.WriteLine(@"Start host");
                 host.Run();

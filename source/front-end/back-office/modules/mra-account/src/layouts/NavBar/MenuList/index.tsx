@@ -16,8 +16,8 @@ const MenuList = () => {
 
   return (
     <div className={classes.root}>
+      <MenuItem path="/roles" label="Role" icon={Settings} />
       <MenuItem path="/users" label="Account" icon={Home} />
-      <MenuItem path="/settings" label="Account" icon={Settings} />
     </div>
   );
 };

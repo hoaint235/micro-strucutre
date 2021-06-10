@@ -17,7 +17,6 @@ namespace MicroArchitecture.Account.Application.User.Commands.Handlers
 
         public async Task<ApiResult<Unit>> Handle(Deactivate request, CancellationToken cancellationToken)
         {
-            await _userManager.DisabledUserAsync("");
             return new ApiResult<Unit>();
         }
     }

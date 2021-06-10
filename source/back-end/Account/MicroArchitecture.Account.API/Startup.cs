@@ -53,7 +53,7 @@ namespace MicroArchitecture.Account.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMiddleware<TracerMiddlewares>();
+            app.UseMiddleware<TracerMiddleware>();
 
             app.UseHttpsRedirection();
             app.UseRouting();
@@ -64,6 +64,8 @@ namespace MicroArchitecture.Account.API
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<AuthorizeMiddleware>();
 
             app.UseHealthChecks("/healthcheck", new HealthCheckOptions()
             {

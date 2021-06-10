@@ -1,6 +1,6 @@
 ﻿using System;
 using MicroArchitecture.Account.Domain.Core.Domain;
-using MicroArchitecture.Account.Domain.Roles.DomainEvents;
+using MicroArchitecture.Account.Domain.Roles.IntegrationEvents;
 
 namespace MicroArchitecture.Account.Domain.Roles
 {
@@ -27,7 +27,7 @@ namespace MicroArchitecture.Account.Domain.Roles
 
         public void AddGroupIdentity()
         {
-            AddDomainEvent(new RoleCreatedEvent
+            AddIntegrationEvent(new RoleCreatedEvent
             {
                 Description = Description,
                 Name = Name
