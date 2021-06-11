@@ -7,12 +7,8 @@ trigger:
       - feature/*
   paths:
     exclude:
-      - "front-end/back-office/bootstrap-container/*"
-      - "front-end/back-office/modules/mra-utility/*"
-      - "front-end/back-office/modules/mra-account/*"
-      - "front-end/back-office/modules/mra-authentication/*"
-      - "back-end/Account/*"
-      - "back-end/Core/*"
+      - 'source/*'
+
 pr:
   - master
 
