@@ -12,7 +12,7 @@ pr:
 pool:
   vmImage: "ubuntu-latest"
 
-name: $(SourceBranchName)_$(Rev:rr)
+name: $(BuildID)
 
 stages:
   - stage: Build
