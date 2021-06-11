@@ -30,6 +30,8 @@ stages:
             name: YarnInstall
             displayName: Yarn install
             workingDirectory: "$(sourceDictionary)"
+          - script: |
+              echo "source dictionary ${{ sourceDictionary }}"
 
   - stage: CodeReview
     jobs:
