@@ -5,7 +5,7 @@ trigger:
       - feature*
   paths:
     include:
-      - "bootstrap-container/*"
+      - "source/front-end/back-office/bootstrap-container/*"
 pr:
   - master
 
