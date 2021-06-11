@@ -17,5 +17,6 @@ pr:
 pool:
   vmImage: "ubuntu-latest"
 
-stages:
-  - script: echo "Hello from '/' root folder"
+steps:
+  - script: |
+      echo "Hello from 'a'"
