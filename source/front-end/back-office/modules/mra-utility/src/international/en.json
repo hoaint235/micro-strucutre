@@ -11,10 +11,16 @@
     "verifyOtpCodeTitle": "Confirm OTP Code",
     "verifyOtpCodeSubtitle": "Enter otp code that the system sends you via the phone number in your profile"
   },
+  "account": {
+    "listRolesTitle": "List Roles"
+  },
   "buttons": {
     "signIn": "Sign In",
     "submit": "Submit",
-    "sendActivation": "Send Activation"
+    "sendActivation": "Send Activation",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete"
   },
   "fields": {
     "emailAddress": "Email address",
@@ -24,6 +30,11 @@
     "rememberMe": "Remember me",
     "phoneNumber": "Phone number",
     "otpCode": "OTP Code"
+  },
+  "table": {
+    "name": "Name",
+    "description": "Description",
+    "action": "Action"
   },
   "errors": {
     "internalServerError": "Some thing went wrong, please try it"

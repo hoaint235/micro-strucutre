@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-import { showError } from "../../utils/helpers/toast-helper";
+import { showError } from "../../utils/helpers/toastHelper";
 
 const ToastMessageContainer = () => {
   const handleGlobalToastError = useCallback((event: Event) => {

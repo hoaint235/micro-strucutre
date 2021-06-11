@@ -1,5 +1,5 @@
 import { toast, ToastOptions } from "react-toastify";
-import { t } from "@mra/utility";
+import i18n from "../../i18n";
 
 const configToast: ToastOptions = {
   position: "top-center",
@@ -12,11 +12,11 @@ const configToast: ToastOptions = {
 };
 
 const showSuccess = (message: string) => {
-  toast.success(t(message), configToast);
+  toast.success(i18n.t(message), configToast);
 };
 
 const showError = (message: string) => {
-  toast.error(t(message), configToast);
+  toast.error(i18n.t(message), configToast);
 };
 
 export { showError, showSuccess };

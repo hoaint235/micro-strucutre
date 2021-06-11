@@ -1,0 +1,18 @@
+{
+  "listRoles": {
+    "title": "Danh sách quyền"
+  },
+  "buttons": {
+    "add": "Thêm mới",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa"
+  },
+  "table": {
+    "name": "Tên",
+    "description": "Miêu tả",
+    "action": "Hành động"
+  },
+  "errors": {
+    "internalServerError": "Xảy ra lỗi từ hệ thống, vui lòng thử lại"
+  }
+}

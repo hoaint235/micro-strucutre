@@ -1,0 +1,18 @@
+{
+  "listRoles": {
+    "title": "List Roles"
+  },
+  "buttons": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "table": {
+    "name": "Name",
+    "description": "Description",
+    "action": "Action"
+  },
+  "errors": {
+    "internalServerError": "Some thing went wrong, please try it"
+  }
+}

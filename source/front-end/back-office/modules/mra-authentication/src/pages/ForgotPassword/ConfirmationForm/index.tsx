@@ -5,8 +5,10 @@ import { Cognito, t } from "@mra/utility";
 import { InputForm, PasswordForm } from "../../../components/forms";
 import { useForm } from "react-hook-form";
 import useMatchPassword from "../../../hooks/useMatchPassword";
+import { useTranslation } from "react-i18next";
 
 const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
+  const { t } = useTranslation();
   const {
     stepObj: {
       data: { email },
@@ -37,7 +39,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
   };
 
   return (
-    <ContentForm title={t("auth.confirmationCodeTitle")}>
+    <ContentForm title={t("confirmationCodeTitle")}>
       <form onSubmit={handleSubmit(onConfirmationCode)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -46,7 +48,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
               variant="subtitle1"
               component="h2"
             >
-              {t("auth.confirmationCodeSubtitle")}
+              {t("confirmationCodeSubtitle")}
             </Typography>
           </Grid>
           <Grid item xs={12}>

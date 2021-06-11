@@ -63,8 +63,10 @@
     "@types/webpack-env": "^1.16.0",
     "dotenv": "^10.0.0",
     "file-loader": "^6.2.0",
+    "i18next": "^20.3.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-hook-form": "^7.6.0"
+    "react-hook-form": "^7.6.0",
+    "react-i18next": "^11.10.0"
   }
 }

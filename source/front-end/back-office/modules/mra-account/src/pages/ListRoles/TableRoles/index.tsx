@@ -1,45 +1,45 @@
-import { Button, Grid, Link } from "@material-ui/core";
-import React, { useState } from "react";
+import { Grid } from "@material-ui/core";
+import React from "react";
 import DynamicTable from "../../../components/controls/DynamicTable";
 import { HeaderProps } from "../../../components/controls/DynamicTableHeader/DynamicTableHeader.type";
 import useListRole from "../../../hooks/useListRole";
+import { useTranslation } from "react-i18next";
+import SecondaryButton from "../../../components/controls/SecondaryButton";
+import PrimaryButton from "../../../components/controls/PrimaryButton";
 
 const headers: HeaderProps[] = [
   {
     id: "name",
-    label: "Name",
+    label: "table.name",
     sort: true,
   },
   {
     id: "description",
-    label: "Description",
+    label: "table.description",
     sort: true,
   },
   {
     id: "action",
-    label: "Action",
+    label: "table.action",
   },
 ];
 
 const TableRoles = () => {
+  const { t } = useTranslation();
   const { data } = useListRole();
 
   const renderAction = (data) => {
     return (
       <Grid container spacing={1}>
         <Grid item>
-          <Button
-            variant="contained"
-            color="primary"
+          <PrimaryButton
             onClick={() => history.pushState({}, "", `/user/${data.id}`)}
           >
-            Edit
-          </Button>
+            {t("buttons.edit")}
+          </PrimaryButton>
         </Grid>
         <Grid item>
-          <Button variant="contained" color="inherit">
-            Delete
-          </Button>
+          <SecondaryButton>{t("buttons.delete")}</SecondaryButton>
         </Grid>
       </Grid>
     );
