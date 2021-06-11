@@ -16,7 +16,7 @@ pool:
 
 variables:
   - name: Workspace
-    value: $(Pipeline.Workspace)/s
+    value: $(Pipeline.Workspace)/source/front-end/back-office/bootstrap-container/s
 
 stages:
   - stage: Install
