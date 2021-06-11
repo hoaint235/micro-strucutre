@@ -18,4 +18,4 @@ pool:
   vmImage: "ubuntu-latest"
 
 stages:
-  - stage: Build
+  - script: | echo "Hello from '/' root folder"
