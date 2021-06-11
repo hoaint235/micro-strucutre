@@ -9,11 +9,7 @@ const ListRoles = () => {
   return (
     <MainContainer
       title="listRoles.title"
-      action={
-        <PrimaryButton>
-          {t('buttons.add')}
-        </PrimaryButton>
-      }
+      action={<PrimaryButton>{t("buttons.add")}</PrimaryButton>}
     >
       <TableRoles />
     </MainContainer>
