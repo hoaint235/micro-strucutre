@@ -1,8 +1,9 @@
-import { Box, Button, Grid } from "@material-ui/core";
-import React from "react";
+import { Button, Grid } from "@material-ui/core";
+import React, { useEffect } from "react";
 import MainContainer from "../../components/commons/MainContainer";
 import DynamicTable from "../../components/controls/DynamicTable";
 import { HeaderProps } from "../../components/controls/DynamicTableHeader/DynamicTableHeader.type";
+import { API } from "@mra/utility";
 
 const headers: HeaderProps[] = [
   {
@@ -38,6 +39,14 @@ const data = [
 ];
 
 const ListUsers = () => {
+  // const fetchUsers = async () => {
+  //   await API.get("/account/users");
+  // };
+
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []);
+
   const renderAction = (data) => {
     return (
       <Grid container spacing={1}>

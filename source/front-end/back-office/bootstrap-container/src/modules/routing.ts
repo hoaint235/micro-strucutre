@@ -1,12 +1,10 @@
 import { navigateToUrl } from "single-spa";
 import { isAuthenticated } from "@mra/utility";
 
-const defaultPaths = ["/", "/users", "/add-user"];
+const baseUrl = "/";
+const defaultPaths = ["/users", "/add-user", "/roles", "/add-role"];
 
-const validateWhiteList = (url: string) => {
-  const path = url.split(window.location.origin)[1]; // get path of browser url
-  return defaultPaths.includes(path);
-};
+const getPath = (url: string) => url.split(window.location.origin)[1];
 
 export const Routing = {
   register() {
@@ -14,9 +12,15 @@ export const Routing = {
       let {
         detail: { newUrl },
       } = evt as CustomEvent;
-      if (validateWhiteList(newUrl)) {
-        const canAccess = await isAuthenticated();
+      const path = getPath(newUrl);
+      const canAccess = await isAuthenticated();
+      if (baseUrl === path) {
         newUrl = canAccess ? "/users" : "/sign-in";
+        navigateToUrl(newUrl);
+      }
+
+      if (defaultPaths.includes(path) && !canAccess) {
+        newUrl = "/sign-in";
       }
 
       navigateToUrl(newUrl);

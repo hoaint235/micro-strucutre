@@ -85,7 +85,7 @@ const DynamicTable = (props: DynamicTableProps) => {
           </TableRow>
         );
       }),
-    [source, headers, keyRow, props]
+    [source, headers, keyRow, props, bodyTemplate]
   );
 
   const handleChangePage = (event, newPage: number) => {

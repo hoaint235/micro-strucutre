@@ -1,7 +1,10 @@
 using HealthChecks.UI.Client;
-using MicroArchitecture.Account.API.Infrastructures;
 using MicroArchitecture.Account.API.Infrastructures.Middlewares;
+using MicroArchitecture.Account.Application.User.Queries;
+using MicroArchitecture.Account.Domain.Core.Domain;
 using MicroArchitecture.Account.Infrastructure.Commons;
+using MicroArchitecture.Account.Infrastructure.Database.DbContext;
+using MicroArchitecture.Core.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +34,15 @@ namespace MicroArchitecture.Account.API
                     .SetIsOriginAllowed((host) => true);
             }));
 
-            services.AddModules(Configuration);
+            var types = new[]
+            {
+                typeof(Startup),
+                typeof(ListUsers),
+                typeof(IAggregateRoot),
+                typeof(AccountDbContext)
+            };
+
+            services.AddModules(Configuration, types);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +53,8 @@ namespace MicroArchitecture.Account.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware<TracerMiddleware>();
+
             app.UseHttpsRedirection();
             app.UseRouting();
 
@@ -51,6 +64,8 @@ namespace MicroArchitecture.Account.API
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<AuthorizeMiddleware>();
 
             app.UseHealthChecks("/healthcheck", new HealthCheckOptions()
             {

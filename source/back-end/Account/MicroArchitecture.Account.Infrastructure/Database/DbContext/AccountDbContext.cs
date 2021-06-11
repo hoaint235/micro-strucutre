@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using MediatR;
 using MicroArchitecture.Account.Domain.Core.Database;
 using MicroArchitecture.Account.Domain.Core.Domain;
+using MicroArchitecture.Account.Domain.Roles;
+using MicroArchitecture.Account.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -15,6 +17,9 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly IMediator _mediator;
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         public AccountDbContext(DbContextOptions<AccountDbContext> options
             , ILoggerFactory loggerFactory
@@ -55,7 +60,7 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext
 
         private async Task RaiseDomainEventAsync(CancellationToken cancellationToken)
         {
-            var entities = GetEntities().ToList();
+            var entities = GetEntities();
             foreach (var entity in entities)
             {
                 var domainEvents = entity.DomainEvents;
@@ -69,7 +74,7 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext
 
         private IEnumerable<Entity> GetEntities()
         {
-            return ChangeTracker.Entries().Select(x => (Entity)x.Entity);
+            return ChangeTracker.Entries().Select(x => (Entity)x.Entity).ToList();
         }
 
         private void SetAuditLog()
