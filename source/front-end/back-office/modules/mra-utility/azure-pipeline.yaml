@@ -7,7 +7,7 @@ trigger:
       - feature/*
   paths:
     include:
-      - "/source/front-end/back-office/modules/mra-account/*"
+      - "/source/front-end/back-office/modules/mra-utility/*"
 pr:
   - master
 
@@ -16,4 +16,4 @@ pool:
 
 steps:
   - script: |
-      echo "Hello from mra-account folder."
+      echo "Hello from mra-utility folder."

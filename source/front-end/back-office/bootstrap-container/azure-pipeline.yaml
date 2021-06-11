@@ -1,3 +1,5 @@
+name: $(BuildID)
+
 trigger:
   branches:
     include:
@@ -11,8 +13,6 @@ pr:
 
 pool:
   vmImage: "ubuntu-latest"
-
-name: "bootstrap-container"
 
 steps:
   - script: |
