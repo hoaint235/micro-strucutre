@@ -16,7 +16,9 @@ pool:
 
 variables:
   - name: Workspace
-    value: $(Pipeline.Workspace)/source/front-end/back-office/bootstrap-container/s
+    value: $(Pipeline.Workspace)/s
+  - name: sourceDictionary
+    value: $(Workspace)/source/front-end/back-office/bootstrap-container
 
 stages:
   - stage: Install
@@ -27,7 +29,7 @@ stages:
           - script: yarn install
             name: YarnInstall
             displayName: Yarn install
-            workingDirectory: "$(Workspace)"
+            workingDirectory: "$(sourceDictionary)"
 
   - stage: CodeReview
     jobs:
@@ -37,11 +39,11 @@ stages:
           - script: yarn format && yarn check-format
             name: YarnFormat
             displayName: Yarn format
-            workingDirectory: "$(Workspace)"
+            workingDirectory: "$(sourceDictionary)"
           - script: yarn lint
             name: YarnLint
             displayName: Yarn lint
-            workingDirectory: "$(Workspace)"
+            workingDirectory: "$(sourceDictionary)"
 
   - stage: Build
     jobs:
@@ -51,4 +53,4 @@ stages:
           - script: yarn build
             name: YarnBuild
             displayName: Yarn build
-            workingDirectory: "$(Workspace)"
+            workingDirectory: "$(sourceDictionary)"
