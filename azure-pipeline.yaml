@@ -2,7 +2,7 @@ trigger:
   branches:
     include:
       - master
-      - feature*
+      - feature/*
   paths:
     exclude:
       - "front-end/back-office/bootstrap-container/*"
@@ -18,4 +18,4 @@ pool:
   vmImage: "ubuntu-latest"
 
 stages:
-  - script: | echo "Hello from '/' root folder"
+  - script: echo "Hello from '/' root folder"
