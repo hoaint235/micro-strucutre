@@ -1,0 +1,35 @@
+trigger:
+  branches:
+    include:
+      - master
+      - feature*
+  paths:
+    include:
+      - "front-end/back-office/bootstrap-container/*"
+pr:
+  - master
+
+pool:
+  vmImage: "ubuntu-latest"
+
+name: $(SourceBranchName)_$(Rev:rr)
+
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildJob
+        displayName: BuildJob
+        steps:
+          - script: yarn install
+            name: YarnInstall
+            displayName: Yarn install
+            workingDirectory: "$(Workspace)"
+            env:
+              NODE_ENV: development
+
+          - script: yarn run build
+            name: YarnBuild
+            displayName: Yarn build
+            workingDirectory: "$(Workspace)"
+            env:
+              NODE_ENV: production
