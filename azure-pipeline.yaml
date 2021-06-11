@@ -7,7 +7,7 @@ trigger:
       - feature/*
   paths:
     exclude:
-      - 'source/*'
+      - "source/*"
 
 pr:
   - master
@@ -17,4 +17,4 @@ pool:
 
 steps:
   - script: |
-      echo "Hello from 'a'"
+      echo "Hello from root folder."
