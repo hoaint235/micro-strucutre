@@ -5,15 +5,15 @@ trigger:
       - feature/*
   paths:
     include:
-      - "/source/front-end/back-office/bootstrap-container/*"
+      - "/source/front-end/back-office/modules/account/*"
 pr:
   - master
 
 pool:
   vmImage: "ubuntu-latest"
 
-name: "bootstrap-container"
+name: "mra-account"
 
 steps:
   - script: |
-      echo "Hello from bootstrap-container folder."
+      echo "Hello from mra-account folder."
