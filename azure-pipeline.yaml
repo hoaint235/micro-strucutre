@@ -16,3 +16,6 @@ pr:
 
 pool:
   vmImage: "ubuntu-latest"
+
+stages:
+  - stage: Build
