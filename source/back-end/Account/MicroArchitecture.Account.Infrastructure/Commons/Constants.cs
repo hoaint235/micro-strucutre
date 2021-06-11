@@ -13,6 +13,7 @@
             public const string CacheConfig = "Cache";
             public const string DefaultCreatedBy = "326a1f62-8b86-4304-9aed-38cbcc24ef5d";
             public const string AuthorizationHeader = "Authorization";
+            public const int TimeHandleSlow = 5000;
         }
 
         public static class StatusCode

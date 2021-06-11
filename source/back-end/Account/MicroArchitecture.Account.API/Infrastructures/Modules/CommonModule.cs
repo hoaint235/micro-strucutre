@@ -2,6 +2,7 @@
 using AutoMapper;
 using FluentValidation;
 using MediatR;
+using MicroArchitecture.Account.API.Infrastructures.BehaviorPipelines;
 using MicroArchitecture.Account.Domain.Core.AppContext;
 using MicroArchitecture.Account.Domain.Services.UserManager;
 using MicroArchitecture.Account.Infrastructure.Services.UserManager;
@@ -23,6 +24,7 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 
             service.AddScoped<IAppContext, AppContext>();
             service.AddScoped<IUserManager, AwsCognitoService>();
+            service.AddScoped(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
 
             service.AddControllersWithViews();
             service.AddHttpContextAccessor();
