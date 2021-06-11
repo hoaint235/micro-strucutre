@@ -14,6 +14,37 @@ pr:
 pool:
   vmImage: "ubuntu-latest"
 
-steps:
-  - script: |
-      echo "Hello from bootstrap-container folder."
+stages:
+  - stage: Install
+    jobs:
+      - job: InstallJob
+        displayName: InstallJob
+        steps:
+          - script: yarn install
+            name: YarnInstall
+            displayName: Yarn install
+            workingDirectory: "$(Workspace)"
+
+  - stage: CodeReview
+    jobs:
+      - job: CodeReviewJob
+        displayName: CodeReviewJob
+        steps:
+          - script: yarn format && yarn check-format
+            name: YarnFormat
+            displayName: Yarn format
+            workingDirectory: "$(Workspace)"
+          - script: yarn lint
+            name: YarnLint
+            displayName: Yarn lint
+            workingDirectory: "$(Workspace)"
+
+  - stage: Build
+    jobs:
+      - job: BuildJob
+        displayName: BuildJob
+        steps:
+          - script: yarn build
+            name: YarnBuild
+            displayName: Yarn build
+            workingDirectory: "$(Workspace)"
