@@ -15,4 +15,5 @@ pool:
 name: 'bootstrap-container'
 
 steps:
-  - script: | echo "Hello from bootstrap-container folder."
+  - script: | 
+      echo "Hello from bootstrap-container folder."
