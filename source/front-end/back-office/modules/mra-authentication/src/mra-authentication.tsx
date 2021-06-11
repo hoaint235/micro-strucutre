@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";
 import { renderPage } from "./routing";
+import "./i18n";
 
 const lifecycles = singleSpaReact({
   React,

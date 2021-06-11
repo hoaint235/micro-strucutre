@@ -7,7 +7,7 @@ import {
   Theme,
 } from "@material-ui/core";
 import React from "react";
-import { t } from "@mra/utility";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
 const useStyleListItem = makeStyles((theme: Theme) => ({
@@ -79,6 +79,7 @@ type MenuItemProps = {
 };
 
 const MenuItem = ({ label, path, icon: Icon }: MenuItemProps) => {
+  const { t } = useTranslation();
   const classesListItem = useStyleListItem();
   const classesItemIcon = useStyleItemIcon();
   const classesItemText = useStyleItemText();

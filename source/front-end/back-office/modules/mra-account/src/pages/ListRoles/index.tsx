@@ -1,11 +1,16 @@
 import React from "react";
 import MainContainer from "../../components/commons/MainContainer";
-import { HeaderProps } from "../../components/controls/DynamicTableHeader/DynamicTableHeader.type";
 import TableRoles from "./TableRoles";
+import PrimaryButton from "../../components/controls/PrimaryButton";
+import { useTranslation } from "react-i18next";
 
 const ListRoles = () => {
+  const { t } = useTranslation();
   return (
-    <MainContainer title="List Roles">
+    <MainContainer
+      title="listRoles.title"
+      action={<PrimaryButton>{t("buttons.add")}</PrimaryButton>}
+    >
       <TableRoles />
     </MainContainer>
   );

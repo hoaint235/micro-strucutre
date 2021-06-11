@@ -5,17 +5,37 @@
     "forgotPasswordTitle": "Quên mật khẩu",
     "forgotPasswordSubtitle": "Nhập địa chỉ email của bạn và chúng tôi sẽ gửi cho bạn mã OTP để đặt lại mật khẩu",
     "changePasswordFirstTimeTitle": "Đặt mới mật khẩu",
-    "changePasswordFirstTimeSubtitle": "Vui lòng chọn mật khẩu mới"
+    "changePasswordFirstTimeSubtitle": "Vui lòng chọn mật khẩu mới",
+    "confirmationCodeTitle": "Xác thực mật khẩu",
+    "confirmationCodeSubtitle": "Nhập mã tại email của bạn và lựa chọn mật khẩu mới",
+    "verifyOtpCodeTitle": "Xác thực mã OTP",
+    "verifyOtpCodeSubtitle": "Nhập mã OTP mà hệ thống gửi cho bạn thông qua số điện thoại ở hồ sơ cá nhân"
+  },
+  "account": {
+    "listRolesTitle": "Danh sách quyền"
   },
   "buttons": {
     "signIn": "Đăng nhập",
     "submit": "Xác nhận",
-    "sendActivation": "Gửi xác thực"
+    "sendActivation": "Gửi xác thực",
+    "add": "Thêm mới",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa"
   },
   "fields": {
     "emailAddress": "Email",
     "password": "Mật khẩu",
     "confirmPassword": "Xác nhận mật khẩu",
-    "rememberMe": "Nhớ tài khoản"
+    "rememberMe": "Nhớ tài khoản",
+    "phoneNumber": "Số điện thoại",
+    "otpCode": "Mã OTP"
+  },
+  "table": {
+    "name": "Tên",
+    "description": "Miêu tả",
+    "action": "Hành động"
+  },
+  "errors": {
+    "internalServerError": "Xảy ra lỗi từ hệ thống, vui lòng thử lại"
   }
 }

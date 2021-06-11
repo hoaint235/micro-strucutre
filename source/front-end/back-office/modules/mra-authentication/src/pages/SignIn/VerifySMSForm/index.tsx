@@ -1,11 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import ContentForm from "../../../components/commons/ContentForm";
-import { Cognito, t } from "@mra/utility";
+import { Cognito } from "@mra/utility";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { InputForm } from "../../../components/forms";
+import { useTranslation } from "react-i18next";
 
 const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
+  const { t } = useTranslation();
+
   const {
     stepObj: {
       data: { user },
@@ -27,7 +30,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   return (
-    <ContentForm title={t("auth.verifyOtpCodeTitle")}>
+    <ContentForm title={t("verifyOtpCodeTitle")}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -36,7 +39,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
               component="h2"
               style={{ textAlign: "center" }}
             >
-              {t("auth.verifyOtpCodeSubtitle")}
+              {t("verifyOtpCodeSubtitle")}
             </Typography>
           </Grid>
           <Grid item xs={12}>

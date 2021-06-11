@@ -2,9 +2,9 @@ import { Button, Grid, makeStyles, Theme } from "@material-ui/core";
 import React from "react";
 import { useForm } from "react-hook-form";
 import ContentForm from "../../../components/commons/ContentForm";
-import CheckboxField from "../../../components/controls/CheckboxField";
-import { t, Cognito } from "@mra/utility";
-import { EmailForm, InputForm, PasswordForm } from "../../../components/forms";
+import { Cognito } from "@mra/utility";
+import { EmailForm, PasswordForm } from "../../../components/forms";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const SignInForm = (props: HandleStepProps<SignInStatus>) => {
+  const { t } = useTranslation();
   const classes = useStyles();
   const {
     control,
@@ -48,7 +49,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   return (
-    <ContentForm title={t("auth.signInTitle")}>
+    <ContentForm title={t("signInTitle")}>
       <form onSubmit={handleSubmit(onSignIn)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -72,7 +73,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
             <Grid container alignItems="center">
               <Grid item xs={12} className={classes.linkForgotContainer}>
                 <a href="/forgot-password" className={classes.linkForgotText}>
-                  {t("auth.forgotPasswordLink")}
+                  {t("forgotPasswordLink")}
                 </a>
               </Grid>
             </Grid>

@@ -2,11 +2,14 @@ import React from "react";
 import ContentForm from "../../../components/commons/ContentForm";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { InputForm, PasswordForm } from "../../../components/forms";
+import { PasswordForm } from "../../../components/forms";
 import useMatchPassword from "../../../hooks/useMatchPassword";
-import { Cognito, t } from "@mra/utility";
+import { Cognito } from "@mra/utility";
+import { useTranslation } from "react-i18next";
 
 const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
+  const { t } = useTranslation();
+
   const {
     stepObj: {
       data: { user },
@@ -46,12 +49,12 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   return (
-    <ContentForm title={t("auth.changePasswordFirstTimeTitle")}>
+    <ContentForm title={t("changePasswordFirstTimeTitle")}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography variant="subtitle1" component="h2">
-              {t("auth.changePasswordFirstTimeSubtitle")}
+              {t("changePasswordFirstTimeSubtitle")}
             </Typography>
           </Grid>
           {/* <Grid item xs={12}>

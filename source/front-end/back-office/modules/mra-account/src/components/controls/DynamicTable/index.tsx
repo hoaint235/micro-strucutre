@@ -9,7 +9,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
-import stringHelper from "../../../utils/helpers/string-helper";
+import stringHelper from "../../../utils/helpers/stringHelper";
 import DynamicTableHeader from "../DynamicTableHeader";
 import { DynamicTableProps, PagingProps } from "./DynamicTable.type";
 import { OrderProps } from "../DynamicTableHeader/DynamicTableHeader.type";
@@ -85,7 +85,7 @@ const DynamicTable = (props: DynamicTableProps) => {
           </TableRow>
         );
       }),
-    [source, headers, keyRow, props, bodyTemplate]
+    [source, headers, keyRow, bodyTemplate]
   );
 
   const handleChangePage = (event, newPage: number) => {

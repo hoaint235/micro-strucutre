@@ -1,11 +1,13 @@
 import { Button, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Cognito, t } from "@mra/utility";
+import { Cognito } from "@mra/utility";
 import ContentForm from "../../../components/commons/ContentForm";
 import { EmailForm } from "../../../components/forms";
+import { useTranslation } from "react-i18next";
 
 const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
+  const { t } = useTranslation();
   const {
     control,
     formState: { errors, isValid, isDirty },
@@ -29,7 +31,7 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
   };
 
   return (
-    <ContentForm title={t("auth.forgotPasswordTitle")}>
+    <ContentForm title={t("forgotPasswordTitle")}>
       <form onSubmit={handleSubmit(onSendActivation)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -38,7 +40,7 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
               variant="subtitle1"
               component="h2"
             >
-              {t("auth.forgotPasswordSubtitle")}
+              {t("forgotPasswordSubtitle")}
             </Typography>
           </Grid>
           <Grid item xs={12}>
