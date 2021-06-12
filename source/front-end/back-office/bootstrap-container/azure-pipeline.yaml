@@ -15,44 +15,26 @@ pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  - name: Workspace
-    value: $(Pipeline.Workspace)/s
   - name: sourceDictionary
-    value: $(Workspace)/source/front-end/back-office/bootstrap-container
+    value: /source/front-end/back-office/bootstrap-container
 
 stages:
-  - stage: Install
-    jobs:
-      - job: InstallJob
-        displayName: InstallJob
-        steps:
-          - script: yarn install
-            name: YarnInstall
-            displayName: Yarn install
-            workingDirectory: "$(sourceDictionary)"
-          - script: |
-              echo $(sourceDictionary)
-
-  - stage: CodeReview
-    jobs:
-      - job: CodeReviewJob
-        displayName: CodeReviewJob
-        steps:
-          - script: yarn format && yarn check-format
-            name: YarnFormat
-            displayName: Yarn format
-            workingDirectory: "$(sourceDictionary)"
-          - script: yarn lint
-            name: YarnLint
-            displayName: Yarn lint
-            workingDirectory: "$(sourceDictionary)"
-
   - stage: Build
     jobs:
       - job: BuildJob
         displayName: BuildJob
         steps:
+          - checkout: self
+            path: $(sourceDictionary)
+          - script: yarn install
+            name: YarnInstall
+            displayName: Yarn install
+          - script: yarn format && yarn check-format
+            name: YarnFormat
+            displayName: Yarn format
+          - script: yarn lint
+            name: YarnLint
+            displayName: Yarn lint
           - script: yarn build
             name: YarnBuild
             displayName: Yarn build
-            workingDirectory: "$(sourceDictionary)"
