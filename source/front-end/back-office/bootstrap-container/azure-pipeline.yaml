@@ -28,7 +28,7 @@ stages:
             inputs:
               versionSpec: '10.x'
             displayName: 'Install Node.js'
-          - script: yarn install
+          - script: npm install
             name: YarnInstall
             displayName: Yarn install
             workingDirectory: $(sourceDictionary)
