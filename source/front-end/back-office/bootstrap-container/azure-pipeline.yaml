@@ -24,11 +24,10 @@ stages:
       - job: BuildJob
         displayName: BuildJob
         steps:
-          - script: |
-              echo cd $(sourceDictionary)
           - script: yarn install
             name: YarnInstall
             displayName: Yarn install
+            workingDirectory: $(sourceDictionary)
           - script: yarn format && yarn check-format
             name: YarnFormat
             displayName: Yarn format
