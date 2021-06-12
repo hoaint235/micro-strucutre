@@ -26,18 +26,22 @@ stages:
         steps:
           - task: NodeTool@0
             inputs:
-              versionSpec: '10.x'
+              versionSpec: '14.x'
             displayName: 'Install Node.js'
-          - script: npm install
+          - script: npm install -g yarn
+          - script: yarn install
             name: YarnInstall
             displayName: Yarn install
             workingDirectory: $(sourceDictionary)
           - script: yarn format && yarn check-format
             name: YarnFormat
             displayName: Yarn format
+            workingDirectory: $(sourceDictionary)
           - script: yarn lint
             name: YarnLint
             displayName: Yarn lint
+            workingDirectory: $(sourceDictionary)
           - script: yarn build
             name: YarnBuild
             displayName: Yarn build
+            workingDirectory: $(sourceDictionary)
