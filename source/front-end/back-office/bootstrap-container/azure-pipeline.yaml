@@ -16,7 +16,7 @@ pool:
 
 variables:
   - name: sourceDictionary
-    value: /source/front-end/back-office/bootstrap-container/
+    value: $(Pipeline.Workspace)/s/source/front-end/back-office/bootstrap-container/
 
 stages:
   - stage: Build
