@@ -1,5 +1,11 @@
 name: $(BuildID)
 
+variables:
+  - name: sourceFolder
+    value: /source/front-end/back-office/bootstrap-container
+  - name: sourceWorkspace
+    value: $(Pipeline.Workspace)/s/$(sourceFolder)/
+
 trigger:
   branches:
     include:
@@ -7,16 +13,12 @@ trigger:
       - feature/*
   paths:
     include:
-      - "/source/front-end/back-office/bootstrap-container/*"
+      - "$(sourceFolder)/*"
 pr:
   - master
 
 pool:
   vmImage: "ubuntu-latest"
-
-variables:
-  - name: sourceDictionary
-    value: $(Pipeline.Workspace)/s/source/front-end/back-office/bootstrap-container/
 
 stages:
   - stage: Build
@@ -26,22 +28,22 @@ stages:
         steps:
           - task: NodeTool@0
             inputs:
-              versionSpec: '14.x'
-            displayName: 'Install Node.js'
+              versionSpec: "14.x"
+            displayName: "Install Node.js"
           - script: npm install -g yarn
           - script: yarn install
             name: YarnInstall
             displayName: Yarn install
-            workingDirectory: $(sourceDictionary)
+            workingDirectory: $(sourceWorkspace)
           - script: yarn format && yarn check-format
             name: YarnFormat
             displayName: Yarn format
-            workingDirectory: $(sourceDictionary)
+            workingDirectory: $(sourceWorkspace)
           - script: yarn lint
             name: YarnLint
             displayName: Yarn lint
-            workingDirectory: $(sourceDictionary)
+            workingDirectory: $(sourceWorkspace)
           - script: yarn build
             name: YarnBuild
             displayName: Yarn build
-            workingDirectory: $(sourceDictionary)
+            workingDirectory: $(sourceWorkspace)
