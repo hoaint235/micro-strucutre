@@ -16,7 +16,7 @@ pool:
 
 variables:
   - name: sourceDictionary
-    value: $(Pipeline.Workspace)/source/front-end/back-office/bootstrap-container
+    value: /source/front-end/back-office/bootstrap-container/
 
 stages:
   - stage: Build
@@ -24,8 +24,8 @@ stages:
       - job: BuildJob
         displayName: BuildJob
         steps:
-          - checkout: self
-            path: $(sourceDictionary)
+          - script: |
+              echo cd $(sourceDictionary)
           - script: yarn install
             name: YarnInstall
             displayName: Yarn install
