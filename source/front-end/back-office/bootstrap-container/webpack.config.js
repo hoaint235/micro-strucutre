@@ -2,6 +2,8 @@ const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+require("dotenv").config();
+
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "mra";
   const defaultConfig = singleSpaDefaults({
@@ -25,6 +27,9 @@ module.exports = (webpackConfigEnv, argv) => {
       }),
     ],
     devServer: {
+      host: process.env.HOST || "0.0.0.0",
+      port: process.env.PORT,
+      public: `${process.env.HOST}:${process.env.PORT}`,
       proxy: {
         "/account": {
           target: "http://localhost:7000",

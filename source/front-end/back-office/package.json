@@ -8,7 +8,7 @@
     "modules/*"
   ],
   "scripts": {
-    "kill-port": "npx kill-port 9000 1000 1001 2000",
+    "kill-port": "npx kill-port 2305 1000 1001 2000",
     "install": "lerna bootstrap",
     "start": "yarn kill-port && lerna run start --stream"
   },
