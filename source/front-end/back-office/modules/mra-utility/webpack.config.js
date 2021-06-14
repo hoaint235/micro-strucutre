@@ -1,9 +1,18 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
-const Dotenv = require("dotenv-webpack");
+const { DefinePlugin } = require("webpack");
+
+const dotenv = require("dotenv").config();
 
 const extendConfig = {
-  plugins: [new Dotenv()],
+  devServer: {
+    port: process.env.PORT,
+  },
+  plugins: [
+    new DefinePlugin({
+      "process.env": JSON.stringify(dotenv.parsed),
+    }),
+  ],
   module: {
     rules: [
       {

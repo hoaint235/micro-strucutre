@@ -2,7 +2,7 @@
   "name": "@container/root-config",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack serve --env isLocal",
+    "start": "webpack serve",
     "lint": "eslint src --ext js,ts,tsx",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",

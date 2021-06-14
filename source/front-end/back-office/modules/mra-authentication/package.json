@@ -2,7 +2,7 @@
   "name": "@mra/authentication",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack serve --port 1000",
+    "start": "webpack serve",
     "start:standalone": "webpack serve --env standalone",
     "build": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
