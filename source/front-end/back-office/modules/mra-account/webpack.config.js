@@ -1,6 +1,14 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 
+require("dotenv").config();
+
+const extendConfig = {
+  devServer: {
+    port: process.env.PORT,
+  },
+};
+
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "mra",
@@ -10,6 +18,6 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
-    // modify the webpack config however you'd like to by adding to this object
+    ...extendConfig,
   });
 };
