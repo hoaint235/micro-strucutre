@@ -1,0 +1,22 @@
+FROM nginx:perl AS base
+WORKDIR /app
+RUN nginx -v
+EXPOSE 80
+
+FROM node:14.17.0-alpine as build
+
+WORKDIR /src
+COPY package.json ./
+RUN yarn install
+COPY . .
+RUN yarn build
+
+FROM base AS final
+WORKDIR /app
+
+COPY docker-build/app-startup.sh ./app-startup.sh
+
+COPY docker-build/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build src/dist .
+RUN chmod u+x ./app-startup.sh
+CMD ["./app-startup.sh"]
