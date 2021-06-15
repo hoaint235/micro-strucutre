@@ -31,7 +31,7 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
   };
 
   return (
-    <ContentForm title={t("forgotPasswordTitle")}>
+    <ContentForm title={t("auth.forgotPasswordTitle")}>
       <form onSubmit={handleSubmit(onSendActivation)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -40,7 +40,7 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
               variant="subtitle1"
               component="h2"
             >
-              {t("forgotPasswordSubtitle")}
+              {t("auth.forgotPasswordSubtitle")}
             </Typography>
           </Grid>
           <Grid item xs={12}>

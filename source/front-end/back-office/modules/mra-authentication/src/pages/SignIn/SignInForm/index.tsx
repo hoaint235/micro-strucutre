@@ -50,7 +50,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   return (
-    <ContentForm title={t("signInTitle")}>
+    <ContentForm title={t("auth.signInTitle")}>
       <form onSubmit={handleSubmit(onSignIn)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>

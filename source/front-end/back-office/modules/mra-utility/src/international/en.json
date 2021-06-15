@@ -12,7 +12,9 @@
     "verifyOtpCodeSubtitle": "Enter otp code that the system sends you via the phone number in your profile"
   },
   "account": {
-    "listRolesTitle": "List Roles"
+    "listUser": {
+      "title": "List Users"
+    }
   },
   "buttons": {
     "signIn": "Sign In",

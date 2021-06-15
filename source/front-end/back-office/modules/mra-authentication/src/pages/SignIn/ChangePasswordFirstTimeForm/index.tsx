@@ -50,12 +50,12 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   return (
-    <ContentForm title={t("changePasswordFirstTimeTitle")}>
+    <ContentForm title={t("auth.changePasswordFirstTimeTitle")}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography variant="subtitle1" component="h2">
-              {t("changePasswordFirstTimeSubtitle")}
+              {t("auth.changePasswordFirstTimeSubtitle")}
             </Typography>
           </Grid>
           {/* <Grid item xs={12}>

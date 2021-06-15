@@ -39,7 +39,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
   };
 
   return (
-    <ContentForm title={t("confirmationCodeTitle")}>
+    <ContentForm title={t("auth.confirmationCodeTitle")}>
       <form onSubmit={handleSubmit(onConfirmationCode)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -48,7 +48,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
               variant="subtitle1"
               component="h2"
             >
-              {t("confirmationCodeSubtitle")}
+              {t("auth.confirmationCodeSubtitle")}
             </Typography>
           </Grid>
           <Grid item xs={12}>
