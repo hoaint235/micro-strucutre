@@ -5,6 +5,7 @@ import { Cognito } from "@mra/utility";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { InputForm } from "../../../components/forms";
 import { useTranslation } from "react-i18next";
+import { DefaultPathRedirect } from "../../../utils/constants";
 
 const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
 
   const onSubmit = async ({ otpCode }) => {
     await Cognito.confirmMFACode(user, otpCode);
-    history.pushState({}, "", "/users");
+    history.pushState({}, "", DefaultPathRedirect);
   };
 
   return (

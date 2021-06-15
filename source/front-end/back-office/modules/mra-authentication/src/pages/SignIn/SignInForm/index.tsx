@@ -5,6 +5,7 @@ import ContentForm from "../../../components/commons/ContentForm";
 import { Cognito } from "@mra/utility";
 import { EmailForm, PasswordForm } from "../../../components/forms";
 import { useTranslation } from "react-i18next";
+import { DefaultPathRedirect } from "../../../utils/constants";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -45,7 +46,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
       return;
     }
 
-    history.pushState({}, "", "/users");
+    history.pushState({}, "", DefaultPathRedirect);
   };
 
   return (

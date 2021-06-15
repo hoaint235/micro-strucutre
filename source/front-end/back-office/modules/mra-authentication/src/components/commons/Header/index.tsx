@@ -29,11 +29,7 @@ const Header = (props: Props) => {
       </Grid>
       <Grid item sm={5} xs={12} className={classes.logo}>
         <a href="/">
-          <img
-            src="/images/logo.svg"
-            // src="https://berrydashboard.io/static/media/logo.74a2ce07.svg"
-            alt="logo"
-          />
+          <img src="/images/logo.svg" alt="logo" />
         </a>
       </Grid>
     </Grid>
