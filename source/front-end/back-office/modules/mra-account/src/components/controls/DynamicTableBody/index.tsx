@@ -9,7 +9,6 @@ const prefixBody = "body";
 
 const DynamicTableBody = (props) => {
   const { source, headers, keyRow, bodyTemplate } = props;
-
   const renderBody = useMemo(
     () =>
       source.map((row) => {

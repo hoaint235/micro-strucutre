@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MicroArchitecture.Account.Domain.Core.HttpClient;
 using MicroArchitecture.Account.Infrastructure.Database.Models;
 
 namespace MicroArchitecture.Account.Infrastructure.RawQueries
@@ -15,12 +18,12 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
                                 , u.Status
                                 , (SELECT CONCAT('[', STRING_AGG(CONCAT('""', ur.RoleId , '""'), ',') ,']')) AS Roles
                            FROM [dbo].[User] u 
-                           INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId
-                           WHERE u.Id = @UserId
+                           INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId 
+                           WHERE u.Id = @UserId 
+                             AND u.IsDeleted = 0 
                            GROUP BY u.Id
                            	      , u.Email
-                           	      , u.Status
-                           AND u.IsDeleted = 0",
+                           	      , u.Status",
                 Parameters = new Dictionary<string, object>
                 {
                     {"UserId", userId}
@@ -43,30 +46,55 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
             };
         }
 
-        public static RawQuery ListUser(List<Guid> roleIds)
+        public static RawQuery ListUser(ListingRequest request, List<Guid> roleIds)
         {
+            var orderByClause = new StringBuilder();
+            orderByClause.Append("u.CreatedDate DESC");
+
+            if (request.Sorts.Any())
+            {
+                orderByClause.Clear();
+                request.Sorts.ForEach(sort =>
+                {
+                    orderByClause.Append($", {sort.Field} {sort.Direction} ");
+                });
+            }
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "Limit", request.Limit },
+                { "Offset", request.Offset },
+                { "RoleIds", roleIds }
+            };
+
             return new RawQuery
             {
-                Query = $@"SELECT DISTINCT u.Id
-                           	             , u.Email
-                           	             , u.IsActivate
-                           	             , u.Status
-                           	             , u.CreatedDate
-                                         , (SELECT CONCAT('[', STRING_AGG(CONCAT('""', ur.RoleId , '""'), ',') ,']')) AS Roles
-                           FROM [dbo].[User] u
-                           INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId
-                           WHERE ur.RoleId IN (@RoleIds)
+                Query = $@"SELECT u.Id
+                           	    , u.Email
+                           	    , u.IsActivate
+                           	    , u.Status
+                           	    , u.CreatedDate
+                                , (SELECT CONCAT('[', STRING_AGG(CONCAT('""', ur.RoleId , '""'), ',') ,']')) AS Roles 
+                           INTO #TempUser                           
+                           FROM [dbo].[User] u 
+                           INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId 
+                           WHERE u.IsDeleted = 0 AND ur.RoleId IN @RoleIds
                            GROUP BY u.Id
                            	      , u.Email
                            	      , u.IsActivate
                            	      , u.Status
-                           	      , u.CreatedDate
-                           ORDER BY u.CreatedDate DESC
-                           ",
-                Parameters = new Dictionary<string, object>
-                {
-                    { "RoleIds", roleIds } 
-                }
+                           	      , u.CreatedDate 
+
+                           SELECT @TotalItems = COUNT(1) FROM #TempUser;
+                           
+                           SELECT * 
+                           FROM #TempUser u 
+                           ORDER BY {orderByClause} 
+                           OFFSET @Offset ROWS 
+                           FETCH NEXT @Limit ROWS ONLY 
+                           
+                           DROP TABLE #TempUser",
+                Parameters = parameters
             };
         }
     }

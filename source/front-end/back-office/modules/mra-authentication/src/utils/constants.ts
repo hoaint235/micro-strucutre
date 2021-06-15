@@ -8,4 +8,4 @@ export const WindowEvent = Object.freeze({
   DECREASE_LOADING: "DECREASE_LOADING",
 });
 
-export const DefaultPathRedirect = "/roles";
+export const DefaultPathRedirect = "/users";

@@ -33,6 +33,12 @@ function initHttpInterceptor() {
     },
     (error) => {
       let errorMessage = "errors.internalServerError";
+
+      const { status } = error.response;
+      if (status === 403) {
+        errorMessage = "errors.forbidden";
+      }
+
       window.dispatchEvent(
         new CustomEvent("TOAST_ERROR", {
           detail: errorMessage,

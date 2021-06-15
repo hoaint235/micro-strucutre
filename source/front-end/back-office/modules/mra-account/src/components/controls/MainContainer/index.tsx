@@ -2,7 +2,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Divider,
   makeStyles,
   Paper,
   Theme,
