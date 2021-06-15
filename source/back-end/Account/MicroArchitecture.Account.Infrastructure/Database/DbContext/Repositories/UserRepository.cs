@@ -29,17 +29,17 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Repositori
             throw new NotImplementedException();
         }
 
-        public void Add(User user)
+        public void Add(User entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(User user)
+        public void Update(User entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(User user)
+        public void Delete(User entity)
         {
             throw new NotImplementedException();
         }

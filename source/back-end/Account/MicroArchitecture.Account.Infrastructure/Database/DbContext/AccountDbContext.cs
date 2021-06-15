@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using MediatR;
 using MicroArchitecture.Account.Domain.Core.Database;
 using MicroArchitecture.Account.Domain.Core.Domain;
-using MicroArchitecture.Account.Domain.Roles;
 using MicroArchitecture.Account.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -19,7 +18,6 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext
         private readonly IMediator _mediator;
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
 
         public AccountDbContext(DbContextOptions<AccountDbContext> options
             , ILoggerFactory loggerFactory

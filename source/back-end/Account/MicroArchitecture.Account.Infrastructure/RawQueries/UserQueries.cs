@@ -13,14 +13,14 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
                 Query = $@"SELECT u.Id
                                 , u.Email
                                 , u.Status
-                                , (SELECT r.Id
-                                	 , r.Name
-                                FOR JSON PATH) as Roles
+                                , (SELECT CONCAT('[', STRING_AGG(CONCAT('""', ur.RoleId , '""'), ',') ,']')) AS Roles
                            FROM [dbo].[User] u 
                            INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId
-                           INNER JOIN [dbo].[Role] r ON r.Id = ur.RoleId
                            WHERE u.Id = @UserId
-                             AND u.IsDeleted = 0",
+                           GROUP BY u.Id
+                           	      , u.Email
+                           	      , u.Status
+                           AND u.IsDeleted = 0",
                 Parameters = new Dictionary<string, object>
                 {
                     {"UserId", userId}
@@ -39,6 +39,33 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
                 Parameters = new Dictionary<string, object>
                 {
                     {"ExternalId", externalId}
+                }
+            };
+        }
+
+        public static RawQuery ListUser(List<Guid> roleIds)
+        {
+            return new RawQuery
+            {
+                Query = $@"SELECT DISTINCT u.Id
+                           	             , u.Email
+                           	             , u.IsActivate
+                           	             , u.Status
+                           	             , u.CreatedDate
+                                         , (SELECT CONCAT('[', STRING_AGG(CONCAT('""', ur.RoleId , '""'), ',') ,']')) AS Roles
+                           FROM [dbo].[User] u
+                           INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId
+                           WHERE ur.RoleId IN (@RoleIds)
+                           GROUP BY u.Id
+                           	      , u.Email
+                           	      , u.IsActivate
+                           	      , u.Status
+                           	      , u.CreatedDate
+                           ORDER BY u.CreatedDate DESC
+                           ",
+                Parameters = new Dictionary<string, object>
+                {
+                    { "RoleIds", roleIds } 
                 }
             };
         }
