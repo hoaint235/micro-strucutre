@@ -1,6 +1,7 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 require("dotenv").config();
 
@@ -25,6 +26,14 @@ module.exports = (webpackConfigEnv, argv) => {
           isDocker: process.env.ENV === "docker",
           orgName,
         },
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: "./src/asset/images",
+            to: "images",
+          },
+        ],
       }),
     ],
     devServer: {

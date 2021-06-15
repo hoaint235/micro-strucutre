@@ -5,12 +5,12 @@ export const Account = {
       name: "@mra/account",
       app: () => System.import("@mra/account"),
       activeWhen: [
-        "/users",
-        "/users/:userId",
-        "/add-user",
-        "/roles",
-        "/add-role",
-        "/roles/:roleId",
+        "users",
+        "users/#",
+        "add-user",
+        "roles",
+        "add-role",
+        "roles/#",
       ],
     });
   },
