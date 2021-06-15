@@ -6,6 +6,7 @@ import { PasswordForm } from "../../../components/forms";
 import useMatchPassword from "../../../hooks/useMatchPassword";
 import { Cognito } from "@mra/utility";
 import { useTranslation } from "react-i18next";
+import { DefaultPathRedirect } from "../../../utils/constants";
 
 const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
   const { t } = useTranslation();
@@ -45,7 +46,7 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
       });
     }
 
-    history.pushState({}, "", "/users");
+    history.pushState({}, "", DefaultPathRedirect);
   };
 
   return (

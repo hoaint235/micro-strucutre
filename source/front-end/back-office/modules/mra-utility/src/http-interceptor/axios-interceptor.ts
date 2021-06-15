@@ -32,12 +32,7 @@ function initHttpInterceptor() {
       return response;
     },
     (error) => {
-      let errorMessage: string;
-      const { status } = error.response;
-      if (status === 500) {
-        errorMessage = "errors.internalServerError";
-      }
-
+      let errorMessage = "errors.internalServerError";
       window.dispatchEvent(
         new CustomEvent("TOAST_ERROR", {
           detail: errorMessage,
