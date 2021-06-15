@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MicroArchitecture.Account.API.Infrastructures.Extensions;
 using MicroArchitecture.Account.Domain.Commons;
+using MicroArchitecture.Account.Domain.Core.AppContext;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,29 +12,33 @@ namespace MicroArchitecture.Account.API.Infrastructures.Attributes
 {
     public class RoleAttribute : Attribute, IAsyncActionFilter
     {
-        private readonly IEnumerable<Type> _types;
+        private readonly IEnumerable<RoleType> _roles;
 
-        public RoleAttribute(params Type[] policies)
+        public RoleAttribute(params RoleType[] roles)
         {
-            _types = policies;
+            if (!roles.Any())
+            {
+                throw new InvalidOperationException("Must has one or more than role");
+            }
+
+            _roles = roles;
         }
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var serviceProvider = context.HttpContext.RequestServices;
+            var appContext = context.HttpContext.RequestServices.GetRequiredService<IAppContext>();
 
-            foreach (var type in _types)
+            var roles = Domain.Roles.Role.GetDefaultData().Where(x => _roles.Contains(x.Type));
+
+            var currentUser = await appContext.GetCurrentUserAsync();
+            var contains = currentUser.Roles.All(x => roles.Select(y => y.Id).Contains(x));
+
+            if (contains)
             {
-                var policy = ActivatorUtilities.CreateInstance(serviceProvider, type) as Domain.Policies.IRole;
-
-                var isValid = await policy.ExecuteAsync();
-                if (!isValid)
-                {
-                    await context.HttpContext.Forbidden(Constants.ErrorCode.InvalidPermission);
-                    return;
-                }
+                await next();
+                return;
             }
-
+            await context.HttpContext.Forbidden(Constants.ErrorCode.InvalidPermission);
             await next();
         }
     }

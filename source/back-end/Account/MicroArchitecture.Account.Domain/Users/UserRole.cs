@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MicroArchitecture.Account.Domain.Core.Domain;
 
 namespace MicroArchitecture.Account.Domain.Users
@@ -19,9 +20,15 @@ namespace MicroArchitecture.Account.Domain.Users
             RoleId = roleId;
         }
 
-        public static UserRole Create(Guid userId, Guid roleId)
+        public static List<UserRole> Create(Guid userId, List<Guid> roleIds)
         {
-            return new UserRole(userId, roleId);
+            var roles = new List<UserRole>();
+            roleIds.ForEach(id =>
+            {
+                roles.Add(new UserRole(userId, id));
+            });
+
+            return roles;
         }
     }
 }

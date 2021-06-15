@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Reflection;
 using Dapper;
-using MicroArchitecture.Account.Domain.Core.AppContext;
 using MicroArchitecture.Account.Domain.Core.Database;
-using MicroArchitecture.Account.Domain.Roles;
+using MicroArchitecture.Account.Domain.Users;
 using MicroArchitecture.Account.Infrastructure.Commons;
 using MicroArchitecture.Account.Infrastructure.Database.Dapper;
 using MicroArchitecture.Account.Infrastructure.Database.DbContext;
@@ -29,12 +28,11 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 
             service.AddScoped<IDapperQuery, DapperQuery>();
             service.AddScoped<IUnitOfWork, AccountDbContext>();
-            service.AddScoped<IRoleRepository, RoleRepository>();
-            //service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<IUserRepository, UserRepository>();
 
             new List<Type>
             {
-                typeof(ICollection<CurrentUserRole>)
+                typeof(ICollection<Guid>)
             }.ForEach(type => SqlMapper.AddTypeHandler(type, new JsonObjectTypeHandler()));
         }
     }
