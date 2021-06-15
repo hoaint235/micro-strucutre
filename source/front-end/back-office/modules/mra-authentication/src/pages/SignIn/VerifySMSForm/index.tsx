@@ -31,7 +31,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   return (
-    <ContentForm title={t("verifyOtpCodeTitle")}>
+    <ContentForm title={t("auth.verifyOtpCodeTitle")}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -40,7 +40,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
               component="h2"
               style={{ textAlign: "center" }}
             >
-              {t("verifyOtpCodeSubtitle")}
+              {t("auth.verifyOtpCodeSubtitle")}
             </Typography>
           </Grid>
           <Grid item xs={12}>

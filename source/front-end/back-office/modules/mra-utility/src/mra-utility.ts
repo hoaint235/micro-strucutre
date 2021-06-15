@@ -5,6 +5,8 @@ import {
   isAuthenticated,
 } from "./authentication/cognito";
 
+export { resources } from "./international";
+
 export function publicApiFunction() {
   return true;
 }
