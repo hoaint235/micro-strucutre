@@ -1,20 +1,14 @@
 import { Table } from "@material-ui/core";
-import React, { useMemo, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
-import stringHelper from "../../../utils/helpers/stringHelper";
-import DynamicTableHeader from "../DynamicTableHeader";
 import { DynamicTableProps, PagingProps } from "./DynamicTable.type";
 import { OrderProps } from "../DynamicTableHeader/DynamicTableHeader.type";
-
-const prefixBody = "body";
+import DynamicTableHeader from "../DynamicTableHeader";
+import DynamicTableBody from "../DynamicTableBody";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,10 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const DynamicTable = (props: DynamicTableProps) => {
   const classes = useStyles();
   const {
-    headers,
-    source,
     totalItems,
-    keyRow,
     rowPerPage,
     defaultPage,
     defaultRowPerPage,
@@ -46,7 +37,7 @@ const DynamicTable = (props: DynamicTableProps) => {
     defaultOrder,
     onSort,
     onPaging,
-    bodyTemplate,
+    ...propsHeader
   } = props;
   const [page, setPage] = useState<number>(defaultPage);
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultRowPerPage);
@@ -62,31 +53,6 @@ const DynamicTable = (props: DynamicTableProps) => {
     };
     return paging;
   };
-
-  const renderBody = useMemo(
-    () =>
-      source.map((row) => {
-        return (
-          <TableRow hover tabIndex={-1} key={row[keyRow]}>
-            {headers.map((header) => {
-              const id = header.id;
-              const value = row[id];
-              const idV4 = uuidv4();
-              const column = `${prefixBody}${stringHelper.toUpperCaseFirst(
-                id
-              )}`;
-
-              return (
-                <TableCell key={idV4} align={header.align}>
-                  {bodyTemplate[column] ? bodyTemplate[column](row) : value}
-                </TableCell>
-              );
-            })}
-          </TableRow>
-        );
-      }),
-    [source, headers, keyRow, bodyTemplate]
-  );
 
   const handleChangePage = (event, newPage: number) => {
     setPage(newPage);
@@ -110,14 +76,14 @@ const DynamicTable = (props: DynamicTableProps) => {
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader>
           <DynamicTableHeader
-            headers={headers}
+            headers={props.headers}
             order={order}
             orderBy={orderBy}
             onSort={handleRequestSort}
           />
-          <TableBody>{renderBody}</TableBody>
+          <DynamicTableBody {...propsHeader} />
         </Table>
       </TableContainer>
       {!!onPaging && (

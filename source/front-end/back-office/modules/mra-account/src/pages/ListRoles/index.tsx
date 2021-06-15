@@ -1,5 +1,5 @@
 import React from "react";
-import MainContainer from "../../components/commons/MainContainer";
+import MainContainer from "../../components/controls/MainContainer";
 import TableRoles from "./TableRoles";
 import PrimaryButton from "../../components/controls/PrimaryButton";
 import { useTranslation } from "react-i18next";
