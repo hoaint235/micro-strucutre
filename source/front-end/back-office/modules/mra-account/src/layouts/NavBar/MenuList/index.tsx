@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles, Theme } from "@material-ui/core";
-import MenuItem from "../../../components/commons/MenuItem";
+import MenuItem from "../../../components/controls/MenuItem";
 import { Home, Settings } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme: Theme) => ({

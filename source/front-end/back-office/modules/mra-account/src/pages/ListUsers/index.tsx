@@ -1,6 +1,6 @@
 import { Button, Grid, IconButton } from "@material-ui/core";
 import React, { useEffect } from "react";
-import MainContainer from "../../components/commons/MainContainer";
+import MainContainer from "../../components/controls/MainContainer";
 import DynamicTable from "../../components/controls/DynamicTable";
 import { HeaderProps } from "../../components/controls/DynamicTableHeader/DynamicTableHeader.type";
 import { API } from "@mra/utility";

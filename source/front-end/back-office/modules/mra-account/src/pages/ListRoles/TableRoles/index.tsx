@@ -1,6 +1,6 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
-import DynamicTable from "../../../components/controls/DynamicTable";
+import { DynamicTable } from "@controls";
 import { HeaderProps } from "../../../components/controls/DynamicTableHeader/DynamicTableHeader.type";
 import useListRole from "../../../hooks/useListRole";
 import { useTranslation } from "react-i18next";

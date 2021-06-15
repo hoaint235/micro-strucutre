@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import RouteItem from "../../components/commons/RouteItem";
+import RouteItem from "../../components/controls/RouteItem";
 import AddUser from "../../pages/AddUser";
 import EditUser from "../../pages/EditUser";
 import ListRoles from "../../pages/ListRoles";
