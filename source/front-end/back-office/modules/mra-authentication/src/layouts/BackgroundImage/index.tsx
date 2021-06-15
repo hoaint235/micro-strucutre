@@ -12,7 +12,7 @@ const BackgroundImage = () => {
           <img
             alt="background"
             className={classes.image}
-            src="https://berrydashboard.io/static/media/img-a2-login.bf703b4f.svg"
+            src="/images/background.svg"
           />
         </Grid>
         <Grid item>

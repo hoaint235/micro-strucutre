@@ -5,7 +5,7 @@ export const Authentication = {
     registerApplication({
       name: "@mra/sign-in",
       app: () => System.import("@mra/authentication"),
-      activeWhen: ["/sign-in"],
+      activeWhen: ["sign-in"],
       customProps: {
         type: "SIGN_IN",
       },
@@ -14,7 +14,7 @@ export const Authentication = {
     registerApplication({
       name: "@mra/forgot-password",
       app: () => System.import("@mra/authentication"),
-      activeWhen: ["/forgot-password"],
+      activeWhen: ["forgot-password"],
       customProps: {
         type: "FORGOT_PASSWORD",
       },

@@ -21,10 +21,7 @@ const Logo = () => {
 
   return (
     <a href="/" className={classes.root}>
-      <img
-        src="https://berrydashboard.io/static/media/logo.74a2ce07.svg"
-        alt="logo"
-      />
+      <img src="/images/logo.svg" alt="logo" />
     </a>
   );
 };
