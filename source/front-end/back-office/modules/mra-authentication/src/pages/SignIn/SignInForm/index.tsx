@@ -76,7 +76,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
             <Grid container alignItems="center">
               <Grid item xs={12} className={classes.linkForgotContainer}>
                 <a href="/forgot-password" className={classes.linkForgotText}>
-                  {t("forgotPasswordLink")}
+                  {t("auth.forgotPasswordLink")}
                 </a>
               </Grid>
             </Grid>

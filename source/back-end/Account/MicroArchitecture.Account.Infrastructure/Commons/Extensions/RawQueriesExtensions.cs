@@ -12,7 +12,7 @@ namespace MicroArchitecture.Account.Infrastructure.Commons.Extensions
     {
         private const string TotalItem = "@TotalItems";
 
-        public static async Task<ListingResponse<TResult>> GetListingAsync<TResult>(this RawQuery rawQuery
+        public static async Task<ListingResponse<TResult>> ListingAsync<TResult>(this RawQuery rawQuery
             , IDapperQuery dapperQuery)
         {
             var param = new DynamicParameters();

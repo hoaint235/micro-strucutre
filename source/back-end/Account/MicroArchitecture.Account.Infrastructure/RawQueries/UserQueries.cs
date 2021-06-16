@@ -46,7 +46,7 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
             };
         }
 
-        public static RawQuery ListUser(ListingRequest request, List<Guid> roleIds)
+        public static RawQuery ListUser(ListingRequest request, Guid currentUserId, List<Guid> roleIds)
         {
             var orderByClause = new StringBuilder();
             orderByClause.Append("u.CreatedDate DESC");
@@ -64,7 +64,8 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
             {
                 { "Limit", request.Limit },
                 { "Offset", request.Offset },
-                { "RoleIds", roleIds }
+                { "RoleIds", roleIds },
+                { "CurrentUserId", currentUserId }
             };
 
             return new RawQuery
@@ -78,7 +79,7 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
                            INTO #TempUser                           
                            FROM [dbo].[User] u 
                            INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId 
-                           WHERE u.IsDeleted = 0 AND ur.RoleId IN @RoleIds
+                           WHERE u.IsDeleted = 0 AND ur.RoleId IN @RoleIds AND u.Id != @CurrentUserId
                            GROUP BY u.Id
                            	      , u.Email
                            	      , u.IsActivate

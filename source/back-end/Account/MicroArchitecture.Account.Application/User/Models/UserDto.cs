@@ -12,5 +12,6 @@ namespace MicroArchitecture.Account.Application.User.Models
         public bool IsActivate { get; set; }
         public UseStatus Status { get; set; }
         public ICollection<Guid> Roles { get; set; }
+        public bool HasPermission { get; set; }
     }
 }

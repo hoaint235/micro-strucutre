@@ -1,7 +1,8 @@
 import React from "react";
 import { makeStyles, Theme } from "@material-ui/core";
 import MenuItem from "../../../components/controls/MenuItem";
-import { Home, Settings } from "@material-ui/icons";
+import { Home } from "@material-ui/icons";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -13,11 +14,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const MenuList = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.root}>
-      <MenuItem path="/roles" label="Role" icon={Settings} />
-      <MenuItem path="/users" label="Account" icon={Home} />
+      <MenuItem
+        path="/(users|add-user)/"
+        label={t("menus.users")}
+        icon={Home}
+      />
     </div>
   );
 };

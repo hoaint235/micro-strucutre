@@ -1,4 +1,4 @@
-import { Table } from "@material-ui/core";
+import { Table, TableCell, TableRow } from "@material-ui/core";
 import React, { Fragment, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";

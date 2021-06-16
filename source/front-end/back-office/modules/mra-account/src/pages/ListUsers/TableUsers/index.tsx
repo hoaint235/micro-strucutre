@@ -1,12 +1,11 @@
-import { Chip, Grid, Typography } from "@material-ui/core";
-import React, { Fragment } from "react";
+import { Chip, Grid } from "@material-ui/core";
+import React from "react";
 import { HeaderProps } from "../../../components/controls/DynamicTableHeader/DynamicTableHeader.type";
 import useListUser from "../../../hooks/useListUser";
 import { useTranslation } from "react-i18next";
 import SecondaryButton from "../../../components/controls/SecondaryButton";
 import PrimaryButton from "../../../components/controls/PrimaryButton";
 import DynamicTable from "../../../components/controls/DynamicTable";
-import { t } from "@mra/utility";
 import { Roles } from "../../../utils/constants";
 
 const headers: HeaderProps[] = [
@@ -48,12 +47,15 @@ const TableUsers = () => {
         <Grid item>
           <PrimaryButton
             onClick={() => history.pushState({}, "", `/user/${data.id}`)}
+            disabled={!data.hasPermission}
           >
             {t("buttons.edit")}
           </PrimaryButton>
         </Grid>
         <Grid item>
-          <SecondaryButton>{t("buttons.delete")}</SecondaryButton>
+          <SecondaryButton disabled={!data.hasPermission}>
+            {t("buttons.delete")}
+          </SecondaryButton>
         </Grid>
       </Grid>
     );
@@ -69,10 +71,26 @@ const TableUsers = () => {
 
   const renderRole = (data) => {
     const { roles: userRoles } = data;
-    const isAdmin = userRoles.find((x) => x === Roles.Admin.toUpperCase());
-    const isUser = userRoles.find((x) => x === Roles.User.toUpperCase());
+
+    function checkRole(id: string) {
+      return userRoles.includes(id.toLowerCase());
+    }
+
+    const isMaster = checkRole(Roles.Master);
+    const isAdmin = checkRole(Roles.Admin);
+    const isUser = checkRole(Roles.User);
+
     return (
       <Grid container spacing={1}>
+        {isMaster && (
+          <Grid item>
+            <Chip
+              color="primary"
+              variant="outlined"
+              label={t("account.roles.master")}
+            />
+          </Grid>
+        )}
         {isAdmin && (
           <Grid item>
             <Chip

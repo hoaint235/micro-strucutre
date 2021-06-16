@@ -30,11 +30,16 @@ namespace MicroArchitecture.Account.Application.User.Queries.Handlers
         {
             var currentUser = await _appContext.GetCurrentUserAsync();
             var roles = Role.GetRole(currentUser.Roles);
-            var roleIds = roles.Where(x => x.Type != RoleType.Master).Select(x => x.Id).ToList();
+            var roleMaster = roles.FirstOrDefault(x => x.Type == RoleType.Master);
 
             var result = await UserQueries
-                .ListUser(request, roleIds)
-                .GetListingAsync<UserDto>(_dapperQuery);
+                .ListUser(request, currentUser.Id, roles.Select(x => x.Id).ToList())
+                .ListingAsync<UserDto>(_dapperQuery);
+
+            foreach (var data in result.Data)
+            {
+                data.HasPermission = !data.Roles.Contains(roleMaster.Id);
+            }
 
             return ApiResult<ListingResponse<UserDto>>.Ok(result);
         }

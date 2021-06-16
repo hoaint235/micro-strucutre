@@ -48,7 +48,11 @@
     "status": "Status",
     "isActivate": "Active",
     "createdDate": "Created Date",
-    "roles": "Roles"
+    "roles": "Roles",
+    "noResultFound": "Not result found"
+  },
+  "menus": {
+    "users": "Users"
   },
   "errors": {
     "forbidden": "You don't have permission for this request, please try it",

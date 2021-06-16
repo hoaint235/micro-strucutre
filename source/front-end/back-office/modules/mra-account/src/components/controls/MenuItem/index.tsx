@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+import * as H from "history";
 
 const useStyleListItem = makeStyles((theme: Theme) => ({
   root: {
@@ -74,7 +75,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 type MenuItemProps = {
   label: string;
   icon: any;
-  path?: string;
+  path?:
+    | H.LocationDescriptor<H.LocationState>
+    | ((
+        location: H.Location<H.LocationState>
+      ) => H.LocationDescriptor<H.LocationState>);
   exact?: boolean;
 };
 

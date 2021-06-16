@@ -42,7 +42,11 @@
     "status": "Trạng thái",
     "isActivate": "Hoạt động",
     "createdDate": "Ngày tạo",
-    "roles": "Chức vụ"
+    "roles": "Chức vụ",
+    "noResultFound": "Không tìm thấy kết quả"
+  },
+  "menus": {
+    "users": "Nhân viên"
   },
   "errors": {
     "internalServerError": "Xảy ra lỗi từ hệ thống, vui lòng thử lại"

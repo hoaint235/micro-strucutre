@@ -7,6 +7,7 @@ type User = {
   status: number;
   isActivate: boolean;
   roles: Array<string>;
+  hasPermission: boolean;
 };
 
 const useListRole = () => {
