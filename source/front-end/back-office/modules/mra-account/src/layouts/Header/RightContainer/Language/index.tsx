@@ -9,6 +9,7 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import IconMenu from "../../../../components/controls/IconMenu";
 import { useTranslation } from "react-i18next";
+import { Languages } from "../../../../utils/configurations";
 
 const useStyles = makeStyles((theme: Theme) => ({
   icon: {
@@ -23,21 +24,10 @@ const useStylesAvatar = makeStyles(() => ({
   },
 }));
 
-type Language = {
+export type LanguageItem = {
   title: string;
   location: string;
 };
-
-const languages: Language[] = [
-  {
-    title: "English",
-    location: "en",
-  },
-  {
-    title: "VietNamese",
-    location: "vn",
-  },
-];
 
 const Language = () => {
   const classes = useStyles();
@@ -45,7 +35,7 @@ const Language = () => {
   const classesAvatar = useStylesAvatar();
   const [language, setLanguage] = useState(null);
 
-  const selectLanguage = (item: Language) => {
+  const selectLanguage = (item: LanguageItem) => {
     const { location } = item;
     if (language !== location) {
       setLanguage(location);
@@ -54,7 +44,7 @@ const Language = () => {
   };
 
   useEffect(() => {
-    selectLanguage(languages[0]);
+    selectLanguage(Languages[0]);
   }, []); // react-hooks/exhaustive-deps
 
   const renderAvatar = useMemo(
@@ -69,7 +59,7 @@ const Language = () => {
   return (
     <Box>
       <IconMenu
-        items={languages}
+        items={Languages}
         onItemClick={(item) => selectLanguage(item)}
         renderItem={(item) => (
           <Typography component="p" variant="body1">
