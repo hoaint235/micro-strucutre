@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -6,14 +5,16 @@ using MediatR;
 using MicroArchitecture.Account.Application.User.Models;
 using MicroArchitecture.Account.Domain.Commons;
 using MicroArchitecture.Account.Domain.Core.AppContext;
+using MicroArchitecture.Account.Domain.Core.HttpClient;
 using MicroArchitecture.Account.Domain.Roles;
+using MicroArchitecture.Account.Infrastructure.Commons.Extensions;
 using MicroArchitecture.Account.Infrastructure.Commons.Models;
 using MicroArchitecture.Account.Infrastructure.Database.Dapper;
 using MicroArchitecture.Account.Infrastructure.RawQueries;
 
 namespace MicroArchitecture.Account.Application.User.Queries.Handlers
 {
-    public class ListUsersHandler : IRequestHandler<ListUsers, ApiResult<IEnumerable<UserDto>>>
+    public class ListUsersHandler : IRequestHandler<ListUsers, ApiResult<ListingResponse<UserDto>>>
     {
         private readonly IDapperQuery _dapperQuery;
         private readonly IAppContext _appContext;
@@ -25,15 +26,22 @@ namespace MicroArchitecture.Account.Application.User.Queries.Handlers
             _appContext = appContext;
         }
 
-        public async Task<ApiResult<IEnumerable<UserDto>>> Handle(ListUsers request, CancellationToken cancellationToken)
+        public async Task<ApiResult<ListingResponse<UserDto>>> Handle(ListUsers request, CancellationToken cancellationToken)
         {
             var currentUser = await _appContext.GetCurrentUserAsync();
             var roles = Role.GetRole(currentUser.Roles);
-            var roleIds = roles.Where(x => x.Type != RoleType.Master).Select(x => x.Id).ToList();
+            var roleMaster = roles.FirstOrDefault(x => x.Type == RoleType.Master);
 
-            var query = UserQueries.ListUser(roleIds);
-            var result = await _dapperQuery.QueryAsync<UserDto>(query.Query, query.Parameters);
-            return ApiResult<IEnumerable<UserDto>>.Ok(result);
+            var result = await UserQueries
+                .ListUser(request, currentUser.Id, roles.Select(x => x.Id).ToList())
+                .ListingAsync<UserDto>(_dapperQuery);
+
+            foreach (var data in result.Data)
+            {
+                data.HasPermission = !data.Roles.Contains(roleMaster.Id);
+            }
+
+            return ApiResult<ListingResponse<UserDto>>.Ok(result);
         }
     }
 }

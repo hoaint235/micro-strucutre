@@ -1,85 +1,28 @@
-import { Button, Grid, IconButton } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React from "react";
 import MainContainer from "../../components/controls/MainContainer";
-import DynamicTable from "../../components/controls/DynamicTable";
-import { HeaderProps } from "../../components/controls/DynamicTableHeader/DynamicTableHeader.type";
-import { API } from "@mra/utility";
-import { CreateOutlined, Delete } from "@material-ui/icons";
-
-const headers: HeaderProps[] = [
-  {
-    id: "id",
-    label: "Id",
-    align: "left",
-  },
-  {
-    id: "name",
-    label: "Name",
-    align: "left",
-    sort: true,
-  },
-  {
-    id: "action",
-    label: "Action",
-  },
-];
-
-const data = [
-  {
-    id: "123",
-    name: "Hello",
-  },
-  {
-    id: "456",
-    name: "Hello 1",
-  },
-  {
-    id: "789",
-    name: "Hello 2",
-  },
-];
+import PrimaryButton from "../../components/controls/PrimaryButton";
+import { useTranslation } from "react-i18next";
+import TableUsers from "./TableUsers";
+import { useHistory } from "react-router-dom";
 
 const ListUsers = () => {
-  // const fetchUsers = async () => {
-  //   await API.get("/account/users");
-  // };
+  const { t } = useTranslation();
+  const history = useHistory();
 
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, []);
-
-  const renderAction = (data) => {
-    return (
-      <Grid container spacing={1}>
-        <Grid item>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => history.pushState({}, "", `/user/${data.id}`)}
-          >
-            Edit
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained" color="inherit">
-            Delete
-          </Button>
-        </Grid>
-      </Grid>
-    );
+  const redirectAddUserPage = () => {
+    history.push("add-user");
   };
 
   return (
-    <MainContainer title="List Users">
-      <DynamicTable
-        keyRow="id"
-        defaultOrderBy="name"
-        defaultOrder="asc"
-        source={data}
-        headers={headers}
-        totalItems={data.length}
-        bodyTemplate={{ bodyAction: renderAction }}
-      ></DynamicTable>
+    <MainContainer
+      title="account.listUser.title"
+      action={
+        <PrimaryButton onClick={redirectAddUserPage}>
+          {t("buttons.add")}
+        </PrimaryButton>
+      }
+    >
+      <TableUsers />
     </MainContainer>
   );
 };

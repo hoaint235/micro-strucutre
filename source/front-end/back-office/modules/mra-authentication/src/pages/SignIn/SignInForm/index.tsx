@@ -24,7 +24,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const classes = useStyles();
   const {
     control,
-    formState: { errors, isValid, isDirty },
+    formState: { errors },
     handleSubmit,
   } = useForm({
     mode: "onBlur",
@@ -32,21 +32,23 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   });
 
   const onSignIn = async (data: Certificate) => {
-    const result = await Cognito.signIn(data.email, data.password);
-    const status = result.challengeName;
+    try {
+      const result = await Cognito.signIn(data.email, data.password);
+      const status = result.challengeName;
 
-    if (["NEW_PASSWORD_REQUIRED", "SMS_MFA"].includes(status)) {
-      const changePasswordRequired = status === "NEW_PASSWORD_REQUIRED";
-      props.onNavigateStep({
-        status: changePasswordRequired ? "FIRST_LOGIN" : "VERIFY_CODE",
-        data: {
-          user: result,
-        },
-      });
-      return;
-    }
+      if (["NEW_PASSWORD_REQUIRED", "SMS_MFA"].includes(status)) {
+        const changePasswordRequired = status === "NEW_PASSWORD_REQUIRED";
+        props.onNavigateStep({
+          status: changePasswordRequired ? "FIRST_LOGIN" : "VERIFY_CODE",
+          data: {
+            user: result,
+          },
+        });
+        return;
+      }
 
-    history.pushState({}, "", DefaultPathRedirect);
+      history.pushState({}, "", DefaultPathRedirect);
+    } catch (error) {}
   };
 
   return (
@@ -74,7 +76,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
             <Grid container alignItems="center">
               <Grid item xs={12} className={classes.linkForgotContainer}>
                 <a href="/forgot-password" className={classes.linkForgotText}>
-                  {t("forgotPasswordLink")}
+                  {t("auth.forgotPasswordLink")}
                 </a>
               </Grid>
             </Grid>
@@ -86,7 +88,6 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
               color="primary"
               fullWidth
               size="large"
-              // disabled={!isDirty || !isValid}
             >
               {t("buttons.signIn")}
             </Button>

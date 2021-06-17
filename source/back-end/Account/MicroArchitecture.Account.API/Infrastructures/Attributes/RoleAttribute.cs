@@ -31,15 +31,15 @@ namespace MicroArchitecture.Account.API.Infrastructures.Attributes
             var roles = Domain.Roles.Role.GetDefaultData().Where(x => _roles.Contains(x.Type));
 
             var currentUser = await appContext.GetCurrentUserAsync();
-            var contains = currentUser.Roles.All(x => roles.Select(y => y.Id).Contains(x));
+            var contains = currentUser.Roles.Any(x => roles.Select(y => y.Id).Contains(x));
 
             if (contains)
             {
                 await next();
                 return;
             }
+
             await context.HttpContext.Forbidden(Constants.ErrorCode.InvalidPermission);
-            await next();
         }
     }
 }

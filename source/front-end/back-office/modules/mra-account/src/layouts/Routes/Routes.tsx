@@ -1,28 +1,6 @@
 import React, { Fragment } from "react";
 import RouteItem from "../../components/controls/RouteItem";
-import AddUser from "../../pages/AddUser";
-import EditUser from "../../pages/EditUser";
-import ListRoles from "../../pages/ListRoles";
-import ListUsers from "../../pages/ListUsers";
-
-const routes = [
-  {
-    path: "/users",
-    component: ListUsers,
-  },
-  {
-    path: "/add-user",
-    component: AddUser,
-  },
-  {
-    path: "/users/:userId",
-    component: EditUser,
-  },
-  {
-    path: "/roles",
-    component: ListRoles,
-  },
-];
+import { Routes as routes } from "../../utils/configurations";
 
 const Routes = (props) => {
   return (

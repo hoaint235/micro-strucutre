@@ -4,12 +4,20 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import stringHelper from "../../../utils/helpers/stringHelper";
 import { v4 as uuidv4 } from "uuid";
+import { DynamicTableBodyProps } from "./DynamicTableBody.type";
+import { useTranslation } from "react-i18next";
 
 const prefixBody = "body";
 
-const DynamicTableBody = (props) => {
-  const { source, headers, keyRow, bodyTemplate } = props;
-
+const DynamicTableBody = (props: DynamicTableBodyProps) => {
+  const { t } = useTranslation();
+  const {
+    source,
+    headers,
+    keyRow,
+    bodyTemplate,
+    noResultFound = "table.noResultFound",
+  } = props;
   const renderBody = useMemo(
     () =>
       source.map((row) => {
@@ -35,7 +43,19 @@ const DynamicTableBody = (props) => {
     [source, headers, keyRow, bodyTemplate]
   );
 
-  return <TableBody>{renderBody}</TableBody>;
+  return (
+    <TableBody>
+      {source.length > 0 ? (
+        renderBody
+      ) : (
+        <TableRow>
+          <TableCell colSpan={headers.length} style={{ textAlign: "center" }}>
+            {t(noResultFound)}
+          </TableCell>
+        </TableRow>
+      )}
+    </TableBody>
+  );
 };
 
 export default DynamicTableBody;

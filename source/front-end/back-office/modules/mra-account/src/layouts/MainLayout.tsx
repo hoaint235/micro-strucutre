@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     transition: "margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
     marginRight: 20,
     borderRadius: 12,
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: 20,
+    [theme.breakpoints.down("md")]: {
+      marginLeft: 0,
       width: "calc(100% - 260px)",
     },
   },

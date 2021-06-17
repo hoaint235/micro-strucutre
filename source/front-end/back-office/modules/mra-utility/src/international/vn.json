@@ -12,7 +12,11 @@
     "verifyOtpCodeSubtitle": "Nhập mã OTP mà hệ thống gửi cho bạn thông qua số điện thoại ở hồ sơ cá nhân"
   },
   "account": {
-    "listRolesTitle": "Danh sách quyền"
+    "listUser": {
+      "title": "Danh sách quyền"
+    },
+    "deactivate": "Hoạt động",
+    "activate": "Ngưng hoạt động"
   },
   "buttons": {
     "signIn": "Đăng nhập",
@@ -33,7 +37,16 @@
   "table": {
     "name": "Tên",
     "description": "Miêu tả",
-    "action": "Hành động"
+    "action": "Hành động",
+    "email": "Email",
+    "status": "Trạng thái",
+    "isActivate": "Hoạt động",
+    "createdDate": "Ngày tạo",
+    "roles": "Chức vụ",
+    "noResultFound": "Không tìm thấy kết quả"
+  },
+  "menus": {
+    "users": "Nhân viên"
   },
   "errors": {
     "internalServerError": "Xảy ra lỗi từ hệ thống, vui lòng thử lại"
