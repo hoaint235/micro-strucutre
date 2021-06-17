@@ -1,26 +1,7 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  makeStyles,
-  Paper,
-  Theme,
-} from "@material-ui/core";
-import React from "react";
+import { Card, CardContent, CardHeader, Paper } from "@material-ui/core";
+import React, { Fragment } from "react";
 import { useTranslation } from "react-i18next";
-
-const useStylePaper = makeStyles((theme: Theme) => ({
-  rounded: {
-    borderRadius: 12,
-  },
-}));
-
-const useStyleCardHeader = makeStyles((theme: Theme) => ({
-  action: {
-    marginTop: 0,
-    marginRight: 0,
-  },
-}));
+import { useStyleCardHeader, useStylePaper } from "./MainContainer.type";
 
 type Props = {
   title: string;
@@ -35,14 +16,27 @@ const MainContainer = (props: Props) => {
   const { title, children, action } = props;
 
   return (
-    <Paper component={Card} classes={{ ...classesPaper }}>
-      <CardHeader
-        classes={{ ...classesCardHeader }}
-        title={t(title)}
-        action={action}
-      ></CardHeader>
-      <CardContent>{children}</CardContent>
-    </Paper>
+    <Fragment>
+      <Paper
+        component={Card}
+        classes={{ ...classesPaper }}
+        elevation={0}
+        style={{ marginBottom: 24, padding: 0 }}
+      >
+        <CardHeader
+          classes={{ ...classesCardHeader }}
+          title={t(title)}
+          action={action}
+        ></CardHeader>
+      </Paper>
+      <Paper
+        component={Card}
+        classes={{ ...classesPaper }}
+        style={{ padding: 0 }}
+      >
+        <CardContent style={{ padding: 24 }}>{children}</CardContent>
+      </Paper>
+    </Fragment>
   );
 };
 
