@@ -7,9 +7,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useEffect, useMemo, useState } from "react";
-import IconMenu from "../../../../theme/components/IconMenu";
+import IconMenu from "../../../../../theme/components/IconMenu";
 import { useTranslation } from "react-i18next";
-import { Languages } from "../../../../utils/configurations";
+import { Languages } from "../../../../../utils/configurations";
 
 const useStyles = makeStyles((theme: Theme) => ({
   icon: {

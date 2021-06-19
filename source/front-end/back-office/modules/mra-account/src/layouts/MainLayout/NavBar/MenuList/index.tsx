@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, Theme } from "@material-ui/core";
-import { Menus } from "../../../utils/configurations";
-import { MenuItem } from "../../../theme";
+import { Menus } from "../../../../utils/configurations";
+import { MenuItem } from "../../../../theme";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

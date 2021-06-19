@@ -1,4 +1,4 @@
-import { LanguageItem } from "../../layouts/Header/RightContainer/Language";
+import { LanguageItem } from "../../layouts/MainLayout/Header/RightContainer/Language";
 
 const Languages: LanguageItem[] = [
   {

@@ -1,6 +1,6 @@
 import { Box, Drawer, makeStyles, Paper } from "@material-ui/core";
 import React from "react";
-import Logo from "../../../components/Logo";
+import { Logo } from "../../../../components";
 import MenuList from "../MenuList";
 
 const useStyles = makeStyles(() => ({

@@ -1,12 +1,11 @@
 import { Box, makeStyles, Theme } from "@material-ui/core";
 import React, { StrictMode, useState } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
-import Header from "../Header";
-import NavBar from "../NavBar";
-import "react-toastify/dist/ReactToastify.css";
-import MessageContainer from "../../components/ToastMessage";
+import NavBar from "./NavBar";
+import { ToastMessage } from "../../components";
 import { MaterialProvider } from "../../theme";
 import Routes from "./Routes";
+import Header from "./Header";
 
 const useStyles = makeStyles((theme: Theme) => ({
   mainContainer: {
@@ -52,7 +51,7 @@ const MainLayout = (props) => {
           </div>
         </Router>
 
-        <MessageContainer />
+        <ToastMessage />
       </StrictMode>
     </MaterialProvider>
   );
