@@ -1,28 +1,20 @@
+import { Grid } from "@material-ui/core";
 import React from "react";
-import MainContainer from "../../components/controls/MainContainer";
-import PrimaryButton from "../../components/controls/PrimaryButton";
-import { useTranslation } from "react-i18next";
+import MainContainer from "../../components/MainContainer";
+import SearchUser from "./SearchUser";
 import TableUsers from "./TableUsers";
-import { useHistory } from "react-router-dom";
 
 const ListUsers = () => {
-  const { t } = useTranslation();
-  const history = useHistory();
-
-  const redirectAddUserPage = () => {
-    history.push("add-user");
-  };
-
   return (
-    <MainContainer
-      title="account.listUser.title"
-      action={
-        <PrimaryButton onClick={redirectAddUserPage}>
-          {t("buttons.add")}
-        </PrimaryButton>
-      }
-    >
-      <TableUsers />
+    <MainContainer title="account.listUser.title">
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <SearchUser />
+        </Grid>
+        <Grid item xs={12}>
+          <TableUsers />
+        </Grid>
+      </Grid>
     </MainContainer>
   );
 };

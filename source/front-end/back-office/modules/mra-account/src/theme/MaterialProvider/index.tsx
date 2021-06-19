@@ -37,7 +37,7 @@ const generateClassName = createGenerateClassName({
   seed: "mra-account",
 });
 
-const StyleProvider = (props) => {
+const MaterialProvider = (props) => {
   const { children } = props;
 
   return (
@@ -47,4 +47,4 @@ const StyleProvider = (props) => {
   );
 };
 
-export default StyleProvider;
+export default MaterialProvider;

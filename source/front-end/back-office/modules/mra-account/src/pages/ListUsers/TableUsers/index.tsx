@@ -1,12 +1,11 @@
 import { Chip, Grid } from "@material-ui/core";
 import React from "react";
-import { HeaderProps } from "../../../components/controls/DynamicTableHeader/DynamicTableHeader.type";
 import useListUser from "../../../hooks/useListUser";
 import { useTranslation } from "react-i18next";
-import SecondaryButton from "../../../components/controls/SecondaryButton";
-import PrimaryButton from "../../../components/controls/PrimaryButton";
-import DynamicTable from "../../../components/controls/DynamicTable";
+import SecondaryButton from "../../../theme/components/SecondaryButton";
+import DynamicTable from "../../../theme/components/DynamicTable";
 import { Roles } from "../../../utils/constants";
+import { HeaderProps, PrimaryButton } from "../../../theme";
 
 const headers: HeaderProps[] = [
   {

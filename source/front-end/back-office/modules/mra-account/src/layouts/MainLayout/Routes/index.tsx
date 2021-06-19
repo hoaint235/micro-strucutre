@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import RouteItem from "../../components/controls/RouteItem";
-import { Routes as routes } from "../../utils/configurations";
+import { RouteItem } from "../../../components";
+import { Routes as routes } from "../../../utils/configurations";
 
 const Routes = (props) => {
   return (

@@ -20,7 +20,7 @@ const Logo = () => {
   const classes = useStyles();
 
   return (
-    <a href="/" className={classes.root}>
+    <a href="/" className={classes.root} tabIndex={-1}>
       <img src="/images/logo.svg" alt="logo" />
     </a>
   );

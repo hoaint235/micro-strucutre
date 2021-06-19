@@ -1,12 +1,8 @@
 import {
-  FormControl,
   InputAdornment,
   makeStyles,
-  OutlinedInput,
   TextField,
   TextFieldProps,
-  Theme,
-  withStyles,
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import React from "react";
