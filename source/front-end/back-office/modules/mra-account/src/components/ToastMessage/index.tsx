@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { showError } from "../../utils/helpers/toastHelper";
+import "react-toastify/dist/ReactToastify.css";
 
-const ToastMessageContainer = () => {
+const ToastMessage = () => {
   const handleGlobalToastError = useCallback((event: Event) => {
     const { detail } = event as CustomEvent;
     showError(detail);
@@ -19,4 +20,4 @@ const ToastMessageContainer = () => {
   return <ToastContainer />;
 };
 
-export default ToastMessageContainer;
+export default ToastMessage;

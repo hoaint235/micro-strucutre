@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import React from "react";
-import Logo from "../../../components/controls/Logo";
+import Logo from "../../../components/Logo";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
