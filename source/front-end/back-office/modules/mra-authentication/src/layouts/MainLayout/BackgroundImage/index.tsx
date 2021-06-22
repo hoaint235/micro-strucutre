@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@material-ui/core";
 import React from "react";
-import useStyles from "./style";
+import useStyles from "./BackgroundImage.style";
 
 const BackgroundImage = () => {
   const classes = useStyles();

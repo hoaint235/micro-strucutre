@@ -1,10 +1,12 @@
 import { IconButton, InputAdornment, TextFieldProps } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import React, { useState } from "react";
-import useStylesReddit from "../control.style";
-import InputField from "../InputField";
+import { useTranslation } from "react-i18next";
+import { InputField } from "..";
+import useStylesReddit from "../InputField/InputField.style";
 
-const PasswordField = (props: TextFieldProps) => {
+const PasswordField = ({ label, ...restProps }: TextFieldProps) => {
+  const { t } = useTranslation();
   const [hidePassword, setHidePassword] = useState<boolean>(false);
   const classes = useStylesReddit();
 
@@ -19,6 +21,7 @@ const PasswordField = (props: TextFieldProps) => {
   return (
     <InputField
       type={hidePassword ? "text" : "password"}
+      label={t(`${label}`)}
       InputProps={{
         classes,
         disableUnderline: true,
@@ -33,7 +36,7 @@ const PasswordField = (props: TextFieldProps) => {
           </InputAdornment>
         ),
       }}
-      {...props}
+      {...restProps}
     />
   );
 };

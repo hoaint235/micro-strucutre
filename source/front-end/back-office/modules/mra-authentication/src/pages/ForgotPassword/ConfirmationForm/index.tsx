@@ -1,35 +1,24 @@
 import { Button, Grid, Typography } from "@material-ui/core";
-import React from "react";
-import ContentForm from "../../../components/commons/ContentForm";
-import { Cognito, t } from "@mra/utility";
-import { InputForm, PasswordForm } from "../../../components/forms";
-import { useForm } from "react-hook-form";
+import React, { useCallback, useState } from "react";
+import ContentForm from "../../../components/ContentForm";
+import { Cognito } from "@mra/utility";
+import { FormFields, InputForm, PasswordForm } from "../../../components/forms";
 import useMatchPassword from "../../../hooks/useMatchPassword";
 import { useTranslation } from "react-i18next";
+import { PrimaryButton } from "../../../theme";
+import { UseFormReturn } from "react-hook-form";
+
+type MatchProps = () => string | boolean;
 
 const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
   const { t } = useTranslation();
+  const [match, setMatch] = useState<MatchProps>();
+
   const {
     stepObj: {
       data: { email },
     },
   } = props;
-
-  const {
-    control,
-    getValues,
-    formState: { errors, isValid, isDirty },
-    handleSubmit,
-  } = useForm({
-    mode: "onBlur",
-    reValidateMode: "onChange",
-  });
-
-  const { password, confirmPassword } = getValues();
-  const isMatch = useMatchPassword({
-    leftPassword: password,
-    rightPassword: confirmPassword,
-  });
 
   const onConfirmationCode = async (data) => {
     const { confirmationCode: code, password } = data;
@@ -38,77 +27,71 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
     history.pushState({}, "", "/sign-in");
   };
 
+  const changeValues = async (values) => {
+    const { password, confirmPassword } = values;
+    const isMatch = useMatchPassword({
+      leftPassword: password,
+      rightPassword: confirmPassword,
+    });
+
+    await setMatch(isMatch);
+  };
+
+  const renderControlSubmit = ({
+    formState: { isDirty, isValid },
+  }: UseFormReturn<any>) => {
+    return (
+      <PrimaryButton
+        type="submit"
+        label="buttons.submit"
+        disabled={!isDirty || !isValid}
+      />
+    );
+  };
+
   return (
     <ContentForm title={t("auth.confirmationCodeTitle")}>
-      <form onSubmit={handleSubmit(onConfirmationCode)}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography
-              style={{ textAlign: "center" }}
-              variant="subtitle1"
-              component="h2"
-            >
-              {t("auth.confirmationCodeSubtitle")}
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <InputForm
-              defaultValue={email}
-              control={control}
-              errors={errors}
-              disabled={true}
-              label={t("fields.emailAddress")}
-              name="email"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <InputForm
-              control={control}
-              errors={errors}
-              label={t("fields.confirmationCode")}
-              name="confirmationCode"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <PasswordForm
-              control={control}
-              errors={errors}
-              label={t("fields.password")}
-              name="password"
-              rules={{
-                validate: {
-                  matchPassword: () => isMatch(),
-                },
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <PasswordForm
-              control={control}
-              errors={errors}
-              label={t("fields.confirmPassword")}
-              name="confirmPassword"
-              rules={{
-                validate: {
-                  matchPassword: () => isMatch(),
-                },
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              size="large"
-              // disabled={!isValid && !isDirty}
-            >
-              {t("buttons.submit")}
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+      <FormFields
+        onSubmit={onConfirmationCode}
+        controlOptions={{ render: renderControlSubmit }}
+        onValuesChange={changeValues}
+      >
+        <Typography
+          style={{ textAlign: "center" }}
+          variant="subtitle1"
+          component="h2"
+        >
+          {t("auth.confirmationCodeSubtitle")}
+        </Typography>
+        <InputForm
+          defaultValue={email}
+          disabled={true}
+          label={t("fields.emailAddress")}
+          name="email"
+        />
+        <InputForm
+          label={t("fields.confirmationCode")}
+          name="confirmationCode"
+        />
+        <PasswordForm
+          label={t("fields.password")}
+          name="password"
+          rules={{
+            validate: {
+              matchPassword: match,
+            },
+          }}
+        />
+        <PasswordForm
+          label={t("fields.confirmPassword")}
+          name="confirmPassword"
+          rules={{
+            validate: {
+              matchPassword: match,
+            },
+          }}
+        />
+      </FormFields>
     </ContentForm>
   );
 };

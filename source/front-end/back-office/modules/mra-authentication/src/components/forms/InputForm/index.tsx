@@ -1,9 +1,9 @@
 import React from "react";
 import { useController } from "react-hook-form";
-import InputField from "../../controls/InputField";
-import { FormProps } from "../form-types";
+import { InputField } from "../../../theme";
+import { FieldProps } from "../form-types";
 
-const InputForm = (props: FormProps) => {
+const InputForm = (props: FieldProps) => {
   const {
     control,
     name,

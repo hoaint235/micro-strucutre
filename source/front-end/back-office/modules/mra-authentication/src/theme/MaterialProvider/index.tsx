@@ -4,7 +4,6 @@ import {
   colors,
   createMuiTheme,
   createGenerateClassName,
-  makeStyles,
 } from "@material-ui/core";
 import React from "react";
 
@@ -16,49 +15,36 @@ const theme = createMuiTheme({
     },
     primary: {
       main: colors.indigo[500],
+      light: colors.indigo[900],
     },
     secondary: {
-      main: colors.lightBlue.A400,
+      main: colors.red[500],
     },
     text: {
-      primary: colors.blueGrey[900],
-      secondary: colors.blueGrey[600],
+      primary: colors.blueGrey[500],
+      secondary: colors.blueGrey[200],
     },
   },
   typography: {
     fontFamily: "'Poppins', sans-serif",
-    fontSize: 14,
+    fontSize: 15,
     fontWeightMedium: 400,
   },
 });
-
-const useStyles = makeStyles(() => ({
-  root: {
-    display: "flex",
-    backgroundColor: "rgb(227, 242, 253)",
-    height: "100%",
-    minHeight: "100vh",
-    width: "100%",
-    maxWidth: "calc(100% + 16px)",
-  },
-}));
 
 const generateClassName = createGenerateClassName({
   productionPrefix: "mra-auth",
   seed: "mra-auth",
 });
 
-const StyleProvider = (props) => {
+const MaterialProvider = (props) => {
   const { children } = props;
-  const classes = useStyles();
 
   return (
     <StylesProvider generateClassName={generateClassName}>
-      <ThemeProvider theme={theme}>
-        <div className={classes.root}>{children}</div>
-      </ThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </StylesProvider>
   );
 };
 
-export default StyleProvider;
+export default MaterialProvider;

@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import React from "react";
-import Logo from "../../../components/Logo";
+import { Logo } from "../../../../components";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -33,7 +33,7 @@ type Props = {
   onToggleMenu: () => void;
 };
 
-const RightContainer = (props: Props) => {
+const LeftContainer = (props: Props) => {
   const classes = useStyles();
   const matches = useMediaQuery<Theme>((theme) => theme.breakpoints.down("md"));
 
@@ -61,4 +61,4 @@ const RightContainer = (props: Props) => {
   );
 };
 
-export default RightContainer;
+export default LeftContainer;

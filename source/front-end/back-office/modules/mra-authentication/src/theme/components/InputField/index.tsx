@@ -1,15 +1,18 @@
 import { TextField, TextFieldProps } from "@material-ui/core";
 import React from "react";
-import useStylesReddit from "../control.style";
+import { useTranslation } from "react-i18next";
+import useStylesReddit from "./InputField.style";
 
-const InputField = (props: TextFieldProps) => {
+const InputField = ({ label, name, ...restProps }: TextFieldProps) => {
   const classes = useStylesReddit();
+  const { t } = useTranslation();
 
   return (
     <TextField
-      id={`input-${props.name}`}
+      id={`input-${name}`}
+      label={t(`${label}`)}
       InputProps={{ classes, disableUnderline: true }}
-      {...props}
+      {...restProps}
       fullWidth
       variant="filled"
     />

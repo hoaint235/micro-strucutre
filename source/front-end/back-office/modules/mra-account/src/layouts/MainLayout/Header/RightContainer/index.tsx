@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Language from "./Language";
 import Setting from "./Setting";
 
-const LeftContainer = () => {
+const RightContainer = () => {
   return (
     <Fragment>
       <Language />
@@ -12,4 +12,4 @@ const LeftContainer = () => {
   );
 };
 
-export default LeftContainer;
+export default RightContainer;
