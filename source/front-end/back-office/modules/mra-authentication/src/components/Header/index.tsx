@@ -1,5 +1,6 @@
 import { Grid, makeStyles, Theme, Typography } from "@material-ui/core";
 import React, { memo } from "react";
+import Logo from "../Logo";
 
 const useStyles = makeStyles((theme: Theme) => ({
   header: {
@@ -28,9 +29,7 @@ const Header = (props: Props) => {
         <Typography className={classes.header}>{props.title}</Typography>
       </Grid>
       <Grid item sm={5} xs={12} className={classes.logo}>
-        <a href="/">
-          <img src="/images/logo.svg" alt="logo" />
-        </a>
+        <Logo />
       </Grid>
     </Grid>
   );

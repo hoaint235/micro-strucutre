@@ -1,8 +1,21 @@
 import React, { Fragment, useEffect, useMemo, useState } from "react";
-import Loading from "../../components/commons/Loading";
 import { WindowEvent } from "../../utils/constants";
+import {
+  Backdrop,
+  CircularProgress,
+  makeStyles,
+  Theme,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 99,
+    color: "#fff",
+  },
+}));
 
 const LoadingProvider = () => {
+  const classes = useStyles();
   const [countLoading, setCountLoading] = useState(0);
 
   const decreaseLoading = () => {
@@ -24,7 +37,11 @@ const LoadingProvider = () => {
   }, []);
 
   const renderLoading = useMemo(
-    () => <Loading loading={countLoading > 0} />,
+    () => (
+      <Backdrop className={classes.backdrop} open={countLoading > 0}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    ),
     [countLoading]
   );
 

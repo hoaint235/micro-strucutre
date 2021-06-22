@@ -26,7 +26,6 @@ declare module "@mra/utility" {
     ): Promise<any>;
   };
 
-  export function t(key: string, options?): string;
   export const API: any;
   export const resources: any;
   export const Cognito: AwsCognito;

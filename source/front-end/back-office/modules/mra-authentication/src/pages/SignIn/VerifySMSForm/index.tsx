@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import ContentForm from "../../../components/commons/ContentForm";
+import ContentForm from "../../../components/ContentForm";
 import { Cognito } from "@mra/utility";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { InputForm } from "../../../components/forms";

@@ -1,10 +1,10 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useController } from "react-hook-form";
+import { PasswordField } from "../../../theme";
 import { regexPassword } from "../../../utils/constants";
-import PasswordField from "../../controls/PasswordField";
-import { FormProps, Rules } from "../form-types";
+import { FieldProps, Rules } from "../form-types";
 
-type Props = FormProps & {
+type Props = FieldProps & {
   requiredRulePassword?: boolean;
 };
 
@@ -14,7 +14,7 @@ const PasswordForm = (props: Props) => {
     name,
     errors,
     defaultValue,
-    rules,
+    rules: externalRules,
     requiredField,
     children,
     requiredRulePassword = true,
@@ -39,7 +39,7 @@ const PasswordForm = (props: Props) => {
       };
     }
 
-    return rules;
+    return { ...rules, ...externalRules };
   }, [requiredRulePassword]);
 
   const {
@@ -47,7 +47,7 @@ const PasswordForm = (props: Props) => {
   } = useController({
     name,
     control,
-    rules: { ...defaultRules, ...rules },
+    rules: defaultRules,
     defaultValue,
   });
 

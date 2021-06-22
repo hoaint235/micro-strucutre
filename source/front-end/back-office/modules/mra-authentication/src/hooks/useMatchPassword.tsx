@@ -1,5 +1,3 @@
-import { t } from "@mra/utility";
-
 type Props = {
   leftPassword: string;
   rightPassword: string;
@@ -9,9 +7,11 @@ export function useMatchPassword({
   leftPassword,
   rightPassword,
 }: Props): () => boolean | string {
-  const isMatch = () =>
-    leftPassword === rightPassword || t("auth.errors.twoPasswordMustBeMatch");
-  return isMatch;
+  if (leftPassword !== rightPassword) {
+    return () => "auth.errors.twoPasswordMustBeMatch";
+  }
+
+  return () => true;
 }
 
 export default useMatchPassword;
