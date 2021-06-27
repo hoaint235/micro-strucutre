@@ -1,11 +1,12 @@
 import { Grid, Typography } from "@material-ui/core";
 import React from "react";
-import useListUser from "../../../hooks/useListUser";
 import { useTranslation } from "react-i18next";
 import DynamicTable from "../../../theme/components/DynamicTable";
 import { Roles, Statuses } from "../../../utils/constants";
 import { HeaderProps, PrimaryButton } from "../../../theme";
 import { Status } from "../../../components";
+import { useListUser } from "../../../hooks";
+import { useHistory } from "react-router-dom";
 
 const headers: HeaderProps[] = [
   {
@@ -41,6 +42,7 @@ const headers: HeaderProps[] = [
 const TableUsers = () => {
   const { t } = useTranslation();
   const { data: source } = useListUser();
+  const history = useHistory();
 
   const renderAction = (data) => {
     return (
@@ -48,7 +50,7 @@ const TableUsers = () => {
         <Grid item>
           <PrimaryButton
             color="primary"
-            onClick={() => history.pushState({}, "", `/user/${data.id}`)}
+            onClick={() => history.push(`user/${data.id}`)}
             disabled={!data.hasPermission}
             label="buttons.edit"
           />
@@ -57,7 +59,7 @@ const TableUsers = () => {
           <PrimaryButton
             color="secondary"
             disabled={!data.hasPermission}
-            label="buttons.delete"
+            label="buttons.disabled"
           />
         </Grid>
       </Grid>

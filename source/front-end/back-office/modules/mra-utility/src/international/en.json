@@ -44,7 +44,9 @@
     "add": "Add",
     "edit": "Edit",
     "delete": "Delete",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "disabled": "Disabled",
+    "enabled": "Enabled"
   },
   "fields": {
     "emailAddress": "Email address",

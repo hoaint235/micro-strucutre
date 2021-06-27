@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 
 const useStyleButton = makeStyles((theme: Theme) => ({
   root: {
-    boxShadow: 'none',
-    textTransform: 'none',
-    minWidth: theme.spacing(10),
+    boxShadow: "none",
+    textTransform: "none",
+    minWidth: 80,
   },
 }));
 
