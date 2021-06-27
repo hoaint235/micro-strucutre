@@ -1,5 +1,6 @@
 declare module "@mra/utility" {
   export function changeLanguage(language: string);
+  export function getCurrentUserRoles(): Promise<string[]>;
   export const API: any;
   export const resources: any;
 }

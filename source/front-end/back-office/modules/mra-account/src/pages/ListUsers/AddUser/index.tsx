@@ -1,28 +1,34 @@
 import {
   Box,
-  Button,
   Dialog,
   DialogContent,
   DialogTitle,
   Grid,
 } from "@material-ui/core";
 import { API } from "@mra/utility";
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { GroupContainer } from "../../../components";
-import { Email, Form, GroupSelect, Input, Number } from "../../../hook-form";
+import { Email, Form, GroupSelect, Input } from "../../../hook-form";
 import { PrimaryButton } from "../../../theme";
 import { ApiHelper, REGEX_PHONE_NUMBER, Roles } from "../../../utils";
-
-const source = Object.keys(Roles).map((key) => ({
-  key: Roles[key],
-  value: `roles.${key.toLowerCase()}`,
-})) as SelectProps<string>[];
+import { useGetCurrentUserRoles } from "../../../hooks";
 
 const AddUser = (props: DialogProps) => {
   const { isOpen, onClose } = props;
   const { t } = useTranslation();
+  const { roles } = useGetCurrentUserRoles();
+
+  const getSource = useCallback(() => {
+    return Object.keys(Roles)
+      .filter((x) => x !== "Master")
+      .map((key) => ({
+        key: Roles[key].toLowerCase(),
+        value: `roles.${key.toLowerCase()}`,
+      }))
+      .filter((x) => roles.includes(x.key));
+  }, [roles]);
 
   const onSubmit = async (data) => {
     await API.post(ApiHelper.createUser(), data);
@@ -34,7 +40,11 @@ const AddUser = (props: DialogProps) => {
     return (
       <Grid item xs={12} justify="flex-end" style={{ display: "flex" }}>
         <Box mr={2}>
-          <PrimaryButton color="default" onClick={onClose} label="buttons.cancel"/>
+          <PrimaryButton
+            color="default"
+            onClick={onClose}
+            label="buttons.cancel"
+          />
         </Box>
         <PrimaryButton
           color="primary"
@@ -69,7 +79,7 @@ const AddUser = (props: DialogProps) => {
                 }}
               />
               <GroupContainer title="account.addUserDialog.roles">
-                <GroupSelect source={source} name="roles" form={form} />
+                <GroupSelect source={getSource()} name="roles" form={form} />
               </GroupContainer>
             </Fragment>
           )}

@@ -6,6 +6,7 @@ using MicroArchitecture.Account.Application.User.Queries;
 using MicroArchitecture.Account.Domain.Commons;
 using Microsoft.AspNetCore.Authorization;
 using MicroArchitecture.Account.Application.User.Commands;
+using MicroArchitecture.Account.Application.Roles.Queries;
 
 namespace MicroArchitecture.Account.API.Controllers
 {
@@ -23,10 +24,14 @@ namespace MicroArchitecture.Account.API.Controllers
         public async Task<IActionResult> CreateUser([FromBody] Create request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
 
-
         [Role(RoleType.Master)]
         [HttpGet("get-by-email")]
-        public async Task<IActionResult> GetUserByEmail([FromQuery] Create request, CancellationToken cancellationToken) =>
+        public async Task<IActionResult> GetUserByEmail([FromQuery] GetByEmail request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
+
+        [Role(RoleType.Master, RoleType.Admin, RoleType.User)]
+        [HttpGet("roles")]
+        public async Task<IActionResult> GetRoles([FromQuery] GetRoles request, CancellationToken cancellationToken) =>
+          await SendAsync(request, cancellationToken);
     }
 }
