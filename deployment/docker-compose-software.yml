@@ -11,19 +11,19 @@ services:
         restart: on-failure
         networks: 
             - software
-    # rabbitmq:
-    #     container_name: rabbitmq
-    #     image: "rabbitmq:3-management-alpine"
-    #     restart: on-failure
-    #     environment:
-    #         - RABBITMQ_DEFAULT_USER=admin 
-    #         - RABBITMQ_DEFAULT_PASS=P@ssw0rd
-    #         - RABBITMQ_ERLANG_COOKIE=s3cr3tc00ki3
-    #     networks:
-    #         - software
-    #     ports: 
-    #         - 5672:5672
-    #         - 15672:15672
+    rabbitmq:
+        container_name: rabbitmq
+        image: "rabbitmq:3-management-alpine"
+        restart: on-failure
+        environment:
+            - RABBITMQ_DEFAULT_USER=admin 
+            - RABBITMQ_DEFAULT_PASS=P@ssw0rd
+            - RABBITMQ_ERLANG_COOKIE=s3cr3tc00ki3
+        networks:
+            - software
+        ports: 
+            - 5672:5672
+            - 15672:15672
     smtp4dev:
         container_name: smtp
         image: rnwood/smtp4dev:v3

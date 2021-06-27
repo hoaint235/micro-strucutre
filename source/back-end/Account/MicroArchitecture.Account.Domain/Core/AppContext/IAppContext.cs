@@ -9,5 +9,6 @@ namespace MicroArchitecture.Account.Domain.Core.AppContext
         void SetCurrentUserId(Guid userId);
         string GetAccessToken();
         void SetAccessToken(string token);
+        Guid GetCurrentUserId();
     }
 }

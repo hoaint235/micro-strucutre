@@ -1,7 +1,10 @@
 import { Box, Grid, makeStyles } from "@material-ui/core";
 import React from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { PrimaryButton } from "../../../theme";
 import SearchField from "../../../theme/components/SearchField";
+import AddUser from "../AddUser";
 
 const useStyles = makeStyles(() => ({
   rightContainer: {
@@ -12,6 +15,16 @@ const useStyles = makeStyles(() => ({
 
 const SearchUser = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
+  const [openAddUser, setOpenAddUser] = useState(false);
+
+  const onAddUserPage = () => {
+    setOpenAddUser(true);
+  };
+
+  const onHandleClose = () => {
+    setOpenAddUser(false);
+  };
 
   return (
     <Grid container alignItems="center">
@@ -20,9 +33,15 @@ const SearchUser = () => {
       </Grid>
       <Grid item sm={8} xs={12} className={classes.rightContainer}>
         <Box mt={{ xs: 2, sm: 0 }}>
-          <PrimaryButton>Add User</PrimaryButton>
+          <PrimaryButton
+            color="primary"
+            onClick={onAddUserPage}
+            label="account.addUser"
+          />
         </Box>
       </Grid>
+
+      <AddUser isOpen={openAddUser} onClose={onHandleClose} />
     </Grid>
   );
 };

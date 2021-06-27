@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using MicroArchitecture.Account.Domain.Core.Database;
 using MicroArchitecture.Account.Domain.Core.Specifications;
 using MicroArchitecture.Account.Domain.Users;
+using MicroArchitecture.Account.Domain.Users.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Repositories
@@ -31,12 +31,12 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Repositori
 
         public void Add(User entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Add(entity);
         }
 
         public void Update(User entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(entity);
         }
 
         public void Delete(User entity)
@@ -44,9 +44,10 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Repositori
             throw new NotImplementedException();
         }
 
-        public Task<User> FindAsync(ISpecification<User> specification)
+        public async Task<User> FindAsync(ISpecification<User> specification)
         {
-            throw new NotImplementedException();
+            var spec = new DeletedSpecification(false).And(specification).IsSatisfiedBy();
+            return await _dbContext.Users.FirstOrDefaultAsync(spec);
         }
 
         public Task<IEnumerable<User>> QueryAsync(ISpecification<User> specification)

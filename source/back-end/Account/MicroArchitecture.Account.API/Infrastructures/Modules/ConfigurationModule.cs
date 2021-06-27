@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using MicroArchitecture.Account.Infrastructure.Commons;
+using MicroArchitecture.Account.Infrastructure.Commons.Models;
 using MicroArchitecture.Account.Infrastructure.Services.Email.Models;
 using MicroArchitecture.Account.Infrastructure.Services.UserManager.Models;
 using MicroArchitecture.Core.Interfaces;
@@ -14,6 +15,7 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
         {
             service.Configure<SmtpConfiguration>(configuration.GetSection(Constants.Common.EmailConfig));
             service.Configure<AwsConfig>(configuration.GetSection(Constants.Common.AwsConfig));
+            service.Configure<MessageBrokerConfig>(configuration.GetSection(Constants.Common.AwsConfig));
         }
     }
 }

@@ -6,7 +6,7 @@ import TableUsers from "./TableUsers";
 
 const ListUsers = () => {
   return (
-    <MainContainer title="account.listUser.title">
+    <MainContainer title="account.listUserPage.title">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <SearchUser />

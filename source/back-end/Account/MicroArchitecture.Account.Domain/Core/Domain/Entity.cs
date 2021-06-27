@@ -8,8 +8,8 @@ namespace MicroArchitecture.Account.Domain.Core.Domain
     {
         public Guid Id { get; protected set; }
 
-        private readonly List<DomainEvent> _domainEvents = new List<DomainEvent>();
-        private readonly List<IntegrationEvent> _integrationEvents = new List<IntegrationEvent>();
+        private readonly static List<DomainEvent> _domainEvents = new List<DomainEvent>();
+        private readonly static List<IntegrationEvent> _integrationEvents = new List<IntegrationEvent>();
 
         public IEnumerable<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
         public IEnumerable<IntegrationEvent> IntegrationEvents => _integrationEvents.AsReadOnly();
@@ -19,7 +19,7 @@ namespace MicroArchitecture.Account.Domain.Core.Domain
             Id = Guid.NewGuid();
         }
 
-        protected void AddDomainEvent(DomainEvent @event)
+        protected static void AddDomainEvent(DomainEvent @event)
         {
             _domainEvents.Add(@event);
         }
@@ -28,7 +28,7 @@ namespace MicroArchitecture.Account.Domain.Core.Domain
             _domainEvents.Clear();
         }
 
-        protected void AddIntegrationEvent(IntegrationEvent @event)
+        protected static void AddIntegrationEvent(IntegrationEvent @event)
         {
             _integrationEvents.Add(@event);
         }

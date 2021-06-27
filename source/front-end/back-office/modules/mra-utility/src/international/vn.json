@@ -12,11 +12,20 @@
     "verifyOtpCodeSubtitle": "Nhập mã OTP mà hệ thống gửi cho bạn thông qua số điện thoại ở hồ sơ cá nhân"
   },
   "account": {
-    "listUser": {
-      "title": "Danh sách quyền"
+    "listUserPage": {
+      "title": "Danh sách nhân viên"
     },
+    "addUserDialog": {
+      "title": "Thêm nhân viên"
+    },
+    "addUser": "Thêm nhân viên",
     "deactivate": "Hoạt động",
-    "activate": "Ngưng hoạt động"
+    "activate": "Ngưng hoạt động",
+    "roles": {
+      "master": "Master",
+      "admin": "Admin",
+      "user": "User"
+    }
   },
   "buttons": {
     "signIn": "Đăng nhập",
@@ -24,10 +33,12 @@
     "sendActivation": "Gửi xác thực",
     "add": "Thêm mới",
     "edit": "Chỉnh sửa",
-    "delete": "Xóa"
+    "delete": "Xóa",
+    "cancel": "Hủy bỏ"
   },
   "fields": {
-    "emailAddress": "Email",
+    "emailAddress": "Địa chỉ email",
+    "confirmationCode": "Mã xác thực",
     "password": "Mật khẩu",
     "confirmPassword": "Xác nhận mật khẩu",
     "rememberMe": "Nhớ tài khoản",
@@ -49,6 +60,7 @@
     "users": "Nhân viên"
   },
   "errors": {
+    "forbidden": "Bạn không có quyền, vui lòng thử lại",
     "internalServerError": "Xảy ra lỗi từ hệ thống, vui lòng thử lại"
   }
 }

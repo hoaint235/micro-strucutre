@@ -1,11 +1,11 @@
-import { Chip, Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import useListUser from "../../../hooks/useListUser";
 import { useTranslation } from "react-i18next";
-import SecondaryButton from "../../../theme/components/SecondaryButton";
 import DynamicTable from "../../../theme/components/DynamicTable";
-import { Roles } from "../../../utils/constants";
+import { Roles, Statuses } from "../../../utils/constants";
 import { HeaderProps, PrimaryButton } from "../../../theme";
+import { Status } from "../../../components";
 
 const headers: HeaderProps[] = [
   {
@@ -16,15 +16,17 @@ const headers: HeaderProps[] = [
   {
     id: "isActivate",
     label: "table.isActivate",
-    sort: true,
+    width: 100,
   },
   {
     id: "status",
     label: "table.status",
+    width: 250,
   },
   {
     id: "roles",
     label: "table.roles",
+    width: 100,
   },
   {
     id: "createdDate",
@@ -45,16 +47,18 @@ const TableUsers = () => {
       <Grid container spacing={1}>
         <Grid item>
           <PrimaryButton
+            color="primary"
             onClick={() => history.pushState({}, "", `/user/${data.id}`)}
             disabled={!data.hasPermission}
-          >
-            {t("buttons.edit")}
-          </PrimaryButton>
+            label="buttons.edit"
+          />
         </Grid>
         <Grid item>
-          <SecondaryButton disabled={!data.hasPermission}>
-            {t("buttons.delete")}
-          </SecondaryButton>
+          <PrimaryButton
+            color="secondary"
+            disabled={!data.hasPermission}
+            label="buttons.delete"
+          />
         </Grid>
       </Grid>
     );
@@ -63,8 +67,14 @@ const TableUsers = () => {
   const renderActivate = (data) => {
     const { isActivate } = data;
     const text = isActivate ? "account.activate" : "account.deactivate";
+    return <Status label={text} />;
+  };
+
+  const renderStatus = (data) => {
     return (
-      <Chip color={isActivate ? "primary" : "secondary"} label={t(text)} />
+      <Typography component="p" variant="subtitle1" color="textPrimary">
+        {t(Statuses[data.status]).toUpperCase()}
+      </Typography>
     );
   };
 
@@ -82,33 +92,29 @@ const TableUsers = () => {
     return (
       <Grid container spacing={1}>
         {isMaster && (
-          <Grid item>
-            <Chip
-              color="primary"
-              variant="outlined"
-              label={t("account.roles.master")}
-            />
+          <Grid item xs={12}>
+            <Status label="roles.master" />
           </Grid>
         )}
         {isAdmin && (
-          <Grid item>
-            <Chip
-              color="primary"
-              variant="outlined"
-              label={t("account.roles.admin")}
-            />
+          <Grid item xs={12}>
+            <Status label="roles.admin" />
           </Grid>
         )}
         {isUser && (
-          <Grid item>
-            <Chip
-              color="primary"
-              variant="outlined"
-              label={t("account.roles.user")}
-            />
+          <Grid item xs={12}>
+            <Status label="roles.user" />
           </Grid>
         )}
       </Grid>
+    );
+  };
+
+  const renderCreatedDate = (data) => {
+    return (
+      <Typography component="p" variant="subtitle2" color="textPrimary">
+        {new Date(data.createdDate).toLocaleDateString()}
+      </Typography>
     );
   };
 
@@ -124,6 +130,8 @@ const TableUsers = () => {
         bodyAction: renderAction,
         bodyIsActivate: renderActivate,
         bodyRoles: renderRole,
+        bodyStatus: renderStatus,
+        bodyCreatedDate: renderCreatedDate,
       }}
     ></DynamicTable>
   );

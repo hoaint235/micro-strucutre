@@ -13,6 +13,7 @@ using MicroArchitecture.Core.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace MicroArchitecture.Account.API.Infrastructures.Modules
 {
@@ -21,7 +22,11 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
         public void RegisterServices(IServiceCollection service, IConfiguration configuration, Assembly[] assemblies)
         {
             var sqlConnectionString = configuration.GetConnectionString(Constants.Common.ConnectionString);
-            service.AddDbContext<AccountDbContext>();
+            service.AddDbContext<AccountDbContext>(options =>
+            {
+                options.UseSqlServer(sqlConnectionString)
+                    .EnableSensitiveDataLogging();
+            });
 
             service.AddSingleton<Func<DbConnection>>(() =>
                 new SqlConnection(sqlConnectionString));
