@@ -13,7 +13,7 @@ using Constants = MicroArchitecture.Account.Infrastructure.Commons.Constants;
 
 namespace MicroArchitecture.Account.Infrastructure.Services.UserManager
 {
-    public class AwsCognitoService : IUserManager, IGroupManager
+    public class AwsCognitoService : IUserManager
     {
         private readonly IAppContext _appContext;
         private readonly IAmazonCognitoIdentityProvider _provider;
@@ -41,8 +41,6 @@ namespace MicroArchitecture.Account.Infrastructure.Services.UserManager
 
             return instance;
         }
-
-
 
         public async Task ListUsersAsync(CancellationToken cancellationToken = default)
         {
@@ -73,33 +71,23 @@ namespace MicroArchitecture.Account.Infrastructure.Services.UserManager
             });
         }
 
-        public async Task CreateGroupAsync(Group @group)
+        public async Task<string> CreateUserAsync(string email)
         {
-            await _provider.CreateGroupAsync(new CreateGroupRequest
+            var request = new AdminCreateUserRequest
             {
+                Username = email,
                 UserPoolId = _config.PoolId,
-                GroupName = @group.Name,
-                Description = @group.Description
-            });
+                UserAttributes = new System.Collections.Generic.List<AttributeType>
+                {
+                    new AttributeType{ Name = "email_verified", Value = "true" },
+                    new AttributeType{ Name = "email", Value = email }
+                }
+            };
+
+            var response = await _provider.AdminCreateUserAsync(request);
+
+            return response.User.Username;
         }
 
-        public async Task UpdateGroupAsync(Group @group)
-        {
-            await _provider.UpdateGroupAsync(new UpdateGroupRequest
-            {
-                UserPoolId = _config.PoolId,
-                Description = @group.Description,
-                GroupName = @group.Name
-            });
-        }
-
-        public async Task DeleteGroupAsync(string groupName)
-        {
-            await _provider.DeleteGroupAsync(new DeleteGroupRequest
-            {
-                UserPoolId = _config.PoolId,
-                GroupName = groupName
-            });
-        }
     }
 }

@@ -12,16 +12,30 @@
     "verifyOtpCodeSubtitle": "Enter otp code that the system sends you via the phone number in your profile"
   },
   "account": {
-    "listUser": {
+    "listUserPage": {
       "title": "List Users"
+    },
+    "addUserDialog": {
+      "title": "Add User Form",
+      "roles": "Roles"
     },
     "deactivate": "Deactivate",
     "activate": "Activate",
-    "roles": {
-      "master": "Master",
-      "admin": "Admin",
-      "user": "User"
-    }
+    "addUser": "Add User"
+  },
+  "roles": {
+    "master": "Master",
+    "admin": "Admin",
+    "user": "User"
+  },
+  "statuses": {
+    "archived" : "Archived",
+    "compromised": "Compromised",
+    "confirmed": "Confirmed",
+    "forceChangePassword": "Force Change Password",
+    "resetRequired": "Reset Required",
+    "unconfirmed": "Unconfirmed",
+    "unknown": "Unknown"
   },
   "buttons": {
     "signIn": "Sign In",
@@ -29,7 +43,8 @@
     "sendActivation": "Send Activation",
     "add": "Add",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "cancel": "Cancel"
   },
   "fields": {
     "emailAddress": "Email address",
@@ -56,6 +71,9 @@
   },
   "errors": {
     "forbidden": "You don't have permission for this request, please try it",
-    "internalServerError": "Some thing went wrong, please try it"
+    "internalServerError": "Some thing went wrong, please try it",
+    "requiredField": "Field is required",
+    "invalidEmailFormat": "Invalid email format",
+    "invalidPhoneNumber": "Invalid phone, phone include number and least 6 characters."
   }
 }

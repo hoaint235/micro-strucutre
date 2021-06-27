@@ -74,7 +74,6 @@ namespace MicroArchitecture.Account.API
             });
             app.UseHealthChecksUI();
 
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();

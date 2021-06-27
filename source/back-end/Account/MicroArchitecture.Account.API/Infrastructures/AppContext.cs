@@ -36,6 +36,8 @@ namespace MicroArchitecture.Account.API.Infrastructures
             CurrentUserId = userId;
         }
 
+        public Guid GetCurrentUserId() => CurrentUserId;
+
         public string GetAccessToken() => _accessToken;
 
         public void SetAccessToken(string token)

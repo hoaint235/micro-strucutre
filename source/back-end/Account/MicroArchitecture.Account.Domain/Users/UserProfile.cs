@@ -15,12 +15,19 @@ namespace MicroArchitecture.Account.Domain.Users
         {
             Email = email;
             PhoneNumber = phoneNumber;
-            Address = LastName = FirstName = string.Empty;
         }
 
         public static UserProfile Create(string email, string phoneNumber)
         {
             return new UserProfile(email, phoneNumber);
+        }
+
+        public void Update(string phoneNumber, string firstName, string lastName, string address)
+        {
+            PhoneNumber = phoneNumber;
+            FirstName = firstName;
+            LastName = lastName;
+            Address = address;
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
