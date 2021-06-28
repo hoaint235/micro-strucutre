@@ -11,5 +11,6 @@ namespace MicroArchitecture.Account.Domain.Services.UserManager
         Task<string> CreateUserAsync(string userName);
         Task DisabledUserAsync(string userName);
         Task EnabledUserAsync(string userName);
+        Task DeleteUserAsync(string userName);
     }
 }

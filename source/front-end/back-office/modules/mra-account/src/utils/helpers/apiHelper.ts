@@ -7,6 +7,9 @@ const ApiHelper = {
   },
   activateUser(userId: string) {
     return `/account/users/${userId}:activate`;
+  },
+  deleteUser(userId: string) {
+    return `/account/users/${userId}`;
   }
 };
 

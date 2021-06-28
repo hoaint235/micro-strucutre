@@ -62,6 +62,15 @@ namespace MicroArchitecture.Account.Domain.Users
       });
     }
 
+    public void Deleted()
+        {
+            IsDeleted = true;
+            AddIntegrationEvent(new UserDeletedEvent
+            {
+                UserName = Profile.Email
+            });
+        }
+
     public void UpdateExternalId(string id)
     {
       ExternalId = id;

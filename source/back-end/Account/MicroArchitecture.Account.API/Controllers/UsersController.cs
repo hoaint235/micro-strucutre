@@ -26,6 +26,11 @@ namespace MicroArchitecture.Account.API.Controllers
             await SendAsync(request, cancellationToken);
 
         [Role(RoleType.Master)]
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUser([FromRoute] Guid userId, CancellationToken cancellationToken) =>
+            await SendAsync(new Delete { UserId = userId }, cancellationToken);
+
+        [Role(RoleType.Master)]
         [HttpGet("get-by-email")]
         public async Task<IActionResult> GetUserByEmail([FromQuery] GetByEmail request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
@@ -46,6 +51,14 @@ namespace MicroArchitecture.Account.API.Controllers
         [Role(RoleType.Master, RoleType.Admin)]
         [HttpPut("{userId}:activate")]
         public async Task<IActionResult> ActivateUser([FromRoute] Guid userId, [FromBody] Activate request, CancellationToken cancellationToken)
+        {
+            request.UserId = userId;
+            return await SendAsync(request, cancellationToken);
+        }
+
+        [Role(RoleType.Master, RoleType.Admin)]
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserById([FromRoute] Guid userId, [FromQuery] GetById request, CancellationToken cancellationToken)
         {
             request.UserId = userId;
             return await SendAsync(request, cancellationToken);

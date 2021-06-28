@@ -1,13 +1,9 @@
 ﻿using MassTransit;
-using MicroArchitecture.Account.Application.User.Commands;
-using MicroArchitecture.Account.Application.User.IntegrationEvents;
-using MicroArchitecture.Account.Domain.Core.Events;
 using MicroArchitecture.Account.Infrastructure.Commons;
 using MicroArchitecture.Account.Infrastructure.Commons.Models;
 using MicroArchitecture.Core.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Linq;
 using System.Reflection;
 
@@ -19,7 +15,6 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
     {
       var brokerConfig = new MessageBrokerConfig();
       configuration.GetSection(Constants.Common.MessageBrokerConfig).Bind(brokerConfig);
-
       service.AddMassTransit(x =>
       {
         x.AddConsumers(assemblies);
@@ -32,15 +27,17 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
                         h.Password(brokerConfig.Password);
                       });
 
-                cfg.ReceiveEndpoint("event-received", (endpoint) =>
+                cfg.ReceiveEndpoint("event-received", e =>
                 {
-                  var consumerTypes = assemblies.SelectMany(x => x.GetTypes()
-                             .Where(type => type.GetInterfaces()
-                             .Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IConsumer<>)).Any()));
-                  foreach (var consumerType in consumerTypes)
-                  {
-                    endpoint.Consumer(consumerType, type => Activator.CreateInstance(consumerType));
-                  }
+                    var consumerTypes = assemblies.SelectMany(x => x.GetTypes())
+                    .Where(x => x.GetInterfaces().Where(x => x.IsGenericType 
+                        && x.GetGenericTypeDefinition() == typeof(IConsumer<>)).Any())
+                    .ToList();
+
+                    foreach (var consumerType in consumerTypes)
+                    {
+                        e.ConfigureConsumer(context, consumerType);
+                    }
 
                 });
               });

@@ -41,7 +41,7 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Repositori
 
         public void Delete(User entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(entity);
         }
 
         public async Task<User> FindAsync(ISpecification<User> specification)

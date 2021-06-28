@@ -70,6 +70,15 @@ namespace MicroArchitecture.Account.Infrastructure.Services.UserManager
       });
     }
 
+    public async Task DeleteUserAsync(string userName)
+    {
+        await _provider.AdminDeleteUserAsync(new AdminDeleteUserRequest
+        {
+            UserPoolId = _config.PoolId,
+            Username = userName
+        });
+    }
+
     public async Task<string> CreateUserAsync(string userName)
     {
       var request = new AdminCreateUserRequest
