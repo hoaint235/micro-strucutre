@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MicroArchitecture.Account.Application.User.IntegrationEvents
 {
-    public class UserCreatedEventHandler : IConsumer<UserCreatedEvent>
+    public class UserCreatedEventConsumer : IConsumer<UserCreatedEvent>
     {
         private readonly IUserManager _userManger;
         private readonly IUserRepository _userRepository;
 
-        public UserCreatedEventHandler(IUserManager userManger
+        public UserCreatedEventConsumer(IUserManager userManger
             , IUserRepository userRepository)
         {
             _userManger = userManger;

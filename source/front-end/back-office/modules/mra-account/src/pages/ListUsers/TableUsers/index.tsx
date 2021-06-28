@@ -7,6 +7,8 @@ import { HeaderProps, PrimaryButton } from "../../../theme";
 import { Status } from "../../../components";
 import { useListUser } from "../../../hooks";
 import { useHistory } from "react-router-dom";
+import { API } from "@mra/utility";
+import { ApiHelper } from "../../../utils";
 
 const headers: HeaderProps[] = [
   {
@@ -41,8 +43,18 @@ const headers: HeaderProps[] = [
 
 const TableUsers = () => {
   const { t } = useTranslation();
-  const { data: source } = useListUser();
+  const { data: source, fetchUsers } = useListUser();
   const history = useHistory();
+
+  const onDeactivate = async (userId) => {
+    await API.put(ApiHelper.deactivateUser(userId), {});
+    await fetchUsers();
+  };
+
+  const onActivate = async (userId) => {
+    await API.put(ApiHelper.activateUser(userId), {});
+    await fetchUsers();
+  };
 
   const renderAction = (data) => {
     return (
@@ -55,13 +67,26 @@ const TableUsers = () => {
             label="buttons.edit"
           />
         </Grid>
-        <Grid item>
-          <PrimaryButton
-            color="secondary"
-            disabled={!data.hasPermission}
-            label="buttons.disabled"
-          />
-        </Grid>
+        {!data.isActivate && (
+          <Grid item>
+            <PrimaryButton
+              color="default"
+              disabled={!data.hasPermission}
+              label="buttons.activate"
+              onClick={() => onActivate(data.id)}
+            />
+          </Grid>
+        )}
+        {data.isActivate && (
+          <Grid item>
+            <PrimaryButton
+              color="secondary"
+              disabled={!data.hasPermission}
+              label="buttons.deactivate"
+              onClick={() => onDeactivate(data.id)}
+            />
+          </Grid>
+        )}
       </Grid>
     );
   };
