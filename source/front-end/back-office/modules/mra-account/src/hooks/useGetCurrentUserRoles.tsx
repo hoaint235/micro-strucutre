@@ -1,17 +1,17 @@
 import { getCurrentUserRoles } from "@mra/utility";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const useGetCurrentUserRoles = () => {
   const [roles, setRoles] = useState([]);
 
-  const fetchRoles = async () => {
+  const fetchRoles = useCallback(async () => {
     const roles = await getCurrentUserRoles();
     setRoles(roles);
-  };
+  }, [getCurrentUserRoles]);
 
   useEffect(() => {
     fetchRoles();
-  }, []);
+  }, [fetchRoles]);
 
   return {
     roles,
