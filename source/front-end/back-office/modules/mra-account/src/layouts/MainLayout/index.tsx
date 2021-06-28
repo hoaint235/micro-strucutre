@@ -2,7 +2,7 @@ import { Box, makeStyles, Theme } from "@material-ui/core";
 import React, { StrictMode, useState } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
-import { ToastMessage } from "../../components";
+import { LoadingProvider, ToastMessage } from "../../components";
 import { MaterialProvider } from "../../theme";
 import Routes from "./Routes";
 import Header from "./Header";
@@ -52,6 +52,7 @@ const MainLayout = (props) => {
         </Router>
 
         <ToastMessage />
+        <LoadingProvider />
       </StrictMode>
     </MaterialProvider>
   );
