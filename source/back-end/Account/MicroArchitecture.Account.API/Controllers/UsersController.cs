@@ -7,6 +7,7 @@ using MicroArchitecture.Account.Domain.Commons;
 using Microsoft.AspNetCore.Authorization;
 using MicroArchitecture.Account.Application.User.Commands;
 using MicroArchitecture.Account.Application.Roles.Queries;
+using System;
 
 namespace MicroArchitecture.Account.API.Controllers
 {
@@ -32,6 +33,22 @@ namespace MicroArchitecture.Account.API.Controllers
         [Role(RoleType.Master, RoleType.Admin, RoleType.User)]
         [HttpGet("roles")]
         public async Task<IActionResult> GetRoles([FromQuery] GetRoles request, CancellationToken cancellationToken) =>
-          await SendAsync(request, cancellationToken);
+            await SendAsync(request, cancellationToken);
+
+        [Role(RoleType.Master, RoleType.Admin)]
+        [HttpPut("{userId}:deactivate")]
+        public async Task<IActionResult> DeactivateUser([FromRoute] Guid userId, [FromBody] Deactivate request, CancellationToken cancellationToken)
+        {
+            request.UserId = userId;
+            return await SendAsync(request, cancellationToken);
+        }
+
+        [Role(RoleType.Master, RoleType.Admin)]
+        [HttpPut("{userId}:activate")]
+        public async Task<IActionResult> ActivateUser([FromRoute] Guid userId, [FromBody] Activate request, CancellationToken cancellationToken)
+        {
+            request.UserId = userId;
+            return await SendAsync(request, cancellationToken);
+        }
     }
 }

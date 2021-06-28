@@ -8,6 +8,8 @@ namespace MicroArchitecture.Account.Domain.Services.UserManager
         Task ListUsersAsync(CancellationToken cancellationToken = default);
         Task ActivateUserAsync(string userName);
         Task DeactivateUserAsync(string userName);
-        Task<string> CreateUserAsync(string email);
+        Task<string> CreateUserAsync(string userName);
+        Task DisabledUserAsync(string userName);
+        Task EnabledUserAsync(string userName);
     }
 }
