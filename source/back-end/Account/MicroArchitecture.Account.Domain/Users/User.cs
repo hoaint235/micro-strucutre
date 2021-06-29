@@ -9,7 +9,7 @@ namespace MicroArchitecture.Account.Domain.Users
   {
     public UserProfile Profile { get; private set; }
     public bool IsActivate { get; private set; }
-    public UseStatus Status { get; private set; }
+    public UserStatus Status { get; private set; }
     public ICollection<UserRole> Roles { get; private set; }
     public Guid? CreatedBy { get; set; }
     public Guid? UpdatedBy { get; set; }
@@ -20,23 +20,21 @@ namespace MicroArchitecture.Account.Domain.Users
 
     private User() { }
 
-    private User(UserProfile profile, UseStatus status)
+    private User(UserProfile profile, UserStatus status)
     {
       Profile = profile;
       Status = status;
-      ExternalId = Guid.NewGuid().ToString();
     }
 
     public static User Create(string email, string phoneNumber, List<Guid> roleIds)
     {
       var profile = UserProfile.Create(email, phoneNumber);
-      var user = new User(profile, UseStatus.ForceChangePassword);
+      var user = new User(profile, UserStatus.ForceChangePassword);
       user.Roles = UserRole.Create(user.Id, roleIds);
       user.IsActivate = true;
 
       AddIntegrationEvent(new UserCreatedEvent
       {
-        UserId = user.ExternalId,
         Email = email,
         PhoneNumber = phoneNumber
       });
@@ -62,6 +60,11 @@ namespace MicroArchitecture.Account.Domain.Users
       });
     }
 
+        public void UpdateRoles(List<Guid> roleIds)
+        {
+            Roles = UserRole.Create(Id, roleIds);
+        }
+
     public void Deleted()
         {
             IsDeleted = true;
@@ -75,5 +78,10 @@ namespace MicroArchitecture.Account.Domain.Users
     {
       ExternalId = id;
     }
+
+        public void UpdateStatus(UserStatus status)
+        {
+            Status = status;
+        }
   }
 }

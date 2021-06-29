@@ -1,6 +1,6 @@
 ﻿namespace MicroArchitecture.Account.Domain.Users
 {
-    public enum UseStatus
+    public enum UserStatus
     {
         Archived = 0,
         Compromised = 1,

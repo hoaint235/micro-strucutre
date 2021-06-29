@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { PrimaryButton } from "../../../theme";
 import SearchField from "../../../theme/components/SearchField";
-import AddUser from "../AddUser";
+import AddUser from "../../AddUser";
 
 const useStyles = makeStyles(() => ({
   rightContainer: {
