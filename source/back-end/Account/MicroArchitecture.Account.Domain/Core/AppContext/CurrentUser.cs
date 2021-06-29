@@ -8,7 +8,7 @@ namespace MicroArchitecture.Account.Domain.Core.AppContext
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
-        public UseStatus Status { get; set; }
+        public UserStatus Status { get; set; }
         public ICollection<Guid> Roles { get; set; } = new List<Guid>();
     }
 }

@@ -35,11 +35,6 @@ namespace MicroArchitecture.Account.API.Controllers
         public async Task<IActionResult> GetUserByEmail([FromQuery] GetByEmail request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
 
-        [Role(RoleType.Master, RoleType.Admin, RoleType.User)]
-        [HttpGet("roles")]
-        public async Task<IActionResult> GetRoles([FromQuery] GetRoles request, CancellationToken cancellationToken) =>
-            await SendAsync(request, cancellationToken);
-
         [Role(RoleType.Master, RoleType.Admin)]
         [HttpPut("{userId}:deactivate")]
         public async Task<IActionResult> DeactivateUser([FromRoute] Guid userId, [FromBody] Deactivate request, CancellationToken cancellationToken)
@@ -63,5 +58,7 @@ namespace MicroArchitecture.Account.API.Controllers
             request.UserId = userId;
             return await SendAsync(request, cancellationToken);
         }
+
+
     }
 }

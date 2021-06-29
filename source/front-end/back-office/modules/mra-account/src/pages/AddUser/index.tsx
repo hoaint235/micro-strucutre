@@ -9,11 +9,11 @@ import { API } from "@mra/utility";
 import React, { Fragment, useCallback } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { GroupContainer } from "../../../components";
-import { Email, Form, GroupSelect, Input } from "../../../hook-form";
-import { PrimaryButton } from "../../../theme";
-import { ApiHelper, REGEX_PHONE_NUMBER, Roles } from "../../../utils";
-import { useGetCurrentUserRoles } from "../../../hooks";
+import { GroupContainer } from "../../components";
+import { Email, Form, GroupSelect, Input } from "../../hook-form";
+import { PrimaryButton } from "../../theme";
+import { ApiHelper, REGEX_PHONE_NUMBER, Roles } from "../../utils";
+import { useGetCurrentUserRoles } from "../../hooks";
 
 const AddUser = (props: DialogProps) => {
   const { isOpen, onClose } = props;
