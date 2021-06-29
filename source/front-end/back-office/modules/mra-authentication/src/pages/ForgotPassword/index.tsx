@@ -1,4 +1,4 @@
-import useStepForm from "../../utils/custom-hooks/useStepForm";
+import { useStepForm } from "../../hooks";
 import ConfirmationForm from "./ConfirmationForm";
 import SendActivationForm from "./SendActivationForm";
 

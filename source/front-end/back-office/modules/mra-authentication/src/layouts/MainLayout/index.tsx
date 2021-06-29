@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import LoadingProvider from "../../components/LoadingProvider";
-import MessageProvider from "../../components/MessageProvider";
 import Routes from "../../routes";
 import { MaterialProvider } from "../../theme";
 import BackgroundImage from "./BackgroundImage";
@@ -37,7 +36,6 @@ const MainLayout = () => {
           </Hidden>
         </Grid>
 
-        <MessageProvider />
         <LoadingProvider />
       </div>
     </MaterialProvider>

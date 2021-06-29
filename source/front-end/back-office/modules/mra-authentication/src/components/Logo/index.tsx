@@ -10,7 +10,7 @@ const Logo = () => {
   };
 
   return (
-    <a href="#" onClick={backToHome}>
+    <a href="/" onClick={backToHome}>
       <img src="/images/logo.svg" alt="logo" />
     </a>
   );

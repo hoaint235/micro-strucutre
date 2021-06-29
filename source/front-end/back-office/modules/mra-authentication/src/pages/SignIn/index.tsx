@@ -1,4 +1,4 @@
-import useStepForm from "../../utils/custom-hooks/useStepForm";
+import { useStepForm } from "../../hooks";
 import ChangeFirstTimePasswordForm from "./ChangePasswordFirstTimeForm";
 import SignInForm from "./SignInForm";
 import VerifySMSForm from "./VerifySMSForm";

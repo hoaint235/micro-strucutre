@@ -23,7 +23,7 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
   };
 
   return (
-    <ContentForm title={t("auth.forgotPasswordTitle")}>
+    <ContentForm title="auth.forgotPasswordTitle">
       <Box mt={4}>
         <FormFields onSubmit={onSendActivation}>
           <Typography

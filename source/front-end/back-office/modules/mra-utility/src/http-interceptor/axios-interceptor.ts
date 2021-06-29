@@ -40,7 +40,7 @@ function initHttpInterceptor() {
       }
 
       window.dispatchEvent(
-        new CustomEvent("TOAST_ERROR", {
+        new CustomEvent(WindowEvent.TOAST_ERROR, {
           detail: errorMessage,
         })
       );
