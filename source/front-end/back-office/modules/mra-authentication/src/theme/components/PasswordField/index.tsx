@@ -5,7 +5,12 @@ import { useTranslation } from "react-i18next";
 import { InputField } from "..";
 import useStylesReddit from "../InputField/InputField.style";
 
-const PasswordField = ({ label, ...restProps }: TextFieldProps) => {
+const PasswordField = ({
+  label,
+  helperText,
+  error,
+  ...restProps
+}: TextFieldProps) => {
   const { t } = useTranslation();
   const [hidePassword, setHidePassword] = useState<boolean>(false);
   const classes = useStylesReddit();
@@ -22,6 +27,8 @@ const PasswordField = ({ label, ...restProps }: TextFieldProps) => {
     <InputField
       type={hidePassword ? "text" : "password"}
       label={t(`${label}`)}
+      error={error}
+      helperText={error && t(`${helperText}`)}
       InputProps={{
         classes,
         disableUnderline: true,

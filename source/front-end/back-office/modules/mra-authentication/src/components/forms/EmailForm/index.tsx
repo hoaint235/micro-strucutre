@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { regexEmail } from "../../../utils/constants";
+import { REGEX_EMAIL } from "../../../utils/constants";
 import { FieldProps, Rules } from "../form-types";
 import InputForm from "../InputForm";
 
@@ -7,8 +7,8 @@ const EmailForm = ({ rules, ...restProps }: FieldProps) => {
   const defaultRules = useMemo(() => {
     const defaultRule: Rules = {
       pattern: {
-        value: regexEmail,
-        message: "Incorrect email format",
+        value: REGEX_EMAIL,
+        message: "errors.invalidEmailFormat",
       },
     };
     return { ...defaultRule, ...rules };

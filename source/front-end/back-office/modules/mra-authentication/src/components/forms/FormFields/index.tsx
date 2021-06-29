@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { PrimaryButton } from "../../../theme";
+import { EmailForm, InputForm, PasswordForm } from "..";
 import { FormOptionsProps, FormProps } from "../form-types";
 
 const initOptions: FormOptionsProps = {
@@ -9,67 +9,59 @@ const initOptions: FormOptionsProps = {
   reValidateMode: "onChange",
 };
 
+const types = [EmailForm, InputForm, PasswordForm];
+
 const FormFields = (props: FormProps) => {
   const {
     children,
     onSubmit,
-    onValuesChange,
-    controlOptions,
+    renderSubmit,
+    renderChildren,
     options = initOptions,
   } = props;
   const form = useForm({ ...options });
-  const {
-    control,
-    getValues,
-    formState: { errors },
-    handleSubmit,
-  } = form;
+  const { handleSubmit } = form;
 
-  const renderForm = (child) => {
-    const name = child.props.name;
-    child.props.error = errors[name]?.message;
+  const renderHookFormItem = (child) => {
+    const isHookFormField = types.some((x) => x.name === child.type.name);
+    if (!isHookFormField) {
+      return child;
+    }
     return React.createElement(child.type, {
       ...{
         ...child.props,
-        control,
-        errors,
+        form,
+        key: child.props.name,
       },
     });
   };
 
-  const onFormChange = () => {
-    if (onValuesChange) {
-      const values = getValues();
-      onValuesChange(values);
+  const renderForm = () => {
+    let elements = [];
+
+    if (children) {
+      elements = [...children];
     }
-  };
 
-  if (!Array.isArray(children)) {
-    return <form onSubmit={handleSubmit(onSubmit)}>{children(form)}</form>;
-  }
+    if (renderChildren) {
+      const {
+        props: { children },
+      } = renderChildren(form);
+      elements = [...elements, ...children];
+    }
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} onChange={onFormChange}>
+    return (
       <Grid container spacing={2}>
-        {children.map((child: any, index) => (
-          <Grid key={index} item xs={child.props.gridProps || 12}>
-            {child.props.name ? renderForm(child) : child}
+        {elements.map((child: any, index) => (
+          <Grid key={index} item xs={12}>
+            {renderHookFormItem(child)}
           </Grid>
         ))}
-        <Grid item xs={12}>
-          {controlOptions.render ? (
-            controlOptions.render(form)
-          ) : (
-            <PrimaryButton
-              label={controlOptions.label}
-              type="submit"
-              {...controlOptions.options}
-            />
-          )}
-        </Grid>
+        {renderSubmit && renderSubmit(form)}
       </Grid>
-    </form>
-  );
+    );
+  };
+  return <form onSubmit={handleSubmit(onSubmit)}>{renderForm()}</form>;
 };
 
 export default FormFields;

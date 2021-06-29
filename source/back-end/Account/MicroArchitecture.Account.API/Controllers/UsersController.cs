@@ -6,7 +6,6 @@ using MicroArchitecture.Account.Application.User.Queries;
 using MicroArchitecture.Account.Domain.Commons;
 using Microsoft.AspNetCore.Authorization;
 using MicroArchitecture.Account.Application.User.Commands;
-using MicroArchitecture.Account.Application.Roles.Queries;
 using System;
 
 namespace MicroArchitecture.Account.API.Controllers
@@ -31,7 +30,7 @@ namespace MicroArchitecture.Account.API.Controllers
             await SendAsync(new Delete { UserId = userId }, cancellationToken);
 
         [Role(RoleType.Master)]
-        [HttpGet("get-by-email")]
+        [HttpGet("email")]
         public async Task<IActionResult> GetUserByEmail([FromQuery] GetByEmail request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
 
@@ -59,6 +58,9 @@ namespace MicroArchitecture.Account.API.Controllers
             return await SendAsync(request, cancellationToken);
         }
 
-
+        [Role(RoleType.Master, RoleType.Admin)]
+        [HttpPut("status")]
+        public async Task<IActionResult> UpdateUserStatus([FromBody] UpdateStatus request, CancellationToken cancellationToken) 
+            => await SendAsync(request, cancellationToken);
     }
 }

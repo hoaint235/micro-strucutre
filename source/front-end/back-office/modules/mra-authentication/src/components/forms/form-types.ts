@@ -23,13 +23,11 @@ type FormGridProps = {
 };
 
 export type FieldProps = TextFieldProps & {
-  control?: Control<FieldValues>;
-  errors?: DeepMap<FieldValues, FieldError>;
+  form?: UseFormReturn<any>;
   defaultValue?: string;
   requiredField?: boolean;
   rules?: Rules;
   children?: string | React.ReactNode;
-  gridProps?: FormGridProps;
 };
 
 type Mode = keyof ValidationMode;
@@ -46,9 +44,9 @@ export type ControlSubmitOptionsProps = {
 };
 
 export type FormProps = {
-  children: any;
-  onSubmit: (data: any) => void;
-  onValuesChange?: (data: any) => any;
-  controlOptions: ControlSubmitOptionsProps;
+  children?: any;
+  renderChildren?: (form: UseFormReturn<any>) => any;
+  onSubmit: (form: any) => void;
   options?: FormOptionsProps;
+  renderSubmit?: (form: UseFormReturn<any>) => void;
 };

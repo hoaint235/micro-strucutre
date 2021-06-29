@@ -57,7 +57,7 @@ const TableUsers = () => {
   const onDelete = async (userId) => {
     await API.delete(ApiHelper.deleteUser(userId), {});
     await fetchUsers();
-  }
+  };
 
   const renderAction = (data) => {
     return (
@@ -72,7 +72,7 @@ const TableUsers = () => {
             />
           </Grid>
         )}
-         {!data.isActivate && (
+        {!data.isActivate && (
           <Grid item>
             <PrimaryButton
               color="secondary"
