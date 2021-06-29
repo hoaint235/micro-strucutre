@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useController } from "react-hook-form";
 import { PasswordField } from "../../../theme";
-import { regexPassword } from "../../../utils/constants";
+import { REGEX_PASSWORD } from "../../../utils/constants";
 import { FieldProps, Rules } from "../form-types";
 
 type Props = FieldProps & {
@@ -10,9 +10,11 @@ type Props = FieldProps & {
 
 const PasswordForm = (props: Props) => {
   const {
-    control,
+    form: {
+      control,
+      formState: { errors },
+    },
     name,
-    errors,
     defaultValue,
     rules: externalRules,
     requiredField,
@@ -25,7 +27,7 @@ const PasswordForm = (props: Props) => {
     let rules: Rules = {
       required: {
         value: requiredField || true,
-        message: "This is a field required",
+        message: "errors.requiredField",
       },
     };
 
@@ -33,8 +35,8 @@ const PasswordForm = (props: Props) => {
       rules = {
         ...rules,
         pattern: {
-          value: regexPassword,
-          message: "Incorrect password format.",
+          value: REGEX_PASSWORD,
+          message: "errors.invalidPasswordFormat",
         },
       };
     }
@@ -54,7 +56,7 @@ const PasswordForm = (props: Props) => {
   return (
     <PasswordField
       error={!!errors[name]}
-      helperText={errors[name] && errors[name].message}
+      helperText={errors[name]?.message}
       {...restProps}
       {...inputProps}
       inputRef={ref}

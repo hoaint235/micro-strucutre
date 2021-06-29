@@ -5,6 +5,8 @@ import ContentForm from "../../../components/ContentForm";
 import { EmailForm } from "../../../components/forms";
 import { useTranslation } from "react-i18next";
 import FormFields from "../../../components/forms/FormFields";
+import { UseFormReturn } from "react-hook-form";
+import { PrimaryButton } from "../../../theme";
 
 const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
   const { t } = useTranslation();
@@ -23,10 +25,7 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
   return (
     <ContentForm title={t("auth.forgotPasswordTitle")}>
       <Box mt={4}>
-        <FormFields
-          onSubmit={onSendActivation}
-          controlOptions={{ label: "buttons.sendActivation" }}
-        >
+        <FormFields onSubmit={onSendActivation}>
           <Typography
             style={{ textAlign: "center" }}
             variant="subtitle1"
@@ -34,7 +33,8 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
           >
             {t("auth.forgotPasswordSubtitle")}
           </Typography>
-          <EmailForm label={t("fields.emailAddress")} name="email" />
+          <EmailForm label="fields.emailAddress" name="email" />
+          <PrimaryButton type="submit" label="buttons.submit" />
         </FormFields>
       </Box>
     </ContentForm>

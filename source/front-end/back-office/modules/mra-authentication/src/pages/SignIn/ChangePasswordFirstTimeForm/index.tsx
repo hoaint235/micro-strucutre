@@ -1,43 +1,31 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { Fragment } from "react";
 import ContentForm from "../../../components/ContentForm";
-import { Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { UseFormReturn } from "react-hook-form";
 import { FormFields, PasswordForm } from "../../../components/forms";
 import useMatchPassword from "../../../hooks/useMatchPassword";
-import { Cognito } from "@mra/utility";
+import { API, Cognito } from "@mra/utility";
 import { useTranslation } from "react-i18next";
-import { DefaultPathRedirect } from "../../../utils/constants";
+import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
 import { PrimaryButton } from "../../../theme";
-
-type MatchProps = () => string | boolean;
+import { useHistory } from "react-router-dom";
 
 const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
   const { t } = useTranslation();
-  const [match, setMatch] = useState<MatchProps>();
+  const history = useHistory();
   const {
     stepObj: {
       data: { user },
     },
     onNavigateStep,
   } = props;
-
-  // const { password, confirmPassword } = getValues();
-  // const isMatch = useMatchPassword({
-  //   leftPassword: password,
-  //   rightPassword: confirmPassword,
-  // });
-
-  const changeValues = useCallback((values) => {
-    const { password, confirmPassword } = values;
-    const isMatch = useMatchPassword({
-      leftPassword: password,
-      rightPassword: confirmPassword,
-    });
-
-    setMatch(isMatch);
-  }, []);
-
+  console.log(user);
   const onSubmit = async ({ password }) => {
+    const {
+      challengeParam: {
+        userAttributes: { email },
+      },
+    } = user;
     const result = await Cognito.completeNewPassword(user, password);
 
     if (result.challengeName && result.challengeName === "SMS_MFA") {
@@ -48,19 +36,21 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
         },
       });
     }
-
-    history.pushState({}, "", DefaultPathRedirect);
+    await API.put("/account/users/status", { email: email, status: 2 });
+    history.push(DEFAULT_REDIRECT_URL);
   };
 
-  const renderControlSubmit = ({
+  const renderSubmit = ({
     formState: { isDirty, isValid },
   }: UseFormReturn<any>) => {
     return (
-      <PrimaryButton
-        type="submit"
-        label="buttons.submit"
-        disabled={!isDirty || !isValid}
-      />
+      <Grid item xs={12}>
+        <PrimaryButton
+          type="submit"
+          label="buttons.submit"
+          disabled={!isDirty || !isValid}
+        />
+      </Grid>
     );
   };
 
@@ -68,33 +58,41 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
     <ContentForm title={t("auth.changePasswordFirstTimeTitle")}>
       <FormFields
         onSubmit={onSubmit}
-        controlOptions={{
-          render: renderControlSubmit,
+        renderSubmit={renderSubmit}
+        renderChildren={({ getValues }) => {
+          const { password, confirmPassword } = getValues();
+          const isMatchPassword = useMatchPassword({
+            leftPassword: password,
+            rightPassword: confirmPassword,
+          });
+
+          return (
+            <Fragment>
+              <Typography variant="subtitle1" component="h2">
+                {t("auth.changePasswordFirstTimeSubtitle")}
+              </Typography>
+              <PasswordForm
+                label="fields.password"
+                name="password"
+                rules={{
+                  validate: {
+                    matchPassword: () => isMatchPassword(),
+                  },
+                }}
+              />
+              <PasswordForm
+                label="fields.confirmPassword"
+                name="confirmPassword"
+                rules={{
+                  validate: {
+                    matchPassword: () => isMatchPassword(),
+                  },
+                }}
+              />
+            </Fragment>
+          );
         }}
-        onValuesChange={changeValues}
-      >
-        <Typography variant="subtitle1" component="h2">
-          {t("auth.changePasswordFirstTimeSubtitle")}
-        </Typography>
-        <PasswordForm
-          label="fields.password"
-          name="password"
-          rules={{
-            validate: {
-              matchPassword: () => match(),
-            },
-          }}
-        />
-        <PasswordForm
-          label="fields.confirmPassword"
-          name="confirmPassword"
-          // rules={{
-          //   validate: {
-          //     matchPassword: () => isMatch(),
-          //   },
-          // }}
-        />
-      </FormFields>
+      ></FormFields>
     </ContentForm>
   );
 };

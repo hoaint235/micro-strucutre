@@ -1,11 +1,12 @@
 import { Grid, makeStyles, Theme } from "@material-ui/core";
 import React from "react";
 import { Cognito } from "@mra/utility";
-import { InputForm, PasswordForm, ContentForm } from "../../../components";
+import { PasswordForm, ContentForm, EmailForm } from "../../../components";
 import { useTranslation } from "react-i18next";
-import { DefaultPathRedirect } from "../../../utils/constants";
+import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
 import FormFields from "../../../components/forms/FormFields";
 import { useHistory } from "react-router-dom";
+import { PrimaryButton } from "../../../theme";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -40,38 +41,36 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
         return;
       }
 
-      history.push(DefaultPathRedirect);
+      history.push(DEFAULT_REDIRECT_URL);
     } catch (error) {}
   };
 
   const navigateForgotPasswordPage = (e) => {
     e.preventDefault();
-    history.push("/forgot-password");
+    history.push("forgot-password");
   };
 
   return (
     <ContentForm title={t("auth.signInTitle")}>
-      <FormFields
-        onSubmit={onSignIn}
-        controlOptions={{ label: "buttons.signIn" }}
-      >
-        <InputForm label={t("fields.emailAddress")} name="email" />
+      <FormFields onSubmit={onSignIn}>
+        <EmailForm label="fields.emailAddress" name="email" />
         <PasswordForm
-          label={t("fields.password")}
+          label="fields.password"
           name="password"
           requiredRulePassword={false}
         />
         <Grid container alignItems="center">
           <Grid item xs={12} className={classes.linkForgotContainer}>
             <a
-              href="forgot-password"
+              href="#"
               className={classes.linkForgotText}
-              onClick={navigateForgotPasswordPage}
+              onMouseDown={navigateForgotPasswordPage} // Use OnMouseDown to call before OnBlur React-Hook-Form called
             >
               {t("auth.forgotPasswordLink")}
             </a>
           </Grid>
         </Grid>
+        <PrimaryButton type="submit" label="buttons.submit" />
       </FormFields>
     </ContentForm>
   );

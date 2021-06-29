@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MicroArchitecture.Account.Domain.Users;
+using MicroArchitecture.Account.Domain.Users.Specifications;
 using MicroArchitecture.Account.Infrastructure.Commons.Models;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace MicroArchitecture.Account.Application.User.Commands.Handlers
 
         public async Task<ApiResult<Unit>> Handle(UpdateStatus request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetAsync(request.UserId);
+            var user = await _userRepository.FindAsync(new EmailSpecification(request.Email));
             user.UpdateStatus(request.Status);
             _userRepository.Update(user);
             await _userRepository.UnitOfWork.CommitAsync();

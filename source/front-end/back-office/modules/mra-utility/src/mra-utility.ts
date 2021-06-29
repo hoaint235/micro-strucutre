@@ -11,6 +11,6 @@ export function publicApiFunction() {
   return true;
 }
 
-export * from './fn-common';
+export * from "./fn-common";
 
 export { API, initHttpInterceptor, initAwsCognito, Cognito, isAuthenticated };

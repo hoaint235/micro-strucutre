@@ -5,9 +5,11 @@ import { FieldProps } from "../form-types";
 
 const InputForm = (props: FieldProps) => {
   const {
-    control,
+    form: {
+      control,
+      formState: { errors },
+    },
     name,
-    errors,
     defaultValue,
     rules,
     requiredField,
@@ -24,7 +26,7 @@ const InputForm = (props: FieldProps) => {
       {
         required: {
           value: requiredField || true,
-          message: "This is a field required",
+          message: "errors.requiredField",
         },
       },
       { ...rules }
@@ -35,7 +37,7 @@ const InputForm = (props: FieldProps) => {
   return (
     <InputField
       error={!!errors[name]}
-      helperText={errors[name] && errors[name].message}
+      helperText={errors[name]?.message}
       {...restProps}
       {...inputProps}
       inputRef={ref}

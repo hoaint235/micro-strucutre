@@ -10,7 +10,7 @@ const ApiHelper = {
   },
   deleteUser(userId: string) {
     return `/account/users/${userId}`;
-  }
+  },
 };
 
 export default ApiHelper;
