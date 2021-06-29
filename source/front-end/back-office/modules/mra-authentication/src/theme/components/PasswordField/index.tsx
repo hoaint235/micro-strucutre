@@ -27,6 +27,7 @@ const PasswordField = ({
     <InputField
       type={hidePassword ? "text" : "password"}
       label={t(`${label}`)}
+      tabIndex={-1}
       error={error}
       helperText={error && t(`${helperText}`)}
       InputProps={{
@@ -35,6 +36,7 @@ const PasswordField = ({
         endAdornment: (
           <InputAdornment position="end">
             <IconButton
+              tabIndex={-1}
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
             >

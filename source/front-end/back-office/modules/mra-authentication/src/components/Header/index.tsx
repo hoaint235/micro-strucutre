@@ -1,5 +1,6 @@
 import { Grid, makeStyles, Theme, Typography } from "@material-ui/core";
 import React, { memo } from "react";
+import { useTranslation } from "react-i18next";
 import Logo from "../Logo";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -22,11 +23,12 @@ type Props = {
 
 const Header = (props: Props) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <Grid container alignItems="center">
       <Grid item sm={7} xs={12}>
-        <Typography className={classes.header}>{props.title}</Typography>
+        <Typography className={classes.header}>{t(props.title)}</Typography>
       </Grid>
       <Grid item sm={5} xs={12} className={classes.logo}>
         <Logo />

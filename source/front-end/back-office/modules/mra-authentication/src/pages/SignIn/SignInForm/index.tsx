@@ -26,23 +26,21 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const classes = useStyles();
 
   const onSignIn = async (data: Certificate) => {
-    try {
-      const result = await Cognito.signIn(data.email, data.password);
-      const status = result.challengeName;
+    const result = await Cognito.signIn(data.email, data.password);
+    const status = result.challengeName;
 
-      if (["NEW_PASSWORD_REQUIRED", "SMS_MFA"].includes(status)) {
-        const changePasswordRequired = status === "NEW_PASSWORD_REQUIRED";
-        props.onNavigateStep({
-          status: changePasswordRequired ? "FIRST_LOGIN" : "VERIFY_CODE",
-          data: {
-            user: result,
-          },
-        });
-        return;
-      }
+    if (["NEW_PASSWORD_REQUIRED", "SMS_MFA"].includes(status)) {
+      const changePasswordRequired = status === "NEW_PASSWORD_REQUIRED";
+      props.onNavigateStep({
+        status: changePasswordRequired ? "FIRST_LOGIN" : "VERIFY_CODE",
+        data: {
+          user: result,
+        },
+      });
+      return;
+    }
 
-      history.push(DEFAULT_REDIRECT_URL);
-    } catch (error) {}
+    history.push(DEFAULT_REDIRECT_URL);
   };
 
   const navigateForgotPasswordPage = (e) => {
@@ -51,7 +49,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   return (
-    <ContentForm title={t("auth.signInTitle")}>
+    <ContentForm title="auth.signInTitle">
       <FormFields onSubmit={onSignIn}>
         <EmailForm label="fields.emailAddress" name="email" />
         <PasswordForm
@@ -62,7 +60,8 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
         <Grid container alignItems="center">
           <Grid item xs={12} className={classes.linkForgotContainer}>
             <a
-              href="#"
+              href="/"
+              tabIndex={-1}
               className={classes.linkForgotText}
               onMouseDown={navigateForgotPasswordPage} // Use OnMouseDown to call before OnBlur React-Hook-Form called
             >

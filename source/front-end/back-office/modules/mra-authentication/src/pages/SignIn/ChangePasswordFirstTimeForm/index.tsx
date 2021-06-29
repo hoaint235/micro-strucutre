@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback } from "react";
 import ContentForm from "../../../components/ContentForm";
 import { Grid, Typography } from "@material-ui/core";
 import { UseFormReturn } from "react-hook-form";
 import { FormFields, PasswordForm } from "../../../components/forms";
-import useMatchPassword from "../../../hooks/useMatchPassword";
+import { useMatchPassword } from "../../../hooks";
 import { API, Cognito } from "@mra/utility";
 import { useTranslation } from "react-i18next";
 import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
@@ -19,7 +19,14 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
     },
     onNavigateStep,
   } = props;
-  console.log(user);
+
+  // const isMatchPassword = useCallback(({ password, confirmPassword }) => {
+  //   return useMatchPassword({
+  //     leftPassword: password,
+  //     rightPassword: confirmPassword,
+  //   });
+  // }, []);
+
   const onSubmit = async ({ password }) => {
     const {
       challengeParam: {
@@ -55,16 +62,12 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   return (
-    <ContentForm title={t("auth.changePasswordFirstTimeTitle")}>
+    <ContentForm title="auth.changePasswordFirstTimeTitle">
       <FormFields
         onSubmit={onSubmit}
         renderSubmit={renderSubmit}
         renderChildren={({ getValues }) => {
-          const { password, confirmPassword } = getValues();
-          const isMatchPassword = useMatchPassword({
-            leftPassword: password,
-            rightPassword: confirmPassword,
-          });
+          // const { password, confirmPassword } = getValues();
 
           return (
             <Fragment>
@@ -74,20 +77,26 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
               <PasswordForm
                 label="fields.password"
                 name="password"
-                rules={{
-                  validate: {
-                    matchPassword: () => isMatchPassword(),
-                  },
-                }}
+                // rules={{
+                //   validate: {
+                //     matchPassword: isMatchPassword({
+                //       password,
+                //       confirmPassword,
+                //     }),
+                //   },
+                // }}
               />
               <PasswordForm
                 label="fields.confirmPassword"
                 name="confirmPassword"
-                rules={{
-                  validate: {
-                    matchPassword: () => isMatchPassword(),
-                  },
-                }}
+                // rules={{
+                //   validate: {
+                //     matchPassword: isMatchPassword({
+                //       password,
+                //       confirmPassword,
+                //     }),
+                //   },
+                // }}
               />
             </Fragment>
           );

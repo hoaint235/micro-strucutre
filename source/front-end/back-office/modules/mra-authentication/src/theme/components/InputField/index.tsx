@@ -17,6 +17,7 @@ const InputField = ({
     <TextField
       id={`input-${name}`}
       label={t(`${label}`)}
+      tabIndex={-1}
       error={error}
       helperText={error && t(`${helperText}`)}
       InputProps={{ classes, disableUnderline: true }}

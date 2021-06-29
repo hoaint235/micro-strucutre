@@ -6,6 +6,9 @@ async function interceptor(callback: Promise<any>) {
     window.dispatchEvent(new CustomEvent(WindowEvent.INCREASE_LOADING));
     return await callback;
   } catch (error) {
+    window.dispatchEvent(
+      new CustomEvent(WindowEvent.TOAST_ERROR, { detail: error.code })
+    );
     return Promise.reject(error);
   } finally {
     window.dispatchEvent(new CustomEvent(WindowEvent.DECREASE_LOADING));
