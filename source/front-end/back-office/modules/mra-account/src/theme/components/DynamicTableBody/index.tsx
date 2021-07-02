@@ -6,6 +6,7 @@ import stringHelper from "../../../utils/helpers/stringHelper";
 import { v4 as uuidv4 } from "uuid";
 import { DynamicTableBodyProps } from "./DynamicTableBody.type";
 import { useTranslation } from "react-i18next";
+import { Typography } from "@material-ui/core";
 
 const prefixBody = "body";
 
@@ -33,7 +34,17 @@ const DynamicTableBody = (props: DynamicTableBodyProps) => {
 
               return (
                 <TableCell key={idV4} align={header.align}>
-                  {bodyTemplate[column] ? bodyTemplate[column](row) : value}
+                  {bodyTemplate[column] ? (
+                    bodyTemplate[column](row)
+                  ) : (
+                    <Typography
+                      component="p"
+                      variant="subtitle2"
+                      color="textPrimary"
+                    >
+                      {value}
+                    </Typography>
+                  )}
                 </TableCell>
               );
             })}
