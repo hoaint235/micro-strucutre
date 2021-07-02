@@ -10,13 +10,13 @@ import {
 } from "@material-ui/core";
 import React, { Fragment, useState } from "react";
 
-const useStyleIconButton = makeStyles(({
+const useStyleIconButton = makeStyles({
   root: {
     "&:hover": {
-      backgroundColor: 'transparent',
-    }
-  }
-}));
+      backgroundColor: "transparent",
+    },
+  },
+});
 
 type Props = {
   items: Array<any>;
@@ -50,7 +50,7 @@ const IconMenu = (props: Props) => {
   return (
     <Fragment>
       <IconButton
-        classes={{...classesIconButton}}
+        classes={{ ...classesIconButton }}
         color="inherit"
         ref={anchorRef}
         size="small"

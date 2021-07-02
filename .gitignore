@@ -17,3 +17,5 @@
 /source/back-end/Core/.vs
 /source/back-end/Core/MicroArchitecture.Core/obj
 /source/back-end/Core/MicroArchitecture.Core/bin
+
+*.lock
