@@ -4,7 +4,7 @@ export const Account = {
     registerApplication({
       name: "@mra/account",
       app: () => System.import("@mra/account"),
-      activeWhen: ["users", "users/#", "add-user"],
+      activeWhen: ["users"],
     });
   },
 };

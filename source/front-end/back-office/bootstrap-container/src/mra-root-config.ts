@@ -3,8 +3,9 @@ import { start } from "single-spa";
 import { Authentication } from "./modules/authentication";
 import { Common } from "./modules/common";
 import { Routing } from "./modules/routing";
+import { Layout } from "./modules/layout";
 
-const forceImport = ["react", "react-dom", "@mra/utility"];
+const forceImport = ["react", "react-dom", "@mra/utility", "@mra/layout"];
 
 Promise.all(
   forceImport.map((pkg) => {
@@ -15,6 +16,7 @@ Promise.all(
   Routing.register();
   Authentication.register();
   Account.register();
+  Layout.register();
 
   start({
     urlRerouteOnly: true,

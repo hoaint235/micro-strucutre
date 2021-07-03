@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";
-import Root from "./root.component";
 import "./i18n";
+import Routes from "./routes/Routes";
 
 const lifecycles = singleSpaReact({
   React,
   ReactDOM,
-  rootComponent: Root,
+  rootComponent: Routes,
   errorBoundary(err, info, props) {
     // Customize the root error boundary for your microfrontend here.
     return null;

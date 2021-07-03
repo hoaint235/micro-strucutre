@@ -42,7 +42,7 @@ const MaterialProvider = (props) => {
 
   return (
     <StylesProvider generateClassName={generateClassName}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}> {children}</ThemeProvider>
     </StylesProvider>
   );
 };

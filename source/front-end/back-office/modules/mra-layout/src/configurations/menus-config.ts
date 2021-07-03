@@ -1,5 +1,5 @@
 import { Home } from "@material-ui/icons";
-import { MenuItemProps } from "../../theme";
+import { MenuItemProps } from "../components";
 
 const Menus: MenuItemProps[] = [
   {
