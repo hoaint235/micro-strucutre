@@ -10,4 +10,11 @@ i18n.use(initReactI18next).init({
   },
 });
 
+window.addEventListener("CHANGE_LANGUAGE", (event) => {
+  let {
+    detail: { location },
+  } = event as CustomEvent;
+  i18n.changeLanguage(location);
+});
+
 export default i18n;

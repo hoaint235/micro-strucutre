@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Logo } from "../../../../components";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -36,6 +37,7 @@ type Props = {
 const LeftContainer = (props: Props) => {
   const classes = useStyles();
   const matches = useMediaQuery<Theme>((theme) => theme.breakpoints.down("md"));
+  const history = useHistory();
 
   const onToggle = () => {
     if (matches) {
@@ -43,11 +45,16 @@ const LeftContainer = (props: Props) => {
     }
   };
 
+  const navigateDefaultPage = (event) => {
+    event.preventDefault();
+    history.push("/");
+  };
+
   return (
     <div className={classes.root}>
       <Hidden smDown>
         <span className={classes.logoContainer}>
-          <Logo />
+          <Logo src="images/logo.svg" onClick={navigateDefaultPage} />
         </span>
       </Hidden>
       <IconButton

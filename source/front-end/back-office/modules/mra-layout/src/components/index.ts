@@ -6,3 +6,4 @@ export { default as Theme } from "./Theme/Theme";
 export * from "./MenuItem";
 export { default as RouteItem } from "./RouteItem/RouteItem";
 export { default as Logo } from "./Logo/Logo";
+export { default as SearchField } from "./SearchField/SearchField";

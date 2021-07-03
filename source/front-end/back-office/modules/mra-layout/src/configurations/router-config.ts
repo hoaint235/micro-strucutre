@@ -1,11 +1,11 @@
 const Routes = [
   {
     path: "/users",
-    module: "mra-account",
+    module: "@mra/account",
   },
   {
     path: "/users/:userId",
-    module: "mra-account",
+    module: "@mra/account",
   },
 ];
 

@@ -19,11 +19,11 @@ const useStylesSortLabel = makeStyles((theme: Theme) => ({
 const useStylesTableCell = makeStyles((theme: Theme) => ({
   root: {
     fontWeight: theme.typography.fontWeightBold,
-    position: 'relative'
+    position: "relative",
   },
 }));
 
-const useStyles = makeStyles(({
+const useStyles = makeStyles({
   visuallyHidden: {
     border: 0,
     clip: "rect(0 0 0 0)",
@@ -35,7 +35,7 @@ const useStyles = makeStyles(({
     top: 20,
     width: 1,
   },
-}));
+});
 
 const DynamicTableHeader = (props: DynamicTableHeaderProps) => {
   const classes = useStyles();
@@ -71,7 +71,7 @@ const DynamicTableHeader = (props: DynamicTableHeaderProps) => {
   return (
     <TableHead>
       <TableRow>
-        {headers.map(header => (
+        {headers.map((header) => (
           <TableCell
             classes={{ ...classesTableCell }}
             key={header.id}

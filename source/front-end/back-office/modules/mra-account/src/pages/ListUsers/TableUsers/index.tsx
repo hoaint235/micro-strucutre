@@ -14,7 +14,7 @@ const headers: HeaderProps[] = [
     id: "email",
     label: "table.email",
     sort: true,
-    width: 350
+    width: 350,
   },
   {
     id: "isActivate",
