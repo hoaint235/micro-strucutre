@@ -7,14 +7,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    height: "calc(100vh - 88px)",
+    alignItems: "flex-start",
   },
 }));
 
 const MenuList = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ height: "calc(100vh - 104px)" }}>
       {Menus.map((menu, index) => (
         <MenuItem key={index} {...menu} />
       ))}

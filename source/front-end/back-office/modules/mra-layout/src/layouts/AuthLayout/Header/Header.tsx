@@ -1,8 +1,8 @@
 import { AppBar, makeStyles, Toolbar } from "@material-ui/core";
 import React from "react";
-import LeftContainer from "./LeftContainer";
-import RightContainer from "./RightContainer";
-import SearchContainer from "./SearchContainer";
+import LeftContainer from "./LeftContainer/LeftContainer";
+import RightContainer from "./RightContainer/RightContainer";
+import SearchContainer from "./SearchContainer/SearchContainer";
 
 const useStyles = makeStyles(() => ({
   root: {

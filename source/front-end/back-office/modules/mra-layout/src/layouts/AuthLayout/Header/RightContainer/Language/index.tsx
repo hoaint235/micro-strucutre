@@ -37,7 +37,9 @@ const Language = () => {
       setLanguage(location);
       i18n.changeLanguage(location);
       window.dispatchEvent(
-        new CustomEvent(WindowEvents.CHANGE_LANGUAGE, { detail: location })
+        new CustomEvent(WindowEvents.CHANGE_LANGUAGE, {
+          detail: { location: location },
+        })
       );
     }
   };

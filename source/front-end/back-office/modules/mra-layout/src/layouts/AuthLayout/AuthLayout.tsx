@@ -13,11 +13,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: 80,
     backgroundColor: "rgb(227, 242, 253)",
     flexGrow: 1,
+    marginRight: 20,
     minHeight: "calc(100vh - 80px)",
     transition: "margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
     borderRadius: 12,
     [theme.breakpoints.down("md")]: {
       marginLeft: 0,
+      marginRight: 0,
       width: "calc(100% - 260px)",
     },
   },
@@ -25,7 +27,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const AuthLayout = (props) => {
   const { children } = props;
-  console.log(children);
   const classes = useStyles();
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -36,7 +37,7 @@ const AuthLayout = (props) => {
   return (
     <MaterialProvider name="mra-layout">
       <div style={{ display: "flex" }}>
-        {/* <Header onToggle={onToggleMenu} /> */}
+        <Header onToggle={onToggleMenu} />
         <NavBar openMenu={openMenu} contentHide={() => setOpenMenu(false)} />
         <div className={classes.mainContainer}>
           <Box component="div" p={3}>
