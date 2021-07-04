@@ -2,15 +2,15 @@ import {
   Hidden,
   IconButton,
   makeStyles,
-  Theme,
   useMediaQuery,
-} from "@material-ui/core";
-import { Menu } from "@material-ui/icons";
+  Logo,
+  Theme,
+} from "@mra/theme";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Logo } from "../../../../components";
+import { Menu } from "@material-ui/icons";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     width: "228px",

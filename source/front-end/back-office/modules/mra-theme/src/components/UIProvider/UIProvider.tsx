@@ -1,12 +1,12 @@
 import {
   createGenerateClassName,
   createMuiTheme,
-  StylesProvider,
   ThemeProvider,
+  StylesProvider,
 } from "@material-ui/core";
 import React from "react";
-import palette from "./Theme.palette";
-import typography from "./Theme.typography";
+import palette from "./UIProvider.palette";
+import typography from "./UIProvider.typography";
 
 const theme = createMuiTheme({
   palette: { ...palette },
@@ -14,16 +14,16 @@ const theme = createMuiTheme({
 });
 
 type Props = {
-  children: React.ReactNode;
+  children: any;
   name: string;
 };
 
-const MaterialProvider = (props: Props) => {
+const UIProvider = (props: Props) => {
   const { name, children } = props;
 
   const generateClassName = createGenerateClassName({
-    productionPrefix: name,
     seed: name,
+    productionPrefix: name,
   });
 
   return (
@@ -33,4 +33,4 @@ const MaterialProvider = (props: Props) => {
   );
 };
 
-export default MaterialProvider;
+export default UIProvider;

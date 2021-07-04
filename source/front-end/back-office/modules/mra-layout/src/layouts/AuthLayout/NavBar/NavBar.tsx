@@ -1,4 +1,4 @@
-import { Hidden } from "@material-ui/core";
+import { Hidden } from "@mra/theme";
 import React, { Fragment } from "react";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
 import MobileMenu from "./MobileMenu/MobileMenu";

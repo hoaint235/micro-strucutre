@@ -1,4 +1,4 @@
-import { AppBar, makeStyles, Toolbar } from "@material-ui/core";
+import { AppBar, makeStyles, Toolbar } from "@mra/theme";
 import React from "react";
 import LeftContainer from "./LeftContainer/LeftContainer";
 import RightContainer from "./RightContainer/RightContainer";

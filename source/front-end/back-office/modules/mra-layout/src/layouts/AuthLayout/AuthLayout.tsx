@@ -1,15 +1,12 @@
-import { Box, makeStyles, Theme } from "@material-ui/core";
+import { Box, makeStyles, UIProvider } from "@mra/theme";
 import React, { useState } from "react";
-import {
-  LoadingProvider,
-  Theme as MaterialProvider,
-  ToastProvider,
-} from "../../components";
+import { LoadingProvider, ToastProvider } from "../../components";
+
 import Header from "./Header/Header";
 import NavBar from "./NavBar/NavBar";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  mainContainer: {
+const useStyles = makeStyles((theme) => ({
+  root: {
     marginTop: 80,
     backgroundColor: "rgb(227, 242, 253)",
     flexGrow: 1,
@@ -35,11 +32,11 @@ const AuthLayout = (props) => {
   };
 
   return (
-    <MaterialProvider name="mra-layout">
+    <UIProvider name="mra-layout">
       <div style={{ display: "flex" }}>
         <Header onToggle={onToggleMenu} />
         <NavBar openMenu={openMenu} contentHide={() => setOpenMenu(false)} />
-        <div className={classes.mainContainer}>
+        <div className={classes.root}>
           <Box component="div" p={3}>
             {children}
           </Box>
@@ -47,7 +44,7 @@ const AuthLayout = (props) => {
       </div>
       <ToastProvider />
       <LoadingProvider />
-    </MaterialProvider>
+    </UIProvider>
   );
 };
 
