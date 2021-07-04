@@ -1,7 +1,6 @@
-import { Box, Hidden, IconButton } from "@material-ui/core";
+import { Box, Hidden, IconButton, SearchField } from "@mra/theme";
 import { Search } from "@material-ui/icons";
 import React from "react";
-import { SearchField } from "../../../../components";
 
 const SearchContainer = () => {
   return (

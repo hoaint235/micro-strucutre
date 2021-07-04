@@ -9,7 +9,7 @@ import React from "react";
 
 const useStyles = makeStyles(() => ({
   root: {
-    "&> .mra-account-MuiOutlinedInput-root": {
+    "&> .mra-layout-MuiOutlinedInput-root": {
       borderRadius: 12,
     },
   },

@@ -1,6 +1,5 @@
-import { Box, Drawer, makeStyles, Paper } from "@material-ui/core";
+import { Box, Drawer, makeStyles, Paper, Logo } from "@mra/theme";
 import React from "react";
-import { Logo } from "../../../../components";
 import MenuList from "../MenuList/MenuList";
 import { useHistory } from "react-router-dom";
 

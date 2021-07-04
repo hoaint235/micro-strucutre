@@ -1,4 +1,4 @@
-import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { ListItem, ListItemIcon, ListItemText } from "@mra/theme";
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
 import React, { useCallback, useMemo } from "react";

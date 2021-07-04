@@ -1,9 +1,8 @@
-import { Grid, makeStyles, Theme } from "@material-ui/core";
+import { Grid, makeStyles, Label } from "@mra/theme";
 import { Close } from "@material-ui/icons";
 import React from "react";
-import { Label } from "..";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme) => ({
   btnClose: {
     width: 20,
     height: 20,

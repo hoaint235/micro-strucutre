@@ -6,15 +6,14 @@
     "app:account": "yarn --cwd ./modules/mra-account/ start",
     "app:layout": "yarn --cwd ./modules/mra-layout/ start",
     "app:utility": "yarn --cwd ./modules/mra-utility/ start",
-
+    "app:theme": "yarn --cwd ./modules/mra-theme/ start",
     "ins:root": "yarn --cwd ./bootstrap-container/ install",
     "ins:authentication": "yarn --cwd ./modules/mra-authentication/ install",
     "ins:account": "yarn --cwd ./modules/mra-account/ install",
     "ins:layout": "yarn --cwd ./modules/mra-layout/ install",
     "ins:utility": "yarn --cwd ./modules/mra-utility/ install",
-
+    "ins:theme": "yarn --cwd ./modules/mra-theme/ install",
     "app-install": "run-s ins:*",
     "start": "run-p app:*"
   }
 }
-

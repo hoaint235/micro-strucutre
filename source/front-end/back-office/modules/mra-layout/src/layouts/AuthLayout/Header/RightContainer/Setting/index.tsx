@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@material-ui/core";
+import { Box, IconButton } from "@mra/theme";
 import { Settings } from "@material-ui/icons";
 import React from "react";
 

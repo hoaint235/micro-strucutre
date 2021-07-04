@@ -3,12 +3,12 @@ import {
   Box,
   fade,
   makeStyles,
-  Theme,
   Typography,
-} from "@material-ui/core";
+  Theme,
+  IconMenu,
+} from "@mra/theme";
 import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { IconMenu } from "../../../../../components";
 import { Languages } from "../../../../../configurations";
 import { WindowEvents } from "../../../../../utils";
 

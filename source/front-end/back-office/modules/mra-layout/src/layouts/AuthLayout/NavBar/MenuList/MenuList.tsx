@@ -1,9 +1,9 @@
 import React from "react";
-import { makeStyles, Theme } from "@material-ui/core";
+import { makeStyles } from "@mra/theme";
 import { Menus } from "../../../../configurations";
 import { MenuItem } from "../../../../components";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),

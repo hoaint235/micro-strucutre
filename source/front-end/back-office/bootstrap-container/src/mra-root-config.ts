@@ -5,7 +5,14 @@ import { Common } from "./modules/common";
 import { Routing } from "./modules/routing";
 import { Layout } from "./modules/layout";
 
-const forceImport = ["react", "react-dom", "@mra/utility", "@mra/layout"];
+const forceImport = [
+  "single-spa",
+  "react",
+  "react-dom",
+  "@mra/utility",
+  "@mra/theme",
+  "@mra/layout",
+];
 
 Promise.all(
   forceImport.map((pkg) => {
