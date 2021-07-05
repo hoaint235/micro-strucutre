@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mra/theme";
 import React, { Fragment } from "react";
 import ErrorProvider from "../ErrorProvider";
 import Header from "../Header";

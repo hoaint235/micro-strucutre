@@ -1,5 +1,6 @@
 declare module "@mra/utility" {
   export const resources;
+  export const Cognito: AwsCognito;
 }
 
 declare module "@mra/theme" {
@@ -21,6 +22,9 @@ declare module "@mra/theme" {
     ListItem,
     ListItemIcon,
     ListItemText,
+    CardContent,
+    Container,
+    Card,
   } from "@material-ui/core";
 
   export const Label;
@@ -28,4 +32,5 @@ declare module "@mra/theme" {
   export const IconMenu;
   export const SearchField;
   export const UIProvider;
+  export const Body;
 }

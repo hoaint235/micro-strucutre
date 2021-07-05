@@ -1,12 +1,10 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, PrimaryButton } from "@mra/theme";
 import React from "react";
 import { Cognito } from "@mra/utility";
 import ContentForm from "../../../components/ContentForm";
 import { EmailForm } from "../../../components/forms";
 import { useTranslation } from "react-i18next";
 import FormFields from "../../../components/forms/FormFields";
-import { UseFormReturn } from "react-hook-form";
-import { PrimaryButton } from "../../../theme";
 
 const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
   const { t } = useTranslation();

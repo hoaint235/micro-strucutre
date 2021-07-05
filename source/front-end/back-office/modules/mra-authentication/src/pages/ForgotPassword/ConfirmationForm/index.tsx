@@ -1,11 +1,9 @@
-import { Grid, Typography } from "@material-ui/core";
-import React, { Fragment, useCallback } from "react";
+import { Grid, Typography, PrimaryButton } from "@mra/theme";
+import React, { Fragment } from "react";
 import ContentForm from "../../../components/ContentForm";
 import { Cognito } from "@mra/utility";
 import { FormFields, InputForm, PasswordForm } from "../../../components/forms";
-import { useMatchPassword } from "../../../hooks";
 import { useTranslation } from "react-i18next";
-import { PrimaryButton } from "../../../theme";
 import { UseFormReturn } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 

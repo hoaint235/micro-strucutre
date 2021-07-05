@@ -1,7 +1,7 @@
-import { Grid, makeStyles, Theme, Typography } from "@material-ui/core";
-import React, { memo } from "react";
+import { Grid, makeStyles, Theme, Typography } from "@mra/theme";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import Logo from "../Logo";
+import { Logo } from "@mra/theme";
 
 const useStyles = makeStyles((theme: Theme) => ({
   header: {
@@ -31,10 +31,10 @@ const Header = (props: Props) => {
         <Typography className={classes.header}>{t(props.title)}</Typography>
       </Grid>
       <Grid item sm={5} xs={12} className={classes.logo}>
-        <Logo />
+        <Logo src="images/logo.svg" onClick={() => console.log("asdas")} />
       </Grid>
     </Grid>
   );
 };
 
-export default memo(Header);
+export default Header;

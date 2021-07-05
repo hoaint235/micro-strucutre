@@ -1,12 +1,11 @@
 import React from "react";
 import ContentForm from "../../../components/ContentForm";
 import { Cognito } from "@mra/utility";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, PrimaryButton } from "@mra/theme";
 import { FormFields, InputForm } from "../../../components/forms";
 import { useTranslation } from "react-i18next";
 import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
 import { useHistory } from "react-router-dom";
-import { PrimaryButton } from "../../../theme";
 
 const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
   const { t } = useTranslation();

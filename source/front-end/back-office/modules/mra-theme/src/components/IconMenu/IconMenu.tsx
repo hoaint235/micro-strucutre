@@ -1,5 +1,7 @@
 import {
+  Avatar,
   ClickAwayListener,
+  fade,
   Grow,
   IconButton,
   makeStyles,
@@ -7,6 +9,7 @@ import {
   MenuList,
   Paper,
   Popper,
+  Theme,
 } from "@material-ui/core";
 import React, { Fragment, useState } from "react";
 
@@ -18,18 +21,42 @@ const useStyleIconButton = makeStyles({
   },
 });
 
+const useStyles = makeStyles((theme: Theme) => ({
+  iconSecondary: {
+    color: theme.palette.text.primary,
+    backgroundColor: fade(theme.palette.text.primary, 0.2),
+  },
+  iconPrimary: {
+    color: theme.palette.primary.main,
+    backgroundColor: fade(theme.palette.primary.main, 0.2),
+  },
+  menuItem: {
+    minHeight: theme.spacing(5),
+  },
+}));
+
+const useStylesAvatar = makeStyles(() => ({
+  root: {
+    borderRadius: "30%",
+  },
+}));
+
 type Props = {
   items: Array<any>;
   children?: any;
+  color?: "primary" | "secondary";
   renderItem: (item) => any;
   onItemClick: (item) => void;
 };
 
 const IconMenu = (props: Props) => {
+  const { items, children, renderItem, onItemClick, color = "primary" } = props;
+
   const [open, setOpen] = useState(false);
   const classesIconButton = useStyleIconButton();
-  const { items, children, renderItem, onItemClick } = props;
   const anchorRef = React.useRef(null);
+  const classes = useStyles();
+  const classesAvatar = useStylesAvatar();
 
   const onToggle = () => {
     setOpen(!open);
@@ -58,7 +85,14 @@ const IconMenu = (props: Props) => {
         aria-haspopup="true"
         onClick={onToggle}
       >
-        {children}
+        <Avatar
+          className={
+            color === "primary" ? classes.iconPrimary : classes.iconSecondary
+          }
+          classes={{ ...classesAvatar }}
+        >
+          {children}
+        </Avatar>
       </IconButton>
       <Popper
         placement="bottom-end"
@@ -86,7 +120,7 @@ const IconMenu = (props: Props) => {
                 >
                   {items.map((item, index) => (
                     <MenuItem
-                      style={{ minHeight: 50 }}
+                      className={classes.menuItem}
                       onClick={() => onClose(item)}
                       key={index}
                     >

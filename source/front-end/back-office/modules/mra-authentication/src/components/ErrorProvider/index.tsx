@@ -1,6 +1,6 @@
 import { Box } from "@material-ui/core";
 import React, { useCallback, useEffect, Fragment, useState } from "react";
-import { ErrorMessage } from "..";
+import ErrorMessage from "./ErrorMessage";
 import { stringHelper } from "../../utils";
 import { WindowEvent } from "../../utils/constants";
 

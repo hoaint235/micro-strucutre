@@ -1,4 +1,4 @@
-import { TextField, TextFieldProps } from "@material-ui/core";
+import { TextField, TextFieldProps } from "@mra/theme";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import useStylesReddit from "./InputField.style";

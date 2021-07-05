@@ -1,13 +1,11 @@
-import React, { Fragment, useCallback } from "react";
+import React, { Fragment } from "react";
 import ContentForm from "../../../components/ContentForm";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, PrimaryButton } from "@mra/theme";
 import { UseFormReturn } from "react-hook-form";
 import { FormFields, PasswordForm } from "../../../components/forms";
-import { useMatchPassword } from "../../../hooks";
 import { API, Cognito } from "@mra/utility";
 import { useTranslation } from "react-i18next";
 import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
-import { PrimaryButton } from "../../../theme";
 import { useHistory } from "react-router-dom";
 
 const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
@@ -67,8 +65,6 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
         onSubmit={onSubmit}
         renderSubmit={renderSubmit}
         renderChildren={({ getValues }) => {
-          // const { password, confirmPassword } = getValues();
-
           return (
             <Fragment>
               <Typography variant="subtitle1" component="h2">
