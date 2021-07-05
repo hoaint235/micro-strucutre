@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import Language from "./Language";
-import Setting from "./Setting";
+import Language from "./Language/Language";
+import Setting from "./Setting/Setting";
 
 const RightContainer = () => {
   return (

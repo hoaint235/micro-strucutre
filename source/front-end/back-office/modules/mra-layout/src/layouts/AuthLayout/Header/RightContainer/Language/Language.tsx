@@ -1,34 +1,11 @@
-import {
-  Avatar,
-  Box,
-  fade,
-  makeStyles,
-  Typography,
-  Theme,
-  IconMenu,
-} from "@mra/theme";
-import React, { useEffect, useMemo, useState } from "react";
+import { Box, IconMenu, Body } from "@mra/theme";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Languages } from "../../../../../configurations";
 import { WindowEvents } from "../../../../../utils";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  icon: {
-    color: theme.palette.primary.main,
-    backgroundColor: fade(theme.palette.primary.main, 0.2),
-  },
-}));
-
-const useStylesAvatar = makeStyles(() => ({
-  root: {
-    borderRadius: "30%",
-  },
-}));
-
 const Language = () => {
-  const classes = useStyles();
   const { i18n } = useTranslation();
-  const classesAvatar = useStylesAvatar();
   const [language, setLanguage] = useState(null);
 
   const selectLanguage = (item: LanguageItem) => {
@@ -48,27 +25,14 @@ const Language = () => {
     selectLanguage(Languages[0]);
   }, []); // react-hooks/exhaustive-deps
 
-  const renderAvatar = useMemo(
-    () => (
-      <Avatar className={classes.icon} classes={{ ...classesAvatar }}>
-        {language}
-      </Avatar>
-    ),
-    [language]
-  ); // react-hooks/exhaustive-deps
-
   return (
-    <Box>
+    <Box mr={1}>
       <IconMenu
         items={Languages}
         onItemClick={(item) => selectLanguage(item)}
-        renderItem={(item) => (
-          <Typography component="p" variant="body1">
-            {item.title}
-          </Typography>
-        )}
+        renderItem={(item) => <Body label={item.title} />}
       >
-        {renderAvatar}
+        {language}
       </IconMenu>
     </Box>
   );

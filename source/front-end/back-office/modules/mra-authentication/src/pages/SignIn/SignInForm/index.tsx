@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Theme } from "@material-ui/core";
+import { Grid, makeStyles, Theme, PrimaryButton } from "@mra/theme";
 import React from "react";
 import { Cognito } from "@mra/utility";
 import { PasswordForm, ContentForm, EmailForm } from "../../../components";
@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
 import FormFields from "../../../components/forms/FormFields";
 import { useHistory } from "react-router-dom";
-import { PrimaryButton } from "../../../theme";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {

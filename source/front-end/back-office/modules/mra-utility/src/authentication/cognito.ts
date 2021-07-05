@@ -89,4 +89,7 @@ export const Cognito = {
       Amplify.confirmSignIn(user, code, "SMS_MFA", clientMedata)
     );
   },
+  async signOut(global?: boolean): Promise<any> {
+    return await interceptor(Amplify.signOut({ global: global }));
+  },
 };
