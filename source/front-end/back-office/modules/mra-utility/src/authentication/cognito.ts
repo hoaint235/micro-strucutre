@@ -15,33 +15,30 @@ async function interceptor(callback: Promise<any>) {
   }
 }
 
-export function initAwsCognito() {
-  Amplify.configure({
-    mandatorySignIn: true,
-    region: process.env.AWS_COGNITO_REGION,
-    userPoolId: process.env.AWS_COGNITO_POOL_ID,
-    userPoolWebClientId: process.env.AWS_COGNITO_CLIENT_ID,
-  });
-}
-
-export async function getAccessToken() {
-  try {
-    const session = await Amplify.currentSession();
-    return session.getIdToken().getJwtToken();
-  } catch (error) {}
-  return "";
-}
-
-export async function isAuthenticated() {
-  try {
-    await Amplify.currentSession();
-  } catch (error) {
-    return false;
-  }
-  return true;
-}
-
 export const Cognito = {
+  initialize() {
+    Amplify.configure({
+      mandatorySignIn: true,
+      region: process.env.AWS_COGNITO_REGION,
+      userPoolId: process.env.AWS_COGNITO_POOL_ID,
+      userPoolWebClientId: process.env.AWS_COGNITO_CLIENT_ID,
+    });
+  },
+  async getAccessToken() {
+    try {
+      const session = await Amplify.currentSession();
+      return session.getIdToken().getJwtToken();
+    } catch (error) {}
+    return "";
+  },
+  async isAuthenticated() {
+    try {
+      await Amplify.currentSession();
+    } catch (error) {
+      return false;
+    }
+    return true;
+  },
   async signIn(
     userName: string,
     password: string,

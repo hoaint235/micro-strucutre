@@ -1,8 +1,8 @@
-import { initHttpInterceptor, initAwsCognito } from "@mra/utility";
+import { API, Cognito } from "@mra/utility";
 
 export const Common = {
   register() {
-    initAwsCognito();
-    initHttpInterceptor();
+    Cognito.initialize();
+    API.userInterceptor();
   },
 };
