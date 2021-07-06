@@ -1,9 +1,5 @@
-import { API, initHttpInterceptor } from "./http-interceptor/axios-interceptor";
-import {
-  Cognito,
-  initAwsCognito,
-  isAuthenticated,
-} from "./authentication/cognito";
+import { API } from "./http-interceptor/axios-interceptor";
+import { Cognito } from "./authentication/cognito";
 
 export { resources } from "./international";
 
@@ -13,4 +9,4 @@ export function publicApiFunction() {
 
 export * from "./fn-common";
 
-export { API, initHttpInterceptor, initAwsCognito, Cognito, isAuthenticated };
+export { API, Cognito };

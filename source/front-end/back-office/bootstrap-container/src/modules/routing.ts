@@ -1,5 +1,5 @@
 import { navigateToUrl } from "single-spa";
-import { isAuthenticated } from "@mra/utility";
+import { Cognito } from "@mra/utility";
 
 const baseUrl = "/";
 const defaultPaths = ["/users", "/add-user", "/roles", "/add-role"];
@@ -13,7 +13,7 @@ export const Routing = {
         detail: { newUrl },
       } = evt as CustomEvent;
       const path = getPath(newUrl);
-      const canAccess = await isAuthenticated();
+      const canAccess = await Cognito.isAuthenticated();
       if (baseUrl === path) {
         newUrl = canAccess ? "/users" : "/sign-in";
         navigateToUrl(newUrl);

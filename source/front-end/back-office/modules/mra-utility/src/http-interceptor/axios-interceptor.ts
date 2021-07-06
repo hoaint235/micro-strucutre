@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { getAccessToken } from "../authentication/cognito";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { Cognito } from "../authentication/cognito";
 import { WindowEvent } from "../constants";
 
 const delayHideLoading = () => {
@@ -8,10 +8,10 @@ const delayHideLoading = () => {
   }, 500);
 };
 
-function initHttpInterceptor() {
+(axios as any).userInterceptor = () => {
   axios.interceptors.request.use(
     async (request: AxiosRequestConfig) => {
-      const token = await getAccessToken();
+      const token = await Cognito.getAccessToken();
       if (token) {
         request.headers.common["Authorization"] = `Bearer ${token}`;
       }
@@ -27,9 +27,9 @@ function initHttpInterceptor() {
   );
 
   axios.interceptors.response.use(
-    (response) => {
+    (response: AxiosResponse<any>) => {
       delayHideLoading();
-      return response;
+      return response.data;
     },
     (error) => {
       let errorMessage = "errors.internalServerError";
@@ -49,6 +49,6 @@ function initHttpInterceptor() {
       return Promise.reject(error);
     }
   );
-}
+};
 
-export { axios as API, initHttpInterceptor };
+export { axios as API };
