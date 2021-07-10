@@ -18,7 +18,7 @@ const extendConfig = {
         collapseWhitespace: true,
         minifyCSS: true,
       },
-      template: "./src/index.ejs",
+      template: "src/index.ejs",
       templateParameters: {
         isDev: process.env.ENV === "development",
         configSetup: application["setup"][process.env.ENV],
