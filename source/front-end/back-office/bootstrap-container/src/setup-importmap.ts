@@ -3,7 +3,7 @@ import application from "../config";
 const modules = application.modules as Modules;
 const dependencies = application.dependencies as Dependencies;
 
-function insertNewImportMap(newMapJSON) {
+function insertNewImportMap(newMapJSON: Object) {
   const newScript = document.createElement("script");
   newScript.type = "systemjs-importmap";
   newScript.text = JSON.stringify(newMapJSON);

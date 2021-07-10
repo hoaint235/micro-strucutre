@@ -8,7 +8,7 @@ const getEnv = require("./env");
 const env = getEnv();
 const application = require("./config.js");
 
-const extendConfig = {
+const customConfig = {
   mode: "production",
   plugins: [
     new HtmlWebpackPlugin({
@@ -58,6 +58,6 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
-    ...extendConfig,
+    ...customConfig,
   });
 };
