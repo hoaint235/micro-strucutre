@@ -12,17 +12,15 @@ const ContentForm = (props: Props) => {
   const { children, title } = props;
 
   return (
-    <Fragment>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Header title={title} />
-        </Grid>
-        <Grid item xs={12}>
-          <ErrorProvider />
-          <Fragment>{children}</Fragment>
-        </Grid>
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <Header title={title} />
       </Grid>
-    </Fragment>
+      <Grid item xs={12}>
+        <ErrorProvider />
+        <Fragment>{children}</Fragment>
+      </Grid>
+    </Grid>
   );
 };
 

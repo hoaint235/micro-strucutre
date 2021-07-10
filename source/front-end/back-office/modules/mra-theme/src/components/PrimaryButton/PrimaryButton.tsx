@@ -1,10 +1,24 @@
-import { Button } from "@material-ui/core";
+import { Button, ButtonProps, makeStyles, Theme } from "@material-ui/core";
 import React from "react";
 
-const PrimaryButton = (props) => {
+const useStyleButton = makeStyles({
+  root: {
+    boxShadow: "none",
+    textTransform: "none",
+    minWidth: 80,
+  },
+});
+
+type Props = ButtonProps & {
+  label?: string;
+};
+
+const PrimaryButton = ({ label, ...props }: Props) => {
+  const classesButton = useStyleButton();
+
   return (
-    <Button style={{ background: "red" }} onClick={props.onClick}>
-      Hello
+    <Button variant="contained" {...props} classes={{ ...classesButton }}>
+      {label}
     </Button>
   );
 };

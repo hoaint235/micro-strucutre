@@ -19,3 +19,4 @@
 /source/back-end/Core/MicroArchitecture.Core/bin
 
 *.lock
+/source/front-end/back-office/modules/mra-product/*.log
