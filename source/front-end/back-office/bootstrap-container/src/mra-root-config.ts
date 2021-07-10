@@ -1,31 +1,46 @@
-import { Account } from "./modules/account";
-import { start } from "single-spa";
-import { Authentication } from "./modules/authentication";
-import { Common } from "./modules/common";
-import { Routing } from "./modules/routing";
-import { Layout } from "./modules/layout";
+import { registerApplication as register, start } from "single-spa";
+import application from "../config";
+import { API, Cognito } from "@mra/utility";
+import "./asset/styles/styles.scss";
+import { Routing } from "./routing";
 
-const forceImport = [
-  "single-spa",
-  "react",
-  "react-dom",
-  "@mra/utility",
-  "@mra/theme",
-  "@mra/layout",
-];
+const modules = application.modules;
+let requiredModules: Module[] = [],
+  normalModules: Module[] = [];
+
+for (let moduleName in modules) {
+  if (moduleName === "root") {
+    continue;
+  }
+  const module = modules[moduleName];
+  if (module.required) {
+    requiredModules.push(module);
+  } else {
+    normalModules.push(module);
+  }
+}
+
+function registerApps() {
+  normalModules.map((module: Module) =>
+    register({
+      name: module.name,
+      app: () => System.import(module.name),
+      activeWhen:
+        module.router === true ? () => true : (module.router as string[]),
+    })
+  );
+}
 
 Promise.all(
-  forceImport.map((pkg) => {
-    return System.import(pkg);
+  requiredModules.map((module) => {
+    return System.import(module.name);
   })
 ).then(() => {
-  Common.register();
-  Routing.register();
-  Authentication.register();
-  Account.register();
-  Layout.register();
+  registerApps();
 
-  start({
-    urlRerouteOnly: true,
-  });
+  Routing.register();
+  Cognito.initialize();
+  API.userInterceptor();
+
+  start({ urlRerouteOnly: true });
 });

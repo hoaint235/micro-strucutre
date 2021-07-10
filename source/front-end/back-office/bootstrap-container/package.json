@@ -2,12 +2,16 @@
   "name": "@container/root-config",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack serve",
     "lint": "eslint src --ext js,ts,tsx",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "build": "webpack --mode=production"
+    "build": "yarn build:root && yarn build:setup",
+    "build:root": "webpack build --config ./webpack.config.js",
+    "build:setup": "webpack build --config ./webpack.importmap.js",
+    "start": "concurrently \"yarn start:setup\" \"yarn start:root\" ",
+    "start:root": "webpack serve --config ./webpack.config.dev.js",
+    "start:setup": "webpack serve --config ./webpack.importmap.dev.js"
   },
   "husky": {
     "hooks": {
@@ -46,8 +50,15 @@
     "@types/jest": "^26.0.16",
     "@types/systemjs": "^6.1.0",
     "@types/webpack-env": "^1.16.0",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
     "copy-webpack-plugin": "^9.0.0",
+    "css-loader": "^5.2.6",
     "dotenv": "^10.0.0",
-    "single-spa": "^5.8.2"
+    "dotenv-webpack": "^7.0.3",
+    "sass": "^1.35.1",
+    "sass-loader": "^12.1.0",
+    "single-spa": "^5.8.2",
+    "style-loader": "^3.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }
