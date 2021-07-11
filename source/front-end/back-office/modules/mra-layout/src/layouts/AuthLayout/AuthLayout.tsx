@@ -1,5 +1,5 @@
-import { Box, makeStyles, UIProvider } from "@mra/theme";
-import React, { useState } from "react";
+import { Box, makeStyles } from "@mra/theme";
+import React, { Fragment, useState } from "react";
 import { LoadingProvider, ToastProvider } from "../../components";
 
 import Header from "./Header/Header";
@@ -32,7 +32,7 @@ const AuthLayout = (props) => {
   };
 
   return (
-    <UIProvider name="mra-layout">
+    <Fragment>
       <div style={{ display: "flex" }}>
         <Header onToggle={onToggleMenu} />
         <NavBar openMenu={openMenu} contentHide={() => setOpenMenu(false)} />
@@ -44,7 +44,7 @@ const AuthLayout = (props) => {
       </div>
       <ToastProvider />
       <LoadingProvider />
-    </UIProvider>
+    </Fragment>
   );
 };
 

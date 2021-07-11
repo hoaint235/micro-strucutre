@@ -1,4 +1,4 @@
-import { Grid, Typography, PrimaryButton } from "@mra/theme";
+import { Grid, MButton, MTypography } from "@mra/theme";
 import React, { Fragment } from "react";
 import ContentForm from "../../../components/ContentForm";
 import { Cognito } from "@mra/utility";
@@ -36,9 +36,10 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
   }: UseFormReturn<any>) => {
     return (
       <Grid item xs={12}>
-        <PrimaryButton
+        <MButton.Primary
+          fullWidth
           type="submit"
-          label="buttons.submit"
+          label={t("buttons.submit")}
           disabled={!isDirty || !isValid}
         />
       </Grid>
@@ -55,13 +56,10 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
 
           return (
             <Fragment>
-              <Typography
+              <MTypography.Body
                 style={{ textAlign: "center" }}
-                variant="subtitle1"
-                component="h2"
-              >
-                {t("auth.confirmationCodeSubtitle")}
-              </Typography>
+                label={t("auth.confirmationCodeSubtitle")}
+              />
               <InputForm
                 defaultValue={email}
                 disabled={true}

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import ContentForm from "../../../components/ContentForm";
-import { Grid, Typography, PrimaryButton } from "@mra/theme";
+import { Grid, MButton, MTypography } from "@mra/theme";
 import { UseFormReturn } from "react-hook-form";
 import { FormFields, PasswordForm } from "../../../components/forms";
 import { API, Cognito } from "@mra/utility";
@@ -50,9 +50,10 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
   }: UseFormReturn<any>) => {
     return (
       <Grid item xs={12}>
-        <PrimaryButton
+        <MButton.Primary
+          fullWidth
           type="submit"
-          label="buttons.submit"
+          label={t("buttons.submit")}
           disabled={!isDirty || !isValid}
         />
       </Grid>
@@ -67,9 +68,9 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
         renderChildren={({ getValues }) => {
           return (
             <Fragment>
-              <Typography variant="subtitle1" component="h2">
-                {t("auth.changePasswordFirstTimeSubtitle")}
-              </Typography>
+              <MTypography.Subtitle
+                label={t("auth.changePasswordFirstTimeSubtitle")}
+              />
               <PasswordForm
                 label="fields.password"
                 name="password"

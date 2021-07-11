@@ -1,4 +1,4 @@
-import { Box, Typography, PrimaryButton } from "@mra/theme";
+import { MButton, MTypography } from "@mra/theme";
 import React from "react";
 import { Cognito } from "@mra/utility";
 import ContentForm from "../../../components/ContentForm";
@@ -22,19 +22,11 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
 
   return (
     <ContentForm title="auth.forgotPasswordTitle">
-      <Box mt={4}>
-        <FormFields onSubmit={onSendActivation}>
-          <Typography
-            style={{ textAlign: "center" }}
-            variant="subtitle1"
-            component="h2"
-          >
-            {t("auth.forgotPasswordSubtitle")}
-          </Typography>
-          <EmailForm label="fields.emailAddress" name="email" />
-          <PrimaryButton type="submit" label="buttons.submit" />
-        </FormFields>
-      </Box>
+      <FormFields onSubmit={onSendActivation}>
+        <MTypography.Body label={t("auth.forgotPasswordSubtitle")} />
+        <EmailForm label="fields.emailAddress" name="email" />
+        <MButton.Primary fullWidth type="submit" label={t("buttons.submit")} />
+      </FormFields>
     </ContentForm>
   );
 };

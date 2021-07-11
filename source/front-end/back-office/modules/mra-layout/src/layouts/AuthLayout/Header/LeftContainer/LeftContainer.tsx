@@ -1,4 +1,4 @@
-import { Hidden, IconButton, useMediaQuery, Logo, Theme } from "@mra/theme";
+import { Hidden, IconButton, useMediaQuery, MLogo, Theme } from "@mra/theme";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Menu } from "@material-ui/icons";
@@ -28,7 +28,7 @@ const LeftContainer = (props: Props) => {
     <div className={classes.root}>
       <Hidden smDown>
         <span className={classes.logoContainer}>
-          <Logo src="images/logo.svg" onClick={navigateDefaultPage} />
+          <MLogo href="/" src="images/logo.svg" onClick={navigateDefaultPage} />
         </span>
       </Hidden>
       <IconButton

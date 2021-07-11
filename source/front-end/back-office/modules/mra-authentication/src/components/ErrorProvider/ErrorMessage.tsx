@@ -1,4 +1,4 @@
-import { Collapse, IconButton, makeStyles } from "@material-ui/core";
+import { Collapse, IconButton, makeStyles } from "@mra/theme";
 import { Close } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
 import React from "react";

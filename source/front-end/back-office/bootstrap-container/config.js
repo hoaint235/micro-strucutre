@@ -1,6 +1,6 @@
 "use strict";
 module.exports = {
-  title: "Micro-FrontEnd Architecture",
+  title: "Micro-Frontend Architecture",
   modules: {
     root: {
       name: "@mra/root-config",

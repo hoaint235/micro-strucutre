@@ -5,20 +5,20 @@ import {
   StylesProvider,
 } from "@material-ui/core";
 import React from "react";
-import palette from "./UIProvider.palette";
-import typography from "./UIProvider.typography";
+import palette from "./Theme.palette";
+import typography from "./Theme.typography";
 
 const theme = createMuiTheme({
   palette: { ...palette },
   typography: { ...typography },
 });
 
-type Props = {
+export type MfaThemeProps = {
   children: any;
   name: string;
 };
 
-const UIProvider = (props: Props) => {
+const Theme = (props: MfaThemeProps) => {
   const { name, children } = props;
 
   const generateClassName = createGenerateClassName({
@@ -33,4 +33,4 @@ const UIProvider = (props: Props) => {
   );
 };
 
-export default UIProvider;
+export default Theme;

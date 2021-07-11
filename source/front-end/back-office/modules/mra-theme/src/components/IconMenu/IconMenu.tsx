@@ -1,55 +1,22 @@
 import {
   Avatar,
   ClickAwayListener,
-  fade,
   Grow,
   IconButton,
-  makeStyles,
   MenuItem,
   MenuList,
   Paper,
   Popper,
-  Theme,
 } from "@material-ui/core";
 import React, { Fragment, useState } from "react";
+import {
+  useStyleIconButton,
+  useStyles,
+  useStylesAvatar,
+} from "./IconMenu.style";
+import { MfaIconMenuProps } from "./IconMenu.type";
 
-const useStyleIconButton = makeStyles({
-  root: {
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
-  },
-});
-
-const useStyles = makeStyles((theme: Theme) => ({
-  iconSecondary: {
-    color: theme.palette.text.primary,
-    backgroundColor: fade(theme.palette.text.primary, 0.2),
-  },
-  iconPrimary: {
-    color: theme.palette.primary.main,
-    backgroundColor: fade(theme.palette.primary.main, 0.2),
-  },
-  menuItem: {
-    minHeight: theme.spacing(5),
-  },
-}));
-
-const useStylesAvatar = makeStyles(() => ({
-  root: {
-    borderRadius: "30%",
-  },
-}));
-
-type Props = {
-  items: Array<any>;
-  children?: any;
-  color?: "primary" | "secondary";
-  renderItem: (item) => any;
-  onItemClick: (item) => void;
-};
-
-const IconMenu = (props: Props) => {
+const IconMenu = (props: MfaIconMenuProps) => {
   const { items, children, renderItem, onItemClick, color = "primary" } = props;
 
   const [open, setOpen] = useState(false);

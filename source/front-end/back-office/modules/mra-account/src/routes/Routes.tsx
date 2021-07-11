@@ -1,11 +1,11 @@
+import { MProvider } from "@mra/theme";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ListUsers from "../pages/ListUsers";
-import { MaterialProvider } from "../theme";
 
 const Routes = () => {
   return (
-    <MaterialProvider>
+    <MProvider name="mra-account">
       <Router>
         <Switch>
           <Route exact path="/users">
@@ -13,7 +13,7 @@ const Routes = () => {
           </Route>
         </Switch>
       </Router>
-    </MaterialProvider>
+    </MProvider>
   );
 };
 

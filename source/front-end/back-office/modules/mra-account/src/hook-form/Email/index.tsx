@@ -15,7 +15,7 @@ const Email = ({ rules, ...restProps }: InputProps) => {
       },
     };
     return { ...defaultRule, ...rules };
-  }, []);
+  }, [t, rules]);
 
   return <Input {...restProps} rules={defaultRules} />;
 };

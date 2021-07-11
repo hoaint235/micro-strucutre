@@ -8,11 +8,11 @@ declare module "@mra/theme" {
   export {
     Box,
     Hidden,
+    Collapse,
     IconButton,
     Avatar,
     fade,
     makeStyles,
-    Typography,
     Theme,
     useMediaQuery,
     Grid,
@@ -31,10 +31,10 @@ declare module "@mra/theme" {
     InputAdornment,
   } from "@material-ui/core";
 
-  export const Label;
-  export const Logo;
-  export const IconMenu;
+  export const MLogo;
+  export const MIconMenu;
   export const SearchField;
-  export const UIProvider;
-  export const PrimaryButton;
+  export const MProvider;
+  export const MButton;
+  export const MTypography;
 }

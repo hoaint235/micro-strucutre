@@ -1,4 +1,4 @@
-import { HeaderProps } from "../DynamicTableHeader/DynamicTableHeader.type";
+import { HeaderProps } from "./DataTableHeader.type";
 
 export type DynamicTableBodyProps = {
   headers: HeaderProps[];

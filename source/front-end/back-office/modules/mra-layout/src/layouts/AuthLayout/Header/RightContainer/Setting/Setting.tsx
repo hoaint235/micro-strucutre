@@ -1,4 +1,4 @@
-import { Body, Box, IconMenu } from "@mra/theme";
+import { MTypography, Box, MIconMenu } from "@mra/theme";
 import { Settings } from "@material-ui/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -20,14 +20,14 @@ const Setting = () => {
 
   return (
     <Box>
-      <IconMenu
+      <MIconMenu
         color="secondary"
         items={menus}
         onItemClick={(item) => item.action()}
-        renderItem={(item) => <Body label={item.title} />}
+        renderItem={(item) => <MTypography.Body label={item.title} />}
       >
         <Settings />
-      </IconMenu>
+      </MIconMenu>
     </Box>
   );
 };

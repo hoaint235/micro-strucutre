@@ -1,4 +1,4 @@
-import { Chip, ChipProps, makeStyles, Theme } from "@material-ui/core";
+import { Chip, ChipProps, makeStyles, Theme } from "@mra/theme";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
