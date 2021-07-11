@@ -1,30 +1,12 @@
-import {
-  InputAdornment,
-  makeStyles,
-  TextField,
-  TextFieldProps,
-} from "@material-ui/core";
+import { InputAdornment, makeStyles, TextFieldProps } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import React from "react";
-
-const useStyles = makeStyles(() => ({
-  root: {
-    "&> .mra-layout-MuiOutlinedInput-root": {
-      borderRadius: 12,
-    },
-  },
-}));
+import InputField from "./InputField";
 
 const SearchField = (props: TextFieldProps) => {
-  const classes = useStyles();
-
   return (
-    <TextField
-      classes={{ ...classes }}
-      id={`input-${props.name}`}
+    <InputField
       {...props}
-      fullWidth
-      variant="outlined"
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
