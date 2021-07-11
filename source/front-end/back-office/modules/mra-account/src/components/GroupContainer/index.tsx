@@ -1,4 +1,4 @@
-import { Box, makeStyles, Typography } from "@material-ui/core";
+import { Box, makeStyles, MTypography } from "@mra/theme";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -18,11 +18,10 @@ const GroupContainer = (props: Props) => {
   const { t } = useTranslation();
   const classes = useStyles();
   const { title, children } = props;
+
   return (
     <div>
-      <Typography component="p" variant="subtitle2" className={classes.title}>
-        {t(title)}
-      </Typography>
+      <MTypography.Subtitle className={classes.title} label={t(title)} />
       <Box mt={1}>{children}</Box>
     </div>
   );

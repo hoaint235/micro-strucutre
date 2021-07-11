@@ -1,7 +1,4 @@
-import {
-  HeaderProps,
-  OrderProps,
-} from "./../DynamicTableHeader/DynamicTableHeader.type";
+import { HeaderProps, OrderProps } from "./DataTableHeader.type";
 
 export type PagingProps = {
   newPage: number;
@@ -15,7 +12,7 @@ export type SortProps = {
   orderBy: string;
 };
 
-export type DynamicTableProps = {
+export type DataTableProps = {
   headers: HeaderProps[];
   source: Array<{}>;
   keyRow: string;

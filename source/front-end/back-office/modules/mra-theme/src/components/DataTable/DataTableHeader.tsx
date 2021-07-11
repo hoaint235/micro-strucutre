@@ -7,8 +7,7 @@ import {
   Theme,
 } from "@material-ui/core";
 import React from "react";
-import { useTranslation } from "react-i18next";
-import { DynamicTableHeaderProps } from "./DynamicTableHeader.type";
+import { DynamicTableHeaderProps } from "./DataTableHeader.type";
 
 const useStylesSortLabel = makeStyles((theme: Theme) => ({
   icon: {
@@ -39,7 +38,6 @@ const useStyles = makeStyles({
 
 const DynamicTableHeader = (props: DynamicTableHeaderProps) => {
   const classes = useStyles();
-  const { t } = useTranslation();
   const classesSortLabel = useStylesSortLabel();
   const classesTableCell = useStylesTableCell();
   const { headers, order, orderBy, onSort } = props;
@@ -58,7 +56,7 @@ const DynamicTableHeader = (props: DynamicTableHeaderProps) => {
         direction={orderBy === header.id ? order : "asc"}
         onClick={createSortHandler(header.id)}
       >
-        {t(header.label)}
+        {header.label}
         {orderBy === header.id ? (
           <span className={classes.visuallyHidden}>
             {order === "desc" ? "sorted descending" : "sorted ascending"}
@@ -79,7 +77,7 @@ const DynamicTableHeader = (props: DynamicTableHeaderProps) => {
             width={header.width}
             sortDirection={orderBy === header.id ? order : false}
           >
-            {header.sort ? renderSortHeader(header) : t(header.label)}
+            {header.sort ? renderSortHeader(header) : header.label}
           </TableCell>
         ))}
       </TableRow>

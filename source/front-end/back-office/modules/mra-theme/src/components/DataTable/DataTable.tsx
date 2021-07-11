@@ -1,14 +1,14 @@
-import { Table, TableCell, TableRow } from "@material-ui/core";
-import React, { Fragment, useState } from "react";
+import { Table } from "@material-ui/core";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
 import TablePagination from "@material-ui/core/TablePagination";
 import PropTypes from "prop-types";
-import { DynamicTableProps, PagingProps } from "./DynamicTable.type";
-import { OrderProps } from "../DynamicTableHeader/DynamicTableHeader.type";
-import DynamicTableHeader from "../DynamicTableHeader";
-import DynamicTableBody from "../DynamicTableBody";
+import { OrderProps } from "./DataTableHeader.type";
+import { DataTableProps, PagingProps } from "./DataTable.type";
+import DataTableHeader from "./DataTableHeader";
+import DataTableBody from "./DataTableBody";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DynamicTable = (props: DynamicTableProps) => {
+const DataTable = (props: DataTableProps) => {
   const classes = useStyles();
   const {
     totalItems,
@@ -77,13 +77,13 @@ const DynamicTable = (props: DynamicTableProps) => {
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
         <Table stickyHeader>
-          <DynamicTableHeader
+          <DataTableHeader
             headers={props.headers}
             order={order}
             orderBy={orderBy}
             onSort={handleRequestSort}
           />
-          <DynamicTableBody {...propsHeader} />
+          <DataTableBody {...propsHeader} />
         </Table>
       </TableContainer>
       {!!onPaging && (
@@ -101,14 +101,14 @@ const DynamicTable = (props: DynamicTableProps) => {
   );
 };
 
-DynamicTable.propTypes = {
+DataTable.propTypes = {
   source: PropTypes.array.isRequired,
 };
 
-DynamicTable.defaultProps = {
+DataTable.defaultProps = {
   defaultPage: 0,
   defaultRowPerPage: 5,
   rowPerPage: [5, 10, 25],
 };
 
-export default DynamicTable;
+export default DataTable;

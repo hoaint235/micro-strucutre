@@ -2,23 +2,25 @@ import React, { useMemo } from "react";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
-import stringHelper from "../../../utils/helpers/stringHelper";
 import { v4 as uuidv4 } from "uuid";
-import { DynamicTableBodyProps } from "./DynamicTableBody.type";
-import { useTranslation } from "react-i18next";
+import { DynamicTableBodyProps } from "./DataTableBody.type";
 import { Typography } from "@material-ui/core";
 
 const prefixBody = "body";
 
 const DynamicTableBody = (props: DynamicTableBodyProps) => {
-  const { t } = useTranslation();
   const {
     source,
     headers,
     keyRow,
     bodyTemplate,
-    noResultFound = "table.noResultFound",
+    noResultFound = "No data found",
   } = props;
+
+  const upperFirst = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   const renderBody = useMemo(
     () =>
       source.map((row) => {
@@ -28,9 +30,7 @@ const DynamicTableBody = (props: DynamicTableBodyProps) => {
               const id = header.id;
               const value = row[id];
               const idV4 = uuidv4();
-              const column = `${prefixBody}${stringHelper.toUpperCaseFirst(
-                id
-              )}`;
+              const column = `${prefixBody}${upperFirst(id)}`;
 
               return (
                 <TableCell key={idV4} align={header.align}>
@@ -61,7 +61,7 @@ const DynamicTableBody = (props: DynamicTableBodyProps) => {
       ) : (
         <TableRow>
           <TableCell colSpan={headers.length} style={{ textAlign: "center" }}>
-            {t(noResultFound)}
+            {noResultFound}
           </TableCell>
         </TableRow>
       )}

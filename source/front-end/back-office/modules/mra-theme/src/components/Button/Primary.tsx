@@ -3,7 +3,7 @@ import { MfaButtonProps } from "./Button.type";
 import Default from "./Default";
 
 const Primary = (props: MfaButtonProps) => {
-  return <Default {...props} color="primary" size="large" />;
+  return <Default {...props} color="primary" />;
 };
 
 export default Primary;

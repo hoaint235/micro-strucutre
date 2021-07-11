@@ -10,15 +10,16 @@ const useStyleButton = makeStyles({
   },
 });
 
-const Default = ({ label, ...props }: MfaButtonProps) => {
+const Default = (props: MfaButtonProps) => {
+  const { label, size = "medium", ...restProps } = props;
   const classesButton = useStyleButton();
 
   return (
     <Button
       variant="contained"
-      {...props}
+      {...restProps}
       classes={{ ...classesButton }}
-      size="large"
+      size={size}
     >
       {label}
     </Button>

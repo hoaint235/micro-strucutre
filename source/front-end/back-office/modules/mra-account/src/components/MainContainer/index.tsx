@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, Paper } from "@material-ui/core";
+import { Card, CardContent, CardHeader, Paper } from "@mra/theme";
 import React, { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useStyleCardHeader, useStylePaper } from "./MainContainer.type";

@@ -5,18 +5,44 @@ declare module "@mra/utility" {
   export const resources: any;
 }
 
-declare interface ListingResponse<TData> {
-  data: Array<TData>;
-  totalItems: number;
-}
+declare module "@mra/theme" {
+  export {
+    Box,
+    Hidden,
+    Collapse,
+    IconButton,
+    Avatar,
+    fade,
+    makeStyles,
+    Theme,
+    useMediaQuery,
+    Grid,
+    Drawer,
+    Toolbar,
+    AppBar,
+    Paper,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    CardContent,
+    CardHeader,
+    Container,
+    Card,
+    TextField,
+    TextFieldProps,
+    InputAdornment,
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    Chip,
+    ChipProps,
+  } from "@material-ui/core";
 
-declare interface SortRequest {
-  field: string;
-  direction: string;
-}
-
-declare interface ListingRequest {
-  limit: number;
-  offset: number;
-  sorts?: Array<SortRequest>;
+  export const MLogo;
+  export const MIconMenu;
+  export const SearchField;
+  export const MProvider;
+  export const MButton;
+  export const MTypography;
+  export const MDataTable;
 }

@@ -1,49 +1,47 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, MTypography, MButton, MDataTable } from "@mra/theme";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import DynamicTable from "../../../theme/components/DynamicTable";
 import { Roles, Statuses } from "../../../utils/constants";
-import { HeaderProps, PrimaryButton } from "../../../theme";
 import { Status } from "../../../components";
 import { useListUser } from "../../../hooks";
 import { API } from "@mra/utility";
 import { ApiHelper } from "../../../utils";
 
-const headers: HeaderProps[] = [
-  {
-    id: "email",
-    label: "table.email",
-    sort: true,
-    width: 350,
-  },
-  {
-    id: "isActivate",
-    label: "table.isActivate",
-    width: 100,
-  },
-  {
-    id: "status",
-    label: "table.status",
-    width: 250,
-  },
-  {
-    id: "roles",
-    label: "table.roles",
-    width: 100,
-  },
-  {
-    id: "createdDate",
-    label: "table.createdDate",
-  },
-  {
-    id: "action",
-    label: "table.action",
-  },
-];
-
 const TableUsers = () => {
   const { t } = useTranslation();
   const { data: source, fetchUsers } = useListUser();
+
+  const headers = [
+    {
+      id: "email",
+      label: t("table.email"),
+      sort: true,
+      width: 250,
+    },
+    {
+      id: "isActivate",
+      label: t("table.isActivate"),
+      width: 100,
+    },
+    {
+      id: "status",
+      label: t("table.status"),
+      width: 250,
+    },
+    {
+      id: "roles",
+      label: t("table.roles"),
+      width: 100,
+    },
+    {
+      id: "createdDate",
+      label: t("table.createdDate"),
+    },
+    {
+      id: "action",
+      label: t("table.action"),
+    },
+  ];
 
   const onDeactivate = async (userId) => {
     await API.put(ApiHelper.deactivateUser(userId), {});
@@ -65,30 +63,27 @@ const TableUsers = () => {
       <Grid container spacing={1}>
         {!data.isActivate && (
           <Grid item>
-            <PrimaryButton
-              color="default"
+            <MButton.Default
               disabled={!data.hasPermission}
-              label="buttons.activate"
+              label={t("buttons.activate")}
               onClick={() => onActivate(data.id)}
             />
           </Grid>
         )}
         {!data.isActivate && (
           <Grid item>
-            <PrimaryButton
-              color="secondary"
+            <MButton.Secondary
               disabled={!data.hasPermission}
-              label="buttons.delete"
+              label={t("buttons.delete")}
               onClick={() => onDelete(data.id)}
             />
           </Grid>
         )}
         {data.isActivate && (
           <Grid item>
-            <PrimaryButton
-              color="secondary"
+            <MButton.Secondary
               disabled={!data.hasPermission}
-              label="buttons.deactivate"
+              label={t("buttons.deactivate")}
               onClick={() => onDeactivate(data.id)}
             />
           </Grid>
@@ -105,9 +100,7 @@ const TableUsers = () => {
 
   const renderStatus = (data) => {
     return (
-      <Typography component="p" variant="subtitle1" color="textPrimary">
-        {t(Statuses[data.status]).toUpperCase()}
-      </Typography>
+      <MTypography.Subtitle label={t(Statuses[data.status]).toUpperCase()} />
     );
   };
 
@@ -145,20 +138,21 @@ const TableUsers = () => {
 
   const renderCreatedDate = (data) => {
     return (
-      <Typography component="p" variant="subtitle2" color="textPrimary">
-        {new Date(data.createdDate).toLocaleDateString()}
-      </Typography>
+      <MTypography.Subtitle
+        label={new Date(data.createdDate).toLocaleDateString()}
+      />
     );
   };
 
   return (
-    <DynamicTable
+    <MDataTable
       keyRow="id"
       defaultOrderBy="name"
       defaultOrder="asc"
       source={source.data}
       headers={headers}
       totalItems={source.totalItems}
+      noResultFound={t("table.noResultFound")}
       bodyTemplate={{
         bodyAction: renderAction,
         bodyIsActivate: renderActivate,
@@ -166,7 +160,7 @@ const TableUsers = () => {
         bodyStatus: renderStatus,
         bodyCreatedDate: renderCreatedDate,
       }}
-    ></DynamicTable>
+    />
   );
 };
 

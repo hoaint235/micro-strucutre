@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mra/theme";
 import React from "react";
 import MainContainer from "../../components/MainContainer";
 import SearchUser from "./SearchUser";

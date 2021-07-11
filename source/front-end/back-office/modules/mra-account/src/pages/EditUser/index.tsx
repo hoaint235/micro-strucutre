@@ -4,16 +4,15 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
-} from "@material-ui/core";
+  MButton,
+} from "@mra/theme";
 import { API } from "@mra/utility";
 import React, { Fragment, useCallback } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router";
 import { GroupContainer } from "../../components";
 import { Email, Form, GroupSelect, Input } from "../../hook-form";
 import { useGetCurrentUserRoles } from "../../hooks";
-import { PrimaryButton } from "../../theme";
 import { ApiHelper, REGEX_PHONE_NUMBER, Roles } from "../../utils";
 
 const EditUser = (props: DialogProps) => {
@@ -41,17 +40,12 @@ const EditUser = (props: DialogProps) => {
     return (
       <Grid item xs={12} justify="flex-end" style={{ display: "flex" }}>
         <Box mr={2}>
-          <PrimaryButton
-            color="default"
-            onClick={onClose}
-            label="buttons.cancel"
-          />
+          <MButton.Default onClick={onClose} label={t("buttons.cancel")} />
         </Box>
-        <PrimaryButton
-          color="primary"
+        <MButton.Primary
           type="submit"
           disabled={!isDirty || !isValid}
-          label="buttons.submit"
+          label={t("buttons.submit")}
         />
       </Grid>
     );

@@ -33,7 +33,7 @@ const GroupSelect = (props: Props) => {
     }
 
     return { ...internalRules, ...rules };
-  }, [useDefaultRules]);
+  }, [useDefaultRules, t, rules]);
 
   const {
     field: { ref, onChange, ...rest },

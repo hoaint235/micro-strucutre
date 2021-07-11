@@ -1,7 +1,6 @@
-import { Box, Grid, makeStyles } from "@material-ui/core";
-import React from "react";
-import { useState } from "react";
-import { PrimaryButton } from "../../../theme";
+import { Box, Grid, makeStyles, MButton } from "@mra/theme";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import SearchField from "../../../theme/components/SearchField";
 import AddUser from "../../AddUser";
 
@@ -15,6 +14,7 @@ const useStyles = makeStyles(() => ({
 const SearchUser = () => {
   const classes = useStyles();
   const [openAddUser, setOpenAddUser] = useState(false);
+  const { t } = useTranslation();
 
   const onAddUserPage = () => {
     setOpenAddUser(true);
@@ -31,11 +31,10 @@ const SearchUser = () => {
       </Grid>
       <Grid item sm={8} xs={12} className={classes.rightContainer}>
         <Box mt={{ xs: 2, sm: 0 }}>
-          <PrimaryButton
+          <MButton.Primary
             variant="outlined"
-            color="primary"
             onClick={onAddUserPage}
-            label="account.addUser"
+            label={t("account.addUser")}
           />
         </Box>
       </Grid>
