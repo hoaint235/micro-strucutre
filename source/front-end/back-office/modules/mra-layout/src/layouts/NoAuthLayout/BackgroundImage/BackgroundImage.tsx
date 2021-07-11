@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@material-ui/core";
+import { Box, Grid, MTypography } from "@mra/theme";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import useStyles from "./BackgroundImage.style";
@@ -20,12 +20,8 @@ const BackgroundImage = () => {
         <Grid item>
           <Box pb={10}>
             <div className={classes.contentContainer}>
-              <Typography component="h2" variant="h3" color="textPrimary">
-                {t("auth.backgroundTitle")}
-              </Typography>
-              <Typography component="p" variant="body1" color="textPrimary">
-                {t("auth.backgroundSubtitle")}
-              </Typography>
+              <MTypography.Title lable={t("auth.backgroundTitle")} />
+              <MTypography.Subtitle lable={t("auth.backgroundSubtitle")} />
             </div>
           </Box>
         </Grid>

@@ -18,16 +18,17 @@ const useStyles = makeStyles(() => ({
 
 export type LogoProps = {
   src: string;
+  href: string;
   alt?: string;
   onClick: (event) => void;
 };
 
 const Logo = (props: LogoProps) => {
-  const { src, alt, onClick } = props;
+  const { href, src, alt, onClick } = props;
   const classes = useStyles();
 
   return (
-    <a href="/" className={classes.root} tabIndex={-1} onClick={onClick}>
+    <a href={href} className={classes.root} tabIndex={-1} onClick={onClick}>
       <img src={src} alt={alt} />
     </a>
   );

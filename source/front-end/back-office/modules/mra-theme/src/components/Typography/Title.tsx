@@ -1,12 +1,12 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
-import { TypographyProps } from "./Typography.type";
+import { MfaTypographyProps } from "./Typography.type";
 
-const Title = (props: TypographyProps) => {
-  const { label, ...restProps } = props;
+const Title = (props: MfaTypographyProps) => {
+  const { label, color = "textPrimary", ...restProps } = props;
 
   return (
-    <Typography component="p" variant="h4" color="textPrimary" {...restProps}>
+    <Typography component="p" variant="h4" color={color} {...restProps}>
       {label}
     </Typography>
   );

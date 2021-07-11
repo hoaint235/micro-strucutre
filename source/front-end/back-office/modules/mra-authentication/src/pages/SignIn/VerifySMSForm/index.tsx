@@ -1,7 +1,7 @@
 import React from "react";
 import ContentForm from "../../../components/ContentForm";
 import { Cognito } from "@mra/utility";
-import { Grid, Typography, PrimaryButton } from "@mra/theme";
+import { Grid, MButton, MTypography } from "@mra/theme";
 import { FormFields, InputForm } from "../../../components/forms";
 import { useTranslation } from "react-i18next";
 import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
@@ -22,7 +22,9 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
   };
 
   const renderSubmit = () => {
-    return <PrimaryButton type="submit" label="buttons.submit" />;
+    return (
+      <MButton.Primary type="submit" fullWidth label={t("buttons.submit")} />
+    );
   };
 
   return (
@@ -30,13 +32,10 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
       <FormFields onSubmit={onSubmit} renderSubmit={renderSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography
-              variant="subtitle1"
-              component="h2"
+            <MTypography.Subtitle
+              lable={t("auth.verifyOtpCodeSubtitle")}
               style={{ textAlign: "center" }}
-            >
-              {t("auth.verifyOtpCodeSubtitle")}
-            </Typography>
+            />
           </Grid>
           <Grid item xs={12}>
             <InputForm label={t("fields.otpCode")} name="otpCode" />

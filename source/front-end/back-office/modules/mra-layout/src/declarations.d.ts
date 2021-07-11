@@ -27,10 +27,9 @@ declare module "@mra/theme" {
     Card,
   } from "@material-ui/core";
 
-  export const Label;
-  export const Logo;
-  export const IconMenu;
+  export const MLogo;
+  export const MIconMenu;
   export const SearchField;
-  export const UIProvider;
-  export const Body;
+  export const MProvider;
+  export const MTypography;
 }

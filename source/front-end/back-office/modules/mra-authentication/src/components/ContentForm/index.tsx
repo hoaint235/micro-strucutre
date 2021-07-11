@@ -1,4 +1,4 @@
-import { Grid } from "@mra/theme";
+import { Box, Grid } from "@mra/theme";
 import React, { Fragment } from "react";
 import ErrorProvider from "../ErrorProvider";
 import Header from "../Header";
@@ -14,7 +14,9 @@ const ContentForm = (props: Props) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Header title={title} />
+        <Box mb={2}>
+          <Header title={title} />
+        </Box>
       </Grid>
       <Grid item xs={12}>
         <ErrorProvider />

@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Theme, PrimaryButton } from "@mra/theme";
+import { Grid, makeStyles, Theme, MButton } from "@mra/theme";
 import React from "react";
 import { Cognito } from "@mra/utility";
 import { PasswordForm, ContentForm, EmailForm } from "../../../components";
@@ -68,7 +68,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
             </a>
           </Grid>
         </Grid>
-        <PrimaryButton type="submit" label="buttons.submit" />
+        <MButton.Primary fullWidth type="submit" label={t("buttons.submit")} />
       </FormFields>
     </ContentForm>
   );

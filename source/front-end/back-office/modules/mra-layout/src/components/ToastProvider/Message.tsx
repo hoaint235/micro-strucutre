@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Label } from "@mra/theme";
+import { Grid, makeStyles, MTypography } from "@mra/theme";
 import { Close } from "@material-ui/icons";
 import React from "react";
 
@@ -33,7 +33,7 @@ const Message = (props: Props) => {
   return (
     <Grid container spacing={2} alignItems="center">
       <Grid item xs={10}>
-        <Label label={message} className={classes.message} />
+        <MTypography.Label label={message} className={classes.message} />
       </Grid>
       <Grid item xs={2}>
         <button className={classes.btnClose} onClick={onClose}>

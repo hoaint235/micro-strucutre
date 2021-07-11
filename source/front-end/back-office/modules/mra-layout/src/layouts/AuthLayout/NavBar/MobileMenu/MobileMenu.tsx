@@ -1,4 +1,4 @@
-import { Box, Drawer, makeStyles, Paper, Logo } from "@mra/theme";
+import { Box, Drawer, makeStyles, Paper, MLogo } from "@mra/theme";
 import React from "react";
 import MenuList from "../MenuList/MenuList";
 import { useHistory } from "react-router-dom";
@@ -35,7 +35,11 @@ const MobileMenu = (props) => {
       <div role="presentation" onClick={props.contentHide}>
         <Box component={Paper}>
           <div className={classes.logoContainer}>
-            <Logo src="images/logo.svg" onClick={navigateDefaultPage} />
+            <MLogo
+              href="/"
+              src="images/logo.svg"
+              onClick={navigateDefaultPage}
+            />
           </div>
           <MenuList />
         </Box>
