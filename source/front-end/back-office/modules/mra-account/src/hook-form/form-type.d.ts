@@ -35,3 +35,12 @@ export type FieldProps = HookFormFieldProps &
     rules?: Rules;
     children?: string | React.ReactNode;
   };
+
+export type SelectFormProps = HookFormFieldProps &
+  TextFieldProps & {
+    items: Array<SelectProps>;
+    defaultValue?: string;
+    requiredField?: boolean;
+    rules?: Rules;
+    children?: string | React.ReactNode;
+  };

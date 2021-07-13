@@ -17,8 +17,8 @@
     "listUserPage": {
       "title": "List Users"
     },
-    "addUserDialog": {
-      "title": "Add User Form",
+    "addUserPage": {
+      "title": "Add User",
       "roles": "Roles"
     },
     "deactivate": "Deactivate",

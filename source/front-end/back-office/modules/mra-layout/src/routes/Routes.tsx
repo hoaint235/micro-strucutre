@@ -6,7 +6,7 @@ import { AuthLayout, NoAuthLayout } from "../layouts";
 const routes = [
   {
     module: "@mra/account",
-    path: ["/users"],
+    path: ["/users", "/users/create"],
     auth: true,
   },
   {
@@ -22,6 +22,11 @@ const Routes = () => {
       <Router>
         <Switch>
           <Route exact path="/users">
+            <AuthLayout>
+              <div id={`single-spa-application:@mra/account`}></div>
+            </AuthLayout>
+          </Route>
+          <Route exact path="/users/create">
             <AuthLayout>
               <div id={`single-spa-application:@mra/account`}></div>
             </AuthLayout>

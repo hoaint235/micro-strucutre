@@ -3,10 +3,16 @@ import { MenuItemProps } from "../components";
 
 const Menus: MenuItemProps[] = [
   {
-    path: "users",
-    pathsActivate: ["/users", "/add-user"],
+    path: "/users",
+    pathsActivate: ["/users", "/user/create"],
     icon: Home,
     label: "menus.users",
+  },
+  {
+    path: "/products",
+    pathsActivate: ["/products"],
+    icon: Home,
+    label: "menus.products",
   },
 ];
 

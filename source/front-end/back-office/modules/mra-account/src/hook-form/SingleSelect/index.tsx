@@ -1,13 +1,10 @@
-import { TextFieldProps } from "@material-ui/core";
-import { MField } from "@mra/theme";
+import { MSelect } from "@mra/theme";
 import React from "react";
 import { useController } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { HookFormFieldProps } from "../form-type";
+import { SelectFormProps } from "../form-type";
 
-export type InputProps = TextFieldProps & HookFormFieldProps;
-
-const Input = (props: InputProps) => {
+const SingleSelect = (props: SelectFormProps) => {
   const {
     name,
     defaultValue,
@@ -22,7 +19,7 @@ const Input = (props: InputProps) => {
   const { t } = useTranslation();
 
   const {
-    field: { ref, ...inputProps },
+    field: { ref, onChange, ...inputProps },
   } = useController({
     name,
     control,
@@ -39,9 +36,10 @@ const Input = (props: InputProps) => {
   });
 
   return (
-    <MField.Input
+    <MSelect.Single
       error={!!errors[name]}
       helperText={!!errors[name] && errors[name].message}
+      onChange={onChange}
       {...restProps}
       {...inputProps}
       inputRef={ref}
@@ -49,4 +47,4 @@ const Input = (props: InputProps) => {
   );
 };
 
-export default Input;
+export default SingleSelect;

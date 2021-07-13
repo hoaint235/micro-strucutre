@@ -1,4 +1,10 @@
-import { makeStyles, TextField, TextFieldProps } from "@material-ui/core";
+import {
+  Box,
+  Grid,
+  makeStyles,
+  TextField,
+  TextFieldProps,
+} from "@material-ui/core";
 import React from "react";
 
 const useStyles = makeStyles(() => ({
@@ -10,21 +16,30 @@ const useStyles = makeStyles(() => ({
 }));
 
 const InputField = (props: TextFieldProps) => {
-  const { name, fullWidth = true, ...restProps } = props;
+  const { name, label, fullWidth = true, ...restProps } = props;
   const classes = useStyles();
 
   return (
-    <TextField
-      classes={{ ...classes }}
-      {...restProps}
-      fullWidth={fullWidth}
-      size="small"
-      variant="outlined"
-      inputProps={{
-        "data-testid": `input-${name}`,
-      }}
-      InputLabelProps={{ shrink: false }}
-    />
+    <Grid container>
+      {label && (
+        <Grid item xs={12} md={2}>
+          <Box mb={1 / 2}>{label}</Box>
+        </Grid>
+      )}
+      <Grid item xs={12} md={10}>
+        <TextField
+          classes={{ ...classes }}
+          {...restProps}
+          fullWidth={fullWidth}
+          size="small"
+          variant="outlined"
+          inputProps={{
+            "data-testid": `input-${name}`,
+          }}
+          InputLabelProps={{ shrink: false }}
+        />
+      </Grid>
+    </Grid>
   );
 };
 

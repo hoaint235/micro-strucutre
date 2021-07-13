@@ -29,7 +29,7 @@ const delayHideLoading = () => {
   axios.interceptors.response.use(
     (response: AxiosResponse<any>) => {
       delayHideLoading();
-      return response.data;
+      return response;
     },
     (error) => {
       let errorMessage = "errors.internalServerError";

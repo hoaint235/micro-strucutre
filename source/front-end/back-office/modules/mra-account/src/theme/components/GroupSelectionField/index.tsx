@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 export type GroupSelectionProps = {
   error?: boolean;
   helperText?: string;
-  source: Array<SelectProps<string>>;
+  source: Array<SelectProps>;
   onSelect?: (key: string) => any;
   CheckboxProps?: CheckboxProps;
 };

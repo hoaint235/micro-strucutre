@@ -40,9 +40,10 @@ declare module "@mra/theme" {
 
   export const MLogo;
   export const MIconMenu;
-  export const SearchField;
+  export const MField;
   export const MProvider;
   export const MButton;
   export const MTypography;
   export const MDataTable;
+  export const MSelect;
 }

@@ -22,7 +22,7 @@ const useListRole = () => {
     const response = await API.get("/account/users", {
       params: { ...request },
     });
-    setData({ ...data, ...response });
+    setData({ ...data, ...response.data });
   };
 
   useEffect(() => {
