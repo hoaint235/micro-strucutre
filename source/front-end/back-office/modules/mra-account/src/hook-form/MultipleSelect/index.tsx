@@ -10,6 +10,7 @@ const MultipleSelect = (props: SelectFormProps) => {
     defaultValue,
     rules,
     children,
+    items,
     form: {
       control,
       formState: { errors },
@@ -40,6 +41,7 @@ const MultipleSelect = (props: SelectFormProps) => {
       error={!!errors[name]}
       helperText={!!errors[name] && errors[name].message}
       onChange={(data) => onChange(data)}
+      items={items}
       {...restProps}
       {...inputProps}
       inputRef={ref}

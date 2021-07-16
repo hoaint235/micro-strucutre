@@ -22,19 +22,19 @@ const useStyles = makeStyles({
 
 const Multiple = (props: MfaSelectProps) => {
   const classes = useStyles();
-  const { items, onChange, defaultValue, ...restProps } = props;
-  const [value, setValue] = React.useState(defaultValue || []);
+  const { items, onChange, value = [], ...restProps } = props;
+  const [defaultValue, setDefaultValue] = React.useState(value);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setValue(value);
+    setDefaultValue(value);
     onChange(value);
   };
 
   return (
     <MField.Input
       select
-      value={value}
+      value={defaultValue}
       onChange={handleChange}
       SelectProps={{
         multiple: true,
@@ -58,7 +58,12 @@ const Multiple = (props: MfaSelectProps) => {
     >
       {items.map((item) => (
         <MenuItem key={item.key} value={item.key}>
-          <Checkbox color="primary" checked={value.indexOf(item.key) > -1} />
+          <Checkbox
+            color="primary"
+            checked={
+              defaultValue && (defaultValue as string[]).indexOf(item.key) > -1
+            }
+          />
           <ListItemText primary={item.value} />
         </MenuItem>
       ))}

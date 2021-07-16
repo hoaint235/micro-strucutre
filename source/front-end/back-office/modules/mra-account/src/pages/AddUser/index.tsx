@@ -17,6 +17,7 @@ import { ApiHelper, REGEX_PHONE_NUMBER, Roles } from "../../utils";
 import { useGetCurrentUserRoles } from "../../hooks";
 import { useHistory } from "react-router-dom";
 import MultipleSelect from "../../hook-form/MultipleSelect";
+import SingleSelect from "../../hook-form/SingleSelect";
 
 const AddUser = () => {
   const { t } = useTranslation();
@@ -35,7 +36,8 @@ const AddUser = () => {
   }, [roles, t]);
 
   const onSubmit = async (data) => {
-    await API.post(ApiHelper.createUser(), data);
+    console.log(data);
+    // await API.post(ApiHelper.createUser(), data);
   };
 
   const renderSubmit = ({
@@ -70,24 +72,38 @@ const AddUser = () => {
             renderChildren={(form) => (
               <Fragment>
                 <Email label={t("fields.emailAddress")} name="email" />
-                <Input
-                  label={t("fields.phoneNumber")}
-                  name="phoneNumber"
-                  rules={{
-                    pattern: {
-                      value: REGEX_PHONE_NUMBER,
-                      message: t("errors.invalidPhoneNumber"),
-                    },
-                  }}
-                />
+                <Grid container>
+                  <Grid item xs={12} md={2}>
+                    <Box mb={1 / 2}>{t("fields.phoneNumber")}</Box>
+                  </Grid>
+                  <Grid container item xs={12} md={10} spacing={2}>
+                    <Grid item xs={3}>
+                      <SingleSelect
+                        items={getSource()}
+                        form={form}
+                        name="areaCode"
+                      />
+                    </Grid>
+                    <Grid item xs={9}>
+                      <Input
+                        form={form}
+                        name="phoneNumber"
+                        rules={{
+                          pattern: {
+                            value: REGEX_PHONE_NUMBER,
+                            message: t("errors.invalidPhoneNumber"),
+                          },
+                        }}
+                      />
+                    </Grid>
+                  </Grid>
+                </Grid>
+
                 <MultipleSelect
                   items={getSource()}
                   name="roles"
                   label={t("account.addUserPage.roles")}
                 />
-                {/* <GroupContainer title="account.addUserPage.roles">
-                  <GroupSelect source={getSource()} name="roles" form={form} />
-                </GroupContainer> */}
               </Fragment>
             )}
           />

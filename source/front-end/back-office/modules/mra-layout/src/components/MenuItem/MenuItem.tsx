@@ -21,11 +21,12 @@ const MenuItem = (props: MenuItemProps) => {
   const { pathname } = useLocation();
 
   const checkActivate = useCallback(() => {
-    return pathsActivate
+    const isActivate = pathsActivate
       ? pathsActivate.some(
           (path) => !!matchPath(pathname, { path: path, exact: true })
         )
       : path === pathname;
+    return isActivate;
   }, [pathname, path, pathsActivate]);
 
   const MenuLink = useMemo(
@@ -40,7 +41,7 @@ const MenuItem = (props: MenuItemProps) => {
           activeClassName={classes.activeLink}
         />
       )),
-    [path, checkActivate]
+    [path, exact, checkActivate, pathname]
   );
 
   return (

@@ -1,21 +1,27 @@
-import { makeStyles, MenuItem } from "@material-ui/core";
+import { MenuItem } from "@material-ui/core";
 import React from "react";
 import { MField } from "..";
 import { MfaSelectProps } from "./Select.type";
 
-const Multiple = (props: MfaSelectProps) => {
-  const { items, onChange, defaultValue, ...restProps } = props;
-  const [value, setValue] = React.useState(defaultValue);
+const Single = (props: MfaSelectProps) => {
+  const { items, onChange, value, ...restProps } = props;
+  const [defaultValue, setDefaultValue] = React.useState(value || "");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    onChange(value);
+    const selectedValue = event.target.value;
+    setDefaultValue(selectedValue);
+    onChange(selectedValue);
   };
 
   return (
-    <MField.Input select value={value} onChange={handleChange} {...restProps}>
+    <MField.Input
+      select
+      value={defaultValue}
+      onChange={handleChange}
+      {...restProps}
+    >
       {items.map((item) => (
-        <MenuItem key={item.key} value={item.value}>
+        <MenuItem key={item.key} value={item.key}>
           {item.value}
         </MenuItem>
       ))}
@@ -23,4 +29,4 @@ const Multiple = (props: MfaSelectProps) => {
   );
 };
 
-export default Multiple;
+export default Single;

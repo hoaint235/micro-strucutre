@@ -37,7 +37,7 @@ const MobileMenu = (props) => {
           <div className={classes.logoContainer}>
             <MLogo
               href="/"
-              src="images/logo.svg"
+              src={`${process.env.ROOT_URL}/images/logo.svg`}
               onClick={navigateDefaultPage}
             />
           </div>

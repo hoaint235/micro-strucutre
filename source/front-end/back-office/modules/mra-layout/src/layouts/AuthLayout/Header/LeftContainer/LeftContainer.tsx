@@ -28,7 +28,11 @@ const LeftContainer = (props: Props) => {
     <div className={classes.root}>
       <Hidden smDown>
         <span className={classes.logoContainer}>
-          <MLogo href="/" src="images/logo.svg" onClick={navigateDefaultPage} />
+          <MLogo
+            href="/"
+            src={`${process.env.ROOT_URL}/images/logo.svg`}
+            onClick={navigateDefaultPage}
+          />
         </span>
       </Hidden>
       <IconButton

@@ -7,6 +7,5 @@ export type Select = {
 
 export type MfaSelectProps = TextFieldProps & {
   items: Array<Select>;
-  defaultValue?: string | string[];
-  onChange: (data: string | string[]) => void;
+  onChange: (data: string | string[] | unknown) => void;
 };

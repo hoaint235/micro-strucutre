@@ -7,17 +7,25 @@ import {
 } from "@material-ui/core";
 import React from "react";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   root: {
     "&> .mra-layout-MuiOutlinedInput-root": {
       borderRadius: 4,
     },
   },
-}));
+});
+
+const useHelperStyles = makeStyles({
+  error: {
+    marginLeft: 0,
+    marginRight: 0,
+  },
+});
 
 const InputField = (props: TextFieldProps) => {
   const { name, label, fullWidth = true, ...restProps } = props;
   const classes = useStyles();
+  const helperClasses = useHelperStyles();
 
   return (
     <Grid container>
@@ -35,6 +43,9 @@ const InputField = (props: TextFieldProps) => {
           variant="outlined"
           inputProps={{
             "data-testid": `input-${name}`,
+          }}
+          FormHelperTextProps={{
+            classes: { ...helperClasses },
           }}
           InputLabelProps={{ shrink: false }}
         />

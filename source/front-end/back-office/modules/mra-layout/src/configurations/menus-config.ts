@@ -1,17 +1,17 @@
-import { Home } from "@material-ui/icons";
+import { Home, Group, ListAlt } from "@material-ui/icons";
 import { MenuItemProps } from "../components";
 
 const Menus: MenuItemProps[] = [
   {
     path: "/users",
-    pathsActivate: ["/users", "/user/create"],
-    icon: Home,
+    pathsActivate: ["/users", "/users/create"],
+    icon: Group,
     label: "menus.users",
   },
   {
     path: "/products",
     pathsActivate: ["/products"],
-    icon: Home,
+    icon: ListAlt,
     label: "menus.products",
   },
 ];

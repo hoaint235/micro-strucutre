@@ -31,17 +31,6 @@ const Form = (props: HookFormProps) => {
     if (!isHookFormField) {
       return child;
     }
-    console.log(child.type);
-    if (child.type === "MultipleSelect") {
-      console.log(
-        ...{
-          ...child.props,
-          form,
-          key: child.props.name,
-        }
-      );
-    }
-
     return React.createElement(child.type, {
       ...{
         ...child.props,
