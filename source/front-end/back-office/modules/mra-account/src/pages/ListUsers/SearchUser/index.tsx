@@ -23,7 +23,6 @@ const SearchUser = () => {
       <Grid item sm={8} xs={12} className={classes.rightContainer}>
         <Box mt={{ xs: 2, sm: 0 }}>
           <MButton.Primary
-            variant="outlined"
             onClick={() => history.push("/users/create")}
             label={t("account.addUser")}
           />

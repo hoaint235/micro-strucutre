@@ -2,6 +2,7 @@ import { Box, makeStyles, MProvider, Theme } from "@mra/theme";
 import React, { useState } from "react";
 import { LoadingProvider, ToastProvider } from "../../components";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Scrollbars } from "react-custom-scrollbars";
 
 import Header from "./Header/Header";
 import NavBar from "./NavBar/NavBar";
@@ -41,9 +42,17 @@ const AuthLayout = (props) => {
           <Header onToggle={onToggleMenu} />
           <NavBar openMenu={openMenu} contentHide={() => setOpenMenu(false)} />
           <Box component="div" mt={10} className={classes.container}>
-            <Box component="div" p={3}>
-              {children}
-            </Box>
+            <Scrollbars
+              autoHide
+              autoHideTimeout={500}
+              autoHideDuration={200}
+              autoHeight={true}
+              autoHeightMin={`calc(100vh - 80px)`}
+            >
+              <Box component="div" p={3}>
+                {children}
+              </Box>
+            </Scrollbars>
           </Box>
         </div>
         <ToastProvider />
