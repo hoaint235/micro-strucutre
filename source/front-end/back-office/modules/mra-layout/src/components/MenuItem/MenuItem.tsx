@@ -23,7 +23,8 @@ const MenuItem = (props: MenuItemProps) => {
   const checkActivate = useCallback(() => {
     const isActivate = pathsActivate
       ? pathsActivate.some(
-          (path) => !!matchPath(pathname, { path: path, exact: true })
+          (path) =>
+            !!matchPath(pathname, { path: path, exact: true, strict: true })
         )
       : path === pathname;
     return isActivate;

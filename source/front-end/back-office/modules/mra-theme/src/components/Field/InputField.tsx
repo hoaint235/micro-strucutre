@@ -28,7 +28,7 @@ const InputField = (props: TextFieldProps) => {
   const helperClasses = useHelperStyles();
 
   return (
-    <Grid container>
+    <Grid container xs={12}>
       {label && (
         <Grid item xs={12} md={2}>
           <Box mb={1 / 2}>{label}</Box>

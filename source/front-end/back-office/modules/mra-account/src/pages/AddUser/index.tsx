@@ -49,12 +49,10 @@ const AddUser = () => {
           <MButton.Default
             onClick={() => history.push("/users")}
             label={t("buttons.cancel")}
-            size="large"
           />
         </Box>
         <MButton.Primary
           type="submit"
-          size="large"
           disabled={!isDirty || !isValid}
           label={t("buttons.submit")}
         />
@@ -72,29 +70,31 @@ const AddUser = () => {
             renderChildren={(form) => (
               <Fragment>
                 <Email label={t("fields.emailAddress")} name="email" />
-                <Grid container>
+                <Grid container xs={12}>
                   <Grid item xs={12} md={2}>
                     <Box mb={1 / 2}>{t("fields.phoneNumber")}</Box>
                   </Grid>
-                  <Grid container item xs={12} md={10} spacing={2}>
-                    <Grid item xs={3}>
-                      <SingleSelect
-                        items={getSource()}
-                        form={form}
-                        name="areaCode"
-                      />
-                    </Grid>
-                    <Grid item xs={9}>
-                      <Input
-                        form={form}
-                        name="phoneNumber"
-                        rules={{
-                          pattern: {
-                            value: REGEX_PHONE_NUMBER,
-                            message: t("errors.invalidPhoneNumber"),
-                          },
-                        }}
-                      />
+                  <Grid item xs={12} md={10}>
+                    <Grid container>
+                      <Grid item xs={3}>
+                        <SingleSelect
+                          items={getSource()}
+                          form={form}
+                          name="areaCode"
+                        />
+                      </Grid>
+                      <Grid item xs={9} md={5}>
+                        <Input
+                          form={form}
+                          name="phoneNumber"
+                          rules={{
+                            pattern: {
+                              value: REGEX_PHONE_NUMBER,
+                              message: t("errors.invalidPhoneNumber"),
+                            },
+                          }}
+                        />
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>

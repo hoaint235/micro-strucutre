@@ -15,15 +15,15 @@ const useStyleListItem = makeStyles((theme: Theme) => ({
     "&:hover": {
       backgroundColor: fade(theme.palette.primary.main, 0.1),
       color: theme.palette.primary.main,
-      // "&> .mra-layout-MuiListItemIcon-root": {
-      //   color: fade(theme.palette.primary.main, 0.8),
-      // },
-      // "&> .mra-layout-MuiListItemText-root": {
-      //   color: fade(theme.palette.primary.main, 0.8),
-      //   "&> .mra-layout-MuiTypography-root": {
-      //     color: fade(theme.palette.primary.main, 0.8),
-      //   },
-      // },
+      "&> .mra-layout-MuiListItemIcon-root": {
+        color: fade(theme.palette.primary.main, 0.8),
+      },
+      "&> .mra-layout-MuiListItemText-root": {
+        color: fade(theme.palette.primary.main, 0.8),
+        "&> .mra-layout-MuiTypography-root": {
+          color: fade(theme.palette.primary.main, 0.8),
+        },
+      },
     },
   },
 }));
@@ -51,7 +51,7 @@ const useStyleItemText = makeStyles(() => ({
 const useStyles = makeStyles((theme: Theme) => ({
   activeLink: {
     backgroundColor: fade(theme.palette.primary.main, 0.2),
-    "& .mra-account-MuiTypography-body1": {
+    "& .mra-layout-MuiTypography-body1": {
       fontWeight: 700,
       color: theme.palette.primary.main,
     },

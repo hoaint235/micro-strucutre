@@ -31,16 +31,14 @@ function registerApps() {
   );
 }
 
-Promise.all(
-  requiredModules.map((module) => {
-    return System.import(module.name);
-  })
-).then(() => {
-  registerApps();
+Promise.all(requiredModules.map((module) => System.import(module.name))).then(
+  () => {
+    registerApps();
 
-  Routing.register();
-  Cognito.initialize();
-  API.userInterceptor();
+    Routing.register();
+    Cognito.initialize();
+    API.userInterceptor();
 
-  start({ urlRerouteOnly: true });
-});
+    start({ urlRerouteOnly: true });
+  }
+);

@@ -5,6 +5,8 @@ declare module "@mra/utility" {
   export const resources: any;
 }
 
+declare module "@mra/layout";
+
 declare module "@mra/theme" {
   export {
     Box,

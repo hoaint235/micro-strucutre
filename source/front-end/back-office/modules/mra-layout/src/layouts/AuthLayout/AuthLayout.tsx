@@ -1,13 +1,16 @@
-import { Box, makeStyles } from "@mra/theme";
-import React, { Fragment, useState } from "react";
+import { Box, makeStyles, MProvider, Theme } from "@mra/theme";
+import React, { useState } from "react";
 import { LoadingProvider, ToastProvider } from "../../components";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import Header from "./Header/Header";
 import NavBar from "./NavBar/NavBar";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    marginTop: 80,
+    display: "flex",
+  },
+  container: {
     backgroundColor: "rgb(227, 242, 253)",
     flexGrow: 1,
     marginRight: 20,
@@ -32,19 +35,21 @@ const AuthLayout = (props) => {
   };
 
   return (
-    <Fragment>
-      <div style={{ display: "flex" }}>
-        <Header onToggle={onToggleMenu} />
-        <NavBar openMenu={openMenu} contentHide={() => setOpenMenu(false)} />
+    <MProvider name="mra-layout">
+      <Router>
         <div className={classes.root}>
-          <Box component="div" p={3}>
-            {children}
+          <Header onToggle={onToggleMenu} />
+          <NavBar openMenu={openMenu} contentHide={() => setOpenMenu(false)} />
+          <Box component="div" mt={10} className={classes.container}>
+            <Box component="div" p={3}>
+              {children}
+            </Box>
           </Box>
         </div>
-      </div>
-      <ToastProvider />
-      <LoadingProvider />
-    </Fragment>
+        <ToastProvider />
+        <LoadingProvider />
+      </Router>
+    </MProvider>
   );
 };
 
