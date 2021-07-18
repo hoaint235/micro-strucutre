@@ -1,21 +1,16 @@
-import { InputProps, Rules } from "../form-type";
-import { MField } from "@mra/theme";
-import React from "react";
+import { Checkbox } from "@mra/theme";
+import React, { useMemo } from "react";
 import { useController } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
+import { CheckboxFormProps, Rules } from "../form-type";
 
-const Input = (props: InputProps) => {
+const CheckBox = (props: CheckboxFormProps) => {
   const {
     name,
     defaultValue,
     rules,
-    children,
-    useDefaultRules = true,
-    form: {
-      control,
-      formState: { errors },
-    },
+    useDefaultRules = false,
+    control,
     ...restProps
   } = props;
   const { t } = useTranslation();
@@ -44,14 +39,8 @@ const Input = (props: InputProps) => {
   });
 
   return (
-    <MField.Input
-      error={!!errors[name]}
-      helperText={!!errors[name] && errors[name].message}
-      {...restProps}
-      {...inputProps}
-      inputRef={ref}
-    />
+    <Checkbox data-testid={`checkbox-${name}`} inputRef={ref} inputProps={{...inputProps}} {...restProps} />
   );
 };
 
-export default Input;
+export default CheckBox;

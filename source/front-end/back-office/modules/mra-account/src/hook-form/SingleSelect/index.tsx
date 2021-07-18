@@ -39,10 +39,7 @@ const SingleSelect = (props: SelectFormProps) => {
     <MSelect.Single
       error={!!errors[name]}
       helperText={!!errors[name] && errors[name].message}
-      onChange={(data) => {
-        console.log(data);
-        onChange(data);
-      }}
+      onChange={(data) => onChange(data)}
       {...restProps}
       {...inputProps}
       inputRef={ref}

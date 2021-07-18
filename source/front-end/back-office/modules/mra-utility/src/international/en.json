@@ -57,7 +57,11 @@
     "confirmPassword": "Confirm password",
     "rememberMe": "Remember me",
     "phoneNumber": "Phone number",
-    "otpCode": "OTP Code"
+    "otpCode": "OTP Code",
+    "countryCode": "Country Code",
+    "houseNumber": "House Number",
+    "district": "District",
+    "city": "City"
   },
   "table": {
     "name": "Name",

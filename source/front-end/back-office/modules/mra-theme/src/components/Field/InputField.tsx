@@ -22,35 +22,30 @@ const useHelperStyles = makeStyles({
   },
 });
 
-const InputField = (props: TextFieldProps) => {
-  const { name, label, fullWidth = true, ...restProps } = props;
+type Props = TextFieldProps & {
+  maxLength?: number;
+};
+
+const InputField = (props: Props) => {
+  const { name, maxLength, fullWidth = true, ...restProps } = props;
   const classes = useStyles();
   const helperClasses = useHelperStyles();
 
   return (
-    <Grid container xs={12}>
-      {label && (
-        <Grid item xs={12} md={2}>
-          <Box mb={1 / 2}>{label}</Box>
-        </Grid>
-      )}
-      <Grid item xs={12} md={10}>
-        <TextField
-          classes={{ ...classes }}
-          {...restProps}
-          fullWidth={fullWidth}
-          size="small"
-          variant="outlined"
-          inputProps={{
-            "data-testid": `input-${name}`,
-          }}
-          FormHelperTextProps={{
-            classes: { ...helperClasses },
-          }}
-          InputLabelProps={{ shrink: false }}
-        />
-      </Grid>
-    </Grid>
+    <TextField
+      classes={{ ...classes }}
+      {...restProps}
+      fullWidth={fullWidth}
+      size="small"
+      variant="outlined"
+      inputProps={{
+        "data-testid": `input-${name}`,
+        maxLength: maxLength,
+      }}
+      FormHelperTextProps={{
+        classes: { ...helperClasses },
+      }}
+    />
   );
 };
 

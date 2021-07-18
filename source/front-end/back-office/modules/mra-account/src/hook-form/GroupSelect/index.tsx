@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useController } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { GroupSelectionField, GroupSelectionProps } from "../../theme";
+import { GroupSelectionField, GroupSelectionProps } from "../../components";
 import { HookFormFieldProps, Rules } from "../form-type";
 
 type Props = GroupSelectionProps & HookFormFieldProps;

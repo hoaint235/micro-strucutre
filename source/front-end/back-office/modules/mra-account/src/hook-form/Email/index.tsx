@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Input } from "..";
 import { REGEX_EMAIL } from "../../utils";
 import { Rules } from "../form-type";
-import { InputProps } from "../Input";
+import { InputProps } from "../form-type";
 
 const Email = ({ rules, ...restProps }: InputProps) => {
   const { t } = useTranslation();

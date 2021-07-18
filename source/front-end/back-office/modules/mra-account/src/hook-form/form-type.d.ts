@@ -1,5 +1,5 @@
-import { TextFieldProps } from "@material-ui/core";
-import { Mode, RegisterOptions, UseFormReturn } from "react-hook-form";
+import { CheckboxProps, TextFieldProps } from "@mra/theme";
+import { Control, Mode, RegisterOptions, UseFormReturn } from "react-hook-form";
 
 export type Rules = Omit<
   RegisterOptions,
@@ -12,7 +12,7 @@ export type FormOptionsProps = {
   defaultValues?: any;
 };
 
-export interface HookFormFieldProps {
+export type HookFormFieldProps = {
   name: string;
   form?: UseFormReturn<any>;
   defaultValue?: any;
@@ -44,3 +44,12 @@ export type SelectFormProps = HookFormFieldProps &
     rules?: Rules;
     children?: string | React.ReactNode;
   };
+
+export type InputProps = TextFieldProps &
+  HookFormFieldProps & {
+    [key: string]: any;
+  };
+
+export type CheckboxFormProps = HookFormFieldProps & CheckboxProps & {
+  control: Control<any>
+};

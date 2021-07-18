@@ -13,3 +13,9 @@ declare interface ListingRequest {
   offset: number;
   sorts?: Array<SortRequest>;
 }
+
+declare interface IUser {
+  email: string;
+  roles: string[];
+  phoneNumber: string;
+}

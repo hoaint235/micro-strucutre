@@ -35,6 +35,12 @@ declare module "@mra/theme" {
     DialogTitle,
     Chip,
     ChipProps,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+    Checkbox,
+    FormControlLabel,
+    CheckboxProps,
   } from "@material-ui/core";
 
   export const MLogo;
