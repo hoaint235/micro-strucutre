@@ -3,6 +3,7 @@ declare module "@mra/utility" {
   export function getCurrentUserRoles(): Promise<string[]>;
   export const API: any;
   export const resources: any;
+  export const toastHelper: ToastProps;
 }
 
 declare module "@mra/layout";

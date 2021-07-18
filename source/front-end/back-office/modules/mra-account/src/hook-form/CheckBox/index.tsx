@@ -39,7 +39,12 @@ const CheckBox = (props: CheckboxFormProps) => {
   });
 
   return (
-    <Checkbox data-testid={`checkbox-${name}`} inputRef={ref} inputProps={{...inputProps}} {...restProps} />
+    <Checkbox
+      data-testid={`checkbox-${name}`}
+      inputRef={ref}
+      inputProps={{ ...inputProps }}
+      {...restProps}
+    />
   );
 };
 

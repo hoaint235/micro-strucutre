@@ -1,17 +1,17 @@
 import Amplify from "@aws-amplify/auth";
-import { WindowEvent } from "../constants";
+import { WindowEvents } from "../constants";
 
 async function interceptor(callback: Promise<any>) {
   try {
-    window.dispatchEvent(new CustomEvent(WindowEvent.INCREASE_LOADING));
+    window.dispatchEvent(new CustomEvent(WindowEvents.INCREASE_LOADING));
     return await callback;
   } catch (error) {
     window.dispatchEvent(
-      new CustomEvent(WindowEvent.TOAST_ERROR, { detail: error.code })
+      new CustomEvent(WindowEvents.TOAST_ERROR, { detail: error.code })
     );
     return Promise.reject(error);
   } finally {
-    window.dispatchEvent(new CustomEvent(WindowEvent.DECREASE_LOADING));
+    window.dispatchEvent(new CustomEvent(WindowEvents.DECREASE_LOADING));
   }
 }
 

@@ -23,7 +23,12 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
 
   const renderSubmit = () => {
     return (
-      <MButton.Primary type="submit" fullWidth label={t("buttons.submit")} />
+      <MButton.Primary
+        size="large"
+        type="submit"
+        fullWidth
+        label={t("buttons.submit")}
+      />
     );
   };
 

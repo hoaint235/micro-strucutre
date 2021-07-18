@@ -18,7 +18,7 @@ export type HookFormFieldProps = {
   defaultValue?: any;
   rules?: Rules;
   useDefaultRules?: boolean;
-}
+};
 
 export type HookFormProps = {
   children?: any;
@@ -50,6 +50,7 @@ export type InputProps = TextFieldProps &
     [key: string]: any;
   };
 
-export type CheckboxFormProps = HookFormFieldProps & CheckboxProps & {
-  control: Control<any>
-};
+export type CheckboxFormProps = HookFormFieldProps &
+  CheckboxProps & {
+    control: Control<any>;
+  };

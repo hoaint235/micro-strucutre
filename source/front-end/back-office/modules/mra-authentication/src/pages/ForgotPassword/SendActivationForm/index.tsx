@@ -25,7 +25,12 @@ const SendActivationForm = (props: HandleStepProps<ForgotStatus>) => {
       <FormFields onSubmit={onSendActivation}>
         <MTypography.Body label={t("auth.forgotPasswordSubtitle")} />
         <EmailForm label="fields.emailAddress" name="email" />
-        <MButton.Primary fullWidth type="submit" label={t("buttons.submit")} />
+        <MButton.Primary
+          size="large"
+          fullWidth
+          type="submit"
+          label={t("buttons.submit")}
+        />
       </FormFields>
     </ContentForm>
   );

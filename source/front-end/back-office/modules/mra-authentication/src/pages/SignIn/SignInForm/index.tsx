@@ -68,7 +68,12 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
             </a>
           </Grid>
         </Grid>
-        <MButton.Primary fullWidth type="submit" label={t("buttons.submit")} />
+        <MButton.Primary
+          size="large"
+          fullWidth
+          type="submit"
+          label={t("buttons.submit")}
+        />
       </FormFields>
     </ContentForm>
   );

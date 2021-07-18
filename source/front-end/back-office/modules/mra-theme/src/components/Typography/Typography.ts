@@ -7,7 +7,7 @@ import Caption from "./Caption";
 const Typography = {
   Title: Title,
   Subtitle: Subtitle,
-  Lable: Label,
+  Label: Label,
   Body: Body,
   Caption: Caption,
 };

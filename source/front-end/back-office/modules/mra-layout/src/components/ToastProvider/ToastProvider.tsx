@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, Fragment } from "react";
 import { toast, ToastOptions, ToastContainer } from "react-toastify";
+import Message from "./Message";
 import { WindowEvents } from "../../utils";
 import "react-toastify/dist/ReactToastify.css";
-import Message from "./Message";
 
 const configToast: ToastOptions = {
   position: "top-center",
@@ -18,11 +18,9 @@ const configToast: ToastOptions = {
 
 const ToastProvider = () => {
   const handleGlobalToastError = useCallback((event: Event) => {
-    const { detail: translation } = event as CustomEvent;
+    const { detail: message } = event as CustomEvent;
     toast(
-      ({ closeToast }) => (
-        <Message message={translation} onClose={closeToast} />
-      ),
+      ({ closeToast }) => <Message message={message} onClose={closeToast} />,
       {
         ...configToast,
         type: "error",
@@ -30,12 +28,10 @@ const ToastProvider = () => {
     );
   }, []);
 
-  const handleGlobalToastSucces = useCallback((event: Event) => {
-    const { detail: translation } = event as CustomEvent;
+  const handleGlobalToastSuccess = useCallback((event: Event) => {
+    const { detail: message } = event as CustomEvent;
     toast(
-      ({ closeToast }) => (
-        <Message message={translation} onClose={closeToast} />
-      ),
+      ({ closeToast }) => <Message message={message} onClose={closeToast} />,
       {
         ...configToast,
         type: "success",
@@ -54,12 +50,12 @@ const ToastProvider = () => {
 
   useEffect(() => {
     window.addEventListener(WindowEvents.TOAST_SUCCESS, (e) =>
-      handleGlobalToastSucces(e)
+      handleGlobalToastSuccess(e)
     );
     return window.removeEventListener(WindowEvents.TOAST_SUCCESS, (e) =>
-      handleGlobalToastSucces(e)
+      handleGlobalToastSuccess(e)
     );
-  }, [handleGlobalToastSucces]);
+  }, [handleGlobalToastSuccess]);
 
   return (
     <Fragment>

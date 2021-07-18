@@ -52,6 +52,7 @@ const ChangeFirstTimePasswordForm = (props: HandleStepProps<SignInStatus>) => {
       <Grid item xs={12}>
         <MButton.Primary
           fullWidth
+          size="large"
           type="submit"
           label={t("buttons.submit")}
           disabled={!isDirty || !isValid}

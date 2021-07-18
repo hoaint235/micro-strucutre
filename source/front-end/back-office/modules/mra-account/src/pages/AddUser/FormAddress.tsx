@@ -30,7 +30,7 @@ const FormAddress = (props: Props) => {
       <AccordionSummary>
         <FormControlLabel
           onClick={handleExpand}
-          control={<CheckBox name="isEditAddress" control={form.control}/>}
+          control={<CheckBox name="isEditAddress" control={form.control} />}
           label="Address Information"
         />
       </AccordionSummary>

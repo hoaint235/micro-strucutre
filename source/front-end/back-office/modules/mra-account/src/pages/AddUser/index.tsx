@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import FormInfo from "./FormInfo";
 import FormAddress from "./FormAddress";
 import { useForm } from "react-hook-form";
+import { ApiHelper } from "../../utils";
+import { API, toastHelper } from "@mra/utility";
 
 const AddUser = () => {
   const { t } = useTranslation();
@@ -22,8 +24,9 @@ const AddUser = () => {
       phoneNumber: `${data.countryCode}${data.phoneNumber}`,
       roles: data.roles,
     };
-    console.log(payload);
-    // await API.post(ApiHelper.createUser(), data);
+    // await API.post(ApiHelper.createUser(), {...payload});
+    toastHelper.success("Create new user success");
+    history.push("/users");
   };
 
   return (
