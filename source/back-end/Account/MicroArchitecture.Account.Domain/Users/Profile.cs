@@ -3,31 +3,31 @@ using MicroArchitecture.Account.Domain.Core.Domain;
 
 namespace MicroArchitecture.Account.Domain.Users
 {
-    public class UserProfile : ValueObject
+    public class Profile : ValueObject
     {
         public string Email { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public string Address { get; private set; }
         public string PhoneNumber { get; private set; }
 
-        private UserProfile(string email, string phoneNumber)
+        private Profile(string email, string phoneNumber, string firstName, string lastName)
         {
             Email = email;
             PhoneNumber = phoneNumber;
+            FirstName = firstName;
+            LastName = lastName;
         }
 
-        public static UserProfile Create(string email, string phoneNumber)
+        public static Profile Create(string email, string phoneNumber, string firstName, string lastName)
         {
-            return new UserProfile(email, phoneNumber);
+            return new Profile(email, phoneNumber, firstName, lastName);
         }
 
-        public void Update(string phoneNumber, string firstName, string lastName, string address)
+        public void Update(string phoneNumber, string firstName, string lastName)
         {
             PhoneNumber = phoneNumber;
             FirstName = firstName;
             LastName = lastName;
-            Address = address;
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

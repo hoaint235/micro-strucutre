@@ -4,12 +4,21 @@ import {
   Accordion,
   AccordionSummary,
   FormControlLabel,
+  Switch,
+  makeStyles,
+  Theme,
 } from "@mra/theme";
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import { useState } from "react";
-import { UseFormReturn } from "react-hook-form";
+import { Controller, UseFormReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { CheckBox, Input } from "../../hook-form";
+import { Input } from "../../hook-form";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  header: {
+    maxHeight: theme.spacing(8),
+  },
+}));
 
 type Props = {
   form: UseFormReturn<any>;
@@ -18,20 +27,35 @@ type Props = {
 const FormAddress = (props: Props) => {
   const { form } = props;
   const { t } = useTranslation();
+  const classes = useStyles();
   const [isEntering, setIsEntering] = useState(false);
 
-  const handleExpand = async (event: SyntheticEvent) => {
-    event.stopPropagation();
-    await setIsEntering(!isEntering);
+  const handleExpand = () => {
+    setIsEntering(!isEntering);
   };
 
   return (
     <Accordion expanded={true}>
-      <AccordionSummary>
-        <FormControlLabel
-          onClick={handleExpand}
-          control={<CheckBox name="isEditAddress" control={form.control} />}
-          label="Address Information"
+      <AccordionSummary className={classes.header}>
+        <Controller
+          name="isEditAddress"
+          render={({ field: { ref, onChange, ...props } }) => (
+            <FormControlLabel
+              control={
+                <Switch
+                  color="primary"
+                  onChange={(e) => {
+                    onChange(e);
+                    handleExpand();
+                  }}
+                  {...props}
+                  inputRef={ref}
+                />
+              }
+              label={t("account.addUserPage.addressTitle")}
+            />
+          )}
+          control={form.control}
         />
       </AccordionSummary>
       <AccordionDetails>
@@ -39,7 +63,7 @@ const FormAddress = (props: Props) => {
           <Grid item xs={12}>
             <Input
               form={form}
-              useDefaultRules={false}
+              useDefaultRules={isEntering}
               name="houseNumber"
               label={t("fields.houseNumber")}
               disabled={!isEntering}
@@ -51,7 +75,7 @@ const FormAddress = (props: Props) => {
               name="district"
               label={t("fields.district")}
               disabled={!isEntering}
-              useDefaultRules={false}
+              useDefaultRules={isEntering}
             />
           </Grid>
           <Grid item xs={12}>
@@ -60,7 +84,7 @@ const FormAddress = (props: Props) => {
               name="city"
               label={t("fields.city")}
               disabled={!isEntering}
-              useDefaultRules={false}
+              useDefaultRules={isEntering}
             />
           </Grid>
         </Grid>

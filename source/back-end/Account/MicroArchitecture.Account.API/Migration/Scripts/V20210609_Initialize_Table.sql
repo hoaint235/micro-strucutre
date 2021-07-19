@@ -9,11 +9,13 @@ CREATE TABLE [dbo].[User] (
   LastName NVARCHAR(50),
   Status INT NOT NULL,
   IsActivate BIT DEFAULT 0,
-  Address NVARCHAR(200) NULL,
-  PhoneNumber VARCHAR(15) NULL,
+  HouseNumber NVARCHAR(100),
+  District NVARCHAR(100),
+  City NVARCHAR(100),
+  PhoneNumber VARCHAR(15),
   CreatedBy UNIQUEIDENTIFIER,
   CreatedDate DATETIME NOT NULL,
-  UpdatedBy UNIQUEIDENTIFIER NULL,
+  UpdatedBy UNIQUEIDENTIFIER,
   UpdatedDate DATETIME NULL,
   IsDeleted BIT DEFAULT 0
 )

@@ -9,22 +9,56 @@ import { useForm } from "react-hook-form";
 import { ApiHelper } from "../../utils";
 import { API, toastHelper } from "@mra/utility";
 
+export type FormData = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  countryCode: string;
+  phoneNumber: string;
+  roles: string[];
+  isEditAddress?: boolean;
+  houseNumber?: string;
+  district?: string;
+  city?: string;
+};
+
 const AddUser = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const form = useForm({ mode: "onBlur", reValidateMode: "onChange" });
+  const form = useForm<FormData>({
+    mode: "onBlur",
+    reValidateMode: "onChange",
+  });
   const {
     handleSubmit,
     formState: { isDirty, isValid },
   } = form;
 
-  const onSubmit = async (data) => {
-    const payload: IUser = {
+  const onSubmit = async (data: FormData) => {
+    const profile: IProfile = {
+      firstName: data.firstName,
+      lastName: data.lastName,
       email: data.email,
       phoneNumber: `${data.countryCode}${data.phoneNumber}`,
-      roles: data.roles,
     };
-    // await API.post(ApiHelper.createUser(), {...payload});
+
+    let address: IAddress = {};
+    if (data.isEditAddress) {
+      address = {
+        city: data.city,
+        houseNumber: data.houseNumber,
+        district: data.district,
+      };
+    }
+
+    const payload: IUser = {
+      roles: data.roles,
+      profile: profile,
+      address: address,
+      isEditAddress: data.isEditAddress,
+    };
+
+    await API.post(ApiHelper.createUser(), { ...payload });
     toastHelper.success("Create new user success");
     history.push("/users");
   };

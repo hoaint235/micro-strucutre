@@ -49,9 +49,27 @@ const FormInfo = (props: Props) => {
 
   return (
     <Accordion expanded={true}>
-      <AccordionSummary>Account Information</AccordionSummary>
+      <AccordionSummary>
+        {t("account.addUserPage.accountTitle")}
+      </AccordionSummary>
       <AccordionDetails>
         <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Input
+              label={t("fields.firstName")}
+              name="firstName"
+              maxLength={50}
+              form={form}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Input
+              label={t("fields.lastName")}
+              name="lastName"
+              maxLength={50}
+              form={form}
+            />
+          </Grid>
           <Grid item xs={12}>
             <Email
               label={t("fields.emailAddress")}

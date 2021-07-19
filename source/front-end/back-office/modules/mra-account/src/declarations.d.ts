@@ -42,6 +42,7 @@ declare module "@mra/theme" {
     Checkbox,
     FormControlLabel,
     CheckboxProps,
+    Switch,
   } from "@material-ui/core";
 
   export const MLogo;

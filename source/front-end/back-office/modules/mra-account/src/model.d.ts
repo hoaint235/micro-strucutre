@@ -14,8 +14,24 @@ declare interface ListingRequest {
   sorts?: Array<SortRequest>;
 }
 
-declare interface IUser {
+declare interface IAddress {
+  houseNumber?: string;
+  district?: string;
+  city?: string;
+}
+
+declare type Role = string;
+
+declare interface IProfile {
+  firstName: string;
+  lastName: string;
   email: string;
-  roles: string[];
   phoneNumber: string;
+}
+
+declare interface IUser {
+  roles: Role[];
+  profile: IProfile;
+  isEditAddress?: boolean;
+  address?: IAddress;
 }

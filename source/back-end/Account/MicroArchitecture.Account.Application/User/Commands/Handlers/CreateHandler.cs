@@ -1,9 +1,9 @@
-﻿using MassTransit;
-using MediatR;
+﻿using MediatR;
 using MicroArchitecture.Account.Domain.Users;
 using MicroArchitecture.Account.Infrastructure.Commons.Models;
 using System.Threading;
 using System.Threading.Tasks;
+using Profile = MicroArchitecture.Account.Domain.Users.Profile;
 
 namespace MicroArchitecture.Account.Application.User.Commands.Handlers
 {
@@ -18,7 +18,17 @@ namespace MicroArchitecture.Account.Application.User.Commands.Handlers
 
         public async Task<ApiResult<Unit>> Handle(Create request, CancellationToken cancellationToken)
         {
-            var user = Domain.Users.User.Create(request.Email, request.PhoneNumber, request.Roles);
+            var profile = Profile.Create(request.Profile.Email, request.Profile.PhoneNumber, request.Profile.FirstName, request.Profile.LastName);
+            Domain.Users.User user;
+            if (request.IsEditAddress)
+            {
+                var address = Address.Create(request.Address.HouseNumber, request.Address.District, request.Address.City);
+                user = Domain.Users.User.Create(profile, address, request.Roles);
+            }
+            else
+            {
+                user = Domain.Users.User.Create(profile, request.Roles);
+            }
             _userRepository.Add(user);
             await _userRepository.UnitOfWork.CommitAsync();
 

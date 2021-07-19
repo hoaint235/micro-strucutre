@@ -19,7 +19,9 @@
     },
     "addUserPage": {
       "title": "Add User",
-      "roles": "Roles"
+      "roles": "Roles",
+      "accountTitle": "Account Information",
+      "addressTitle": "Address Information"
     },
     "deactivate": "Deactivate",
     "activate": "Activate",
@@ -47,6 +49,7 @@
     "edit": "Edit",
     "delete": "Delete",
     "cancel": "Cancel",
+    "back": "Back",
     "deactivate": "Deactivate",
     "activate": "Activate"
   },
@@ -58,6 +61,8 @@
     "rememberMe": "Remember me",
     "phoneNumber": "Phone number",
     "otpCode": "OTP Code",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "countryCode": "Country Code",
     "houseNumber": "House Number",
     "district": "District",
@@ -75,7 +80,8 @@
     "noResultFound": "Not result found"
   },
   "menus": {
-    "users": "Users"
+    "users": "Users",
+    "products": "Products"
   },
   "errors": {
     "cognito": {

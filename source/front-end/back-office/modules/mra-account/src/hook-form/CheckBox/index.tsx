@@ -9,8 +9,9 @@ const CheckBox = (props: CheckboxFormProps) => {
     name,
     defaultValue,
     rules,
+    onChangeValue,
     useDefaultRules = false,
-    control,
+    form: { control },
     ...restProps
   } = props;
   const { t } = useTranslation();
@@ -30,7 +31,7 @@ const CheckBox = (props: CheckboxFormProps) => {
   }, [rules, useDefaultRules]);
 
   const {
-    field: { ref, ...inputProps },
+    field: { ref, onChange, ...inputProps },
   } = useController({
     name,
     control,
@@ -42,6 +43,10 @@ const CheckBox = (props: CheckboxFormProps) => {
     <Checkbox
       data-testid={`checkbox-${name}`}
       inputRef={ref}
+      onChange={(e) => {
+        onChange(e);
+        onChangeValue(e.target.value);
+      }}
       inputProps={{ ...inputProps }}
       {...restProps}
     />
