@@ -1,86 +1,100 @@
-import {
-  Box,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Grid,
-  MButton,
-} from "@mra/theme";
-import { API } from "@mra/utility";
-import React, { Fragment, useCallback } from "react";
-import { UseFormReturn } from "react-hook-form";
+import { Box, Grid, MButton } from "@mra/theme";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { GroupContainer } from "../../components";
-import { Email, Form, GroupSelect, Input } from "../../hook-form";
-import { ApiHelper, REGEX_PHONE_NUMBER, Roles } from "../../utils";
-import { useGetCurrentUserRoles } from "../../hooks";
+import { MainContainer } from "../../components";
+import { useHistory } from "react-router-dom";
+import FormInfo from "./FormInfo";
+import FormAddress from "./FormAddress";
+import { useForm } from "react-hook-form";
+import { ApiHelper } from "../../utils";
+import { API, toastHelper } from "@mra/utility";
 
-const AddUser = (props: DialogProps) => {
-  const { isOpen, onClose } = props;
+export type FormData = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  countryCode: string;
+  phoneNumber: string;
+  roles: string[];
+  isEditAddress?: boolean;
+  houseNumber?: string;
+  district?: string;
+  city?: string;
+};
+
+const AddUser = () => {
   const { t } = useTranslation();
-  const { roles } = useGetCurrentUserRoles();
-
-  const getSource = useCallback(() => {
-    return Object.keys(Roles)
-      .filter((x) => x !== "Master")
-      .map((key) => ({
-        key: Roles[key].toLowerCase(),
-        value: `roles.${key.toLowerCase()}`,
-      }))
-      .filter((x) => roles.includes(x.key));
-  }, [roles]);
-
-  const onSubmit = async (data) => {
-    await API.post(ApiHelper.createUser(), data);
-  };
-
-  const renderSubmit = ({
+  const history = useHistory();
+  const form = useForm<FormData>({
+    mode: "onBlur",
+    reValidateMode: "onChange",
+  });
+  const {
+    handleSubmit,
     formState: { isDirty, isValid },
-  }: UseFormReturn<any>) => {
-    return (
-      <Grid item xs={12} justify="flex-end" style={{ display: "flex" }}>
-        <Box mr={2}>
-          <MButton.Default onClick={onClose} label={t("buttons.cancel")} />
-        </Box>
-        <MButton.Primary
-          type="submit"
-          disabled={!isDirty || !isValid}
-          label={t("buttons.submit")}
-        />
-      </Grid>
-    );
+  } = form;
+
+  const onSubmit = async (data: FormData) => {
+    const profile: IProfile = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phoneNumber: `${data.countryCode}${data.phoneNumber}`,
+    };
+
+    let address: IAddress = {};
+    if (data.isEditAddress) {
+      address = {
+        city: data.city,
+        houseNumber: data.houseNumber,
+        district: data.district,
+      };
+    }
+
+    const payload: IUser = {
+      roles: data.roles,
+      profile: profile,
+      address: address,
+      isEditAddress: data.isEditAddress,
+    };
+
+    await API.post(ApiHelper.createUser(), { ...payload });
+    toastHelper.success("Create new user success");
+    history.push("/users");
   };
 
   return (
-    <Dialog maxWidth="xs" open={isOpen} disableBackdropClick={true}>
-      <DialogTitle id="alert-dialog-title">
-        {t("account.addUserDialog.title")}
-      </DialogTitle>
-      <DialogContent>
-        <Form
-          onSubmit={onSubmit}
-          renderSubmit={renderSubmit}
-          renderChildren={(form) => (
-            <Fragment>
-              <Email label="fields.emailAddress" name="email" />
-              <Input
-                label="fields.phoneNumber"
-                name="phoneNumber"
-                rules={{
-                  pattern: {
-                    value: REGEX_PHONE_NUMBER,
-                    message: t("errors.invalidPhoneNumber"),
-                  },
-                }}
-              />
-              <GroupContainer title="account.addUserDialog.roles">
-                <GroupSelect source={getSource()} name="roles" form={form} />
-              </GroupContainer>
-            </Fragment>
-          )}
-        />
-      </DialogContent>
-    </Dialog>
+    <MainContainer title="account.addUserPage.title">
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={2} justify="center">
+              <Grid item xs={12} md={6}>
+                <FormInfo form={form} />
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <FormAddress form={form} />
+              </Grid>
+
+              <Grid item xs={12} justify="flex-end" style={{ display: "flex" }}>
+                <Box mr={2}>
+                  <MButton.Default
+                    onClick={() => history.push("/users")}
+                    label={t("buttons.cancel")}
+                  />
+                </Box>
+                <MButton.Primary
+                  type="submit"
+                  disabled={!isDirty || !isValid}
+                  label={t("buttons.submit")}
+                />
+              </Grid>
+            </Grid>
+          </form>
+        </Grid>
+      </Grid>
+    </MainContainer>
   );
 };
 

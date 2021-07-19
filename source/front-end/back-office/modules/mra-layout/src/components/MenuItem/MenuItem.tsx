@@ -1,6 +1,6 @@
 import { ListItem, ListItemIcon, ListItemText } from "@mra/theme";
 import { useTranslation } from "react-i18next";
-import { NavLink, useLocation } from "react-router-dom";
+import { matchPath, NavLink, useLocation } from "react-router-dom";
 import React, { useCallback, useMemo } from "react";
 import {
   useStyleListItem,
@@ -21,11 +21,13 @@ const MenuItem = (props: MenuItemProps) => {
   const { pathname } = useLocation();
 
   const checkActivate = useCallback(() => {
-    if (pathsActivate) {
-      return pathsActivate.includes(pathname);
-    }
-
-    return path === pathname;
+    const isActivate = pathsActivate
+      ? pathsActivate.some(
+          (path) =>
+            !!matchPath(pathname, { path: path, exact: true, strict: true })
+        )
+      : path === pathname;
+    return isActivate;
   }, [pathname, path, pathsActivate]);
 
   const MenuLink = useMemo(
@@ -40,7 +42,7 @@ const MenuItem = (props: MenuItemProps) => {
           activeClassName={classes.activeLink}
         />
       )),
-    [path, checkActivate]
+    [path, exact, checkActivate, pathname]
   );
 
   return (

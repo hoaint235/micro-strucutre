@@ -5,6 +5,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { v4 as uuidv4 } from "uuid";
 import { DynamicTableBodyProps } from "./DataTableBody.type";
 import { Typography } from "@material-ui/core";
+import { MTypography } from "..";
 
 const prefixBody = "body";
 
@@ -37,13 +38,7 @@ const DynamicTableBody = (props: DynamicTableBodyProps) => {
                   {bodyTemplate[column] ? (
                     bodyTemplate[column](row)
                   ) : (
-                    <Typography
-                      component="p"
-                      variant="subtitle2"
-                      color="textPrimary"
-                    >
-                      {value}
-                    </Typography>
+                    <MTypography.Body color="textPrimary" label={value} />
                   )}
                 </TableCell>
               );

@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using MicroArchitecture.Account.Application.User.Models;
+﻿using MicroArchitecture.Account.Application.User.Models;
 using System.Linq;
+using ProfileMapper = AutoMapper.Profile;
 
 namespace MicroArchitecture.Account.Application.User.Mappers
 {
-    public class UserProfile : Profile
+    public class UserProfile : ProfileMapper
     {
         public UserProfile()
         {

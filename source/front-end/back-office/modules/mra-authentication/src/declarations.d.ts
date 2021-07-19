@@ -4,6 +4,7 @@ declare module "@mra/utility" {
   export const Cognito: AwsCognito;
 }
 
+declare module "@mra/layout";
 declare module "@mra/theme" {
   export {
     Box,

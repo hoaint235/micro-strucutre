@@ -4,7 +4,12 @@ declare type DialogProps = {
   data?: any;
 };
 
-declare type SelectProps<T = any> = {
+declare type SelectProps = {
   key: string;
-  value: T;
+  value: string;
+};
+
+declare type ToastProps = {
+  error(message: string): void;
+  success(message: string): void;
 };

@@ -10,6 +10,7 @@ module.exports = {
     layout: {
       name: "@mra/layout",
       router: true,
+      required: true,
       origin: process.env.MRA_LAYOUT_URL,
       entry: "mra-layout.js",
     },

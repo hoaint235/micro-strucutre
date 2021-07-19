@@ -1,8 +1,9 @@
-import { Grid, makeStyles, MTypography } from "@mra/theme";
+import { Grid, makeStyles, Theme, MTypography } from "@mra/theme";
 import { Close } from "@material-ui/icons";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   btnClose: {
     width: 20,
     height: 20,
@@ -29,11 +30,12 @@ type Props = {
 const Message = (props: Props) => {
   const { message, onClose } = props;
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <Grid container spacing={2} alignItems="center">
       <Grid item xs={10}>
-        <MTypography.Label label={message} className={classes.message} />
+        <MTypography.Label label={t(message)} className={classes.message} />
       </Grid>
       <Grid item xs={2}>
         <button className={classes.btnClose} onClick={onClose}>

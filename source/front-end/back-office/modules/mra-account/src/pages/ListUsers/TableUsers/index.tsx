@@ -100,7 +100,10 @@ const TableUsers = () => {
 
   const renderStatus = (data) => {
     return (
-      <MTypography.Subtitle label={t(Statuses[data.status]).toUpperCase()} />
+      <MTypography.Body
+        color="textPrimary"
+        label={t(Statuses[data.status]).toUpperCase()}
+      />
     );
   };
 
@@ -138,7 +141,8 @@ const TableUsers = () => {
 
   const renderCreatedDate = (data) => {
     return (
-      <MTypography.Subtitle
+      <MTypography.Body
+        color="textPrimary"
         label={new Date(data.createdDate).toLocaleDateString()}
       />
     );

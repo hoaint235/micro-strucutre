@@ -3,7 +3,10 @@ declare module "@mra/utility" {
   export function getCurrentUserRoles(): Promise<string[]>;
   export const API: any;
   export const resources: any;
+  export const toastHelper: ToastProps;
 }
+
+declare module "@mra/layout";
 
 declare module "@mra/theme" {
   export {
@@ -21,9 +24,6 @@ declare module "@mra/theme" {
     Toolbar,
     AppBar,
     Paper,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
     CardContent,
     CardHeader,
     Container,
@@ -36,13 +36,21 @@ declare module "@mra/theme" {
     DialogTitle,
     Chip,
     ChipProps,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+    Checkbox,
+    FormControlLabel,
+    CheckboxProps,
+    Switch,
   } from "@material-ui/core";
 
   export const MLogo;
   export const MIconMenu;
-  export const SearchField;
+  export const MField;
   export const MProvider;
   export const MButton;
   export const MTypography;
   export const MDataTable;
+  export const MSelect;
 }

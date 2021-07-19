@@ -5,67 +5,93 @@ using MicroArchitecture.Account.Domain.Users.IntegrationEvents;
 
 namespace MicroArchitecture.Account.Domain.Users
 {
-  public class User : Entity, IAudit, IAggregateRoot
-  {
-    public UserProfile Profile { get; private set; }
-    public bool IsActivate { get; private set; }
-    public UserStatus Status { get; private set; }
-    public ICollection<UserRole> Roles { get; private set; }
-    public Guid? CreatedBy { get; set; }
-    public Guid? UpdatedBy { get; set; }
-    public DateTime? CreatedDate { get; set; }
-    public DateTime? UpdatedDate { get; set; }
-    public bool IsDeleted { get; set; }
-    public string ExternalId { get; private set; }
-
-    private User() { }
-
-    private User(UserProfile profile, UserStatus status)
+    public class User : Entity, IAudit, IAggregateRoot
     {
-      Profile = profile;
-      Status = status;
-    }
+        public Profile Profile { get; private set; }
+        public Address Address { get; private set; }
+        public bool IsActivate { get; private set; }
+        public UserStatus Status { get; private set; }
+        public ICollection<UserRole> Roles { get; private set; }
+        public Guid? CreatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public bool IsDeleted { get; set; }
+        public string ExternalId { get; private set; }
 
-    public static User Create(string email, string phoneNumber, List<Guid> roleIds)
-    {
-      var profile = UserProfile.Create(email, phoneNumber);
-      var user = new User(profile, UserStatus.ForceChangePassword);
-      user.Roles = UserRole.Create(user.Id, roleIds);
-      user.IsActivate = true;
+        private User() { }
 
-      AddIntegrationEvent(new UserCreatedEvent
-      {
-        Email = email,
-        PhoneNumber = phoneNumber
-      });
+        private User(Profile profile, UserStatus status)
+        {
+            Profile = profile;
+            Status = status;
+        }
 
-      return user;
-    }
+        private User(Profile profile, Address address, UserStatus status)
+        {
+            Profile = profile;
+            Status = status;
+            Address = address;
+        }
 
-    public void Activate()
-    {
-      IsActivate = true;
-      AddIntegrationEvent(new ActivateUserEvent
-      {
-        UserName = Profile.Email
-      });
-    }
+        private static void InitRoles(User user, List<Guid> roleIds)
+        {
+            user.Roles = UserRole.Create(user.Id, roleIds);
+            user.IsActivate = true;
+        }
 
-    public void Deactivate()
-    {
-      IsActivate = false;
-      AddIntegrationEvent(new DeactivateUserEvent
-      {
-        UserName = Profile.Email
-      });
-    }
+        public static User Create(Profile profile, List<Guid> roleIds)
+        {
+            var user = new User(profile, UserStatus.ForceChangePassword);
+            InitRoles(user, roleIds);
+
+            AddIntegrationEvent(new UserCreatedEvent
+            {
+                Email = profile.Email,
+                PhoneNumber = profile.PhoneNumber
+            });
+
+            return user;
+        }
+
+        public static User Create(Profile profile, Address address, List<Guid> roleIds)
+        {
+            var user = new User(profile, address, UserStatus.ForceChangePassword);
+            InitRoles(user, roleIds);
+
+            AddIntegrationEvent(new UserCreatedEvent
+            {
+                Email = profile.Email,
+                PhoneNumber = profile.PhoneNumber
+            });
+
+            return user;
+        }
+
+        public void Activate()
+        {
+            IsActivate = true;
+            AddIntegrationEvent(new ActivateUserEvent
+            {
+                UserName = Profile.Email
+            });
+        }
+
+        public void Deactivate()
+        {
+            IsActivate = false;
+            AddIntegrationEvent(new DeactivateUserEvent
+            {
+                UserName = Profile.Email
+            });
+        }
 
         public void UpdateRoles(List<Guid> roleIds)
         {
             Roles = UserRole.Create(Id, roleIds);
         }
 
-    public void Deleted()
+        public void Deleted()
         {
             IsDeleted = true;
             AddIntegrationEvent(new UserDeletedEvent
@@ -74,14 +100,14 @@ namespace MicroArchitecture.Account.Domain.Users
             });
         }
 
-    public void UpdateExternalId(string id)
-    {
-      ExternalId = id;
-    }
+        public void UpdateExternalId(string id)
+        {
+            ExternalId = id;
+        }
 
         public void UpdateStatus(UserStatus status)
         {
             Status = status;
         }
-  }
+    }
 }

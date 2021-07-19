@@ -1,11 +1,9 @@
-import { TextFieldProps } from "@material-ui/core";
+import { InputProps, Rules } from "../form-type";
+import { MField } from "@mra/theme";
 import React from "react";
 import { useController } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { InputField } from "../../theme";
-import { HookFormFieldProps } from "../form-type";
-
-export type InputProps = TextFieldProps & HookFormFieldProps;
+import { useMemo } from "react";
 
 const Input = (props: InputProps) => {
   const {
@@ -13,6 +11,7 @@ const Input = (props: InputProps) => {
     defaultValue,
     rules,
     children,
+    useDefaultRules = true,
     form: {
       control,
       formState: { errors },
@@ -21,25 +20,31 @@ const Input = (props: InputProps) => {
   } = props;
   const { t } = useTranslation();
 
+  const defaultRules = useMemo(() => {
+    let rules: Rules = {};
+    if (useDefaultRules) {
+      rules = {
+        required: {
+          value: true,
+          message: t("errors.requiredField"),
+        },
+      };
+    }
+
+    return rules;
+  }, [rules, useDefaultRules]);
+
   const {
     field: { ref, ...inputProps },
   } = useController({
     name,
     control,
-    rules: Object.assign(
-      {
-        required: {
-          value: true,
-          message: t("errors.requiredField"),
-        },
-      },
-      { ...rules }
-    ),
+    rules: Object.assign({ ...defaultRules }, { ...rules }),
     defaultValue,
   });
 
   return (
-    <InputField
+    <MField.Input
       error={!!errors[name]}
       helperText={!!errors[name] && errors[name].message}
       {...restProps}

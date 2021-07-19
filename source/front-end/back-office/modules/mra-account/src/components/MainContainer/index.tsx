@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, Paper } from "@mra/theme";
+import { Card, CardContent, CardHeader, MTypography, Paper } from "@mra/theme";
 import React, { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useStyleCardHeader, useStylePaper } from "./MainContainer.type";
@@ -25,7 +25,7 @@ const MainContainer = (props: Props) => {
       >
         <CardHeader
           classes={{ ...classesCardHeader }}
-          title={t(title)}
+          subheader={<MTypography.Subtitle label={t(title)} />}
           action={action}
         ></CardHeader>
       </Paper>

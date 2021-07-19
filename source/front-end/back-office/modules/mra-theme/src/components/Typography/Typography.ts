@@ -4,18 +4,10 @@ import Label from "./Label";
 import Body from "./Body";
 import Caption from "./Caption";
 
-type MfaTypographyProps = {
-  Title: typeof Title;
-  Subtitle: typeof Subtitle;
-  Lable: typeof Label;
-  Body: typeof Body;
-  Caption: typeof Caption;
-};
-
-const Typography: MfaTypographyProps = {
+const Typography = {
   Title: Title,
   Subtitle: Subtitle,
-  Lable: Label,
+  Label: Label,
   Body: Body,
   Caption: Caption,
 };

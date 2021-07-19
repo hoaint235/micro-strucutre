@@ -13,9 +13,11 @@ namespace MicroArchitecture.Account.Application.User.Queries.Handlers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public GetByIdHandler(IUserRepository userRepository)
+        public GetByIdHandler(IUserRepository userRepository
+            , IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         public async Task<ApiResult<UserDto>> Handle(GetById request, CancellationToken cancellationToken)

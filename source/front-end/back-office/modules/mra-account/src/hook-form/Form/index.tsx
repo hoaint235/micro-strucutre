@@ -1,17 +1,19 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mra/theme";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Email from "../Email";
 import { FormOptionsProps, HookFormProps } from "../form-type";
 import GroupSelect from "../GroupSelect";
 import Input from "../Input";
+import SingleSelect from "../SingleSelect";
+import MultipleSelect from "../MultipleSelect";
 
 const initFormOptions: FormOptionsProps = {
   mode: "onBlur",
   reValidateMode: "onChange",
 };
 
-const types = [Input, GroupSelect, Email];
+const types = [Input, GroupSelect, Email, SingleSelect, MultipleSelect];
 
 const Form = (props: HookFormProps) => {
   const {
@@ -21,8 +23,8 @@ const Form = (props: HookFormProps) => {
     renderSubmit,
     options = initFormOptions,
   } = props;
+
   const form = useForm({ ...options });
-  const { handleSubmit } = form;
 
   const renderHookFormItem = (child) => {
     const isHookFormField = types.some((x) => x.name === child.type.name);
@@ -64,7 +66,7 @@ const Form = (props: HookFormProps) => {
     );
   };
 
-  return <form onSubmit={handleSubmit(onSubmit)}>{renderForm()}</form>;
+  return <form onSubmit={form.handleSubmit(onSubmit)}>{renderForm()}</form>;
 };
 
 export default Form;

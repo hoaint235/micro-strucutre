@@ -6,21 +6,21 @@ const useStyleListItem = makeStyles((theme: Theme) => ({
     marginBottom: 5,
     paddingLeft: 23,
     fontWeight: 400,
-    "&> .mra-account-MuiListItemIcon-root": {
+    "&> .mra-layout-MuiListItemIcon-root": {
       color: theme.palette.text.primary,
     },
-    "&> .mra-account-MuiListItemText-root": {
+    "&> .mra-layout-MuiListItemText-root": {
       color: theme.palette.text.primary,
     },
     "&:hover": {
-      backgroundColor: "rgb(237, 231, 246)",
+      backgroundColor: fade(theme.palette.primary.main, 0.1),
       color: theme.palette.primary.main,
-      "&> .mra-account-MuiListItemIcon-root": {
+      "&> .mra-layout-MuiListItemIcon-root": {
         color: fade(theme.palette.primary.main, 0.8),
       },
-      "&> .mra-account-MuiListItemText-root": {
+      "&> .mra-layout-MuiListItemText-root": {
         color: fade(theme.palette.primary.main, 0.8),
-        "&> .mra-account-MuiTypography-root": {
+        "&> .mra-layout-MuiTypography-root": {
           color: fade(theme.palette.primary.main, 0.8),
         },
       },
@@ -50,12 +50,12 @@ const useStyleItemText = makeStyles(() => ({
 
 const useStyles = makeStyles((theme: Theme) => ({
   activeLink: {
-    backgroundColor: "rgb(237, 231, 246)",
-    "& .mra-account-MuiTypography-root": {
+    backgroundColor: fade(theme.palette.primary.main, 0.2),
+    "& .mra-layout-MuiTypography-body1": {
       fontWeight: 700,
       color: theme.palette.primary.main,
     },
-    "&> .mra-account-MuiListItemIcon-root": {
+    "&> .mra-layout-MuiListItemIcon-root": {
       color: theme.palette.primary.main,
     },
   },

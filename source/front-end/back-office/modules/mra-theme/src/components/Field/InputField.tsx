@@ -1,17 +1,35 @@
-import { makeStyles, TextField, TextFieldProps } from "@material-ui/core";
+import {
+  Box,
+  Grid,
+  makeStyles,
+  TextField,
+  TextFieldProps,
+} from "@material-ui/core";
 import React from "react";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   root: {
     "&> .mra-layout-MuiOutlinedInput-root": {
       borderRadius: 4,
     },
   },
-}));
+});
 
-const InputField = (props: TextFieldProps) => {
-  const { name, fullWidth = true, ...restProps } = props;
+const useHelperStyles = makeStyles({
+  error: {
+    marginLeft: 0,
+    marginRight: 0,
+  },
+});
+
+type Props = TextFieldProps & {
+  maxLength?: number;
+};
+
+const InputField = (props: Props) => {
+  const { name, maxLength, fullWidth = true, ...restProps } = props;
   const classes = useStyles();
+  const helperClasses = useHelperStyles();
 
   return (
     <TextField
@@ -22,8 +40,11 @@ const InputField = (props: TextFieldProps) => {
       variant="outlined"
       inputProps={{
         "data-testid": `input-${name}`,
+        maxLength: maxLength,
       }}
-      InputLabelProps={{ shrink: false }}
+      FormHelperTextProps={{
+        classes: { ...helperClasses },
+      }}
     />
   );
 };

@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { Cognito } from "../authentication/cognito";
-import { WindowEvent } from "../constants";
+import { WindowEvents } from "../constants";
 
 const delayHideLoading = () => {
   setTimeout(() => {
-    window.dispatchEvent(new CustomEvent(WindowEvent.DECREASE_LOADING));
+    window.dispatchEvent(new CustomEvent(WindowEvents.DECREASE_LOADING));
   }, 500);
 };
 
@@ -16,12 +16,12 @@ const delayHideLoading = () => {
         request.headers.common["Authorization"] = `Bearer ${token}`;
       }
 
-      window.dispatchEvent(new CustomEvent(WindowEvent.INCREASE_LOADING));
+      window.dispatchEvent(new CustomEvent(WindowEvents.INCREASE_LOADING));
 
       return request;
     },
     (error) => {
-      window.dispatchEvent(new CustomEvent(WindowEvent.DECREASE_LOADING));
+      window.dispatchEvent(new CustomEvent(WindowEvents.DECREASE_LOADING));
       return Promise.reject(error);
     }
   );
@@ -29,7 +29,7 @@ const delayHideLoading = () => {
   axios.interceptors.response.use(
     (response: AxiosResponse<any>) => {
       delayHideLoading();
-      return response.data;
+      return response;
     },
     (error) => {
       let errorMessage = "errors.internalServerError";
@@ -40,7 +40,7 @@ const delayHideLoading = () => {
       }
 
       window.dispatchEvent(
-        new CustomEvent(WindowEvent.TOAST_ERROR, {
+        new CustomEvent(WindowEvents.TOAST_ERROR, {
           detail: errorMessage,
         })
       );
