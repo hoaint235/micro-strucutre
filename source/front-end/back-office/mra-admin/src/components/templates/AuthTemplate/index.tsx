@@ -25,9 +25,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 type Props = {
-  children: React.ReactNode;
-  [key: string]: any;
-};
+  children: JSX.Element
+}
 
 const AuthTemplate = (props: Props) => {
   const { children } = props;
@@ -83,7 +82,7 @@ const AuthTemplate = (props: Props) => {
       </Fragment>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [authenticated]
+    [authenticated, children]
   );
 
   return <Fragment>{renderTemplate}</Fragment>;

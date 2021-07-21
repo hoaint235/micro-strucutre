@@ -6,13 +6,12 @@ import {
   Hidden,
   Paper,
 } from "@material-ui/core";
-import React from "react";
 import { BackgroundImage, LoadingProvider } from "../../organisms";
 import useStyles from "./DefaultTemplate.style";
 
 type Props = {
-  children: React.ReactNode;
-};
+  children: JSX.Element
+}
 
 const DefaultTemplate = (props: Props) => {
   const classes = useStyles();
