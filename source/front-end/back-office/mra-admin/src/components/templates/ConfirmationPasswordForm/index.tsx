@@ -5,7 +5,7 @@ import { Button, Typography } from "../../atoms";
 import Form from "../../../hook-forms";
 import { DefaultContainer } from "../../organisms";
 import { Grid } from "@material-ui/core";
-import { Cognito } from "../../../services";
+import { CognitoService } from "../../../services";
 
 const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
   const { t } = useTranslation();
@@ -24,7 +24,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
 
   const onConfirmationCode = async (data: any) => {
     const { confirmationCode: code, password } = data;
-    await Cognito.forgotPasswordSubmit(email, code, password);
+    await CognitoService.forgotPasswordSubmit(email, code, password);
 
     history.push("/sign-in");
   };

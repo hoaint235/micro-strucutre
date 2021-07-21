@@ -20,8 +20,8 @@ const BackgroundImage = () => {
         <Grid item>
           <Box pb={10}>
             <div className={classes.contentContainer}>
-              <Typography.Title label={t("auth.backgroundTitle")} />
-              <Typography.Subtitle label={t("auth.backgroundSubtitle")} />
+              <Typography.Title label={t("background.title")} />
+              <Typography.Subtitle label={t("background.subtitle")} />
             </div>
           </Box>
         </Grid>

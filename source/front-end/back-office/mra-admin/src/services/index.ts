@@ -1,1 +1,1 @@
-export { default as Cognito } from "./cognito";
+export { default as CognitoService } from "./cognito.service";

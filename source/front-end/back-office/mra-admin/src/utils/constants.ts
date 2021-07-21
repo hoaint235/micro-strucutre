@@ -22,7 +22,7 @@ export const Statuses = Object.freeze({
   6: "statuses.unknown",
 });
 
-export const DEFAULT_REDIRECT_URL = "users";
+export const DEFAULT_REDIRECT_URL = "/admin/users";
 export const REGEX_PHONE_NUMBER = /^[0-9]{6,}$/;
 export const REGEX_EMAIL =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

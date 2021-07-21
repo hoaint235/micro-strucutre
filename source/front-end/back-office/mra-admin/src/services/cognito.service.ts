@@ -15,7 +15,7 @@ async function interceptor(callback: Promise<any>) {
   }
 }
 
-const Cognito = {
+const CognitoService = {
   initialize() {
     Amplify.configure({
       mandatorySignIn: true,
@@ -33,7 +33,7 @@ const Cognito = {
   },
   async isAuthenticated() {
     try {
-      await Amplify.currentSession();
+      await Amplify.currentAuthenticatedUser();
     } catch (error) {
       return false;
     }
@@ -93,4 +93,4 @@ const Cognito = {
   },
 };
 
-export default Cognito;
+export default CognitoService;

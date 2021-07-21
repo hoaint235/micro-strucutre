@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import Form from "../../../hook-forms";
-import { Cognito } from "../../../services";
+import { CognitoService } from "../../../services";
 import { DEFAULT_REDIRECT_URL } from "../../../utils";
 import { Typography } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
@@ -19,7 +19,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
 
   const onSubmit = async ({ otpCode = "" }) => {
     const user = stepObj?.data.user;
-    await Cognito.confirmMFACode(user, otpCode);
+    await CognitoService.confirmMFACode(user, otpCode);
     history.push(DEFAULT_REDIRECT_URL);
   };
 

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
 import { useHistory } from "react-router-dom";
 import { DefaultContainer } from "../../organisms";
-import { Cognito } from "../../../services";
+import { CognitoService } from "../../../services";
 import { Button, Typography } from "../../atoms";
 import Form from "../../../hook-forms";
 
@@ -24,7 +24,7 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
         userAttributes: { email },
       },
     } = user;
-    const result = await Cognito.completeNewPassword(user, password);
+    const result = await CognitoService.completeNewPassword(user, password);
 
     if (result.challengeName && result.challengeName === "SMS_MFA") {
       onNavigateStep &&

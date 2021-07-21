@@ -2,7 +2,7 @@ import { Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Form from "../../../hook-forms";
-import { Cognito } from "../../../services";
+import { CognitoService } from "../../../services";
 import { Button, Typography } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
 
@@ -16,7 +16,7 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
   const { handleSubmit } = form;
 
   const onSendActivation = async (data: any) => {
-    await Cognito.forgotPassword(data.email);
+    await CognitoService.forgotPassword(data.email);
     onNavigateStep &&
       onNavigateStep({
         status: "CONFIRMATION_CODE",

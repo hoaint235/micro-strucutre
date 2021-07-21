@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import Form from "../../../hook-forms";
-import { Cognito } from "../../../services";
+import { CognitoService } from "../../../services";
 import { DEFAULT_REDIRECT_URL } from "../../../utils";
 import { Button } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
@@ -35,7 +35,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const { handleSubmit } = form;
 
   const onSignIn = async (data: Certificate) => {
-    const result = await Cognito.signIn(data.email, data.password);
+    const result = await CognitoService.signIn(data.email, data.password);
     const status = result.challengeName;
 
     if (["NEW_PASSWORD_REQUIRED", "SMS_MFA"].includes(status)) {
