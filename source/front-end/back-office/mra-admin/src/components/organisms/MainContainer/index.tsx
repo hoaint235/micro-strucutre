@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, Paper } from "@material-ui/core";
 import { Fragment } from "react";
+import { useTranslation } from "react-i18next";
 import { Typography } from "../../atoms";
 import { useStyleCardHeader, useStylePaper } from "./MainContainer.type";
 
@@ -13,6 +14,7 @@ const MainContainer = (props: Props) => {
   const classesPaper = useStylePaper();
   const classesCardHeader = useStyleCardHeader();
   const { title, children, action } = props;
+  const { t } = useTranslation();
 
   return (
     <Fragment>
@@ -24,7 +26,7 @@ const MainContainer = (props: Props) => {
       >
         <CardHeader
           classes={{ ...classesCardHeader }}
-          subheader={<Typography.Subtitle label={title} />}
+          subheader={<Typography.Subtitle label={t(title)} />}
           action={action}
         ></CardHeader>
       </Paper>

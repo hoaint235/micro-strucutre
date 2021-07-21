@@ -18,7 +18,7 @@ const Routes: RouteConfig[] = [
       {
         path: "/admin/products",
         exact: true,
-        component: () => <div>his ta tes </div>
+        component: () => <div>his ta tes </div>,
       },
     ],
   },

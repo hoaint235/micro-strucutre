@@ -24,7 +24,7 @@ const DynamicTableBody = (props: DataTableBodyProps) => {
     () =>
       source.map((row) => {
         return (
-          <TableRow hover tabIndex={-1} key={row[keyRow]}>
+          <TableRow hover tabIndex={-1} key={row[keyRow || "id"]}>
             {headers.map((header: HeaderProps, index: number) => {
               const value = row[header.field];
               const column = `${prefixBody}${stringHelper.upperFirst(

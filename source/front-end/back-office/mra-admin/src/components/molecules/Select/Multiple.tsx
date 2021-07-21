@@ -38,21 +38,21 @@ const Multiple = (props: SelectProps) => {
       onChange={handleChange}
       SelectProps={{
         multiple: true,
-        // renderValue: (selected: string[]) => (
-        //   <div className={classes.chips}>
-        //     {(items.filter((x) => selected.includes(x.key)) as Select[]).map(
-        //       (item) => (
-        //         <Chip
-        //           variant="outlined"
-        //           color="primary"
-        //           key={item.key}
-        //           label={item.value}
-        //           className={classes.chip}
-        //         />
-        //       )
-        //     )}
-        //   </div>
-        // ),
+        renderValue: (selected: any) => (
+          <div className={classes.chips}>
+            {(
+              items.filter((x) => selected.includes(x.key)) as SelectionProps[]
+            ).map((item) => (
+              <Chip
+                variant="outlined"
+                color="primary"
+                key={item.key}
+                label={item.value}
+                className={classes.chip}
+              />
+            ))}
+          </div>
+        ),
       }}
       {...restProps}
     >

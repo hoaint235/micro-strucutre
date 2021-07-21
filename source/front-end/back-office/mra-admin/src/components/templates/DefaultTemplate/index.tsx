@@ -10,8 +10,8 @@ import { BackgroundImage, LoadingProvider } from "../../organisms";
 import useStyles from "./DefaultTemplate.style";
 
 type Props = {
-  children: JSX.Element
-}
+  children: JSX.Element;
+};
 
 const DefaultTemplate = (props: Props) => {
   const classes = useStyles();

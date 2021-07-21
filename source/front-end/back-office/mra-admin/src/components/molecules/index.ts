@@ -3,3 +3,4 @@ export { default as ToastMessage } from "./ToastMessage";
 export { default as Select } from "./Select";
 export { default as IconMenu } from "./IconMenu";
 export { default as ErrorMessage } from "./ErrorMessage";
+export { default as DataTable } from "./DataTable";

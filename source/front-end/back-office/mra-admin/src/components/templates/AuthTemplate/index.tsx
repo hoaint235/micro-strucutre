@@ -1,5 +1,10 @@
 import { Box, makeStyles, Theme } from "@material-ui/core";
-import { Header, Navbar } from "../../organisms";
+import {
+  Header,
+  LoadingProvider,
+  Navbar,
+  ToastProvider,
+} from "../../organisms";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { CognitoService } from "../../../services";
@@ -25,8 +30,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 type Props = {
-  children: JSX.Element
-}
+  children: JSX.Element;
+};
 
 const AuthTemplate = (props: Props) => {
   const { children } = props;
@@ -77,6 +82,9 @@ const AuthTemplate = (props: Props) => {
                 </Box>
               </Scrollbars>
             </Box>
+
+            <LoadingProvider />
+            <ToastProvider />
           </div>
         )}
       </Fragment>

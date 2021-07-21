@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { CognitoService } from "../../services";
 import { WindowEvents } from "../constants";
 
 const delayHideLoading = () => {
@@ -11,10 +12,10 @@ const AxiosInterceptor = {
   setup() {
     axios.interceptors.request.use(
       async (request: AxiosRequestConfig) => {
-        // const token = await Cognito.getAccessToken();
-        // if (token) {
-        //   request.headers.common["Authorization"] = `Bearer ${token}`;
-        // }
+        const token = await CognitoService.getAccessToken();
+        if (token) {
+          request.headers.common["Authorization"] = `Bearer ${token}`;
+        }
 
         window.dispatchEvent(new CustomEvent(WindowEvents.INCREASE_LOADING));
 
@@ -35,8 +36,13 @@ const AxiosInterceptor = {
         let errorMessage = "errors.internalServerError";
 
         const { status } = error.response;
-        if (status === 403) {
-          errorMessage = "errors.forbidden";
+        switch (status) {
+          case 401:
+            errorMessage = "errors.notAuthorized";
+            break;
+          case 403:
+            errorMessage = "errors.forbidden";
+            break;
         }
 
         window.dispatchEvent(

@@ -21,6 +21,6 @@ const App = () => {
       </ThemeProvider>
     </React.StrictMode>
   );
-}
+};
 
 export default App;
