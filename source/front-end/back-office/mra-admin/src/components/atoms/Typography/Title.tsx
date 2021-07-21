@@ -1,12 +1,13 @@
 import { Typography } from "@material-ui/core";
-import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Title = (props: TypographyProps) => {
   const { label, color = "textPrimary", ...restProps } = props;
+  const { t } = useTranslation();
 
   return (
     <Typography component="p" variant="h4" color={color} {...restProps}>
-      {label}
+      {t(label)}
     </Typography>
   );
 };

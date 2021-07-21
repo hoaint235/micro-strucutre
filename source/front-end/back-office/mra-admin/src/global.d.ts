@@ -24,7 +24,7 @@ declare type TypographyProps = {
   label: string;
   className?: string;
   style?: React.CSSProperties;
-  color?: MfaTypographyColor;
+  color?: TypographyColor;
 };
 
 declare type SelectionProps = {
@@ -53,6 +53,10 @@ declare type HandleStepProps<TStatus> = {
 
 declare type SignInStatus = "NO_LOGIN" | "FIRST_LOGIN" | "VERIFY_CODE";
 declare type ForgotStatus = "SEND_ACTIVATION" | "CONFIRMATION_CODE";
+
+declare type ExtendProps = {
+  [key: string]: any;
+};
 
 declare module "model" {
   declare interface Certificate {
@@ -94,7 +98,7 @@ declare module "model" {
   declare interface IUser {
     roles: Role[];
     profile: IProfile;
-    isEditAddress?: boolean;
+    isEditAddress: boolean;
     address?: IAddress;
   }
 }

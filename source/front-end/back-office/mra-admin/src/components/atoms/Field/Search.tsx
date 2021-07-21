@@ -1,8 +1,9 @@
-import { InputAdornment, TextFieldProps } from "@material-ui/core";
+import { InputAdornment } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
+import { InputProps } from "./Field.type";
 import Input from "./Input";
 
-const SearchField = (props: TextFieldProps) => {
+const SearchField = (props: InputProps) => {
   return (
     <Input
       {...props}

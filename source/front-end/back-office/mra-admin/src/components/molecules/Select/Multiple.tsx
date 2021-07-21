@@ -56,8 +56,8 @@ const Multiple = (props: SelectProps) => {
       }}
       {...restProps}
     >
-      {items.map((item: SelectionProps) => (
-        <MenuItem key={item.key} value={item.key}>
+      {items.map((item: SelectionProps, index: number) => (
+        <MenuItem key={`${item.key}-${index}`} value={item.key}>
           <Checkbox
             color="primary"
             checked={(defaultValue as string[]).indexOf(item.key) > -1}

@@ -43,6 +43,7 @@ export function useStepForm<TStatus extends string>({
 
   const Component = useMemo(
     () => <Fragment>{render(stepData.status)}</Fragment>,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [stepData]
   );
   return Component;

@@ -2,11 +2,21 @@ import { IUser, ListingRequest, ListingResponse } from "model";
 import axios from "axios";
 
 const UserService = {
+  async gerCurrentUserRoles() {
+    const response = await axios.get<string[]>("/account/roles");
+    return response.data || [];
+  },
   async getUsers(request: ListingRequest = { limit: 10, offset: 0 }) {
     const response = await axios.get<ListingResponse<IUser>>("/account/users", {
       params: { ...request },
     });
     return response.data;
+  },
+  async updateStatus(email: string, status: number) {
+    await axios.put("/account/users/status", { email: email, status: status });
+  },
+  async createUser(payload: IUser) {
+    await axios.post("/account/users", { ...payload });
   },
   async deactivateUser(userId: string) {
     await axios.put(`/account/users/${userId}:deactivate`, {});

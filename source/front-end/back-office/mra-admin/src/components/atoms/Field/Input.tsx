@@ -1,5 +1,6 @@
-import { makeStyles, TextField, TextFieldProps } from "@material-ui/core";
+import { makeStyles, TextField } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
+import { InputProps } from "./Field.type";
 
 const useStyles = makeStyles({
   root: {
@@ -16,11 +17,7 @@ const useHelperStyles = makeStyles({
   },
 });
 
-type Props = TextFieldProps & {
-  maxLength?: number;
-};
-
-const Input = (props: Props) => {
+const Input = (props: InputProps) => {
   const {
     name,
     label,

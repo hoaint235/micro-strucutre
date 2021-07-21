@@ -58,7 +58,7 @@ const ListUsers = (props: Props) => {
   };
 
   const renderStatus = (data: any) => {
-    return <Typography.Body color="textPrimary" label={Statuses[0]} />;
+    return <Typography.Label color="textPrimary" label={Statuses[0]} />;
   };
 
   const renderRole = (data: any) => {
@@ -95,7 +95,7 @@ const ListUsers = (props: Props) => {
 
   const renderCreatedDate = (data: any) => {
     return (
-      <Typography.Body
+      <Typography.Label
         color="textPrimary"
         label={new Date(data.createdDate).toLocaleDateString()}
       />

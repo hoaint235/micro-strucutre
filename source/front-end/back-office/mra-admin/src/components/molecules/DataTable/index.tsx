@@ -81,17 +81,17 @@ const DataTable = (props: DataTableProps) => {
           <DataTableBody {...propsHeader} />
         </Table>
       </TableContainer>
-      {/* {!!onPaging && (
+      {!!onPaging && (
         <TablePagination
           rowsPerPageOptions={rowPerPage}
           component="div"
           count={totalItems}
           rowsPerPage={rowsPerPage}
           page={page}
-          onPageChange={(e, newPage) => handleChangePage(newPage)}
+          onPageChange={(_, newPage) => handleChangePage(newPage)}
           onChangeRowsPerPage={(e) => handleChangeRowsPerPage(e)}
         />
-      )} */}
+      )}
     </Paper>
   );
 };

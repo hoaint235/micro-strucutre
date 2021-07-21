@@ -20,8 +20,8 @@ const Single = (props: SelectProps) => {
       onChange={handleChange}
       {...restProps}
     >
-      {items.map((item) => (
-        <MenuItem key={item.key} value={item.key}>
+      {items.map((item: SelectionProps, index: number) => (
+        <MenuItem key={`${item.key}-${index}`} value={item.key}>
           {item.value}
         </MenuItem>
       ))}

@@ -11,10 +11,9 @@ import {
   useStylesSortLabel,
   useStylesTableCell,
 } from "./DataTableHeader.style";
-import { useTranslation } from "react-i18next";
+import Typography from "../Typography";
 
 const DataTableHeader = (props: DataTableHeaderProps) => {
-  const { t } = useTranslation();
   const classes = useStyles();
   const classesSortLabel = useStylesSortLabel();
   const classesTableCell = useStylesTableCell();
@@ -26,7 +25,15 @@ const DataTableHeader = (props: DataTableHeaderProps) => {
       onSort(event, property);
     };
 
-  const SortHeader = (header: HeaderProps) => {
+  const HeaderLabel = (label: string | undefined) => (
+    <Typography.Label
+      style={{ fontWeight: "bold" }}
+      color="textPrimary"
+      label={label || ""}
+    />
+  );
+
+  const HeaderSort = (header: HeaderProps) => {
     const field = header.field;
     return (
       <TableSortLabel
@@ -35,7 +42,7 @@ const DataTableHeader = (props: DataTableHeaderProps) => {
         direction={orderBy === field ? order : "asc"}
         onClick={handlerSort(field)}
       >
-        {t(header.label || "")}
+        {HeaderLabel(header.label)}
         {orderBy === field ? (
           <span className={classes.visuallyHidden}>
             {order === "desc" ? "sorted descending" : "sorted ascending"}
@@ -56,7 +63,7 @@ const DataTableHeader = (props: DataTableHeaderProps) => {
             width={header.width}
             sortDirection={orderBy === header.field ? order : false}
           >
-            {header.sort ? SortHeader(header) : t(header.label || "")}
+            {header.sort ? HeaderSort(header) : HeaderLabel(header.label)}
           </TableCell>
         ))}
       </TableRow>

@@ -20,7 +20,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
   } = form;
 
   const { stepObj } = props;
-  const email = stepObj?.data.email;
+  const email = stepObj?.data?.email;
 
   const onConfirmationCode = async (data: any) => {
     const { confirmationCode: code, password } = data;

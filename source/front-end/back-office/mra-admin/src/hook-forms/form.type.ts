@@ -1,5 +1,6 @@
 import { TextFieldProps } from "@material-ui/core";
 import { Mode, RegisterOptions, UseFormReturn } from "react-hook-form";
+import { InputProps } from "../components/atoms";
 
 export type Rules = Omit<
   RegisterOptions,
@@ -28,8 +29,8 @@ export type HookFormProps = {
   renderSubmit: (form: UseFormReturn<any>) => void;
 };
 
-export type InputFormProps = HookFormFieldProps &
-  TextFieldProps & {
+export type InputFormProps = InputProps &
+  HookFormFieldProps & {
     defaultValue?: string;
     requiredField?: boolean;
     rules?: Rules;

@@ -2,6 +2,7 @@ import { renderRoutes, RouteConfig } from "react-router-config";
 import { Redirect } from "react-router-dom";
 import { AuthTemplate, DefaultTemplate } from "../components/templates";
 import { ForgotPassword, ListUsers, SignIn } from "../pages";
+import AddUser from "../pages/AddUser";
 
 const Routes: RouteConfig[] = [
   {
@@ -14,6 +15,11 @@ const Routes: RouteConfig[] = [
         path: "/admin/users",
         exact: true,
         component: ListUsers,
+      },
+      {
+        path: "/admin/users/create",
+        exact: true,
+        component: AddUser,
       },
       {
         path: "/admin/products",

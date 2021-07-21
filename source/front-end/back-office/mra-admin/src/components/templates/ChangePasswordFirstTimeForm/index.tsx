@@ -1,9 +1,9 @@
-import { Grid } from "@material-ui/core";
+import { Box, Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
 import { useHistory } from "react-router-dom";
 import { DefaultContainer } from "../../organisms";
-import { CognitoService } from "../../../services";
+import { AccountService, CognitoService } from "../../../services";
 import { Button, Typography } from "../../atoms";
 import Form from "../../../hook-forms";
 
@@ -17,7 +17,7 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
   } = form;
 
   const onSubmit = async ({ password = "" }) => {
-    const user = stepObj?.data.user;
+    const user = stepObj?.data?.user;
 
     const {
       challengeParam: {
@@ -35,7 +35,8 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
           },
         });
     }
-    // await API.put("/account/users/status", { email: email, status: 2 });
+
+    await AccountService.updateStatus(email, 2);
     history.push(DEFAULT_REDIRECT_URL);
   };
 
@@ -43,8 +44,10 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
     <DefaultContainer title="changePasswordFirstTimePage.title">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
-          <Grid>
-            <Typography.Subtitle label="changePasswordFirstTimePage.subtitle" />
+          <Grid item xs={12}>
+            <Box mb={2}>
+              <Typography.Body label="changePasswordFirstTimePage.subtitle" />
+            </Box>
           </Grid>
           <Grid item xs={12}>
             <Form.Password

@@ -6,11 +6,11 @@ export const WindowEvents = Object.freeze({
   CHANGE_LANGUAGE: "CHANGE_LANGUAGE",
 });
 
-export const Roles = Object.freeze({
+export const Roles: ExtendProps = {
   Master: "3382AD33-A03E-4126-8648-367C7E75BC0B",
   Admin: "F125EFB3-CA2C-4589-A46D-7201DA35C0D6",
   User: "E95439AD-54DF-4407-92DF-E0135D925400",
-});
+};
 
 export const Statuses = Object.freeze({
   0: "statuses.archived",

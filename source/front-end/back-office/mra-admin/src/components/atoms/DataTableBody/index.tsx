@@ -36,7 +36,7 @@ const DynamicTableBody = (props: DataTableBodyProps) => {
                   {bodyTemplate[column] ? (
                     bodyTemplate[column](row)
                   ) : (
-                    <Typography.Body color="textPrimary" label={value} />
+                    <Typography.Label color="textPrimary" label={value} />
                   )}
                 </TableCell>
               );

@@ -18,7 +18,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
   const { handleSubmit } = form;
 
   const onSubmit = async ({ otpCode = "" }) => {
-    const user = stepObj?.data.user;
+    const user = stepObj?.data?.user;
     await CognitoService.confirmMFACode(user, otpCode);
     history.push(DEFAULT_REDIRECT_URL);
   };

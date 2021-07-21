@@ -6,3 +6,5 @@ export { default as VerifySMSForm } from "./VerifySMSForm";
 export { default as ConfirmationPasswordForm } from "./ConfirmationPasswordForm";
 export { default as ForgotPasswordForm } from "./ForgotPasswordForm";
 export { default as ListUsers } from "./ListUsers";
+export { default as AddressInfoForm } from "./AddressInfoForm";
+export { default as UserInfoForm } from "./UserInfoForm";
