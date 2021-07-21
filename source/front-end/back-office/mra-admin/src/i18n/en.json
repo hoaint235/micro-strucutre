@@ -1,0 +1,118 @@
+{
+  "background": {
+    "title": "Micro Architecture",
+    "subtitle": "Powerful and easy to use multipurpose theme"
+  },
+  "signInPage": {
+    "title": "Sign in with email",
+    "forgotPasswordLink": "Forgot password ?"
+  },
+  "forgotPasswordPage": {
+    "title": "Forgot Password",
+    "subtitle": "Enter your email address below and we'll send you password reset OTP."
+  },
+  "changePasswordFirstTimePage": {
+    "title": "Change new password",
+    "subtitle": "Please choose new password."
+  },
+  "confirmationPasswordPage": {
+    "title": "Confirmation code",
+    "subtitle": "Enter code at your mail and choose new password"
+  },
+  "verifyOtpCodePage": {
+    "title": "Confirm OTP Code",
+    "subtitle": "Enter otp code that the system sends you via the phone number in your profile"
+  },
+  "listUserPage": {
+    "title": "List Users",
+    "addUser": "Add User",
+    "deactivate": "Deactivate",
+    "activate": "Activate"
+  },
+  "addUserPage": {
+    "title": "Add User",
+    "roles": "Roles",
+    "accountTitle": "Account Information",
+    "addressTitle": "Address Information"
+  },
+  "listProductPage": {
+    "title": "List Products"
+  },
+  "roles": {
+    "master": "Master",
+    "admin": "Admin",
+    "user": "User"
+  },
+  "statuses": {
+    "archived": "Archived",
+    "compromised": "Compromised",
+    "confirmed": "Confirmed",
+    "forceChangePassword": "Force Change Password",
+    "resetRequired": "Reset Required",
+    "unconfirmed": "Unconfirmed",
+    "unknown": "Unknown"
+  },
+  "buttons": {
+    "signIn": "Sign In",
+    "submit": "Submit",
+    "sendActivation": "Send Activation",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "back": "Back",
+    "deactivate": "Deactivate",
+    "activate": "Activate"
+  },
+  "fields": {
+    "emailAddress": "Email address",
+    "confirmationCode": "Confirmation Code",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "rememberMe": "Remember me",
+    "phoneNumber": "Phone number",
+    "otpCode": "OTP Code",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "countryCode": "Country Code",
+    "houseNumber": "House Number",
+    "district": "District",
+    "city": "City"
+  },
+  "table": {
+    "name": "Name",
+    "description": "Description",
+    "action": "Action",
+    "email": "Email",
+    "status": "Status",
+    "isActivate": "Active",
+    "createdDate": "Created Date",
+    "roles": "Roles",
+    "noResultFound": "Not result found"
+  },
+  "menus": {
+    "users": "Users",
+    "products": "Products"
+  },
+  "errors": {
+    "cognito": {
+      "userNotFoundExceptionError": "Not authorized.",
+      "invalidParameterExceptionError": "Internal error.",
+      "notAuthorizedExceptionError": "Not authorized.",
+      "exceedsMaxLengthError": "Exceeds the maximum length of text field.",
+      "invalidPasswordPolicyError": "Password must be least 6 characters, 1 upper case, 1 lower case, 1 numeric and 1 special character.",
+      "confirmPasswordNotMatchError": "Your password and confirmation password do not match.",
+      "expiredCodeExceptionError": "Invalid code provided, please request a code again.",
+      "userNotConfirmedExceptionError": "User needs to confirm account.",
+      "invalidPasswordExceptionError": "Password does not meet the requirements.",
+      "codeMismatchExceptionError": "Confirmation Code does not match.",
+      "limitExceededExceptionError": "Exceed number of tries."
+    },
+    "forbidden": "You don't have permission for this request, please try it",
+    "internalServerError": "Some thing went wrong, please try it",
+    "requiredField": "Field is required",
+    "invalidEmailFormat": "Invalid email format",
+    "invalidPasswordFormat": "Invalid password, password include least 6 characters, 1 upper case, 1 lower case, 1 numeric and 1 special character.",
+    "invalidPhoneNumber": "Invalid phone, phone include number and least 6 characters."
+  }
+}
