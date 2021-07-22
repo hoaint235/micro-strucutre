@@ -4,22 +4,15 @@ import { Field } from "../../atoms";
 import { SelectProps } from "./Select.type";
 
 const Single = (props: SelectProps) => {
-  const { items, onChange, value, ...restProps } = props;
-  const [defaultValue, setDefaultValue] = React.useState(value || "");
+  const { items, onChange, value = "", ...restProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedValue = event.target.value;
-    setDefaultValue(selectedValue);
     onChange(selectedValue);
   };
 
   return (
-    <Field.Input
-      select
-      value={defaultValue}
-      onChange={handleChange}
-      {...restProps}
-    >
+    <Field.Input select value={value} onChange={handleChange} {...restProps}>
       {items.map((item: SelectionProps, index: number) => (
         <MenuItem key={`${item.key}-${index}`} value={item.key}>
           {item.value}

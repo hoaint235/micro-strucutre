@@ -10,18 +10,7 @@ const AddUser = () => {
   const history = useHistory();
 
   const onSubmit = async (data: IUser) => {
-    const payload: IUser = {
-      address: { ...data.address },
-      isEditAddress: data.isEditAddress,
-      roles: data.roles,
-      profile: {
-        phoneNumber: `${data.profile.countryCode}-${data.profile.phoneNumber}`,
-        email: data.profile.email,
-        firstName: data.profile.firstName,
-        lastName: data.profile.lastName,
-      },
-    };
-    await AccountService.createUser(payload);
+    await AccountService.createUser(data);
     toastHelper.success("Create new user success");
     onBackUserList();
   };

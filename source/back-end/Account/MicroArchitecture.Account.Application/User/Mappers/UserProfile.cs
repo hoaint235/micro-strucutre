@@ -14,7 +14,7 @@ namespace MicroArchitecture.Account.Application.User.Mappers
 
             CreateMap<Domain.Users.User, UserDetailDto>()
                 .ForMember(destination => destination.Roles,
-                    options => options.MapFrom(source => source.Roles.Select(x => x.Id)))
+                    options => options.MapFrom(source => source.Roles.Select(x => x.RoleId)))
                 .AfterMap((src, dest, context) =>
                 {
                     dest.Profile = context.Mapper.Map<ProfileDto>(src.Profile);

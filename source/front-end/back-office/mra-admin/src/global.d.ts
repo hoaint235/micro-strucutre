@@ -93,7 +93,7 @@ declare module "model" {
     lastName: string;
     email: string;
     phoneNumber: string;
-    countryCode?: string;
+    countryCode: string;
   }
 
   declare interface IUser {

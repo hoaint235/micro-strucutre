@@ -23,18 +23,16 @@ const useStyles = makeStyles({
 const Multiple = (props: SelectProps) => {
   const classes = useStyles();
   const { items, onChange, value = [], ...restProps } = props;
-  const [defaultValue, setDefaultValue] = React.useState<any>(value);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setDefaultValue(value);
     onChange(value);
   };
 
   return (
     <Field.Input
       select
-      value={defaultValue}
+      value={value}
       onChange={handleChange}
       SelectProps={{
         multiple: true,
@@ -60,7 +58,7 @@ const Multiple = (props: SelectProps) => {
         <MenuItem key={`${item.key}-${index}`} value={item.key}>
           <Checkbox
             color="primary"
-            checked={(defaultValue as string[]).indexOf(item.key) > -1}
+            checked={(value as string[]).indexOf(item.key) > -1}
           />
           <ListItemText primary={item.value} />
         </MenuItem>

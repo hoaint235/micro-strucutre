@@ -19,7 +19,7 @@ const Input = (props: InputFormProps) => {
   const { t } = useTranslation();
 
   const {
-    field: { ref, ...inputProps },
+    field: { ref, value = "", ...inputProps },
   } = useController({
     name,
     control,
@@ -34,6 +34,7 @@ const Input = (props: InputFormProps) => {
   return (
     <Field.Input
       error={!!getError()}
+      value={value}
       helperText={!!getError() && t(getError())}
       {...restProps}
       {...inputProps}

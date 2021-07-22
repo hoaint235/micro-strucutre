@@ -6,8 +6,7 @@ import { AddressInfoForm, UserInfoForm } from "../index";
 import { Button } from "../../atoms";
 import { IUser } from "model";
 import { Errors, REGEX_PHONE_NUMBER } from "../../../utils";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const schema = yup.object().shape({
   profile: yup.object().shape({
@@ -39,6 +38,7 @@ const defaultData: IUser = {
     firstName: "",
     lastName: "",
     phoneNumber: "",
+    countryCode: "",
   },
   roles: [],
   address: {
@@ -57,7 +57,6 @@ type Props = {
 const ManageUserForm = (props: Props) => {
   const { onSubmit, onBack, defaultUser } = props;
   const [editMode, setEditMode] = useState<boolean>(false);
-
   const form = useForm<IUser>({
     mode: "onBlur",
     reValidateMode: "onChange",

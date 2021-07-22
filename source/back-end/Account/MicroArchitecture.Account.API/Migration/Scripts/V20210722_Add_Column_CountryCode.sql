@@ -1,0 +1,10 @@
+﻿IF NOT EXISTS(
+  SELECT TOP 1 1
+  FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE 
+    [TABLE_NAME] = 'User'
+    AND [COLUMN_NAME] = 'CountryCode')
+BEGIN
+  ALTER TABLE [dbo].[User]
+    ADD CountryCode VARCHAR(50) NULL
+END

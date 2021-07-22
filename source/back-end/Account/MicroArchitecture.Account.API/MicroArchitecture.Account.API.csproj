@@ -6,9 +6,11 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Migration\Scripts\V20210609_Initialize_Table.sql" />
+    <None Remove="Migration\Scripts\V20210722_Add_Column_CountryCode.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migration\Scripts\V20210609_Initialize_Table.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210722_Add_Column_CountryCode.sql" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.0" />
