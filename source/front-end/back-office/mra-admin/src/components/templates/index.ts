@@ -8,3 +8,5 @@ export { default as ForgotPasswordForm } from "./ForgotPasswordForm";
 export { default as ListUsers } from "./ListUsers";
 export { default as AddressInfoForm } from "./AddressInfoForm";
 export { default as UserInfoForm } from "./UserInfoForm";
+export { default as ManageUserForm } from "./ManageUserForm";
+export { default as SkeletonTemplate } from "./SkeletonTemplates";

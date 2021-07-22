@@ -1,101 +1,38 @@
-import { Box, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { Button } from "../../components/atoms";
-import { IAddress, IProfile, IUser } from "model";
 import { MainContainer } from "../../components/organisms";
-import { AddressInfoForm, UserInfoForm } from "../../components/templates";
 import { toastHelper } from "../../utils";
 import { AccountService } from "../../services";
-
-export type FormData = {
-  email: string;
-  firstName: string;
-  lastName: string;
-  countryCode: string;
-  phoneNumber: string;
-  roles: string[];
-  isEditAddress: boolean;
-  houseNumber?: string;
-  district?: string;
-  city?: string;
-};
+import { ManageUserForm } from "../../components/templates";
+import { IUser } from "model";
 
 const AddUser = () => {
   const history = useHistory();
-  const form = useForm<FormData>({
-    mode: "onBlur",
-    reValidateMode: "onChange",
-  });
-  const {
-    handleSubmit,
-    formState: { isDirty, isValid },
-  } = form;
 
-  const onSubmit = async (data: FormData) => {
-    const profile: IProfile = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      phoneNumber: `${data.countryCode}${data.phoneNumber}`,
-    };
-
-    let address: IAddress = {};
-    if (data.isEditAddress) {
-      address = {
-        city: data.city,
-        houseNumber: data.houseNumber,
-        district: data.district,
-      };
-    }
-
+  const onSubmit = async (data: IUser) => {
     const payload: IUser = {
-      roles: data.roles,
-      profile: profile,
-      address: address,
+      address: { ...data.address },
       isEditAddress: data.isEditAddress,
+      roles: data.roles,
+      profile: {
+        phoneNumber: `${data.profile.countryCode}-${data.profile.phoneNumber}`,
+        email: data.profile.email,
+        firstName: data.profile.firstName,
+        lastName: data.profile.lastName,
+      },
     };
-
     await AccountService.createUser(payload);
     toastHelper.success("Create new user success");
-    history.push("/admin/users");
+    onBackUserList();
   };
 
+  const onBackUserList = () => history.push("/admin/users");
+
   return (
-    <MainContainer title="account.addUserPage.title">
+    <MainContainer title="addUserPage.title">
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12} md={6}>
-                <UserInfoForm form={form} />
-              </Grid>
-
-              <Grid item xs={12} md={6}>
-                <AddressInfoForm form={form} />
-              </Grid>
-
-              <Grid
-                item
-                xs={12}
-                container
-                justifyContent="flex-end"
-                style={{ display: "flex" }}
-              >
-                <Box mr={2}>
-                  <Button.Default
-                    onClick={() => history.push("/users")}
-                    label="buttons.cancel"
-                  />
-                </Box>
-                <Button.Primary
-                  type="submit"
-                  disabled={!isDirty || !isValid}
-                  label="buttons.submit"
-                />
-              </Grid>
-            </Grid>
-          </form>
+          <ManageUserForm onBack={onBackUserList} onSubmit={onSubmit} />
         </Grid>
       </Grid>
     </MainContainer>

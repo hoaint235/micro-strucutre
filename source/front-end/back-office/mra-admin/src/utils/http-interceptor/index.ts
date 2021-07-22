@@ -17,7 +17,9 @@ const AxiosInterceptor = {
           request.headers.common["Authorization"] = `Bearer ${token}`;
         }
 
-        window.dispatchEvent(new CustomEvent(WindowEvents.INCREASE_LOADING));
+        if (!request.data?.cancelLoading) {
+          window.dispatchEvent(new CustomEvent(WindowEvents.INCREASE_LOADING));
+        }
 
         return request;
       },

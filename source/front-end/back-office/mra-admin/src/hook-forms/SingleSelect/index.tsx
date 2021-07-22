@@ -1,3 +1,5 @@
+import get from "lodash/get";
+import { useCallback } from "react";
 import { useController } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Select } from "../../components/molecules";
@@ -7,7 +9,6 @@ const SingleSelect = (props: SelectFormProps) => {
   const {
     name,
     defaultValue,
-    rules,
     children,
     form: {
       control,
@@ -22,22 +23,18 @@ const SingleSelect = (props: SelectFormProps) => {
   } = useController({
     name,
     control,
-    rules: Object.assign(
-      {
-        required: {
-          value: true,
-          message: t("errors.requiredField"),
-        },
-      },
-      { ...rules }
-    ),
     defaultValue,
   });
 
+  const getError = useCallback(
+    () => get(errors, name)?.message,
+    [errors, name]
+  );
+
   return (
     <Select.Single
-      error={!!errors[name]}
-      helperText={!!errors[name] && errors[name].message}
+      error={!!getError()}
+      helperText={!!getError() && t(getError())}
       onChange={(data) => onChange(data)}
       {...restProps}
       {...inputProps}

@@ -21,7 +21,7 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Repositori
 
         public async Task<User> GetAsync(Guid id)
         {
-            return await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.Users.Include(x => x.Roles).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<bool> AnyAsync(ISpecification<User> specification)

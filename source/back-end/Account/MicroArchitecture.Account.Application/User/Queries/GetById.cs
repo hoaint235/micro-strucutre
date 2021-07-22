@@ -5,7 +5,7 @@ using System;
 
 namespace MicroArchitecture.Account.Application.User.Queries
 {
-    public class GetById : IRequest<ApiResult<UserDto>>
+    public class GetById : IRequest<ApiResult<UserDetailDto>>
     {
         public Guid UserId { get; set; }
     }

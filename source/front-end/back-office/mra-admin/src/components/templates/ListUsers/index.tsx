@@ -10,14 +10,23 @@ type Props = {
   onActivate: (userId: string) => void;
   onDelete: (userId: string) => void;
   onDeactivate: (userId: string) => void;
+  onViewDetail: (userId: string) => void;
 };
 
 const ListUsers = (props: Props) => {
-  const { data, headers, onActivate, onDelete, onDeactivate } = props;
+  const { data, headers, onActivate, onDelete, onDeactivate, onViewDetail } =
+    props;
 
   const renderAction = (data: any) => {
     return (
       <Grid container spacing={1}>
+        <Grid item>
+          <Button.Primary
+            disabled={!data.hasPermission}
+            label="buttons.edit"
+            onClick={() => onViewDetail(data.id)}
+          />
+        </Grid>
         {!data.isActivate && (
           <Grid item>
             <Button.Default
@@ -58,7 +67,9 @@ const ListUsers = (props: Props) => {
   };
 
   const renderStatus = (data: any) => {
-    return <Typography.Label color="textPrimary" label={Statuses[0]} />;
+    return (
+      <Typography.Label color="textPrimary" label={Statuses[data.status]} />
+    );
   };
 
   const renderRole = (data: any) => {

@@ -93,9 +93,11 @@ declare module "model" {
     lastName: string;
     email: string;
     phoneNumber: string;
+    countryCode?: string;
   }
 
   declare interface IUser {
+    id?: string;
     roles: Role[];
     profile: IProfile;
     isEditAddress: boolean;

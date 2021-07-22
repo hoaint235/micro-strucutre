@@ -12,3 +12,6 @@ export * from "./DataTableBody/DataTableBody.type";
 
 export { default as DataTableHeader } from "./DataTableHeader";
 export * from "./DataTableHeader/DataTableHeader.type";
+
+export { default as Switch } from "./Switch";
+export * from "./Switch";

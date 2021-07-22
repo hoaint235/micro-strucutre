@@ -1,10 +1,14 @@
 import { Grid, Box } from "@material-ui/core";
 import { IUser, ListingResponse } from "model";
 import React, { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Field, HeaderProps } from "../../components/atoms";
 import { MainContainer } from "../../components/organisms";
-import { ListUsers as Users } from "../../components/templates";
+import {
+  ListUsers as Users,
+  SkeletonTemplate,
+} from "../../components/templates";
 import { AccountService } from "../../services";
 
 const headers: HeaderProps[] = [
@@ -40,16 +44,14 @@ const headers: HeaderProps[] = [
 ];
 
 const ListUsers = () => {
-  const [data, setData] = useState<ListingResponse<IUser>>({
-    data: [],
-    totalItems: 0,
-  });
+  const [data, setData] = useState<ListingResponse<IUser> | null>(null);
   const history = useHistory();
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     const users = await AccountService.getUsers();
     setData({ ...data, ...users });
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     fetchUsers();
@@ -71,6 +73,9 @@ const ListUsers = () => {
     await fetchUsers();
   };
 
+  const onViewDetail = (userId: string) =>
+    history.push(`/admin/users/${userId}`);
+
   const onSearch = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter") {
       console.log("on search");
@@ -81,30 +86,35 @@ const ListUsers = () => {
 
   return (
     <MainContainer title="listUserPage.title">
-      <Grid container item xs={12} alignItems="center">
-        <Grid item xs={12} md={4}>
-          <Field.Search label="Search user" onKeyDown={onSearch} />
+      {data ? (
+        <Grid container item xs={12} alignItems="center">
+          <Grid item xs={12} md={4}>
+            <Field.Search label="Search user" onKeyDown={onSearch} />
+          </Grid>
+          <Grid item xs={12} container md={8} justifyContent="flex-end">
+            <Box mt={{ xs: 2, md: 0 }}>
+              <Button.Primary
+                label="listUserPage.addUser"
+                onClick={navigateAddUserPage}
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Box mt={2}>
+              <Users
+                data={data}
+                headers={headers}
+                onDeactivate={onDeactivate}
+                onActivate={onActivate}
+                onDelete={onDelete}
+                onViewDetail={onViewDetail}
+              />
+            </Box>
+          </Grid>
         </Grid>
-        <Grid item xs={12} container md={8} justifyContent="flex-end">
-          <Box mt={{ xs: 2, md: 0 }}>
-            <Button.Primary
-              label="listUserPage.addUser"
-              onClick={navigateAddUserPage}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box mt={2}>
-            <Users
-              data={data}
-              headers={headers}
-              onDeactivate={onDeactivate}
-              onActivate={onActivate}
-              onDelete={onDelete}
-            />
-          </Box>
-        </Grid>
-      </Grid>
+      ) : (
+        <SkeletonTemplate.List />
+      )}
     </MainContainer>
   );
 };

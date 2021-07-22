@@ -35,6 +35,12 @@
     "accountTitle": "Account Information",
     "addressTitle": "Address Information"
   },
+  "editUserPage": {
+    "title": "Edit User",
+    "roles": "Roles",
+    "accountTitle": "Account Information",
+    "addressTitle": "Address Information"
+  },
   "listProductPage": {
     "title": "List Products"
   },

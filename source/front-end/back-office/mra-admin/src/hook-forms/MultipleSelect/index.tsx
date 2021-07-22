@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Select } from "../../components/molecules";
 import { useController } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { SelectFormProps } from "../form.type";
+import get from "lodash/get";
 
 const MultipleSelect = (props: SelectFormProps) => {
   const {
     name,
     defaultValue,
-    rules,
     children,
     items,
     form: {
@@ -24,22 +24,18 @@ const MultipleSelect = (props: SelectFormProps) => {
   } = useController({
     name,
     control,
-    rules: Object.assign(
-      {
-        required: {
-          value: true,
-          message: t("errors.requiredField"),
-        },
-      },
-      { ...rules }
-    ),
     defaultValue,
   });
 
+  const getError = useCallback(
+    () => get(errors, name)?.message,
+    [errors, name]
+  );
+
   return (
     <Select.Multiple
-      error={!!errors[name]}
-      helperText={!!errors[name] && errors[name].message}
+      error={!!getError()}
+      helperText={!!getError() && t(getError())}
       onChange={onChange}
       items={items}
       {...restProps}

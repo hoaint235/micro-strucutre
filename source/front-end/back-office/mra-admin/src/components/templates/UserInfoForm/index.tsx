@@ -1,7 +1,7 @@
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
+  Card,
+  CardContent,
+  CardHeader,
   Grid,
   makeStyles,
 } from "@material-ui/core";
@@ -10,10 +10,12 @@ import { UseFormReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Form from "../../../hook-forms";
 import { AccountService } from "../../../services";
-import { countries, REGEX_PHONE_NUMBER, Roles } from "../../../utils";
+import { countries, Roles } from "../../../utils";
+import { Typography } from "../../atoms";
 
 type Props = {
   form: UseFormReturn<any>;
+  editMode?: boolean;
 };
 
 const useCountryStyles = makeStyles({
@@ -23,7 +25,7 @@ const useCountryStyles = makeStyles({
 });
 
 const UserInfoForm = (props: Props) => {
-  const { form } = props;
+  const { form, editMode } = props;
   const { t } = useTranslation();
   const countryClasses = useCountryStyles();
   const [roles, setRoles] = useState<string[]>([]);
@@ -57,42 +59,35 @@ const UserInfoForm = (props: Props) => {
   };
 
   return (
-    <Accordion expanded={true}>
-      <AccordionSummary>
-        {t("account.addUserPage.accountTitle")}
-      </AccordionSummary>
-      <AccordionDetails>
+    <Card>
+      <CardHeader
+        title={<Typography.Body label="addUserPage.accountTitle" />}
+      />
+      <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Form.Input
-              label={t("fields.firstName")}
-              name="firstName"
+              label="fields.firstName"
+              name="profile.firstName"
               maxLength={50}
               form={form}
             />
           </Grid>
           <Grid item xs={12}>
             <Form.Input
-              label={t("fields.lastName")}
-              name="lastName"
+              label="fields.lastName"
+              name="profile.lastName"
               maxLength={50}
               form={form}
             />
           </Grid>
           <Grid item xs={12}>
-            <Form.Email
-              label={t("fields.emailAddress")}
-              name="email"
+            <Form.Input
+              label="fields.emailAddress"
+              name="profile.email"
+              disabled={editMode}
               maxLength={100}
               form={form}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Form.MultipleSelect
-              form={form}
-              items={getRoles()}
-              name="roles"
-              label={t("account.addUserPage.roles")}
             />
           </Grid>
           <Grid item xs={12}>
@@ -101,8 +96,8 @@ const UserInfoForm = (props: Props) => {
                 <Form.SingleSelect
                   items={getCountries()}
                   form={form}
-                  name="countryCode"
-                  label={t("fields.countryCode")}
+                  name="profile.countryCode"
+                  label="fields.countryCode"
                   SelectProps={{
                     MenuProps: { classes: { ...countryClasses } },
                   }}
@@ -111,21 +106,23 @@ const UserInfoForm = (props: Props) => {
               <Grid item xs={12} sm={6}>
                 <Form.Input
                   form={form}
-                  name="phoneNumber"
-                  label={t("fields.phoneNumber")}
-                  rules={{
-                    pattern: {
-                      value: REGEX_PHONE_NUMBER,
-                      message: t("errors.invalidPhoneNumber"),
-                    },
-                  }}
+                  name="profile.phoneNumber"
+                  label="fields.phoneNumber"
                 />
               </Grid>
             </Grid>
           </Grid>
+          <Grid item xs={12}>
+            <Form.MultipleSelect
+              form={form}
+              items={getRoles()}
+              name="roles"
+              label="addUserPage.roles"
+            />
+          </Grid>
         </Grid>
-      </AccordionDetails>
-    </Accordion>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -3,12 +3,21 @@ import axios from "axios";
 
 const UserService = {
   async gerCurrentUserRoles() {
-    const response = await axios.get<string[]>("/account/roles");
+    const response = await axios.get<string[]>("/account/roles", {
+      data: { cancelLoading: true },
+    });
     return response.data || [];
   },
   async getUsers(request: ListingRequest = { limit: 10, offset: 0 }) {
     const response = await axios.get<ListingResponse<IUser>>("/account/users", {
       params: { ...request },
+      data: { cancelLoading: true },
+    });
+    return response.data;
+  },
+  async getUserById(userId: string) {
+    const response = await axios.get<IUser>(`/account/users/${userId}`, {
+      data: { cancelLoading: true },
     });
     return response.data;
   },
