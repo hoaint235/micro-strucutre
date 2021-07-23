@@ -18,7 +18,7 @@ namespace MicroArchitecture.Account.Application.User.Commands.Handlers
 
         public async Task<ApiResult<Unit>> Handle(Create request, CancellationToken cancellationToken)
         {
-            var profile = Profile.Create(request.Profile.Email, request.Profile.PhoneNumber, request.Profile.FirstName, request.Profile.LastName);
+            var profile = Profile.Create(request.Profile.Email, request.Profile.PhoneNumber, request.Profile.FirstName, request.Profile.LastName, request.Profile.CountryCode);
             Domain.Users.User user;
             if (request.IsEditAddress)
             {

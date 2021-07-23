@@ -48,25 +48,22 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
 
         public static RawQuery ListUser(ListingRequest request, Guid currentUserId, List<Guid> roleIds)
         {
-            var orderByClause = new StringBuilder();
-            orderByClause.Append("u.CreatedDate DESC");
-
-            if (request.Sorts.Any())
-            {
-                orderByClause.Clear();
-                request.Sorts.ForEach(sort =>
-                {
-                    orderByClause.Append($", {sort.Field} {sort.Direction} ");
-                });
-            }
-
             var parameters = new Dictionary<string, object>
             {
                 { "Limit", request.Limit },
                 { "Offset", request.Offset },
                 { "RoleIds", roleIds },
-                { "CurrentUserId", currentUserId }
+                { "CurrentUserId", currentUserId },
             };
+
+            var orderByClause = request.BuildSorting("u.CreatedDate DESC");
+
+            var whereByClause = new StringBuilder();
+            if(!string.IsNullOrWhiteSpace(request.Search))
+            {
+                whereByClause.Append("AND u.Email LIKE @Search ");
+                parameters.Add("Search", $"%{request.Search}%");
+            }
 
             return new RawQuery
             {
@@ -79,7 +76,7 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
                            INTO #TempUser                           
                            FROM [dbo].[User] u 
                            INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId 
-                           WHERE u.IsDeleted = 0 AND ur.RoleId IN @RoleIds AND u.Id != @CurrentUserId
+                           WHERE u.IsDeleted = 0 AND ur.RoleId IN @RoleIds AND u.Id != @CurrentUserId {whereByClause} 
                            GROUP BY u.Id
                            	      , u.Email
                            	      , u.IsActivate

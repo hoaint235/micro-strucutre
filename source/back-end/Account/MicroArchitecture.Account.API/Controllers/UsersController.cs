@@ -15,8 +15,8 @@ namespace MicroArchitecture.Account.API.Controllers
     public class UsersController : ApiController
     {
         [Role(RoleType.Master)]
-        [HttpGet]
-        public async Task<IActionResult> ListUser([FromQuery] ListUsers request, CancellationToken cancellationToken) =>
+        [HttpPost("query")]
+        public async Task<IActionResult> ListUser([FromBody] ListUsers request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
 
         [Role(RoleType.Master)]

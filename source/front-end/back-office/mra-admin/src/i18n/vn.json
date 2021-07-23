@@ -1,0 +1,108 @@
+{
+  "auth": {
+    "backgroundTitle": "Micro Architecture",
+    "backgroundSubtitle": "Powerful and easy to use multipurpose theme",
+    "signInTitle": "Đăng nhập với email",
+    "forgotPasswordLink": "Quên mật khẩu ?",
+    "forgotPasswordTitle": "Quên mật khẩu",
+    "forgotPasswordSubtitle": "Nhập địa chỉ email của bạn và chúng tôi sẽ gửi cho bạn mã OTP để đặt lại mật khẩu",
+    "changePasswordFirstTimeTitle": "Đặt mới mật khẩu",
+    "changePasswordFirstTimeSubtitle": "Vui lòng chọn mật khẩu mới",
+    "confirmationCodeTitle": "Xác thực mật khẩu",
+    "confirmationCodeSubtitle": "Nhập mã tại email của bạn và lựa chọn mật khẩu mới",
+    "verifyOtpCodeTitle": "Xác thực mã OTP",
+    "verifyOtpCodeSubtitle": "Nhập mã OTP mà hệ thống gửi cho bạn thông qua số điện thoại ở hồ sơ cá nhân"
+  },
+  "account": {
+    "listUserPage": {
+      "title": "Danh sách nhân viên"
+    },
+    "addUserPage": {
+      "title": "Thêm nhân viên",
+      "roles": "Chức vụ",
+      "accountTitle": "Thông tin tài khoản",
+      "addressTitle": "Thông tin địa chỉ"
+    },
+    "addUser": "Thêm nhân viên",
+    "deactivate": "Hoạt động",
+    "activate": "Ngưng hoạt động"
+  },
+  "roles": {
+    "master": "Quản trị",
+    "admin": "Quản lí",
+    "user": "Nhân viên"
+  },
+  "statuses": {
+    "archived": "Archived",
+    "compromised": "Compromised",
+    "confirmed": "Xác nhận",
+    "forceChangePassword": "Bắt buộc đổi mật khẩu",
+    "resetRequired": "Yêu cầu cài lại",
+    "unconfirmed": "Chưa xác nhận",
+    "unknown": "Không rõ"
+  },
+  "buttons": {
+    "signIn": "Đăng nhập",
+    "submit": "Xác nhận",
+    "sendActivation": "Gửi xác thực",
+    "add": "Thêm mới",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "cancel": "Hủy bỏ",
+    "back": "Trở về",
+    "deactivate": "Hủy kích hoạt",
+    "activate": "Kích hoạt"
+  },
+  "fields": {
+    "emailAddress": "Địa chỉ email",
+    "confirmationCode": "Mã xác thực",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "rememberMe": "Nhớ tài khoản",
+    "phoneNumber": "Số điện thoại",
+    "otpCode": "Mã OTP",
+    "firstName": "Họ",
+    "lastName": "Tên",
+    "countryCode": "Mã quốc gia",
+    "houseNumber": "Địa chỉ nhà, đường",
+    "district": "Quận / Huyện",
+    "city": "Tỉnh / Thành"
+  },
+  "table": {
+    "name": "Tên",
+    "description": "Miêu tả",
+    "action": "Hành động",
+    "email": "Email",
+    "status": "Trạng thái",
+    "isActivate": "Hoạt động",
+    "createdDate": "Ngày tạo",
+    "roles": "Chức vụ",
+    "noResultFound": "Không tìm thấy kết quả",
+    "rowsPerPage": "Dữ liệu mỗi dòng:"
+  },
+  "menus": {
+    "users": "Nhân viên",
+    "products": "Sản phẩm"
+  },
+  "errors": {
+    "cognito": {
+      "userNotFoundExceptionError": "Not authorized.",
+      "invalidParameterExceptionError": "Internal error.",
+      "notAuthorizedExceptionError": "Not authorized.",
+      "exceedsMaxLengthError": "Exceeds the maximum length of text field.",
+      "invalidPasswordPolicyError": "Password must be least 6 characters, 1 upper case, 1 lower case, 1 numeric and 1 special character.",
+      "confirmPasswordNotMatchError": "Your password and confirmation password do not match.",
+      "expiredCodeExceptionError": "Invalid code provided, please request a code again.",
+      "userNotConfirmedExceptionError": "User needs to confirm account.",
+      "invalidPasswordExceptionError": "Password does not meet the requirements.",
+      "codeMismatchExceptionError": "Confirmation Code does not match.",
+      "limitExceededExceptionError": "Exceed number of tries."
+    },
+    "forbidden": "Bạn không có quyền, vui lòng thử lại",
+    "internalServerError": "Xảy ra lỗi từ hệ thống, vui lòng thử lại",
+    "requiredField": "Bắt buộc",
+    "invalidEmailFormat": "Sai định dạng email",
+    "invalidPasswordFormat": "Sai mật khẩu, mật khẩu bao gồm ít nhất 6 kí tự, 1 kí tự in hoa, 1 kí tự thường, 1 số và 1 kí tự đặc biệt.",
+    "invalidPhoneNumber": "Sai số điện thoại, số điện thoại bao gồm số và ít nhất 6 kí tự."
+  }
+}

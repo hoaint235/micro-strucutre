@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MicroArchitecture.Account.Application.User.Queries.Handlers
 {
-    public class GetByIdHandler : IRequestHandler<GetById, ApiResult<UserDto>>
+    public class GetByIdHandler : IRequestHandler<GetById, ApiResult<UserDetailDto>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
@@ -20,10 +20,11 @@ namespace MicroArchitecture.Account.Application.User.Queries.Handlers
             _mapper = mapper;
         }
 
-        public async Task<ApiResult<UserDto>> Handle(GetById request, CancellationToken cancellationToken)
+        public async Task<ApiResult<UserDetailDto>> Handle(GetById request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetAsync(request.UserId);
-            return ApiResult<UserDto>.Ok(_mapper.Map<UserDto>(user));
+            var result = _mapper.Map<UserDetailDto>(user);
+            return ApiResult<UserDetailDto>.Ok(result);
         }
     }
 }

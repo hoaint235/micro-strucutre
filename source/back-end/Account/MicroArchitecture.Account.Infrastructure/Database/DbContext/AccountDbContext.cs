@@ -52,6 +52,7 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext
                 pro.Property(x => x.PhoneNumber).HasColumnName("PhoneNumber");
                 pro.Property(x => x.FirstName).HasColumnName("FirstName");
                 pro.Property(x => x.LastName).HasColumnName("LastName");
+                pro.Property(x => x.CountryCode).HasColumnName("CountryCode");
             });
 
             modelBuilder.Entity<User>().OwnsOne(o => o.Address, pro =>
