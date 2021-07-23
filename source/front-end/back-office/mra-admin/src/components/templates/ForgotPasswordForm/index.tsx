@@ -57,7 +57,7 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
             <Typography.Body label={t("forgotPasswordPage.subtitle")} />
           </Grid>
           <Grid item xs={12}>
-            <Form.Email form={form} label="fields.emailAddress" name="email" />
+            <Form.Input form={form} label="fields.emailAddress" name="email" />
           </Grid>
           <Grid item xs={12}>
             <ReCAPTCHA

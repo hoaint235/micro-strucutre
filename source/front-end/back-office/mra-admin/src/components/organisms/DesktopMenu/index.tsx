@@ -15,7 +15,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DesktopMenu = () => {
+const DesktopMenu = (props: any) => {
+  const { isOpen } = props;
   const classes = useStyles();
 
   return (
@@ -24,7 +25,7 @@ const DesktopMenu = () => {
         style={{ zIndex: 10 }}
         anchor="left"
         classes={{ paper: classes.desktopDrawer }}
-        open
+        open={isOpen}
         variant="persistent"
       >
         <MenuList />

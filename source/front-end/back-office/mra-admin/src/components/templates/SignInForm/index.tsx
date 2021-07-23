@@ -79,7 +79,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
       <form onSubmit={handleSubmit(onSignIn)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Form.Email label="fields.emailAddress" form={form} name="email" />
+            <Form.Input label="fields.emailAddress" form={form} name="email" />
           </Grid>
           <Grid item xs={12}>
             <Form.Password

@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     alignItems: "flex-start",
-    height: "calc(100vh - 104px)",
+    height: "calc(100vh - 83px)",
     display: "block",
   },
 }));

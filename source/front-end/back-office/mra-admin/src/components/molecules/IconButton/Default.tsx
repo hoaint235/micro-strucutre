@@ -8,7 +8,7 @@ const Default = (props: IconButtonProps) => {
   const { t } = useTranslation();
 
   return (
-    <Tooltip title={`${t(label)}`}>
+    <Tooltip title={`${t(label || "")}`}>
       <IconButton {...restProps}>
         <Icon />
       </IconButton>
