@@ -6,12 +6,44 @@ import Form from "../../../hook-forms";
 import { DefaultContainer } from "../../organisms";
 import { Grid } from "@material-ui/core";
 import { CognitoService } from "../../../services";
+import * as yup from "yup";
+import { Errors, REGEX_PASSWORD } from "../../../utils";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .trim()
+    .required(Errors.required)
+    .email(Errors.formatEmail),
+  confirmationCode: yup.string().trim().required(Errors.required),
+  password: yup
+    .string()
+    .trim()
+    .required(Errors.required)
+    .matches(REGEX_PASSWORD, Errors.formatPassword),
+  confirmPassword: yup
+    .string()
+    .trim()
+    .required(Errors.required)
+    .matches(REGEX_PASSWORD, Errors.formatPassword)
+    .oneOf([yup.ref("password"), null], Errors.matchingPassword),
+});
+
+const defaultForm = {
+  emailAddress: "",
+  password: "",
+  confirmationCode: "",
+  confirmPassword: "",
+};
 
 const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
   const { t } = useTranslation();
   const history = useHistory();
   const form = useForm({
     mode: "onBlur",
+    defaultValues: defaultForm,
+    resolver: yupResolver(schema),
   });
 
   const {

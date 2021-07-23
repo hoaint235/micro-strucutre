@@ -121,6 +121,7 @@
     "requiredField": "Field is required",
     "invalidEmailFormat": "Invalid email format",
     "invalidPasswordFormat": "Invalid password, password include least 6 characters, 1 upper case, 1 lower case, 1 numeric and 1 special character.",
-    "invalidPhoneNumber": "Invalid phone, phone include number and least 6 characters."
+    "invalidPhoneNumber": "Invalid phone, phone include number and least 6 characters.",
+    "passwordIsNotMatching": "Two password is not matching"
   }
 }

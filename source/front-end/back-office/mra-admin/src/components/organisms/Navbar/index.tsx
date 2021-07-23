@@ -10,7 +10,7 @@ const NavBar = (props: any) => {
         <MobileMenu {...props} />
       </Hidden>
       <Hidden smDown>
-        <DesktopMenu />
+        <DesktopMenu {...props} />
       </Hidden>
     </Fragment>
   );

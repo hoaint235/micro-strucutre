@@ -5,15 +5,34 @@ import Form from "../../../hook-forms";
 import { CognitoService } from "../../../services";
 import { Button, Typography } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
+import * as yup from "yup";
+import { Errors } from "../../../utils";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .trim()
+    .required(Errors.required)
+    .email(Errors.formatEmail),
+});
 
 const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
   const { t } = useTranslation();
   const { onNavigateStep } = props;
   const form = useForm({
     mode: "onBlur",
+    reValidateMode: "onChange",
+    resolver: yupResolver(schema),
   });
+  const [validRecaptcha, setValidRecaptcha] = useState(false);
 
-  const { handleSubmit } = form;
+  const {
+    handleSubmit,
+    formState: { isValid, isDirty },
+  } = form;
 
   const onSendActivation = async (data: any) => {
     await CognitoService.forgotPassword(data.email);
@@ -26,6 +45,10 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
       });
   };
 
+  const onChange = (value: any) => {
+    setValidRecaptcha(!!value);
+  };
+
   return (
     <DefaultContainer title="forgotPasswordPage.title">
       <form onSubmit={handleSubmit(onSendActivation)}>
@@ -34,13 +57,20 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
             <Typography.Body label={t("forgotPasswordPage.subtitle")} />
           </Grid>
           <Grid item xs={12}>
-            <Form.Email form={form} label="fields.emailAddress" name="email" />
+            <Form.Input form={form} label="fields.emailAddress" name="email" />
+          </Grid>
+          <Grid item xs={12}>
+            <ReCAPTCHA
+              sitekey={`${process.env.REACT_APP_SITE_KEY_RECAPTCHA}`}
+              onChange={onChange}
+            />
           </Grid>
           <Grid item xs={12}>
             <Button.Primary
               size="large"
               fullWidth
               type="submit"
+              disabled={!validRecaptcha || !isValid || !isDirty}
               label={t("buttons.submit")}
             />
           </Grid>

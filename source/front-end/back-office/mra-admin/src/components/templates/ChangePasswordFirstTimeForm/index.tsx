@@ -1,16 +1,44 @@
 import { Box, Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { DEFAULT_REDIRECT_URL } from "../../../utils/constants";
+import {
+  DEFAULT_REDIRECT_URL,
+  Errors,
+  REGEX_PASSWORD,
+} from "../../../utils/constants";
 import { useHistory } from "react-router-dom";
 import { DefaultContainer } from "../../organisms";
 import { AccountService, CognitoService } from "../../../services";
 import { Button, Typography } from "../../atoms";
 import Form from "../../../hook-forms";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  password: yup
+    .string()
+    .trim()
+    .required(Errors.required)
+    .matches(REGEX_PASSWORD, Errors.formatPassword),
+  confirmPassword: yup
+    .string()
+    .trim()
+    .required(Errors.required)
+    .matches(REGEX_PASSWORD, Errors.formatPassword)
+    .oneOf([yup.ref("password"), null], Errors.matchingPassword),
+});
 
 const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
   const history = useHistory();
   const { stepObj, onNavigateStep } = props;
-  const form = useForm();
+
+  const form = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      password: "",
+      confirmPassword: "",
+    },
+    resolver: yupResolver(schema),
+  });
   const {
     handleSubmit,
     formState: { isDirty, isValid },
