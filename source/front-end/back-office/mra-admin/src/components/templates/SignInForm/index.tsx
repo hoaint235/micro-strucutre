@@ -6,9 +6,11 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import Form from "../../../hook-forms";
 import { CognitoService } from "../../../services";
-import { DEFAULT_REDIRECT_URL } from "../../../utils";
+import { DEFAULT_REDIRECT_URL, Errors } from "../../../utils";
 import { Button } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -22,6 +24,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .trim()
+    .required(Errors.required)
+    .email(Errors.formatEmail),
+  password: yup.string().trim().required(Errors.required),
+});
+
 const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const { onNavigateStep } = props;
   const { t } = useTranslation();
@@ -31,6 +42,11 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const form = useForm({
     mode: "onBlur",
     reValidateMode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    resolver: yupResolver(schema),
   });
   const { handleSubmit } = form;
 
@@ -55,7 +71,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
 
   const navigateForgotPasswordPage = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    history.push("forgot-password");
+    history.push("/forgot-password");
   };
 
   return (

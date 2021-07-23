@@ -32,7 +32,7 @@ const headers: HeaderProps[] = [
   {
     field: "roles",
     label: "table.roles",
-    width: 200,
+    width: 150,
   },
   {
     field: "createdDate",

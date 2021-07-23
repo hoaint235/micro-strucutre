@@ -22,6 +22,8 @@ export const Statuses: ExtendProps = {
   6: "statuses.unknown",
 };
 
+export const REGEX_PASSWORD =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\,\.|])(?=.{8,})/;
 export const DEFAULT_REDIRECT_URL = "/admin/users";
 export const REGEX_PHONE_NUMBER = /^[0-9]{6,}$/;
 export const REGEX_EMAIL =
@@ -31,4 +33,6 @@ export const Errors = Object.freeze({
   required: "errors.requiredField",
   formatEmail: "errors.invalidEmailFormat",
   formatPhoneNumber: "errors.invalidPhoneNumber",
+  formatPassword: "errors.invalidPasswordFormat",
+  matchingPassword: "errors.passwordIsNotMatching",
 });
