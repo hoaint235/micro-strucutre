@@ -4,6 +4,7 @@ import {
   ListItemText,
   makeStyles,
   MenuItem,
+  Theme,
 } from "@material-ui/core";
 import React from "react";
 import { Field } from "../../atoms";
@@ -20,8 +21,15 @@ const useStyles = makeStyles({
   },
 });
 
+const usePaperStyles = makeStyles((theme: Theme) => ({
+  paper: {
+    marginTop: theme.spacing(7),
+  },
+}));
+
 const Multiple = (props: SelectProps) => {
   const classes = useStyles();
+  const paperClasses = usePaperStyles();
   const { items, onChange, value = [], ...restProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +43,9 @@ const Multiple = (props: SelectProps) => {
       value={value}
       onChange={handleChange}
       SelectProps={{
+        MenuProps: {
+          classes: { ...paperClasses },
+        },
         multiple: true,
         renderValue: (selected: any) => (
           <div className={classes.chips}>

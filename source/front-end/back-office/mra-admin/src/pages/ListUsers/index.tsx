@@ -1,9 +1,10 @@
 import { Grid, Box } from "@material-ui/core";
-import { IUser, ListingResponse } from "model";
+import { IUser, ListingRequest, ListingResponse } from "model";
 import React, { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Field, HeaderProps } from "../../components/atoms";
+import { PagingProps, SortProps } from "../../components/molecules";
 import { MainContainer } from "../../components/organisms";
 import {
   ListUsers as Users,
@@ -31,7 +32,7 @@ const headers: HeaderProps[] = [
   {
     field: "roles",
     label: "table.roles",
-    width: 100,
+    width: 200,
   },
   {
     field: "createdDate",
@@ -47,8 +48,13 @@ const ListUsers = () => {
   const [data, setData] = useState<ListingResponse<IUser> | null>(null);
   const history = useHistory();
 
-  const fetchUsers = useCallback(async () => {
-    const users = await AccountService.getUsers();
+  const fetchUsers = useCallback(async (request?: ListingRequest) => {
+    const defaultRequest = {
+      limit: 10,
+      offset: 0,
+    };
+    const payload = { ...defaultRequest, ...request };
+    const users = await AccountService.getUsers(payload);
     setData({ ...data, ...users });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -76,10 +82,23 @@ const ListUsers = () => {
   const onViewDetail = (userId: string) =>
     history.push(`/admin/users/${userId}`);
 
-  const onSearch = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Enter") {
-      console.log("on search");
-    }
+  const onSearch = async (value: string) => {
+    await fetchUsers({ search: value });
+  };
+
+  const onPaging = async (data: PagingProps) => {
+    await fetchUsers({ limit: data.limit, offset: data.offset });
+  };
+
+  const onSort = async (data: SortProps) => {
+    await fetchUsers({
+      sorts: [
+        {
+          direction: data.order,
+          field: data.orderBy,
+        },
+      ],
+    });
   };
 
   const navigateAddUserPage = () => history.push("/admin/users/create");
@@ -89,7 +108,7 @@ const ListUsers = () => {
       {data ? (
         <Grid container item xs={12} alignItems="center">
           <Grid item xs={12} md={4}>
-            <Field.Search label="Search user" onKeyDown={onSearch} />
+            <Field.Search label="Search user" onSubmit={onSearch} />
           </Grid>
           <Grid item xs={12} container md={8} justifyContent="flex-end">
             <Box mt={{ xs: 2, md: 0 }}>
@@ -108,6 +127,8 @@ const ListUsers = () => {
                 onActivate={onActivate}
                 onDelete={onDelete}
                 onViewDetail={onViewDetail}
+                onPaging={onPaging}
+                onSort={onSort}
               />
             </Box>
           </Grid>

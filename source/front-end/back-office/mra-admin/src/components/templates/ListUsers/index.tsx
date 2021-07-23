@@ -1,8 +1,15 @@
 import { Grid } from "@material-ui/core";
+import {
+  CheckCircleOutline,
+  Delete,
+  HighlightOff,
+  Visibility,
+} from "@material-ui/icons";
 import { IUser, ListingResponse } from "model";
 import { Roles, Statuses } from "../../../utils";
-import { Button, HeaderProps, Status, Typography } from "../../atoms";
-import { DataTable } from "../../molecules";
+import { HeaderProps, Status, Typography } from "../../atoms";
+import { DataTable, IconButton, SortProps } from "../../molecules";
+import { PagingProps } from "../../molecules";
 
 type Props = {
   data: ListingResponse<IUser>;
@@ -11,17 +18,28 @@ type Props = {
   onDelete: (userId: string) => void;
   onDeactivate: (userId: string) => void;
   onViewDetail: (userId: string) => void;
+  onPaging: (data: PagingProps) => void;
+  onSort: (data: SortProps) => void;
 };
 
 const ListUsers = (props: Props) => {
-  const { data, headers, onActivate, onDelete, onDeactivate, onViewDetail } =
-    props;
+  const {
+    data,
+    headers,
+    onActivate,
+    onDelete,
+    onDeactivate,
+    onViewDetail,
+    onPaging,
+    onSort,
+  } = props;
 
   const renderAction = (data: any) => {
     return (
       <Grid container spacing={1}>
         <Grid item>
-          <Button.Primary
+          <IconButton.Primary
+            icon={Visibility}
             disabled={!data.hasPermission}
             label="buttons.edit"
             onClick={() => onViewDetail(data.id)}
@@ -29,7 +47,8 @@ const ListUsers = (props: Props) => {
         </Grid>
         {!data.isActivate && (
           <Grid item>
-            <Button.Default
+            <IconButton.Primary
+              icon={CheckCircleOutline}
               disabled={!data.hasPermission}
               label="buttons.activate"
               onClick={() => onActivate(data.id)}
@@ -38,7 +57,8 @@ const ListUsers = (props: Props) => {
         )}
         {!data.isActivate && (
           <Grid item>
-            <Button.Secondary
+            <IconButton.Secondary
+              icon={Delete}
               disabled={!data.hasPermission}
               label="buttons.delete"
               onClick={() => onDelete(data.id)}
@@ -47,7 +67,8 @@ const ListUsers = (props: Props) => {
         )}
         {data.isActivate && (
           <Grid item>
-            <Button.Secondary
+            <IconButton.Secondary
+              icon={HighlightOff}
               disabled={!data.hasPermission}
               label="buttons.deactivate"
               onClick={() => onDeactivate(data.id)}
@@ -119,6 +140,8 @@ const ListUsers = (props: Props) => {
       source={data.data}
       totalItems={data.totalItems}
       noResultFound="table.noResultFound"
+      onPaging={onPaging}
+      onSort={onSort}
       bodyTemplate={{
         bodyAction: renderAction,
         bodyIsActivate: renderActivate,

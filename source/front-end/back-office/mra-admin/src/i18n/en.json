@@ -94,7 +94,8 @@
     "isActivate": "Active",
     "createdDate": "Created Date",
     "roles": "Roles",
-    "noResultFound": "Not result found"
+    "noResultFound": "Not result found",
+    "rowsPerPage": "Rows per page:"
   },
   "menus": {
     "users": "Users",

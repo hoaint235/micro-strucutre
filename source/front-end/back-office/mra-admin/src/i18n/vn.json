@@ -77,7 +77,8 @@
     "isActivate": "Hoạt động",
     "createdDate": "Ngày tạo",
     "roles": "Chức vụ",
-    "noResultFound": "Không tìm thấy kết quả"
+    "noResultFound": "Không tìm thấy kết quả",
+    "rowsPerPage": "Dữ liệu mỗi dòng:"
   },
   "menus": {
     "users": "Nhân viên",

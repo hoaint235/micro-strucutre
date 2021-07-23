@@ -75,9 +75,10 @@ declare module "model" {
   }
 
   declare interface ListingRequest {
-    limit: number;
-    offset: number;
+    limit?: number;
+    offset?: number;
     sorts?: Array<SortRequest>;
+    search?: string;
   }
 
   declare interface IAddress {

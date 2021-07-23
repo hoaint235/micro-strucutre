@@ -13,8 +13,5 @@ export type DataTableHeaderProps = {
   headers: HeaderProps[];
   order: OrderProps;
   orderBy: string;
-  onSort: (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    property: string
-  ) => void;
+  onSort: (event: React.MouseEvent<unknown>, property: string) => void;
 };

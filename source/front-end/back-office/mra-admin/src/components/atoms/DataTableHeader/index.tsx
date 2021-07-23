@@ -20,8 +20,7 @@ const DataTableHeader = (props: DataTableHeaderProps) => {
   const { headers, order, orderBy, onSort } = props;
 
   const handlerSort =
-    (property: string) =>
-    (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    (property: string) => (event: React.MouseEvent<unknown>) => {
       onSort(event, property);
     };
 

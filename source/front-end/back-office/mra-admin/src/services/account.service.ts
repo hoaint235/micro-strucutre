@@ -8,11 +8,11 @@ const UserService = {
     });
     return response.data || [];
   },
-  async getUsers(request: ListingRequest = { limit: 10, offset: 0 }) {
-    const response = await axios.get<ListingResponse<IUser>>("/account/users", {
-      params: { ...request },
-      data: { cancelLoading: true },
-    });
+  async getUsers(request: ListingRequest) {
+    const response = await axios.post<ListingResponse<IUser>>(
+      "/account/users/query",
+      { ...request, cancelLoading: true }
+    );
     return response.data;
   },
   async getUserById(userId: string) {
