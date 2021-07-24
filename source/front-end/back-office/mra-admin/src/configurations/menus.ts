@@ -19,7 +19,11 @@ const Menus: MenuItemProps[] = [
   },
   {
     path: "/admin/products",
-    pathsActivate: ["/admin/products"],
+    pathsActivate: [
+      "/admin/products",
+      "/admin/products/create",
+      "/admin/products/:productId",
+    ],
     icon: ListAlt,
     label: "menus.products",
   },

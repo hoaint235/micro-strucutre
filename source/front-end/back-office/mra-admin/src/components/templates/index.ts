@@ -13,3 +13,4 @@ export { default as SkeletonTemplate } from "./SkeletonTemplates";
 export { default as ListCategories } from "./ListCategories";
 export { default as ManageCategoryForm } from "./ManageCategoryForm";
 export { default as ListProducts } from "./ListProducts";
+export { default as ManageProductForm } from "./ManageProductForm";

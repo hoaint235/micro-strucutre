@@ -9,6 +9,7 @@ import {
   EditUser,
   ListCategories,
   ListProducts,
+  AddProduct,
 } from "../pages";
 import Config from "./common";
 
@@ -43,6 +44,11 @@ const Routes: RouteConfig[] = [
         path: "/admin/products",
         exact: true,
         component: ListProducts,
+      },
+      {
+        path: "/admin/products/create",
+        exact: true,
+        component: AddProduct,
       },
     ],
   },

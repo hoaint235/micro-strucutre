@@ -55,6 +55,9 @@
     "addProduct": "Add product",
     "searchText": "Search products"
   },
+  "addProductPage": {
+    "title": "Add Product"
+  },
   "roles": {
     "master": "Master",
     "admin": "Admin",

@@ -2,6 +2,7 @@ import { Box, Grid } from "@material-ui/core";
 import sortBy from "lodash/sortBy";
 import { ListingResponse, IProductView } from "model";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Field, HeaderProps } from "../../components/atoms";
 import { PagingProps, SortProps } from "../../components/molecules";
 import { MainContainer } from "../../components/organisms";
@@ -76,6 +77,7 @@ const ListProducts = () => {
     ],
     totalItems: 2,
   });
+  const history = useHistory();
 
   const onDelete = async (productId: string) => {};
 
@@ -98,6 +100,8 @@ const ListProducts = () => {
     setData({ totalItems: result.length, data: [...result] });
   };
 
+  const navigateToAddProduct = () => history.push("/admin/products/create");
+
   return (
     <MainContainer title="listProductPage.title">
       {data ? (
@@ -113,7 +117,7 @@ const ListProducts = () => {
               <Button.Primary
                 name="addCategory"
                 label="listProductPage.addProduct"
-                onClick={() => console.log("")}
+                onClick={navigateToAddProduct}
               />
             </Box>
           </Grid>
