@@ -99,7 +99,8 @@
   },
   "menus": {
     "users": "Users",
-    "products": "Products"
+    "products": "Products",
+    "categories": "Categories"
   },
   "errors": {
     "cognito": {

@@ -4,12 +4,12 @@ import { IconButtonProps } from "./IconButton.type";
 import IconButton from "@material-ui/core/IconButton";
 
 const Default = (props: IconButtonProps) => {
-  const { icon: Icon, label, ...restProps } = props;
+  const { icon: Icon, label, name, ...restProps } = props;
   const { t } = useTranslation();
 
   return (
     <Tooltip title={`${t(label || "")}`}>
-      <IconButton {...restProps}>
+      <IconButton {...restProps} size="medium" data-testid={name}>
         <Icon />
       </IconButton>
     </Tooltip>

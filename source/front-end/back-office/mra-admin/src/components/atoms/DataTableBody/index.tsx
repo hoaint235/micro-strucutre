@@ -32,7 +32,11 @@ const DynamicTableBody = (props: DataTableBodyProps) => {
               )}`;
 
               return (
-                <TableCell key={index} align={header.align}>
+                <TableCell
+                  key={index}
+                  align={header.align}
+                  style={{ paddingTop: 8, paddingBottom: 8 }}
+                >
                   {bodyTemplate[column] ? (
                     bodyTemplate[column](row)
                   ) : (

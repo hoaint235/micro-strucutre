@@ -40,6 +40,7 @@ const ListUsers = (props: Props) => {
         <Grid item>
           <IconButton.Primary
             icon={Visibility}
+            name="edit"
             disabled={!data.hasPermission}
             label="buttons.edit"
             onClick={() => onViewDetail(data.id)}
@@ -48,6 +49,7 @@ const ListUsers = (props: Props) => {
         {!data.isActivate && (
           <Grid item>
             <IconButton.Primary
+              name="activate"
               icon={CheckCircleOutline}
               disabled={!data.hasPermission}
               label="buttons.activate"
@@ -59,6 +61,7 @@ const ListUsers = (props: Props) => {
           <Grid item>
             <IconButton.Secondary
               icon={Delete}
+              name="delete"
               disabled={!data.hasPermission}
               label="buttons.delete"
               onClick={() => onDelete(data.id)}
@@ -71,6 +74,7 @@ const ListUsers = (props: Props) => {
               icon={HighlightOff}
               disabled={!data.hasPermission}
               label="buttons.deactivate"
+              name="deactivate"
               onClick={() => onDeactivate(data.id)}
             />
           </Grid>
@@ -105,20 +109,20 @@ const ListUsers = (props: Props) => {
     const isUser = checkRole(Roles.User);
 
     return (
-      <Grid container spacing={1}>
+      <Grid container spacing={2}>
         {isMaster && (
-          <Grid item xs={12}>
-            <Status label="roles.master" />
+          <Grid item xs={12} md={6}>
+            <Status label="roles.master" color="primary" />
           </Grid>
         )}
         {isAdmin && (
-          <Grid item xs={12}>
-            <Status label="roles.admin" />
+          <Grid item xs={12} md={6}>
+            <Status label="roles.admin" color="primary" />
           </Grid>
         )}
         {isUser && (
-          <Grid item xs={12}>
-            <Status label="roles.user" />
+          <Grid item xs={12} md={6}>
+            <Status label="roles.user" color="primary" />
           </Grid>
         )}
       </Grid>

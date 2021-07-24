@@ -1,7 +1,15 @@
 import { renderRoutes, RouteConfig } from "react-router-config";
 import { Redirect } from "react-router-dom";
 import { AuthTemplate, DefaultTemplate } from "../components/templates";
-import { AddUser, ForgotPassword, ListUsers, SignIn, EditUser } from "../pages";
+import {
+  AddUser,
+  ForgotPassword,
+  ListUsers,
+  SignIn,
+  EditUser,
+  ListCategories,
+} from "../pages";
+import Config from "./common";
 
 const Routes: RouteConfig[] = [
   {
@@ -26,6 +34,11 @@ const Routes: RouteConfig[] = [
         component: EditUser,
       },
       {
+        path: "/admin/categories",
+        exact: true,
+        component: ListCategories,
+      },
+      {
         path: "/admin/products",
         exact: true,
         component: () => <div>his ta tes </div>,
@@ -41,7 +54,7 @@ const Routes: RouteConfig[] = [
       {
         path: "/",
         exact: true,
-        component: () => <Redirect to="/admin/users" />,
+        component: () => <Redirect to={Config.defaultPath} />,
       },
       {
         path: "/sign-in",

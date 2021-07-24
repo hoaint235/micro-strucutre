@@ -58,6 +58,17 @@ declare type ExtendProps = {
   [key: string]: any;
 };
 
+declare type DialogStateProps<TModel> = {
+  open: boolean;
+  params?: ExtendProps;
+};
+
+declare type DialogFormProps<TModel> = {
+  state: DialogStateProps<TModel>;
+  onClose: () => void;
+  onSubmit: (data: TModel) => void;
+};
+
 declare module "model" {
   declare interface Certificate {
     email: string;
@@ -103,5 +114,10 @@ declare module "model" {
     profile: IProfile;
     isEditAddress: boolean;
     address?: IAddress;
+  }
+
+  declare interface ICategory {
+    id?: string;
+    name: string;
   }
 }

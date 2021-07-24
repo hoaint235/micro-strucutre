@@ -77,6 +77,7 @@ const Header = (props: Props) => {
             className={classes.toggleMenu}
             onClick={onToggle}
             icon={Menu}
+            name="toggleMenu"
           />
         </div>
 
