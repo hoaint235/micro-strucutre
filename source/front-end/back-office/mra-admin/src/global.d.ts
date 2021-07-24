@@ -27,8 +27,8 @@ declare type TypographyProps = {
   color?: TypographyColor;
 };
 
-declare type SelectionProps = {
-  key: string;
+declare type SelectionProps<T = string> = {
+  key: T;
   value: string;
 };
 

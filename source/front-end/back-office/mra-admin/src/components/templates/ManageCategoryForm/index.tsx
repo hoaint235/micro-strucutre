@@ -15,12 +15,33 @@ import * as yup from "yup";
 import Form from "../../../hook-forms";
 import { Errors } from "../../../utils";
 import { Button, Typography } from "../../atoms";
+import toInteger from "lodash/toInteger";
 
+const LEVEL_MASTER: number = 0;
 const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),
   level: yup.number().required(Errors.required),
-  parent: yup.string().trim().required(Errors.required),
+  parent: yup.string().when("level", {
+    is: LEVEL_MASTER,
+    then: yup.string().trim().notRequired(),
+    otherwise: yup.string().required(Errors.required),
+  }),
 });
+
+const mockParents: SelectionProps[] = [
+  {
+    key: "0",
+    value: "parent 0",
+  },
+  {
+    key: "1",
+    value: "parent 1",
+  },
+  {
+    key: "2",
+    value: "parent 2",
+  },
+];
 
 const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
   const {
@@ -30,25 +51,20 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
   } = props;
   const form = useForm({
     mode: "onBlur",
-    defaultValues: {
-      level: 0,
-    },
     resolver: yupResolver(schema),
   });
   const {
     handleSubmit,
+    watch,
+    setValue,
     formState: { isDirty, isValid },
   } = form;
-  const [parents, setParents] = useState<SelectionProps[]>([
-    {
-      key: "1",
-      value: "parent 1",
-    },
-    {
-      key: "2",
-      value: "parent 2",
-    },
+  const [levels, setLevels] = useState<SelectionProps[]>([
+    { key: "0", value: "0" },
+    { key: "1", value: "1" },
+    { key: "2", value: "2" },
   ]);
+  const [parents, setParents] = useState<SelectionProps[]>([]);
 
   const fetchCategory = () => {
     const categoryId = params?.categoryId;
@@ -56,6 +72,20 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
       // TODO: fetch data
     }
   };
+
+  const levelField = toInteger(watch("level"));
+
+  useEffect(() => {
+    const levelCalc = levelField - 1;
+    if (levelCalc >= LEVEL_MASTER) {
+      const parentFilter = mockParents.filter(
+        (x) => x.key === levelCalc.toString()
+      );
+      setParents(parentFilter);
+      setValue("parent", "");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [levelField]);
 
   useEffect(() => {
     fetchCategory();
@@ -70,7 +100,7 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
   return (
     <Dialog open={open} maxWidth="xs" fullWidth>
       <DialogTitle>
-        <Typography.Body label="Manage Category" />
+        <Typography.Body label="manageCategoryDialog.title" />
       </DialogTitle>
       <DialogContent dividers>
         <form id="form" onSubmit={handleSubmit(onSave)}>
@@ -79,11 +109,10 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
               <Form.Input form={form} name="name" label="fields.name" />
             </Grid>
             <Grid item xs={12}>
-              <Form.Input
+              <Form.SingleSelect
                 form={form}
-                type="number"
+                items={levels}
                 name="level"
-                range={{ min: 0, max: 10 }}
                 label="fields.level"
               />
             </Grid>
@@ -91,6 +120,7 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
               <Form.SingleSelect
                 form={form}
                 items={parents}
+                disabled={levelField === LEVEL_MASTER}
                 name="parent"
                 label="fields.parent"
               />
