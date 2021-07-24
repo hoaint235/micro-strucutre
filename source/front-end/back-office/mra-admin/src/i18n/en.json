@@ -51,7 +51,9 @@
     "title": "Manage Category"
   },
   "listProductPage": {
-    "title": "List Products"
+    "title": "List Products",
+    "addProduct": "Add product",
+    "searchText": "Search products"
   },
   "roles": {
     "master": "Master",
@@ -103,13 +105,17 @@
     "action": "Action",
     "email": "Email",
     "status": "Status",
-    "isActivate": "Active",
+    "active": "Active",
     "createdDate": "Created Date",
     "roles": "Roles",
     "noResultFound": "Not result found",
     "rowsPerPage": "Rows per page:",
     "level": "Level",
-    "parent": "Parent"
+    "parent": "Parent",
+    "unit": "Unit",
+    "retailPrice": "Retail price",
+    "wholesalePrice": "Wholesale price",
+    "category": "Category"
   },
   "menus": {
     "users": "Users",

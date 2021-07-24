@@ -21,7 +21,7 @@ const headers: HeaderProps[] = [
   },
   {
     field: "isActivate",
-    label: "table.isActivate",
+    label: "table.active",
     width: 100,
   },
   {

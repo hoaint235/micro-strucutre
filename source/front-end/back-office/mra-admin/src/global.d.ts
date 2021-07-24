@@ -125,4 +125,17 @@ declare module "model" {
     level: int;
     parent?: ICategory;
   }
+
+  declare interface IProductView {
+    id: string;
+    name: string;
+    active: boolean;
+    unit: string;
+    category: {
+      id: string;
+      name: string;
+    };
+    retailPrice: number;
+    wholesalePrice: number;
+  }
 }
