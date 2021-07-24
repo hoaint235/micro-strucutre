@@ -11,7 +11,7 @@ const useStyleButton = makeStyles({
 });
 
 const Default = (props: ButtonProps) => {
-  const { label = "", size = "medium", ...restProps } = props;
+  const { name, label = "", size = "medium", ...restProps } = props;
   const classesButton = useStyleButton();
   const { t } = useTranslation();
 
@@ -19,6 +19,7 @@ const Default = (props: ButtonProps) => {
     <Button
       variant="contained"
       {...restProps}
+      data-testid={name}
       classes={{ ...classesButton }}
       size={size}
     >

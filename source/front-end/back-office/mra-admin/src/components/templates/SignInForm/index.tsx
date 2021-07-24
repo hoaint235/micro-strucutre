@@ -6,11 +6,12 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import Form from "../../../hook-forms";
 import { CognitoService } from "../../../services";
-import { DEFAULT_REDIRECT_URL, Errors } from "../../../utils";
+import { Errors } from "../../../utils";
 import { Button } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Config } from "../../../configurations";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -66,7 +67,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
       return;
     }
 
-    history.push(DEFAULT_REDIRECT_URL);
+    history.push(Config.defaultPath);
   };
 
   const navigateForgotPasswordPage = (e: React.SyntheticEvent) => {
@@ -105,6 +106,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
 
           <Grid item xs={12}>
             <Button.Primary
+              name="submit"
               size="large"
               fullWidth
               type="submit"

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { AddressInfoForm, UserInfoForm } from "../index";
 import { Button } from "../../atoms";
 import { IUser } from "model";
-import { Errors, REGEX_PHONE_NUMBER } from "../../../utils";
+import { Errors, Regex } from "../../../utils";
 import { useEffect, useState } from "react";
 
 const schema = yup.object().shape({
@@ -18,7 +18,7 @@ const schema = yup.object().shape({
       .string()
       .trim()
       .required(Errors.required)
-      .matches(REGEX_PHONE_NUMBER, Errors.formatPhoneNumber),
+      .matches(Regex.phoneNumber, Errors.formatPhoneNumber),
   }),
   roles: yup.array().min(1, Errors.required),
   address: yup.object().when("isEditAddress", {
@@ -97,9 +97,10 @@ const ManageUserForm = (props: Props) => {
           style={{ display: "flex" }}
         >
           <Box mr={2}>
-            <Button.Default onClick={onBack} label="buttons.back" />
+            <Button.Default onClick={onBack} label="buttons.back" name="back" />
           </Box>
           <Button.Primary
+            name="submit"
             type="submit"
             disabled={!isDirty || !isValid}
             label="buttons.submit"

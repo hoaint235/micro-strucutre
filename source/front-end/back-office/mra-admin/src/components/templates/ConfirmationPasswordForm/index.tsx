@@ -7,7 +7,7 @@ import { DefaultContainer } from "../../organisms";
 import { Grid } from "@material-ui/core";
 import { CognitoService } from "../../../services";
 import * as yup from "yup";
-import { Errors, REGEX_PASSWORD } from "../../../utils";
+import { Errors, Regex } from "../../../utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
@@ -21,12 +21,12 @@ const schema = yup.object().shape({
     .string()
     .trim()
     .required(Errors.required)
-    .matches(REGEX_PASSWORD, Errors.formatPassword),
+    .matches(Regex.password, Errors.formatPassword),
   confirmPassword: yup
     .string()
     .trim()
     .required(Errors.required)
-    .matches(REGEX_PASSWORD, Errors.formatPassword)
+    .matches(Regex.password, Errors.formatPassword)
     .oneOf([yup.ref("password"), null], Errors.matchingPassword),
 });
 
@@ -104,6 +104,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
           <Grid item xs={12}>
             <Button.Primary
               fullWidth
+              name="submit"
               size="large"
               type="submit"
               label={t("buttons.submit")}

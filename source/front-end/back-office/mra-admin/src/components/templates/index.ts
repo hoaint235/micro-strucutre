@@ -10,3 +10,5 @@ export { default as AddressInfoForm } from "./AddressInfoForm";
 export { default as UserInfoForm } from "./UserInfoForm";
 export { default as ManageUserForm } from "./ManageUserForm";
 export { default as SkeletonTemplate } from "./SkeletonTemplates";
+export { default as ListCategories } from "./ListCategories";
+export { default as ManageCategoryForm } from "./ManageCategoryForm";

@@ -14,13 +14,6 @@ export type HookFormFieldProps = {
   defaultValue?: any;
 };
 
-export type HookFormProps = {
-  children?: any;
-  renderChildren?: (form: UseFormReturn<any>) => any;
-  onSubmit: (form: any) => void;
-  renderSubmit: (form: UseFormReturn<any>) => void;
-};
-
 export type InputFormProps = InputProps &
   HookFormFieldProps & {
     defaultValue?: string;

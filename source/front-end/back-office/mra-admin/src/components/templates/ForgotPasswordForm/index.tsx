@@ -68,6 +68,7 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
           <Grid item xs={12}>
             <Button.Primary
               size="large"
+              name="submit"
               fullWidth
               type="submit"
               disabled={!validRecaptcha || !isValid || !isDirty}

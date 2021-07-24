@@ -65,7 +65,7 @@ const UserInfoForm = (props: Props) => {
       />
       <CardContent>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <Form.Input
               label="fields.firstName"
               name="profile.firstName"
@@ -73,7 +73,7 @@ const UserInfoForm = (props: Props) => {
               form={form}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <Form.Input
               label="fields.lastName"
               name="profile.lastName"

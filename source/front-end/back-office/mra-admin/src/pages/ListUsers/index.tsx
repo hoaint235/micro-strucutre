@@ -113,6 +113,7 @@ const ListUsers = () => {
           <Grid item xs={12} container md={8} justifyContent="flex-end">
             <Box mt={{ xs: 2, md: 0 }}>
               <Button.Primary
+                name="addUser"
                 label="listUserPage.addUser"
                 onClick={navigateAddUserPage}
               />

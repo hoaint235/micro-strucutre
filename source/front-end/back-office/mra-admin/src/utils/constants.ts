@@ -22,12 +22,13 @@ export const Statuses: ExtendProps = {
   6: "statuses.unknown",
 };
 
-export const REGEX_PASSWORD =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\,\.|])(?=.{8,})/; //eslint-disable-line
-export const DEFAULT_REDIRECT_URL = "/admin/users"; //eslint-disable-line
-export const REGEX_PHONE_NUMBER = /^[0-9]{6,}$/; //eslint-disable-line
-export const REGEX_EMAIL =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; //eslint-disable-line
+export const Regex = Object.freeze({
+  password:
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\,\.|])(?=.{8,})/, //eslint-disable-line
+  phoneNumber: /^[0-9]{6,}$/, //eslint-disable-line
+  email:
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, //eslint-disable-line
+});
 
 export const Errors = Object.freeze({
   required: "errors.requiredField",

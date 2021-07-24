@@ -1,10 +1,6 @@
 import { Box, Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import {
-  DEFAULT_REDIRECT_URL,
-  Errors,
-  REGEX_PASSWORD,
-} from "../../../utils/constants";
+import { Errors, Regex } from "../../../utils/constants";
 import { useHistory } from "react-router-dom";
 import { DefaultContainer } from "../../organisms";
 import { AccountService, CognitoService } from "../../../services";
@@ -12,18 +8,19 @@ import { Button, Typography } from "../../atoms";
 import Form from "../../../hook-forms";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Config } from "../../../configurations";
 
 const schema = yup.object().shape({
   password: yup
     .string()
     .trim()
     .required(Errors.required)
-    .matches(REGEX_PASSWORD, Errors.formatPassword),
+    .matches(Regex.password, Errors.formatPassword),
   confirmPassword: yup
     .string()
     .trim()
     .required(Errors.required)
-    .matches(REGEX_PASSWORD, Errors.formatPassword)
+    .matches(Regex.password, Errors.formatPassword)
     .oneOf([yup.ref("password"), null], Errors.matchingPassword),
 });
 
@@ -65,7 +62,7 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
     }
 
     await AccountService.updateStatus(email, 2);
-    history.push(DEFAULT_REDIRECT_URL);
+    history.push(Config.defaultPath);
   };
 
   return (
@@ -94,6 +91,7 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
           <Grid item xs={12}>
             <Button.Primary
               fullWidth
+              name="submit"
               size="large"
               type="submit"
               label="buttons.submit"

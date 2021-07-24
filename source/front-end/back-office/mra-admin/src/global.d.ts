@@ -27,8 +27,8 @@ declare type TypographyProps = {
   color?: TypographyColor;
 };
 
-declare type SelectionProps = {
-  key: string;
+declare type SelectionProps<T = string> = {
+  key: T;
   value: string;
 };
 
@@ -56,6 +56,20 @@ declare type ForgotStatus = "SEND_ACTIVATION" | "CONFIRMATION_CODE";
 
 declare type ExtendProps = {
   [key: string]: any;
+};
+
+declare type FormMode = "Add" | "Update";
+
+declare type DialogStateProps = {
+  open: boolean;
+  mode: FormMode;
+  params?: ExtendProps;
+};
+
+declare type DialogFormProps<TModel> = {
+  state: DialogStateProps;
+  onClose: () => void;
+  onSubmit: (data: TModel) => void;
 };
 
 declare module "model" {
@@ -103,5 +117,12 @@ declare module "model" {
     profile: IProfile;
     isEditAddress: boolean;
     address?: IAddress;
+  }
+
+  declare interface ICategory {
+    id?: string;
+    name: string;
+    level: int;
+    parent?: ICategory;
   }
 }

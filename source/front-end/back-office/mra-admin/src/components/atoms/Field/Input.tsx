@@ -24,6 +24,7 @@ const Input = (props: InputProps) => {
     maxLength,
     placeholder = "",
     fullWidth = true,
+    range,
     ...restProps
   } = props;
   const classes = useStyles();
@@ -42,6 +43,8 @@ const Input = (props: InputProps) => {
       inputProps={{
         "data-testid": `input-${name}`,
         maxLength: maxLength,
+        max: range?.max,
+        min: range?.min,
       }}
       FormHelperTextProps={{
         classes: { ...helperClasses },

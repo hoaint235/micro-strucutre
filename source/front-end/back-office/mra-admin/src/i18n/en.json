@@ -27,7 +27,8 @@
     "title": "List Users",
     "addUser": "Add User",
     "deactivate": "Deactivate",
-    "activate": "Activate"
+    "activate": "Activate",
+    "searchText": "Search user"
   },
   "addUserPage": {
     "title": "Add User",
@@ -40,6 +41,14 @@
     "roles": "Roles",
     "accountTitle": "Account Information",
     "addressTitle": "Address Information"
+  },
+  "listCategoryPage": {
+    "title": "List Categories",
+    "searchText": "Search categories",
+    "addCategory": "Add category"
+  },
+  "manageCategoryDialog": {
+    "title": "Manage Category"
   },
   "listProductPage": {
     "title": "List Products"
@@ -83,7 +92,10 @@
     "countryCode": "Country Code",
     "houseNumber": "House Number",
     "district": "District",
-    "city": "City"
+    "city": "City",
+    "name": "Name",
+    "level": "Level",
+    "parent": "Parent"
   },
   "table": {
     "name": "Name",
@@ -95,11 +107,14 @@
     "createdDate": "Created Date",
     "roles": "Roles",
     "noResultFound": "Not result found",
-    "rowsPerPage": "Rows per page:"
+    "rowsPerPage": "Rows per page:",
+    "level": "Level",
+    "parent": "Parent"
   },
   "menus": {
     "users": "Users",
-    "products": "Products"
+    "products": "Products",
+    "categories": "Categories"
   },
   "errors": {
     "cognito": {

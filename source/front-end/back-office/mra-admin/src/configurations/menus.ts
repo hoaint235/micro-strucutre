@@ -12,6 +12,12 @@ const Menus: MenuItemProps[] = [
     label: "menus.users",
   },
   {
+    path: "/admin/categories",
+    pathsActivate: ["/admin/categories"],
+    icon: ListAlt,
+    label: "menus.categories",
+  },
+  {
     path: "/admin/products",
     pathsActivate: ["/admin/products"],
     icon: ListAlt,
