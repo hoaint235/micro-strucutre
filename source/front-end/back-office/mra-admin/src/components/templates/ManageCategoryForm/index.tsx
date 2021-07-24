@@ -8,6 +8,7 @@ import {
   Box,
 } from "@material-ui/core";
 import { ICategory } from "model";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -17,6 +18,8 @@ import { Button, Typography } from "../../atoms";
 
 const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),
+  level: yup.number().required(Errors.required),
+  parent: yup.string().trim().required(Errors.required),
 });
 
 const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
@@ -27,9 +30,25 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
   } = props;
   const form = useForm({
     mode: "onBlur",
+    defaultValues: {
+      level: 0,
+    },
     resolver: yupResolver(schema),
   });
-  const { handleSubmit } = form;
+  const {
+    handleSubmit,
+    formState: { isDirty, isValid },
+  } = form;
+  const [parents, setParents] = useState<SelectionProps[]>([
+    {
+      key: "1",
+      value: "parent 1",
+    },
+    {
+      key: "2",
+      value: "parent 2",
+    },
+  ]);
 
   const fetchCategory = () => {
     const categoryId = params?.categoryId;
@@ -59,6 +78,23 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
             <Grid item xs={12}>
               <Form.Input form={form} name="name" label="fields.name" />
             </Grid>
+            <Grid item xs={12}>
+              <Form.Input
+                form={form}
+                type="number"
+                name="level"
+                range={{ min: 0, max: 10 }}
+                label="fields.level"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Form.SingleSelect
+                form={form}
+                items={parents}
+                name="parent"
+                label="fields.parent"
+              />
+            </Grid>
           </Grid>
         </form>
       </DialogContent>
@@ -78,6 +114,7 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
                 type="submit"
                 label="buttons.submit"
                 form="form"
+                disabled={!isDirty || !isValid}
               />
             </Grid>
           </Grid>

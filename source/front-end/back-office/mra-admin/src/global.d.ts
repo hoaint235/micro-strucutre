@@ -58,13 +58,16 @@ declare type ExtendProps = {
   [key: string]: any;
 };
 
-declare type DialogStateProps<TModel> = {
+declare type FormMode = "Add" | "Update";
+
+declare type DialogStateProps = {
   open: boolean;
+  mode: FormMode;
   params?: ExtendProps;
 };
 
 declare type DialogFormProps<TModel> = {
-  state: DialogStateProps<TModel>;
+  state: DialogStateProps;
   onClose: () => void;
   onSubmit: (data: TModel) => void;
 };
@@ -119,5 +122,7 @@ declare module "model" {
   declare interface ICategory {
     id?: string;
     name: string;
+    level: int;
+    parent?: ICategory;
   }
 }

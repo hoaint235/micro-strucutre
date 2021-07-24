@@ -97,7 +97,7 @@ const ManageUserForm = (props: Props) => {
           style={{ display: "flex" }}
         >
           <Box mr={2}>
-            <Button.Default onClick={onBack} label="buttons.back" name="back"/>
+            <Button.Default onClick={onBack} label="buttons.back" name="back" />
           </Box>
           <Button.Primary
             name="submit"

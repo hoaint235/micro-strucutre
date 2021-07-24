@@ -83,7 +83,10 @@
     "countryCode": "Country Code",
     "houseNumber": "House Number",
     "district": "District",
-    "city": "City"
+    "city": "City",
+    "name": "Name",
+    "level": "Level",
+    "parent": "Parent"
   },
   "table": {
     "name": "Name",
@@ -95,7 +98,9 @@
     "createdDate": "Created Date",
     "roles": "Roles",
     "noResultFound": "Not result found",
-    "rowsPerPage": "Rows per page:"
+    "rowsPerPage": "Rows per page:",
+    "level": "Level",
+    "parent": "Parent"
   },
   "menus": {
     "users": "Users",
