@@ -5,14 +5,13 @@ import {
   HighlightOff,
   Visibility,
 } from "@material-ui/icons";
-import { IProductView, ListingResponse } from "model";
-import { stringHelper } from "../../../utils";
-import { HeaderProps, Typography } from "../../atoms";
+import { IProduct, ListingResponse } from "model";
+import { HeaderProps } from "../../atoms";
 import { DataTable, IconButton, SortProps } from "../../molecules";
 import { PagingProps } from "../../molecules";
 
 type Props = {
-  data: ListingResponse<IProductView>;
+  data: ListingResponse<IProduct>;
   headers: HeaderProps[];
   onActivate: (productId: string) => void;
   onDelete: (productId: string) => void;
@@ -34,7 +33,7 @@ const ListProducts = (props: Props) => {
     onSort,
   } = props;
 
-  const renderAction = (data: IProductView) => {
+  const renderAction = (data: IProduct) => {
     return (
       <Grid container spacing={1}>
         <Grid item>
@@ -77,13 +76,6 @@ const ListProducts = (props: Props) => {
     );
   };
 
-  const renderPrice = (price: number) => (
-    <Typography.Label
-      color="textPrimary"
-      label={stringHelper.toCurrency(price)}
-    />
-  );
-
   return (
     <DataTable
       headers={headers}
@@ -93,10 +85,7 @@ const ListProducts = (props: Props) => {
       onPaging={onPaging}
       onSort={onSort}
       bodyTemplate={{
-        bodyAction: renderAction,
-        bodyRetailPrice: (data: IProductView) => renderPrice(data.retailPrice),
-        bodyWholesalePrice: (data: IProductView) =>
-          renderPrice(data.wholesalePrice),
+        bodyAction: renderAction
       }}
     />
   );

@@ -106,12 +106,12 @@ const ListUsers = () => {
   return (
     <MainContainer title="listUserPage.title">
       {data ? (
-        <Grid container item xs={12} alignItems="center">
-          <Grid item xs={12} md={4}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={5}>
             <Field.Search label="Search user" onSubmit={onSearch} />
           </Grid>
-          <Grid item xs={12} container md={8} justifyContent="flex-end">
-            <Box mt={{ xs: 2, md: 0 }}>
+          <Grid item xs={12} container md={7} justifyContent="flex-end">
+            <Box mt={{ xs: 2, sm: 0 }}>
               <Button.Primary
                 name="addUser"
                 label="listUserPage.addUser"

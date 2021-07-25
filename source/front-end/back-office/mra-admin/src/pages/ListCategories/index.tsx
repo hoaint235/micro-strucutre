@@ -87,14 +87,14 @@ const ListCategories = () => {
     <MainContainer title="listCategoryPage.title">
       {data ? (
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={5}>
             <Field.Search
               label="listCategoryPage.searchText"
               onSubmit={() => console.log("")}
             />
           </Grid>
-          <Grid item xs={12} container md={8} justifyContent="flex-end">
-            <Box mt={{ xs: 2, md: 0 }}>
+          <Grid container item xs={12} md={7} justifyContent="flex-end">
+            <Box mt={{ xs: 2, sm: 0 }}>
               <Button.Primary
                 name="addCategory"
                 label="listCategoryPage.addCategory"

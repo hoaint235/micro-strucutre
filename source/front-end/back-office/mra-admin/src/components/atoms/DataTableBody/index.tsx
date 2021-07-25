@@ -28,8 +28,9 @@ const DynamicTableBody = (props: DataTableBodyProps) => {
           <TableRow hover tabIndex={-1} key={row[keyRow || "id"]}>
             {headers.map((header: HeaderProps, index: number) => {
               const value = get(row, header.field);
+              const templateName = header.id || header.field;
               const column = `${prefixBody}${stringHelper.upperFirst(
-                header.field
+                templateName
               )}`;
 
               return (

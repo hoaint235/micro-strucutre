@@ -1,6 +1,6 @@
 import { Box, Grid } from "@material-ui/core";
 import sortBy from "lodash/sortBy";
-import { ListingResponse, IProductView } from "model";
+import { ListingResponse, IProduct } from "model";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Field, HeaderProps } from "../../components/atoms";
@@ -30,25 +30,13 @@ const headers: HeaderProps[] = [
     label: "table.unit",
   },
   {
-    field: "retailPrice",
-    label: "table.retailPrice",
-    align: "right",
-    width: 150,
-  },
-  {
-    field: "wholesalePrice",
-    label: "table.wholesalePrice",
-    align: "right",
-    width: 150,
-  },
-  {
     field: "action",
     label: "table.action",
   },
 ];
 
 const ListProducts = () => {
-  const [data, setData] = useState<ListingResponse<IProductView> | null>({
+  const [data, setData] = useState<ListingResponse<IProduct> | null>({
     data: [
       {
         id: "1",
@@ -58,8 +46,6 @@ const ListProducts = () => {
           id: "1",
           name: "category 1",
         },
-        retailPrice: 150000,
-        wholesalePrice: 100000,
         unit: "cái",
       },
       {
@@ -70,8 +56,6 @@ const ListProducts = () => {
           id: "1",
           name: "category 2",
         },
-        retailPrice: 200000,
-        wholesalePrice: 100000,
         unit: "thùng",
       },
     ],
@@ -106,14 +90,14 @@ const ListProducts = () => {
     <MainContainer title="listProductPage.title">
       {data ? (
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={5}>
             <Field.Search
               label="listProductPage.searchText"
               onSubmit={() => console.log("")}
             />
           </Grid>
-          <Grid item xs={12} container md={8} justifyContent="flex-end">
-            <Box mt={{ xs: 2, md: 0 }}>
+          <Grid item container xs={12} md={7} justifyContent="flex-end">
+            <Box mt={{ xs: 2, sm: 0 }}>
               <Button.Primary
                 name="addCategory"
                 label="listProductPage.addProduct"

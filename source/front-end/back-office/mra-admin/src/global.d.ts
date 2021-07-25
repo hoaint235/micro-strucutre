@@ -132,30 +132,12 @@ declare module "model" {
     name: string;
   }
 
-  declare interface IPrice {
-    name: string;
-    price: number;
-    quantity: number;
-  }
-
   declare interface IProduct {
     id: string;
     name: string;
-    description: string;
+    description?: string;
     active: boolean;
     unit: string;
     category: ICategoryProduct;
-    retail: IPrice;
-    wholesale: IPrice;
-  }
-
-  declare interface IProductView {
-    id: string;
-    name: string;
-    active: boolean;
-    unit: string;
-    category: ICategoryProduct;
-    retailPrice: number;
-    wholesalePrice: number;
   }
 }

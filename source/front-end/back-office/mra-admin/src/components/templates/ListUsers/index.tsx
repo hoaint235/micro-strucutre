@@ -111,17 +111,17 @@ const ListUsers = (props: Props) => {
     return (
       <Grid container spacing={2}>
         {isMaster && (
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <Status label="roles.master" color="primary" />
           </Grid>
         )}
         {isAdmin && (
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <Status label="roles.admin" color="primary" />
           </Grid>
         )}
         {isUser && (
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <Status label="roles.user" color="primary" />
           </Grid>
         )}
