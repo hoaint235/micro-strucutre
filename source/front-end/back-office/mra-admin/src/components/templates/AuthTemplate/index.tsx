@@ -7,6 +7,8 @@ import {
 } from "../../organisms";
 import { Scrollbars } from "react-custom-scrollbars";
 import { useState } from "react";
+import { useCallback } from "react";
+import { useMobile } from "../../../hooks";
 
 const useStyles = (openMenu: boolean) =>
   makeStyles((theme: Theme) => ({
@@ -35,18 +37,28 @@ type Props = {
 
 const AuthTemplate = (props: Props) => {
   const { children } = props;
-  const [openMenu, setOpenMenu] = useState(true);
-  const classes = useStyles(openMenu)();
+  const [openDesktopMenu, setOpenDesktopMenu] = useState(true);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const classes = useStyles(openDesktopMenu)();
+  const { isMobile } = useMobile();
 
-  const onToggleMenu = () => {
-    setOpenMenu(!openMenu);
+  const onToggleMenu = useCallback(() => {
+    if (isMobile) {
+      setOpenMobileMenu(!openMobileMenu);
+    } else {
+      setOpenDesktopMenu(!openDesktopMenu);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  };
+  }, [isMobile, openDesktopMenu]);
 
   return (
     <div className={classes.root}>
       <Header onToggle={onToggleMenu} />
-      <Navbar isOpen={openMenu} onClose={() => setOpenMenu(false)} />
+      <Navbar
+        openDesktop={openDesktopMenu}
+        openMobile={openMobileMenu}
+        onClose={() => setOpenMobileMenu(false)}
+      />
       <Box component="div" mt={10} className={classes.container}>
         <Scrollbars
           autoHide

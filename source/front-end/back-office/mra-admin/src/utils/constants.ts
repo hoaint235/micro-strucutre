@@ -4,6 +4,7 @@ export const WindowEvents: ExtendProps = {
   INCREASE_LOADING: "INCREASE_LOADING",
   DECREASE_LOADING: "DECREASE_LOADING",
   CHANGE_LANGUAGE: "CHANGE_LANGUAGE",
+  CLOSE_MOBILE_MENU: "CLOSE_MOBILE_MENU",
 };
 
 export const Roles: ExtendProps = {

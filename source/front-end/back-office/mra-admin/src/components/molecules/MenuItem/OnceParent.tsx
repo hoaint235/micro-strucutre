@@ -2,6 +2,7 @@ import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { useCallback, useMemo, forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 import { matchPath, NavLink, useLocation } from "react-router-dom";
+import { WindowEvents } from "../../../utils";
 import {
   useStyleListItem,
   useStyleItemIcon,
@@ -30,7 +31,7 @@ const OnceParent = (props: MenuItemProps) => {
 
   const MenuLink = useMemo(
     () =>
-      forwardRef((linkProps, ref: any) => (
+      forwardRef((linkProps: any, ref: any) => (
         <NavLink
           ref={ref}
           to={path}
@@ -45,7 +46,14 @@ const OnceParent = (props: MenuItemProps) => {
   );
 
   return (
-    <ListItem button component={MenuLink} classes={{ ...classesListItem }}>
+    <ListItem
+      button
+      component={MenuLink}
+      onClick={() =>
+        window.dispatchEvent(new CustomEvent(WindowEvents.CLOSE_MOBILE_MENU))
+      }
+      classes={{ ...classesListItem }}
+    >
       <ListItemIcon classes={{ ...classesItemIcon }}>
         <Icon />
       </ListItemIcon>

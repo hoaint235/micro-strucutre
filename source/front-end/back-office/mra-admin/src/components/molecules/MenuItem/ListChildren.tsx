@@ -17,6 +17,7 @@ import {
 import clsx from "clsx";
 import { useLocation, NavLink, matchPath } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { WindowEvents } from "../../../utils";
 
 const ListChildren = (props: MenuItemProps) => {
   const { label, exact, icon: Icon, children } = props;
@@ -31,6 +32,7 @@ const ListChildren = (props: MenuItemProps) => {
 
   const isMatch = (path: string) =>
     !!matchPath(pathname, { path: path, exact: true, strict: true });
+
   const checkActivate = useCallback(
     (path: string, pathsActivate?: string[]) => {
       const active = pathsActivate
@@ -84,6 +86,12 @@ const ListChildren = (props: MenuItemProps) => {
           {children &&
             children.map(({ path, label, ...restProps }: MenuItemProps) => (
               <ListItem
+                onClick={() =>
+                  window.dispatchEvent(
+                    new CustomEvent(WindowEvents.CLOSE_MOBILE_MENU)
+                  )
+                }
+                id={`menu-${label}`}
                 key={path}
                 button
                 path={path}

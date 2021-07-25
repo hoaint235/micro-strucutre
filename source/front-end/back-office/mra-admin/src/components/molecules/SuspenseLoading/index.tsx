@@ -1,6 +1,5 @@
 import { CircularProgress, makeStyles } from "@material-ui/core";
 import { Suspense } from "react";
-import { Typography } from "../../atoms";
 
 const useStyles = makeStyles({
   root: {
