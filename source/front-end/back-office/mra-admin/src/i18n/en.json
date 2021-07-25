@@ -56,7 +56,9 @@
     "searchText": "Search products"
   },
   "addProductPage": {
-    "title": "Add Product"
+    "title": "Add Product",
+    "productInfo": "Product Information",
+    "productImages": "Product Images"
   },
   "roles": {
     "master": "Master",
@@ -100,7 +102,10 @@
     "city": "City",
     "name": "Name",
     "level": "Level",
-    "parent": "Parent"
+    "parent": "Parent",
+    "description": "Description",
+    "category": "Category",
+    "unit": "Unit"
   },
   "table": {
     "name": "Name",

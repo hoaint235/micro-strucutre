@@ -88,7 +88,7 @@ const ListUsers = (props: Props) => {
     const text = isActivate
       ? "listUserPage.activate"
       : "listUserPage.deactivate";
-    return <Status label={text} />;
+    return <Status label={text} color={isActivate ? "primary" : "secondary"} />;
   };
 
   const renderStatus = (data: any) => {

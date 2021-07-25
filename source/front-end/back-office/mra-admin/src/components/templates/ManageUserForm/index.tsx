@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Box, Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { AddressInfoForm, UserInfoForm } from "../index";
+import { AddressInfoForm, UserInfoForm } from "../../organisms";
 import { Button } from "../../atoms";
 import { IUser } from "model";
 import { Errors, Regex } from "../../../utils";

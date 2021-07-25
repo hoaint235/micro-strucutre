@@ -8,3 +8,4 @@ export { default as DataTable } from "./DataTable";
 export * from "./DataTable/DataTable.type";
 
 export { default as IconButton } from "./IconButton";
+export { default as SuspenseLoading } from "./SuspenseLoading";

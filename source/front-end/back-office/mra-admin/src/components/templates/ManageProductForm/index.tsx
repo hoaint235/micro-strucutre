@@ -1,6 +1,7 @@
 import { Box, Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { Button } from "../../atoms";
+import { ProductInfoForm, ProductImagesForm } from "../../organisms";
 
 type Props = {
   onBack: () => void;
@@ -21,9 +22,13 @@ const ManageProductForm = (props: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12} md={6}></Grid>
+        <Grid item xs={12} md={6}>
+          <ProductInfoForm form={form} />
+        </Grid>
 
-        <Grid item xs={12} md={6}></Grid>
+        <Grid item xs={12} md={6}>
+          <ProductImagesForm form={form} />
+        </Grid>
 
         <Grid
           item

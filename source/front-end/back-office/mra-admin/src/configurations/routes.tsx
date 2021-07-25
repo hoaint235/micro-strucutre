@@ -1,60 +1,59 @@
+import { lazy } from "react";
 import { renderRoutes, RouteConfig } from "react-router-config";
 import { Redirect } from "react-router-dom";
+import { SuspenseLoading } from "../components";
 import { AuthTemplate, DefaultTemplate } from "../components/templates";
-import {
-  AddUser,
-  ForgotPassword,
-  ListUsers,
-  SignIn,
-  EditUser,
-  ListCategories,
-  ListProducts,
-  AddProduct,
-} from "../pages";
 import Config from "./common";
+
+const getLazyPage = (pageName: string) =>
+  lazy(() => import(`../pages/${pageName}`));
 
 const Routes: RouteConfig[] = [
   {
     path: "/admin/:path?",
     component: (props: any) => (
-      <AuthTemplate>{renderRoutes(props.route.routes)}</AuthTemplate>
+      <AuthTemplate>
+        <SuspenseLoading>{renderRoutes(props.route.routes)}</SuspenseLoading>
+      </AuthTemplate>
     ),
     routes: [
       {
         path: "/admin/users",
         exact: true,
-        component: ListUsers,
+        component: getLazyPage("ListUsers"),
       },
       {
         path: "/admin/users/create",
         exact: true,
-        component: AddUser,
+        component: getLazyPage("AddUser"),
       },
       {
         path: "/admin/users/:userId",
         exact: true,
-        component: EditUser,
+        component: getLazyPage("EditUser"),
       },
       {
         path: "/admin/categories",
         exact: true,
-        component: ListCategories,
+        component: getLazyPage("ListCategories"),
       },
       {
         path: "/admin/products",
         exact: true,
-        component: ListProducts,
+        component: getLazyPage("ListProducts"),
       },
       {
         path: "/admin/products/create",
         exact: true,
-        component: AddProduct,
+        component: getLazyPage("AddProduct"),
       },
     ],
   },
   {
     component: (props: any) => (
-      <DefaultTemplate>{renderRoutes(props.route.routes)}</DefaultTemplate>
+      <DefaultTemplate>
+        <SuspenseLoading>{renderRoutes(props.route.routes)}</SuspenseLoading>
+      </DefaultTemplate>
     ),
     path: "/",
     routes: [
@@ -65,12 +64,12 @@ const Routes: RouteConfig[] = [
       },
       {
         path: "/sign-in",
-        component: SignIn,
+        component: getLazyPage("SignIn"),
         exact: true,
       },
       {
         path: "/forgot-password",
-        component: ForgotPassword,
+        component: getLazyPage("ForgotPassword"),
         exact: true,
       },
     ],

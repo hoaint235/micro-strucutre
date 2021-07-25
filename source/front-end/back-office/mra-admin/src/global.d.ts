@@ -140,6 +140,7 @@ declare module "model" {
   declare interface IProduct {
     id: string;
     name: string;
+    description: string;
     active: boolean;
     unit: string;
     category: ICategoryProduct;
