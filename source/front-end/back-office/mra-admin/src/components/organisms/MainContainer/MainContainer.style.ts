@@ -1,6 +1,10 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core";
 
-const useStylePaper = makeStyles(() => ({
+const useStylePaper = makeStyles((theme: Theme) => ({
+  root: {
+    padding: 0,
+    marginBottom: theme.spacing(3),
+  },
   rounded: {
     borderRadius: 12,
     boxShadow: "none",
@@ -24,4 +28,10 @@ const useStyleCardHeader = makeStyles(() => ({
   },
 }));
 
-export { useStyleCardHeader, useStylePaper };
+const useStyles = makeStyles((theme: Theme) => ({
+  content: {
+    padding: theme.spacing(3),
+  },
+}));
+
+export { useStyleCardHeader, useStylePaper, useStyles };

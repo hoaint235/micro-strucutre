@@ -40,7 +40,7 @@ const MobileMenu = (props: Props) => {
       onClose={onClose}
       variant="temporary"
     >
-      <div role="presentation" onClick={onClose}>
+      <div role="presentation">
         <Box component={Paper}>
           <div className={classes.logoContainer}>
             <Logo

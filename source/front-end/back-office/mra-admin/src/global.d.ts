@@ -5,10 +5,11 @@ declare type LanguageItem = {
 
 declare type MenuItemProps = {
   label: string;
-  icon: any;
+  icon?: any;
   path: string;
   pathsActivate?: string[];
   exact?: boolean;
+  children?: MenuItemProps[];
 };
 
 declare type TypographyColor =

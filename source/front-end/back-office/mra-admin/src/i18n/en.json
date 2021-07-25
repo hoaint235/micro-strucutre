@@ -126,9 +126,12 @@
     "category": "Category"
   },
   "menus": {
-    "users": "Users",
-    "products": "Products",
-    "categories": "Categories"
+    "masterData": {
+      "title": "Master Data",
+      "users": "Users",
+      "products": "Products",
+      "categories": "Categories"
+    }
   },
   "errors": {
     "cognito": {
