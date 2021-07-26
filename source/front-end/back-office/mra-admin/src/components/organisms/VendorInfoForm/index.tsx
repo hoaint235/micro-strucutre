@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  makeStyles,
-} from "@material-ui/core";
+import { Card, CardContent, CardHeader, Grid } from "@material-ui/core";
 import { UseFormReturn } from "react-hook-form";
 import Form from "../../../hook-forms";
 import { countries } from "../../../utils";
@@ -15,15 +9,8 @@ type Props = {
   editMode?: boolean;
 };
 
-const useCountryStyles = makeStyles({
-  paper: {
-    maxHeight: 400,
-  },
-});
-
 const VendorInfoForm = (props: Props) => {
   const { form, editMode } = props;
-  const countryClasses = useCountryStyles();
 
   const getCountries = () => {
     return countries.map((item) => ({
@@ -51,14 +38,12 @@ const VendorInfoForm = (props: Props) => {
           <Grid item xs={12}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <Form.SingleSelect
-                  items={getCountries()}
-                  form={form}
+                <Form.Autocomplete
                   name="profile.countryCode"
+                  form={form}
+                  items={getCountries()}
+                  disableClearable
                   label="fields.countryCode"
-                  SelectProps={{
-                    MenuProps: { classes: { ...countryClasses } },
-                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>

@@ -25,6 +25,7 @@ const Input = (props: InputProps) => {
     placeholder = "",
     fullWidth = true,
     range,
+    inputProps,
     ...restProps
   } = props;
   const classes = useStyles();
@@ -45,6 +46,7 @@ const Input = (props: InputProps) => {
         maxLength: maxLength,
         max: range?.max,
         min: range?.min,
+        ...{ ...inputProps },
       }}
       FormHelperTextProps={{
         classes: { ...helperClasses },

@@ -3,15 +3,29 @@ import { ManageForm } from "form";
 import { IVendor } from "model";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import Form from "../../../hook-forms";
 import { Button } from "../../atoms";
 import { VendorInfoForm } from "../../organisms";
 
-const ManageVendorForm = (props: ManageForm<IVendor>) => {
+const defaultData = {
+  name: "",
+  address: {
+    city: "",
+    district: "",
+    houseNumber: "",
+  },
+  profile: {
+    countryCode: null,
+    email: "",
+    phoneNumber: "",
+  },
+};
+
+const ManageVendorForm = (props: ManageForm<IVendor | any>) => {
   const { onSubmit, onBack, defaultValues } = props;
-  const form = useForm<IVendor>({
+  const form = useForm({
     mode: "onBlur",
     reValidateMode: "onChange",
+    defaultValues: defaultData,
   });
 
   const {
@@ -27,8 +41,23 @@ const ManageVendorForm = (props: ManageForm<IVendor>) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const preSubmit = (data: any) => {
+    const {
+      profile: { countryCode, ...restProfile },
+      ...restData
+    } = data;
+    const vendor: IVendor = {
+      ...{ ...restData },
+      profile: {
+        countryCode: countryCode.key,
+        ...restProfile,
+      },
+    };
+    onSubmit(vendor);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(preSubmit)}>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} md={6}>
           <VendorInfoForm form={form} />

@@ -10,7 +10,7 @@ const AddVendor = () => {
 
   const onSubmit = async (data: IVendor) => {
     await VendorService.createVendor(data);
-    toastHelper.success("Create new user success");
+    toastHelper.success("Create new vendor success");
     onBackVendorList();
   };
 

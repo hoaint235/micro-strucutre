@@ -3,6 +3,7 @@ import MultipleSelect from "./MultipleSelect";
 import Password from "./Password";
 import SingleSelect from "./SingleSelect";
 import Switch from "./Switch";
+import Autocomplete from "./Autocomplete";
 
 type Props = {
   Input: typeof Input;
@@ -10,6 +11,7 @@ type Props = {
   MultipleSelect: typeof MultipleSelect;
   SingleSelect: typeof SingleSelect;
   Switch: typeof Switch;
+  Autocomplete: typeof Autocomplete;
 };
 
 const Form: Props = {
@@ -18,6 +20,7 @@ const Form: Props = {
   MultipleSelect: MultipleSelect,
   SingleSelect: SingleSelect,
   Switch: Switch,
+  Autocomplete: Autocomplete,
 };
 
 export default Form;
