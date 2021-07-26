@@ -65,6 +65,11 @@
     "addVendor": "Add vendor",
     "searchText": "Search vendor"
   },
+  "addVendorPage": {
+    "title": "Add Vendor",
+    "vendorInfoTitle": "Vendor Information",
+    "vendorAddressTitle": "Address Information"
+  },
   "dashboardPage": {
     "title": "Dashboard"
   },

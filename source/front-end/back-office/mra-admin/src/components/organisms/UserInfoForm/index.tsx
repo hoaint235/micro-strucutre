@@ -51,13 +51,6 @@ const UserInfoForm = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roles, t]);
 
-  const getCountries = () => {
-    return countries.map((item) => ({
-      key: item.portalCode,
-      value: `${item.portalCode} (${item.countryName})`,
-    }));
-  };
-
   return (
     <Card>
       <CardHeader
@@ -94,7 +87,7 @@ const UserInfoForm = (props: Props) => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <Form.SingleSelect
-                  items={getCountries()}
+                  items={countries}
                   form={form}
                   name="profile.countryCode"
                   label="fields.countryCode"

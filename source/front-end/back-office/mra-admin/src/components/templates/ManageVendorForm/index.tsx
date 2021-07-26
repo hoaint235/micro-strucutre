@@ -4,7 +4,28 @@ import { IVendor } from "model";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../../atoms";
-import { VendorInfoForm } from "../../organisms";
+import { VendorAddressForm, VendorInfoForm } from "../../organisms";
+import * as yup from "yup";
+import { Errors, Regex } from "../../../utils";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  name: yup.string().trim().required(Errors.required),
+  profile: yup.object().shape({
+    email: yup.string().email(Errors.formatEmail).required(Errors.required),
+    countryCode: yup.object().required(Errors.required),
+    phoneNumber: yup
+      .string()
+      .trim()
+      .required(Errors.required)
+      .matches(Regex.phoneNumber, Errors.formatPhoneNumber),
+  }),
+  address: yup.object().shape({
+    city: yup.string().required(Errors.required),
+    district: yup.string().required(Errors.required),
+    houseNumber: yup.string().required(Errors.required),
+  }),
+});
 
 const defaultData = {
   name: "",
@@ -26,6 +47,7 @@ const ManageVendorForm = (props: ManageForm<IVendor | any>) => {
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: defaultData,
+    resolver: yupResolver(schema)
   });
 
   const {
@@ -61,6 +83,10 @@ const ManageVendorForm = (props: ManageForm<IVendor | any>) => {
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} md={6}>
           <VendorInfoForm form={form} />
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <VendorAddressForm form={form} />
         </Grid>
 
         <Grid

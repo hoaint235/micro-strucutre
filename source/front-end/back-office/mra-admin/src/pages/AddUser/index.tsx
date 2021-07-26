@@ -18,7 +18,7 @@ const AddUser = () => {
   const onBackUserList = () => history.push("/admin/users");
 
   return (
-    <MainContainer title="addUserPage.title">
+    <MainContainer title="addVendorPage.title">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <ManageUserForm onBack={onBackUserList} onSubmit={onSubmit} />

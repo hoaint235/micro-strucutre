@@ -11,3 +11,5 @@ export * from "./DataTable/DataTable.type";
 
 export { default as IconButton } from "./IconButton";
 export { default as SuspenseLoading } from "./SuspenseLoading";
+
+export { default as Card } from "./Card";
