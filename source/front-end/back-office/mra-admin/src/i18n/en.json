@@ -1,4 +1,7 @@
 {
+  "commons" : {
+    "loadingText": "Loading..."
+  },
   "background": {
     "title": "Micro Architecture",
     "subtitle": "Powerful and easy to use multipurpose theme"
@@ -120,7 +123,8 @@
     "parent": "Parent",
     "description": "Description",
     "category": "Category",
-    "unit": "Unit"
+    "unit": "Unit",
+    "vendor": "Vendor"
   },
   "table": {
     "name": "Name",
@@ -140,7 +144,8 @@
     "wholesalePrice": "Wholesale price",
     "category": "Category",
     "phoneNumber": "Phone number",
-    "address": "Address"
+    "address": "Address",
+    "vendor": "Vendor"
   },
   "menus": {
     "dashBoard": "Dash Board",

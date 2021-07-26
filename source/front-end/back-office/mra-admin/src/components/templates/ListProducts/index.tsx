@@ -6,7 +6,7 @@ import {
   Visibility,
 } from "@material-ui/icons";
 import { IProduct, ListingResponse } from "model";
-import { HeaderProps } from "../../atoms";
+import { HeaderProps, Status } from "../../atoms";
 import { DataTable, IconButton, SortProps } from "../../molecules";
 import { PagingProps } from "../../molecules";
 
@@ -76,6 +76,12 @@ const ListProducts = (props: Props) => {
     );
   };
 
+  const renderActive = (data: IProduct) => {
+    const { active } = data;
+    const text = active ? "statuses.activate" : "statuses.deactivate";
+    return <Status label={text} color={active ? "primary" : "secondary"} />;
+  };
+
   return (
     <DataTable
       headers={headers}
@@ -86,6 +92,7 @@ const ListProducts = (props: Props) => {
       onSort={onSort}
       bodyTemplate={{
         bodyAction: renderAction,
+        bodyActive: renderActive,
       }}
     />
   );

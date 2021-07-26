@@ -139,17 +139,18 @@ declare module "model" {
   }
 
   declare interface ICategoryProduct {
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
   }
 
   declare interface IProduct {
     id: string;
     name: string;
-    description?: string;
-    active: boolean;
     unit: string;
+    vendor: string;
     category: ICategoryProduct;
+    active?: boolean;
+    description?: string;
   }
 
   declare interface IVendor {

@@ -18,8 +18,8 @@ const headers: HeaderProps[] = [
     sort: true,
   },
   {
-    field: "active",
-    label: "table.active",
+    field: "vendor",
+    label: "table.vendor",
   },
   {
     field: "category.name",
@@ -28,6 +28,10 @@ const headers: HeaderProps[] = [
   {
     field: "unit",
     label: "table.unit",
+  },
+  {
+    field: "active",
+    label: "table.active",
   },
   {
     field: "action",
@@ -47,6 +51,7 @@ const ListProducts = () => {
           name: "category 1",
         },
         unit: "cái",
+        vendor: "Vendor 1",
       },
       {
         id: "2",
@@ -57,6 +62,7 @@ const ListProducts = () => {
           name: "category 2",
         },
         unit: "thùng",
+        vendor: "Vendor 2",
       },
     ],
     totalItems: 2,

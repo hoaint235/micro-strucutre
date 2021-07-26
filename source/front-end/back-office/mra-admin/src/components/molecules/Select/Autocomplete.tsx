@@ -16,7 +16,10 @@ const Autocomplete = (props: AutocompleteProps) => {
           {...params}
           label={label}
           name={name}
-          InputProps={{ ...params.InputProps }}
+          InputProps={{
+            ...params.InputProps,
+          }}
+          {...InputProps}
         />
       )}
       {...restProps}

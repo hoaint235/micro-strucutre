@@ -1,17 +1,29 @@
 import { Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { toastHelper } from "../../utils";
-import { AccountService } from "../../services";
+import { AccountService, VendorService } from "../../services";
 import { ManageProductForm, MainContainer } from "../../components";
-import { IUser } from "model";
+import { IProduct } from "model";
 
 const AddProduct = () => {
   const history = useHistory();
 
-  const onSubmit = async (data: IUser) => {
-    await AccountService.createUser(data);
-    toastHelper.success("Create new product success");
-    onBackProductList();
+  const onSubmit = async (data: IProduct) => {
+    console.log(data);
+    // await AccountService.createUser(data);
+    // toastHelper.success("Create new product success");
+    // onBackProductList();
+  };
+
+  const onLoadVendor = async (query: string) => {
+    const vendors = await VendorService.loadSuggest(query);
+    const result = vendors.map((item: any) => {
+      return {
+        key: item.id,
+        value: item.name,
+      };
+    }) as SelectionProps[];
+    return result;
   };
 
   const onBackProductList = () => history.push("/admin/products");
@@ -20,7 +32,11 @@ const AddProduct = () => {
     <MainContainer title="addProductPage.title">
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <ManageProductForm onBack={onBackProductList} onSubmit={onSubmit} />
+          <ManageProductForm
+            onBack={onBackProductList}
+            onSubmit={onSubmit}
+            onVendorAsync={onLoadVendor}
+          />
         </Grid>
       </Grid>
     </MainContainer>

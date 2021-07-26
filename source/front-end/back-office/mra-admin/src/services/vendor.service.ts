@@ -37,6 +37,29 @@ class VendorService extends BaseService {
     });
     // return await super.post<IVendor, boolean>("vendors", payload);
   }
+
+  async loadSuggest(query: string): Promise<any> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve([
+          {
+            id: 1,
+            name: "vendor test",
+          },
+          {
+            id: 2,
+            name: "vendor hoai",
+          },
+          {
+            id: 3,
+            name: "vendor hello",
+          },
+        ]);
+      }, 200);
+    });
+
+    // return await super.post<string, ListingResponse<IVendor>>("vendors/query", request, false);
+  }
 }
 
 export default new VendorService();

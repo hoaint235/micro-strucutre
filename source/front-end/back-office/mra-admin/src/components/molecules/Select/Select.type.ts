@@ -8,7 +8,7 @@ export type SelectProps = Exclude<TextFieldProps, "onChange"> & {
 };
 
 export type AutocompleteProps<
-  TModel = SelectionProps,
+  TModel extends SelectionProps = SelectionProps,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = true,
   FreeSolo extends boolean | undefined = false
@@ -20,4 +20,14 @@ export type AutocompleteProps<
   InputProps?: InputProps;
   label: string;
   name: string;
+  noResultFound?: string;
+};
+
+export type AutoAsynchronousProps<
+  TModel extends SelectionProps = SelectionProps
+> = Omit<AutocompleteProps<TModel>, "items" | "loadingText"> & {
+  onLoadAsync: (query: string) => Promise<TModel[]>;
+  searchLength?: number;
+  debounceTime?: number;
+  loadingText?: string;
 };

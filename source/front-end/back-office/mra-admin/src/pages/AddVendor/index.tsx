@@ -17,7 +17,7 @@ const AddVendor = () => {
   const onBackVendorList = () => history.push("/admin/vendors");
 
   return (
-    <MainContainer title="addUserPage.title">
+    <MainContainer title="addVendorPage.title">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <ManageVendorForm onBack={onBackVendorList} onSubmit={onSubmit} />

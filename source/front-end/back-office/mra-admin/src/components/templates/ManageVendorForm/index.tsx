@@ -47,7 +47,7 @@ const ManageVendorForm = (props: ManageForm<IVendor | any>) => {
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: defaultData,
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   });
 
   const {

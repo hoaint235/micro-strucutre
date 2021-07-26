@@ -3,10 +3,6 @@ import { UseFormReturn } from "react-hook-form";
 import Form from "../../../hook-forms";
 import { Typography } from "../../atoms";
 
-type Props = {
-  form: UseFormReturn<any>;
-};
-
 const units: SelectionProps[] = [
   {
     key: "1",
@@ -29,8 +25,13 @@ const categories: SelectionProps[] = [
   },
 ];
 
+type Props = {
+  form: UseFormReturn<any>;
+  onVendorAsync: (query: string) => Promise<SelectionProps[]>;
+};
+
 const ProductInfoForm = (props: Props) => {
-  const { form } = props;
+  const { form, onVendorAsync } = props;
 
   return (
     <Card>
@@ -45,6 +46,14 @@ const ProductInfoForm = (props: Props) => {
               label="fields.name"
               form={form}
               maxLength={100}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Form.SelectAsynchronous
+              name="vendor"
+              label="Vendor"
+              form={form}
+              onLoadAsync={async (query: string) => await onVendorAsync(query)}
             />
           </Grid>
           <Grid item xs={12} md={6}>
