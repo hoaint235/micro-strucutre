@@ -1,5 +1,5 @@
 const Config = {
-  defaultPath: "/admin/users",
+  defaultPath: "/admin/dashboard",
 };
 
 export default Config;

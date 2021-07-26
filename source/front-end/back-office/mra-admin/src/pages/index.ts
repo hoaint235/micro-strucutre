@@ -6,3 +6,5 @@ export { default as AddUser } from "./AddUser";
 export { default as ListCategories } from "./ListCategories";
 export { default as ListProducts } from "./ListProducts";
 export { default as AddProduct } from "./AddProduct";
+export { default as AddVendor } from "./AddVendor";
+export { default as Dashboard } from "./Dashboard";

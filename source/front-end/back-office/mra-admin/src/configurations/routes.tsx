@@ -18,6 +18,11 @@ const Routes: RouteConfig[] = [
     ),
     routes: [
       {
+        path: "/admin/dashboard",
+        exact: true,
+        component: getLazyPage("Dashboard"),
+      },
+      {
         path: "/admin/users",
         exact: true,
         component: getLazyPage("ListUsers"),
@@ -46,6 +51,16 @@ const Routes: RouteConfig[] = [
         path: "/admin/products/create",
         exact: true,
         component: getLazyPage("AddProduct"),
+      },
+      {
+        path: "/admin/vendors",
+        exact: true,
+        component: getLazyPage("ListVendors"),
+      },
+      {
+        path: "/admin/vendors/create",
+        exact: true,
+        component: getLazyPage("AddVendor"),
       },
     ],
   },

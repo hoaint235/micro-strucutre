@@ -4,7 +4,7 @@ const Menus: MenuItemProps[] = [
   {
     path: "/admin/dashboard",
     icon: BarChart,
-    label: "Dash board",
+    label: "menus.dashBoard",
   },
   {
     path: "/admin/users",
@@ -12,13 +12,13 @@ const Menus: MenuItemProps[] = [
     label: "menus.masterData.title",
     children: [
       {
-        path: "/admin/users",
+        path: "/admin/vendors",
         pathsActivate: [
-          "/admin/users",
-          "/admin/users/create",
-          "/admin/users/:userId",
+          "/admin/vendors",
+          "/admin/vendors/create",
+          "/admin/vendors/:productId",
         ],
-        label: "menus.masterData.users",
+        label: "menus.masterData.vendors",
       },
       {
         path: "/admin/categories",
@@ -32,6 +32,15 @@ const Menus: MenuItemProps[] = [
           "/admin/products/:productId",
         ],
         label: "menus.masterData.products",
+      },
+      {
+        path: "/admin/users",
+        pathsActivate: [
+          "/admin/users",
+          "/admin/users/create",
+          "/admin/users/:userId",
+        ],
+        label: "menus.masterData.users",
       },
     ],
   },

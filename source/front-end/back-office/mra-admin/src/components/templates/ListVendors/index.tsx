@@ -5,23 +5,23 @@ import {
   HighlightOff,
   Visibility,
 } from "@material-ui/icons";
-import { IProduct, ListingResponse } from "model";
-import { HeaderProps } from "../../atoms";
+import { IVendorView, ListingResponse } from "model";
+import { HeaderProps, Status } from "../../atoms";
 import { DataTable, IconButton, SortProps } from "../../molecules";
 import { PagingProps } from "../../molecules";
 
 type Props = {
-  data: ListingResponse<IProduct>;
+  data: ListingResponse<IVendorView>;
   headers: HeaderProps[];
-  onActivate: (productId: string) => void;
-  onDelete: (productId: string) => void;
-  onDeactivate: (productId: string) => void;
-  onViewDetail: (productId: string) => void;
+  onActivate: (userId: string) => void;
+  onDelete: (userId: string) => void;
+  onDeactivate: (userId: string) => void;
+  onViewDetail: (userId: string) => void;
   onPaging: (data: PagingProps) => void;
   onSort: (data: SortProps) => void;
 };
 
-const ListProducts = (props: Props) => {
+const ListVendors = (props: Props) => {
   const {
     data,
     headers,
@@ -33,7 +33,7 @@ const ListProducts = (props: Props) => {
     onSort,
   } = props;
 
-  const renderAction = (data: IProduct) => {
+  const renderAction = (data: any) => {
     return (
       <Grid container spacing={1}>
         <Grid item>
@@ -54,6 +54,16 @@ const ListProducts = (props: Props) => {
             />
           </Grid>
         )}
+        {!data.active && (
+          <Grid item>
+            <IconButton.Secondary
+              icon={Delete}
+              name="delete"
+              label="buttons.delete"
+              onClick={() => onDelete(data.id)}
+            />
+          </Grid>
+        )}
         {data.active && (
           <Grid item>
             <IconButton.Secondary
@@ -64,16 +74,14 @@ const ListProducts = (props: Props) => {
             />
           </Grid>
         )}
-        <Grid item>
-          <IconButton.Secondary
-            icon={Delete}
-            name="delete"
-            label="buttons.delete"
-            onClick={() => onDelete(data.id)}
-          />
-        </Grid>
       </Grid>
     );
+  };
+
+  const renderActive = (data: IVendorView) => {
+    const { active } = data;
+    const text = active ? "statuses.activate" : "statuses.deactivate";
+    return <Status label={text} color={active ? "primary" : "secondary"} />;
   };
 
   return (
@@ -86,9 +94,10 @@ const ListProducts = (props: Props) => {
       onSort={onSort}
       bodyTemplate={{
         bodyAction: renderAction,
+        bodyActive: renderActive,
       }}
     />
   );
 };
 
-export default ListProducts;
+export default ListVendors;

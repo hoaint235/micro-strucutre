@@ -60,6 +60,14 @@
     "productInfo": "Product Information",
     "productImages": "Product Images"
   },
+  "listVendorPage": {
+    "title": "List Vendors",
+    "addVendor": "Add vendor",
+    "searchText": "Search vendor"
+  },
+  "dashboardPage": {
+    "title": "Dashboard"
+  },
   "roles": {
     "master": "Master",
     "admin": "Admin",
@@ -72,7 +80,9 @@
     "forceChangePassword": "Force Change Password",
     "resetRequired": "Reset Required",
     "unconfirmed": "Unconfirmed",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "activate": "Activate",
+    "deactivate": "Deactivate"
   },
   "buttons": {
     "signIn": "Sign In",
@@ -123,14 +133,18 @@
     "unit": "Unit",
     "retailPrice": "Retail price",
     "wholesalePrice": "Wholesale price",
-    "category": "Category"
+    "category": "Category",
+    "phoneNumber": "Phone number",
+    "address": "Address"
   },
   "menus": {
+    "dashBoard": "Dash Board",
     "masterData": {
       "title": "Master Data",
       "users": "Users",
       "products": "Products",
-      "categories": "Categories"
+      "categories": "Categories",
+      "vendors": "Vendors"
     }
   },
   "errors": {
