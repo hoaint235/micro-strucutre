@@ -1,14 +1,20 @@
-import { lazy } from "react";
+import { Fragment, lazy } from "react";
 import { renderRoutes, RouteConfig } from "react-router-config";
 import { Redirect } from "react-router-dom";
 import { SuspenseLoading } from "../components";
 import { AuthTemplate, DefaultTemplate } from "../components/templates";
+import { NotFound } from "../pages";
 import Config from "./common";
 
 const getLazyPage = (pageName: string) =>
   lazy(() => import(`../pages/${pageName}`));
 
 const Routes: RouteConfig[] = [
+  {
+    path: "/not-found",
+    exact: true,
+    component: NotFound,
+  },
   {
     path: "/admin/:path?",
     component: (props: any) => (
@@ -62,6 +68,10 @@ const Routes: RouteConfig[] = [
         exact: true,
         component: getLazyPage("AddVendor"),
       },
+      {
+        path: "/admin/*",
+        component: () => <Redirect to={Config.notFoundPage} />,
+      },
     ],
   },
   {
@@ -86,6 +96,11 @@ const Routes: RouteConfig[] = [
         path: "/forgot-password",
         component: getLazyPage("ForgotPassword"),
         exact: true,
+      },
+      {
+        path: "/*",
+        exact: true,
+        component: () => <Redirect to={Config.notFoundPage} />,
       },
     ],
   },

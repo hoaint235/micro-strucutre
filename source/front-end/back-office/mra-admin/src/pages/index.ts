@@ -8,3 +8,4 @@ export { default as ListProducts } from "./ListProducts";
 export { default as AddProduct } from "./AddProduct";
 export { default as AddVendor } from "./AddVendor";
 export { default as Dashboard } from "./Dashboard";
+export { default as NotFound } from "./NotFound";
