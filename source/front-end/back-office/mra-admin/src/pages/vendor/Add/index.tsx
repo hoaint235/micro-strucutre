@@ -1,9 +1,9 @@
 import { Grid } from "@material-ui/core";
 import { IVendor } from "model";
 import { useHistory } from "react-router-dom";
-import { MainContainer, ManageVendorForm } from "../../components";
-import { VendorService } from "../../services";
-import { toastHelper } from "../../utils";
+import { MainContainer, ManageVendorForm } from "../../../components";
+import { VendorService } from "../../../services";
+import { Pages, toastHelper } from "../../../utils";
 
 const AddVendor = () => {
   const history = useHistory();
@@ -14,7 +14,7 @@ const AddVendor = () => {
     onBackVendorList();
   };
 
-  const onBackVendorList = () => history.push("/admin/vendors");
+  const onBackVendorList = () => history.push(Pages.VENDOR);
 
   return (
     <MainContainer title="addVendorPage.title">

@@ -1,9 +1,9 @@
 import { Card, CardContent, Grid, Paper } from "@material-ui/core";
 import { Button, Typography, Image } from "../../components";
 import { useHistory } from "react-router-dom";
-import { Config } from "../../configurations";
 import { Home } from "@material-ui/icons";
 import { useStyles } from "./NotFound.style";
+import { Pages } from "../../utils";
 
 const NotFound = () => {
   const history = useHistory();
@@ -39,7 +39,7 @@ const NotFound = () => {
                 <Button.Primary
                   name="home"
                   label="Home"
-                  onClick={() => history.push(Config.defaultPath)}
+                  onClick={() => history.push(Pages.DEFAULT)}
                   startIcon={<Home />}
                 />
               </Grid>

@@ -6,8 +6,8 @@ import { DataTableBodyProps } from "./DataTableBody.type";
 import { Typography } from "..";
 import { HeaderProps } from "../DataTableHeader/DataTableHeader.type";
 import { useTranslation } from "react-i18next";
-import { stringHelper } from "../../../utils";
 import get from "lodash/get";
+import upperFirst from "lodash/upperFirst";
 
 const prefixBody = "body";
 
@@ -29,9 +29,7 @@ const DynamicTableBody = (props: DataTableBodyProps) => {
             {headers.map((header: HeaderProps, index: number) => {
               const value = get(row, header.field);
               const templateName = header.id || header.field;
-              const column = `${prefixBody}${stringHelper.upperFirst(
-                templateName
-              )}`;
+              const column = `${prefixBody}${upperFirst(templateName)}`;
 
               return (
                 <TableCell

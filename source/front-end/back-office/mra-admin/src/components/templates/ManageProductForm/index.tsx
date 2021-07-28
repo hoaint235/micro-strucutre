@@ -12,7 +12,7 @@ const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),
   vendor: yup.object().nullable().required(Errors.required),
   unit: yup.string().required(Errors.required),
-  category: yup.string().required(Errors.required)
+  category: yup.string().required(Errors.required),
 });
 
 type Props = ManageForm<IProduct> & {

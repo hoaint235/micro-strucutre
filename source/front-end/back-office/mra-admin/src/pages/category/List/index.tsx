@@ -2,14 +2,14 @@ import { Box, Grid } from "@material-ui/core";
 import sortBy from "lodash/sortBy";
 import { ListingResponse, ICategory } from "model";
 import { useState } from "react";
-import { Button, Field, HeaderProps } from "../../components/atoms";
-import { PagingProps, SortProps } from "../../components/molecules";
-import { MainContainer } from "../../components/organisms";
+import { Button, Field, HeaderProps } from "../../../components/atoms";
+import { PagingProps, SortProps } from "../../../components/molecules";
+import { MainContainer } from "../../../components/organisms";
 import {
   SkeletonTemplate,
   ListCategories as Categories,
   ManageCategoryForm,
-} from "../../components/templates";
+} from "../../../components/templates";
 
 const headers: HeaderProps[] = [
   {

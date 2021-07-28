@@ -9,13 +9,7 @@ type ImageProps = {
 const Image = (props: ImageProps) => {
   const { src, ...restProps } = props;
 
-  return (
-    <CardMedia
-      component="img"
-      image={src}
-      {...restProps}
-    />
-  );
+  return <CardMedia component="img" image={src} {...restProps} />;
 };
 
 export default Image;

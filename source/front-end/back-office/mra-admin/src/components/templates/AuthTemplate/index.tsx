@@ -32,7 +32,7 @@ const useStyles = (openMenu: boolean) =>
   }));
 
 type Props = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
 const AuthTemplate = (props: Props) => {

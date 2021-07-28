@@ -6,7 +6,7 @@ declare type LanguageItem = {
 declare type MenuItemProps = {
   label: string;
   icon?: any;
-  path: string;
+  path?: string;
   pathsActivate?: string[];
   exact?: boolean;
   children?: MenuItemProps[];

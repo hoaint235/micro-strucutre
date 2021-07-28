@@ -16,4 +16,4 @@ export * from "./DataTableHeader/DataTableHeader.type";
 export { default as Switch } from "./Switch";
 export * from "./Switch";
 
-export { default as Image } from './Image';
+export { default as Image } from "./Image";

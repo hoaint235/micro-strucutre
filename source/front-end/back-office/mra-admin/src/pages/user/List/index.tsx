@@ -1,16 +1,20 @@
 import { Grid, Box } from "@material-ui/core";
 import { IUser, ListingRequest, ListingResponse } from "model";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Field, HeaderProps } from "../../components/atoms";
-import { PagingProps, SortProps } from "../../components/molecules";
-import { MainContainer } from "../../components/organisms";
 import {
+  Button,
+  Field,
+  HeaderProps,
   ListUsers as Users,
   SkeletonTemplate,
-} from "../../components/templates";
-import { AccountService } from "../../services";
+  PagingProps,
+  SortProps,
+  MainContainer,
+} from "../../../components";
+import { AccountService } from "../../../services";
+import { Pages } from "../../../utils";
 
 const headers: HeaderProps[] = [
   {
@@ -79,8 +83,7 @@ const ListUsers = () => {
     await fetchUsers();
   };
 
-  const onViewDetail = (userId: string) =>
-    history.push(`/admin/users/${userId}`);
+  const onViewDetail = (userId: string) => history.push(Pages.GET_USER(userId));
 
   const onSearch = async (value: string) => {
     await fetchUsers({ search: value });
@@ -101,7 +104,7 @@ const ListUsers = () => {
     });
   };
 
-  const navigateAddUserPage = () => history.push("/admin/users/create");
+  const navigateAddUserPage = () => history.push(Pages.CREATE_USER);
 
   return (
     <MainContainer title="listUserPage.title">

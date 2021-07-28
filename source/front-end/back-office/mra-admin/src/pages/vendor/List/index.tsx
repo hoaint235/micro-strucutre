@@ -11,8 +11,9 @@ import {
   MainContainer,
   PagingProps,
   SortProps,
-} from "../../components";
-import { VendorService } from "../../services";
+} from "../../../components";
+import { VendorService } from "../../../services";
+import { Pages } from "../../../utils";
 
 const headers: HeaderProps[] = [
   {
@@ -67,8 +68,7 @@ const ListVendors = () => {
 
   const onDelete = async (userId: string) => {};
 
-  const onViewDetail = (userId: string) =>
-    history.push(`/admin/vendors/${userId}`);
+  const onViewDetail = (userId: string) => history.push(Pages.GET_USER(userId));
 
   const onSearch = async (value: string) => {};
 
@@ -76,7 +76,7 @@ const ListVendors = () => {
 
   const onSort = async (data: SortProps) => {};
 
-  const navigateAddVendorPage = () => history.push("/admin/vendors/create");
+  const navigateAddVendorPage = () => history.push(Pages.CREATE_VENDOR);
 
   return (
     <MainContainer title="listVendorPage.title">

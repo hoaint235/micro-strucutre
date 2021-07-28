@@ -1,9 +1,12 @@
 import { Grid } from "@material-ui/core";
 import { useHistory, useParams } from "react-router-dom";
-import { MainContainer } from "../../components/organisms";
-import { toastHelper } from "../../utils";
-import { AccountService } from "../../services";
-import { ManageUserForm, SkeletonTemplate } from "../../components/templates";
+import { Pages, toastHelper } from "../../../utils";
+import { AccountService } from "../../../services";
+import {
+  ManageUserForm,
+  SkeletonTemplate,
+  MainContainer,
+} from "../../../components";
 import { IUser } from "model";
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
@@ -33,7 +36,7 @@ const EditUser = () => {
     onBackUserList();
   };
 
-  const onBackUserList = () => history.push("/admin/users");
+  const onBackUserList = () => history.push(Pages.USER);
 
   return (
     <MainContainer title="editUserPage.title">

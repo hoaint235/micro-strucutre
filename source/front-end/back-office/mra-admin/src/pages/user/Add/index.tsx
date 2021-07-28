@@ -1,9 +1,8 @@
 import { Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { MainContainer } from "../../components/organisms";
-import { toastHelper } from "../../utils";
-import { AccountService } from "../../services";
-import { ManageUserForm } from "../../components/templates";
+import { Pages, toastHelper } from "../../../utils";
+import { AccountService } from "../../../services";
+import { ManageUserForm, MainContainer } from "../../../components";
 import { IUser } from "model";
 
 const AddUser = () => {
@@ -15,7 +14,7 @@ const AddUser = () => {
     onBackUserList();
   };
 
-  const onBackUserList = () => history.push("/admin/users");
+  const onBackUserList = () => history.push(Pages.USER);
 
   return (
     <MainContainer title="addVendorPage.title">

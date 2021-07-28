@@ -1,8 +1,8 @@
 import { Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { toastHelper } from "../../utils";
-import { AccountService, VendorService } from "../../services";
-import { ManageProductForm, MainContainer } from "../../components";
+import { Pages, toastHelper } from "../../../utils";
+import { AccountService, VendorService } from "../../../services";
+import { ManageProductForm, MainContainer } from "../../../components";
 import { IProduct } from "model";
 
 const AddProduct = () => {
@@ -26,7 +26,10 @@ const AddProduct = () => {
     return result;
   };
 
-  const onBackProductList = () => history.push("/admin/products");
+  const onBackProductList = () => {
+    console.log("back");
+    history.push(Pages.PRODUCT);
+  };
 
   return (
     <MainContainer title="addProductPage.title">

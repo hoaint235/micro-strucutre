@@ -3,13 +3,17 @@ import sortBy from "lodash/sortBy";
 import { ListingResponse, IProduct } from "model";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Field, HeaderProps } from "../../components/atoms";
-import { PagingProps, SortProps } from "../../components/molecules";
-import { MainContainer } from "../../components/organisms";
 import {
+  Button,
+  Field,
+  HeaderProps,
+  PagingProps,
+  SortProps,
+  MainContainer,
   SkeletonTemplate,
   ListProducts as Products,
-} from "../../components/templates";
+} from "../../../components";
+import { Pages } from "../../../utils";
 
 const headers: HeaderProps[] = [
   {
@@ -90,7 +94,7 @@ const ListProducts = () => {
     setData({ totalItems: result.length, data: [...result] });
   };
 
-  const navigateToAddProduct = () => history.push("/admin/products/create");
+  const navigateToAddProduct = () => history.push(Pages.CREATE_PRODUCT);
 
   return (
     <MainContainer title="listProductPage.title">

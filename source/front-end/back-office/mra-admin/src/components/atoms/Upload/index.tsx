@@ -1,9 +1,7 @@
-import { FormControlLabel  } from "@material-ui/core";
+import { FormControlLabel } from "@material-ui/core";
 
 const Upload = () => {
-  return (
-    null
-  )
+  return null;
 };
 
 export default Upload;

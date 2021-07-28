@@ -1,8 +1,8 @@
 import {
   ForgotPasswordForm,
   ConfirmationPasswordForm,
-} from "../../components/templates";
-import { useStepForm } from "../../hooks";
+} from "../../../components";
+import { useStepForm } from "../../../hooks";
 
 const ForgotPassword = () => {
   const Component = useStepForm<ForgotStatus>({

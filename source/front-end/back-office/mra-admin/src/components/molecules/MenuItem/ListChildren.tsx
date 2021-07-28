@@ -34,10 +34,10 @@ const ListChildren = (props: MenuItemProps) => {
     !!matchPath(pathname, { path: path, exact: true, strict: true });
 
   const checkActivate = useCallback(
-    (path: string, pathsActivate?: string[]) => {
+    (path?: string, pathsActivate?: string[]) => {
       const active = pathsActivate
         ? pathsActivate.some((x: string) => isMatch(x))
-        : isMatch(path);
+        : isMatch(path || "");
       return active;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,45 +1,33 @@
 import { BarChart, ListAlt } from "@material-ui/icons";
+import { Pages } from "../utils";
 
 const Menus: MenuItemProps[] = [
   {
-    path: "/admin/dashboard",
+    path: Pages.DASH_BOARD,
     icon: BarChart,
     label: "menus.dashBoard",
   },
   {
-    path: "/admin/users",
     icon: ListAlt,
     label: "menus.masterData.title",
     children: [
       {
-        path: "/admin/vendors",
-        pathsActivate: [
-          "/admin/vendors",
-          "/admin/vendors/create",
-          "/admin/vendors/:productId",
-        ],
+        path: Pages.VENDOR,
+        pathsActivate: [Pages.VENDOR, Pages.CREATE_VENDOR],
         label: "menus.masterData.vendors",
       },
       {
-        path: "/admin/categories",
+        path: Pages.CATEGORY,
         label: "menus.masterData.categories",
       },
       {
-        path: "/admin/products",
-        pathsActivate: [
-          "/admin/products",
-          "/admin/products/create",
-          "/admin/products/:productId",
-        ],
+        path: Pages.PRODUCT,
+        pathsActivate: [Pages.PRODUCT, Pages.CREATE_PRODUCT],
         label: "menus.masterData.products",
       },
       {
-        path: "/admin/users",
-        pathsActivate: [
-          "/admin/users",
-          "/admin/users/create",
-          "/admin/users/:userId",
-        ],
+        path: Pages.USER,
+        pathsActivate: [Pages.USER, Pages.CREATE_USER, Pages.EDIT_USER],
         label: "menus.masterData.users",
       },
     ],

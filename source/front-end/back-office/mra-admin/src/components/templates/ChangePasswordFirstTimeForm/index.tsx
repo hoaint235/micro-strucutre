@@ -1,6 +1,6 @@
 import { Box, Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { Errors, Regex } from "../../../utils/constants";
+import { Errors, Pages, Regex } from "../../../utils";
 import { useHistory } from "react-router-dom";
 import { DefaultContainer } from "../../organisms";
 import { AccountService, CognitoService } from "../../../services";
@@ -8,7 +8,6 @@ import { Button, Typography } from "../../atoms";
 import Form from "../../../hook-forms";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Config } from "../../../configurations";
 
 const schema = yup.object().shape({
   password: yup
@@ -62,7 +61,7 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
     }
 
     await AccountService.updateStatus(email, 2);
-    history.push(Config.defaultPath);
+    history.push(Pages.DEFAULT);
   };
 
   return (
