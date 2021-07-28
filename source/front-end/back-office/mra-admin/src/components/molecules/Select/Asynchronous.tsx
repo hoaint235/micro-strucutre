@@ -36,7 +36,7 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
     }
 
     const response = await onLoadAsync(query);
-    setOptions((value) => [...value, ...response]);
+    setOptions([...response]);
     if (response.length === 0) {
       setNoResult(true);
     }

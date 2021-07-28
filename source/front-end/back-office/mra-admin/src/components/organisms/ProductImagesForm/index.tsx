@@ -14,7 +14,9 @@ const ProductImagesForm = (props: Props) => {
       <CardHeader
         title={<Typography.Body label="addProductPage.productImages" />}
       />
-      <CardContent></CardContent>
+      <CardContent>
+        
+      </CardContent>
     </Card>
   );
 };

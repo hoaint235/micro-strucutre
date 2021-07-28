@@ -11,13 +11,8 @@ import { IProduct } from "model";
 const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),
   vendor: yup.object().nullable().required(Errors.required),
-  // .shape({
-  //   key: yup.string().required(Errors.required),
-  //   value: yup.string().required(Errors.required)
-  // }),
   unit: yup.string().required(Errors.required),
-  category: yup.string().required(Errors.required),
-  description: yup.string().required(Errors.required),
+  category: yup.string().required(Errors.required)
 });
 
 type Props = ManageForm<IProduct> & {

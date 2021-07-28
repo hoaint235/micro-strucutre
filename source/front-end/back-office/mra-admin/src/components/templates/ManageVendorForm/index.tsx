@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),
   profile: yup.object().shape({
     email: yup.string().email(Errors.formatEmail).required(Errors.required),
-    countryCode: yup.object().required(Errors.required),
+    countryCode: yup.object().nullable().required(Errors.required),
     phoneNumber: yup
       .string()
       .trim()

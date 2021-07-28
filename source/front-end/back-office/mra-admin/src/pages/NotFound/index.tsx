@@ -1,97 +1,9 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  makeStyles,
-  Paper,
-} from "@material-ui/core";
-import { Button, Typography } from "../../components";
+import { Card, CardContent, Grid, Paper } from "@material-ui/core";
+import { Button, Typography, Image } from "../../components";
 import { useHistory } from "react-router-dom";
 import { Config } from "../../configurations";
 import { Home } from "@material-ui/icons";
-import mergeClass from "clsx";
-
-const useCardMedia = makeStyles({
-  root: {
-    display: "block",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center center",
-    width: "100%",
-    objectFit: "cover",
-  },
-});
-
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    minHeight: "100vh",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  container: {
-    boxSizing: "border-box",
-    display: "flex",
-    flexWrap: "wrap",
-    width: "calc(100% + 24px)",
-    marginTop: "-24px",
-    marginLeft: "-24px",
-    WebkitBoxPack: "center",
-    justifyContent: "center",
-  },
-  item: {
-    paddingTop: "12px !important",
-    paddingLeft: "24px !important",
-  },
-  imgContainer: {
-    margin: "0 auto",
-    position: "relative",
-    maxWidth: 600,
-  },
-  image: {
-    top: 0,
-    left: 0,
-    width: "100%",
-    position: "absolute",
-  },
-  textContent: {
-    margin: "0 auto",
-    maxWidth: 350,
-    textAlign: "center",
-  },
-});
-
-const useImageStyles = makeStyles(() => ({
-  image: {
-    top: 0,
-    left: 0,
-    width: "100%",
-    position: "absolute",
-  },
-}));
-
-type ImageProps = {
-  src: string;
-  defaultClass?: boolean;
-};
-
-const Image = (props: ImageProps) => {
-  const { src, defaultClass = true } = props;
-  const classesCardMedia = useCardMedia();
-  const classes = useImageStyles();
-
-  return (
-    <CardMedia
-      component="img"
-      className={mergeClass({
-        [classes.image]: defaultClass,
-      })}
-      image={src}
-      classes={{ ...classesCardMedia }}
-    />
-  );
-};
+import { useStyles } from "./NotFound.style";
 
 const NotFound = () => {
   const history = useHistory();
@@ -103,10 +15,10 @@ const NotFound = () => {
         <Grid container spacing={3} className={classes.container}>
           <Grid item xs={12}>
             <div className={classes.imgContainer}>
-              <Image src="/images/404/bg.svg" defaultClass={false} />
-              <Image src="/images/404/text.svg" />
-              <Image src="/images/404/blue.svg" />
-              <Image src="/images/404/purple.svg" />
+              <Image src="/images/404/bg.svg" />
+              <Image src="/images/404/text.svg" className={classes.image} />
+              <Image src="/images/404/blue.svg" className={classes.image} />
+              <Image src="/images/404/purple.svg" className={classes.image} />
             </div>
           </Grid>
           <Grid item xs={12} className={classes.textContent}>
