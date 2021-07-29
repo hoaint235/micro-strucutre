@@ -5,6 +5,7 @@ export * from "./Field/Field.type";
 
 export { default as Typography } from "./Typography";
 export { default as Button } from "./Button";
+export * from "./Button";
 export { default as Status } from "./Status";
 
 export { default as DataTableBody } from "./DataTableBody";

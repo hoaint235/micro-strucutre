@@ -54,16 +54,6 @@ const ListVendors = (props: Props) => {
             />
           </Grid>
         )}
-        {!data.active && (
-          <Grid item>
-            <IconButton.Secondary
-              icon={Delete}
-              name="delete"
-              label="buttons.delete"
-              onClick={() => onDelete(data.id)}
-            />
-          </Grid>
-        )}
         {data.active && (
           <Grid item>
             <IconButton.Secondary
@@ -74,6 +64,14 @@ const ListVendors = (props: Props) => {
             />
           </Grid>
         )}
+        <Grid item>
+          <IconButton.Secondary
+            icon={Delete}
+            name="delete"
+            label="buttons.delete"
+            onClick={() => onDelete(data.id)}
+          />
+        </Grid>
       </Grid>
     );
   };

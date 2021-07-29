@@ -15,3 +15,4 @@ const Button: Props = {
 };
 
 export default Button;
+export * from "./Button.type";

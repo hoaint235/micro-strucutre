@@ -1,5 +1,6 @@
 import { Box, makeStyles, Theme } from "@material-ui/core";
 import {
+  ConfirmProvider,
   Header,
   LoadingProvider,
   Navbar,
@@ -52,30 +53,32 @@ const AuthTemplate = (props: Props) => {
   }, [isMobile, openDesktopMenu]);
 
   return (
-    <div className={classes.root}>
-      <Header onToggle={onToggleMenu} />
-      <Navbar
-        openDesktop={openDesktopMenu}
-        openMobile={openMobileMenu}
-        onClose={() => setOpenMobileMenu(false)}
-      />
-      <Box component="div" mt={10} className={classes.container}>
-        <Scrollbars
-          autoHide
-          autoHideTimeout={500}
-          autoHideDuration={200}
-          autoHeight={true}
-          autoHeightMin={`calc(100vh - 80px)`}
-        >
-          <Box component="div" p={3}>
-            {children}
-          </Box>
-        </Scrollbars>
-      </Box>
+    <ConfirmProvider>
+      <div className={classes.root}>
+        <Header onToggle={onToggleMenu} />
+        <Navbar
+          openDesktop={openDesktopMenu}
+          openMobile={openMobileMenu}
+          onClose={() => setOpenMobileMenu(false)}
+        />
+        <Box component="div" mt={10} className={classes.container}>
+          <Scrollbars
+            autoHide
+            autoHideTimeout={500}
+            autoHideDuration={200}
+            autoHeight={true}
+            autoHeightMin={`calc(100vh - 80px)`}
+          >
+            <Box component="div" p={3}>
+              {children}
+            </Box>
+          </Scrollbars>
+        </Box>
 
-      <LoadingProvider />
-      <ToastProvider />
-    </div>
+        <LoadingProvider />
+        <ToastProvider />
+      </div>
+    </ConfirmProvider>
   );
 };
 

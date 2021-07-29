@@ -13,3 +13,5 @@ export { default as ProductInfoForm } from "./ProductInfoForm";
 export { default as ProductImagesForm } from "./ProductImagesForm";
 export { default as VendorInfoForm } from "./VendorInfoForm";
 export { default as VendorAddressForm } from "./VendorAddressForm";
+export { default as ConfirmProvider } from "./ConfirmProvider";
+export { default as ConfirmContext } from "./ConfirmProvider/ConfirmContext";

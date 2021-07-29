@@ -12,6 +12,7 @@ import {
   PagingProps,
   SortProps,
 } from "../../../components";
+import { useConfirm } from "../../../hooks";
 import { VendorService } from "../../../services";
 import { Pages } from "../../../utils";
 
@@ -45,6 +46,7 @@ const headers: HeaderProps[] = [
 const ListVendors = () => {
   const [data, setData] = useState<ListingResponse<IVendorView> | null>(null);
   const history = useHistory();
+  const confirm = useConfirm();
 
   const fetchVendors = useCallback(async (request?: ListingRequest) => {
     const defaultRequest = {
@@ -66,7 +68,19 @@ const ListVendors = () => {
 
   const onActivate = async (userId: string) => {};
 
-  const onDelete = async (userId: string) => {};
+  const onDelete = async (userId: string) => {
+    try {
+      confirm({
+        title: "Are you sure",
+        description: "This action is permanent!",
+        onSubmit: () => {
+          throw new Error();
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const onViewDetail = (userId: string) => history.push(Pages.GET_USER(userId));
 

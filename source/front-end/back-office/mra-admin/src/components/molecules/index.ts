@@ -13,3 +13,6 @@ export { default as IconButton } from "./IconButton";
 export { default as SuspenseLoading } from "./SuspenseLoading";
 
 export { default as Card } from "./Card";
+
+export { default as ConfirmationDialog } from "./ConfirmationDialog";
+export * from "./ConfirmationDialog";
