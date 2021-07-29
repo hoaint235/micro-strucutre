@@ -15,7 +15,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DesktopMenu = (props: any) => {
+type Props = {
+  isOpen: boolean;
+};
+
+const DesktopMenu = (props: Props) => {
   const { isOpen } = props;
   const classes = useStyles();
 

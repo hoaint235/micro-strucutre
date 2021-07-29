@@ -3,14 +3,22 @@ import { Fragment } from "react";
 import DesktopMenu from "../DesktopMenu";
 import MobileMenu from "../MobileMenu";
 
-const NavBar = (props: any) => {
+type Props = {
+  openDesktop: boolean;
+  openMobile: boolean;
+  onClose: () => void;
+};
+
+const NavBar = (props: Props) => {
+  const { openDesktop, openMobile, onClose } = props;
+
   return (
     <Fragment>
       <Hidden mdUp>
-        <MobileMenu {...props} />
+        <MobileMenu isOpen={openMobile} onClose={onClose} />
       </Hidden>
       <Hidden smDown>
-        <DesktopMenu {...props} />
+        <DesktopMenu isOpen={openDesktop} />
       </Hidden>
     </Fragment>
   );

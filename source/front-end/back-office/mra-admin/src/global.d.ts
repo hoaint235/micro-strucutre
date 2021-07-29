@@ -5,10 +5,11 @@ declare type LanguageItem = {
 
 declare type MenuItemProps = {
   label: string;
-  icon: any;
-  path: string;
+  icon?: any;
+  path?: string;
   pathsActivate?: string[];
   exact?: boolean;
+  children?: MenuItemProps[];
 };
 
 declare type TypographyColor =
@@ -72,6 +73,14 @@ declare type DialogFormProps<TModel> = {
   onSubmit: (data: TModel) => void;
 };
 
+declare module "form" {
+  declare type ManageForm<TModel = any> = {
+    defaultValues?: TModel;
+    onBack: () => void;
+    onSubmit: (data: TModel) => void;
+  };
+}
+
 declare module "model" {
   declare interface Certificate {
     email: string;
@@ -104,17 +113,20 @@ declare module "model" {
   declare type Role = string;
 
   declare interface IProfile {
-    firstName: string;
-    lastName: string;
     email: string;
     phoneNumber: string;
     countryCode: string;
   }
 
+  declare interface IUserProfile extends IProfile {
+    firstName: string;
+    lastName: string;
+  }
+
   declare interface IUser {
     id?: string;
     roles: Role[];
-    profile: IProfile;
+    profile: IUserProfile;
     isEditAddress: boolean;
     address?: IAddress;
   }
@@ -124,5 +136,36 @@ declare module "model" {
     name: string;
     level: int;
     parent?: ICategory;
+  }
+
+  declare interface ICategoryProduct {
+    id?: string;
+    name?: string;
+  }
+
+  declare interface IProduct {
+    id: string;
+    name: string;
+    unit: string;
+    vendor: string;
+    category: ICategoryProduct;
+    active?: boolean;
+    description?: string;
+  }
+
+  declare interface IVendor {
+    id?: string;
+    name: string;
+    profile: IProfile;
+    address: IAddress;
+  }
+
+  declare interface IVendorView {
+    id: string;
+    name: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    active: boolean;
   }
 }

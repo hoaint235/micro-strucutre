@@ -6,9 +6,9 @@ import {
   ToastProvider,
 } from "../../organisms";
 import { Scrollbars } from "react-custom-scrollbars";
-import { Fragment, useEffect, useState } from "react";
-import { CognitoService } from "../../../services";
-import { useHistory } from "react-router-dom";
+import { useState } from "react";
+import { useCallback } from "react";
+import { useMobile } from "../../../hooks";
 
 const useStyles = (openMenu: boolean) =>
   makeStyles((theme: Theme) => ({
@@ -32,60 +32,50 @@ const useStyles = (openMenu: boolean) =>
   }));
 
 type Props = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
 const AuthTemplate = (props: Props) => {
   const { children } = props;
-  const [openMenu, setOpenMenu] = useState(true);
-  const classes = useStyles(openMenu)();
-  const history = useHistory();
-  const [authenticated, setAuthenticated] = useState(false);
+  const [openDesktopMenu, setOpenDesktopMenu] = useState(true);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const classes = useStyles(openDesktopMenu)();
+  const { isMobile } = useMobile();
 
-  const checkAuthenticated = async () => {
-    const authenticated = await CognitoService.isAuthenticated();
-    setAuthenticated(authenticated);
-    if (!authenticated) {
-      history.push("/sign-in");
-      return;
+  const onToggleMenu = useCallback(() => {
+    if (isMobile) {
+      setOpenMobileMenu(!openMobileMenu);
+    } else {
+      setOpenDesktopMenu(!openDesktopMenu);
     }
-  };
-
-  useEffect(() => {
-    checkAuthenticated();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const onToggleMenu = () => {
-    setOpenMenu(!openMenu);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  };
+  }, [isMobile, openDesktopMenu]);
 
   return (
-    <Fragment>
-      {authenticated && (
-        <div className={classes.root}>
-          <Header onToggle={onToggleMenu} />
-          <Navbar isOpen={openMenu} onClose={() => setOpenMenu(false)} />
-          <Box component="div" mt={10} className={classes.container}>
-            <Scrollbars
-              autoHide
-              autoHideTimeout={500}
-              autoHideDuration={200}
-              autoHeight={true}
-              autoHeightMin={`calc(100vh - 80px)`}
-            >
-              <Box component="div" p={3}>
-                {children}
-              </Box>
-            </Scrollbars>
+    <div className={classes.root}>
+      <Header onToggle={onToggleMenu} />
+      <Navbar
+        openDesktop={openDesktopMenu}
+        openMobile={openMobileMenu}
+        onClose={() => setOpenMobileMenu(false)}
+      />
+      <Box component="div" mt={10} className={classes.container}>
+        <Scrollbars
+          autoHide
+          autoHideTimeout={500}
+          autoHideDuration={200}
+          autoHeight={true}
+          autoHeightMin={`calc(100vh - 80px)`}
+        >
+          <Box component="div" p={3}>
+            {children}
           </Box>
+        </Scrollbars>
+      </Box>
 
-          <LoadingProvider />
-          <ToastProvider />
-        </div>
-      )}
-    </Fragment>
+      <LoadingProvider />
+      <ToastProvider />
+    </div>
   );
 };
 

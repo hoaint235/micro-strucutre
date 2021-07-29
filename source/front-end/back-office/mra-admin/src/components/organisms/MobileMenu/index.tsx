@@ -1,6 +1,8 @@
 import { Box, Drawer, makeStyles, Paper } from "@material-ui/core";
 import React from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { WindowEvents } from "../../../utils";
 import { Logo } from "../../atoms";
 import MenuList from "../MenuList";
 
@@ -32,6 +34,15 @@ const MobileMenu = (props: Props) => {
     history.push("/");
   };
 
+  useEffect(() => {
+    window.addEventListener(WindowEvents.CLOSE_MOBILE_MENU, () => onClose());
+    return () =>
+      window.removeEventListener(WindowEvents.CLOSE_MOBILE_MENU, () =>
+        onClose()
+      );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Drawer
       anchor="left"
@@ -40,7 +51,7 @@ const MobileMenu = (props: Props) => {
       onClose={onClose}
       variant="temporary"
     >
-      <div role="presentation" onClick={onClose}>
+      <div role="presentation">
         <Box component={Paper}>
           <div className={classes.logoContainer}>
             <Logo

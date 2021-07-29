@@ -1,3 +1,4 @@
+import { AutoAsynchronousProps, AutocompleteProps } from "./../components";
 import { SwitchProps } from "./../components/atoms";
 import { TextFieldProps } from "@material-ui/core";
 import { RegisterOptions, UseFormReturn } from "react-hook-form";
@@ -31,3 +32,9 @@ export type SwitchFormProps = HookFormFieldProps &
   Omit<SwitchProps, "onChange"> & {
     onChange?: (value: boolean) => void;
   };
+
+export type AutocompleteFormProps = Omit<AutocompleteProps, "onChange"> &
+  HookFormFieldProps;
+
+export type AutoAsynchronousFormProps = AutoAsynchronousProps &
+  HookFormFieldProps;

@@ -1066,4 +1066,11 @@ const countries = [
   },
 ];
 
-export default countries;
+const getCountries = (): SelectionProps<string>[] => {
+  return countries.map((item) => ({
+    key: item.portalCode,
+    value: `${item.portalCode} (${item.countryName}) ${item.countryCode}`,
+  }));
+};
+
+export default getCountries();

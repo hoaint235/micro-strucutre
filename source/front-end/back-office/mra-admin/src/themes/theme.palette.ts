@@ -1,6 +1,7 @@
 import { colors } from "@material-ui/core";
+import { PaletteOptions } from "@material-ui/core/styles/createPalette";
 
-const palette = {
+const palette: PaletteOptions = {
   background: {
     default: colors.common.white,
     paper: colors.common.white,

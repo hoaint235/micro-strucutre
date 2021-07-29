@@ -6,12 +6,11 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import Form from "../../../hook-forms";
 import { CognitoService } from "../../../services";
-import { Errors } from "../../../utils";
+import { Errors, Pages } from "../../../utils";
 import { Button } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Config } from "../../../configurations";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -67,7 +66,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
       return;
     }
 
-    history.push(Config.defaultPath);
+    history.push(Pages.DEFAULT);
   };
 
   const navigateForgotPasswordPage = (e: React.SyntheticEvent) => {

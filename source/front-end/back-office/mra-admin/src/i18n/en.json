@@ -1,4 +1,7 @@
 {
+  "commons": {
+    "loadingText": "Loading..."
+  },
   "background": {
     "title": "Micro Architecture",
     "subtitle": "Powerful and easy to use multipurpose theme"
@@ -51,7 +54,27 @@
     "title": "Manage Category"
   },
   "listProductPage": {
-    "title": "List Products"
+    "title": "List Products",
+    "addProduct": "Add product",
+    "searchText": "Search products"
+  },
+  "addProductPage": {
+    "title": "Add Product",
+    "productInfo": "Product Information",
+    "productImages": "Product Images"
+  },
+  "listVendorPage": {
+    "title": "List Vendors",
+    "addVendor": "Add vendor",
+    "searchText": "Search vendor"
+  },
+  "addVendorPage": {
+    "title": "Add Vendor",
+    "vendorInfoTitle": "Vendor Information",
+    "vendorAddressTitle": "Address Information"
+  },
+  "dashboardPage": {
+    "title": "Dashboard"
   },
   "roles": {
     "master": "Master",
@@ -65,7 +88,9 @@
     "forceChangePassword": "Force Change Password",
     "resetRequired": "Reset Required",
     "unconfirmed": "Unconfirmed",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "activate": "Activate",
+    "deactivate": "Deactivate"
   },
   "buttons": {
     "signIn": "Sign In",
@@ -95,7 +120,11 @@
     "city": "City",
     "name": "Name",
     "level": "Level",
-    "parent": "Parent"
+    "parent": "Parent",
+    "description": "Description",
+    "category": "Category",
+    "unit": "Unit",
+    "vendor": "Vendor"
   },
   "table": {
     "name": "Name",
@@ -103,18 +132,30 @@
     "action": "Action",
     "email": "Email",
     "status": "Status",
-    "isActivate": "Active",
+    "active": "Active",
     "createdDate": "Created Date",
     "roles": "Roles",
     "noResultFound": "Not result found",
     "rowsPerPage": "Rows per page:",
     "level": "Level",
-    "parent": "Parent"
+    "parent": "Parent",
+    "unit": "Unit",
+    "retailPrice": "Retail price",
+    "wholesalePrice": "Wholesale price",
+    "category": "Category",
+    "phoneNumber": "Phone number",
+    "address": "Address",
+    "vendor": "Vendor"
   },
   "menus": {
-    "users": "Users",
-    "products": "Products",
-    "categories": "Categories"
+    "dashBoard": "Dash Board",
+    "masterData": {
+      "title": "Master Data",
+      "users": "Users",
+      "products": "Products",
+      "categories": "Categories",
+      "vendors": "Vendors"
+    }
   },
   "errors": {
     "cognito": {
