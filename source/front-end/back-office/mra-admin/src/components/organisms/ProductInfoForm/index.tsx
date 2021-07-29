@@ -28,10 +28,11 @@ const categories: SelectionProps[] = [
 type Props = {
   form: UseFormReturn<any>;
   onVendorAsync: (query: string) => Promise<SelectionProps[]>;
+  onCategoryAsync: (query: string) => Promise<SelectionProps[]>;
 };
 
 const ProductInfoForm = (props: Props) => {
-  const { form, onVendorAsync } = props;
+  const { form, onVendorAsync, onCategoryAsync } = props;
 
   return (
     <Card>
@@ -65,11 +66,13 @@ const ProductInfoForm = (props: Props) => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Form.SingleSelect
+            <Form.SelectAsynchronous
               name="category"
-              items={categories}
               label="fields.category"
               form={form}
+              onLoadAsync={async (query: string) =>
+                await onCategoryAsync(query)
+              }
             />
           </Grid>
           <Grid item xs={12}>

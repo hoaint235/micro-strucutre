@@ -1,4 +1,4 @@
-import { BarChart, ListAlt } from "@material-ui/icons";
+import { BarChart, Description, ListAlt } from "@material-ui/icons";
 import { Pages } from "../utils";
 
 const Menus: MenuItemProps[] = [
@@ -29,6 +29,21 @@ const Menus: MenuItemProps[] = [
         path: Pages.USER,
         pathsActivate: [Pages.USER, Pages.CREATE_USER, Pages.EDIT_USER],
         label: "menus.masterData.users",
+      },
+    ],
+  },
+  {
+    icon: Description,
+    label: "menus.purchase.title",
+    children: [
+      {
+        path: Pages.VENDOR,
+        pathsActivate: [Pages.VENDOR, Pages.CREATE_VENDOR],
+        label: "menus.purchase.purchase",
+      },
+      {
+        path: Pages.CATEGORY,
+        label: "menus.purchase.sell",
       },
     ],
   },

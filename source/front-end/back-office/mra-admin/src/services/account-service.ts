@@ -1,5 +1,5 @@
 import { IUser, ListingRequest, ListingResponse } from "model";
-import { BaseService } from "./base.service";
+import { BaseService } from "./base-service";
 
 class UserService extends BaseService {
   constructor() {

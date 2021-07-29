@@ -42,13 +42,19 @@ const ConfirmationDialog = (props: ConfirmationProps) => {
   } = options;
 
   return (
-    <Dialog fullWidth maxWidth="xs" {...dialogProps} open={open} onClose={onClose}>
+    <Dialog
+      fullWidth
+      maxWidth="xs"
+      {...dialogProps}
+      open={open}
+      onClose={onClose}
+    >
       <DialogTitle>
-        <Typography.Subtitle label={title}/>
+        <Typography.Subtitle label={title} />
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <Typography.Body label={description}/>
+          <Typography.Body label={description} />
         </DialogContentText>
       </DialogContent>
       <DialogActions>

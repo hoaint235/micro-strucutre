@@ -156,6 +156,11 @@
       "products": "Products",
       "categories": "Categories",
       "vendors": "Vendors"
+    },
+    "purchase": {
+      "title": "Purchase",
+      "purchase": "Purchase Order",
+      "sell": "Sell Order"
     }
   },
   "errors": {

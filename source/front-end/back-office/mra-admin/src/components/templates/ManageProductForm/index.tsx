@@ -12,15 +12,16 @@ const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),
   vendor: yup.object().nullable().required(Errors.required),
   unit: yup.string().required(Errors.required),
-  category: yup.string().required(Errors.required),
+  category: yup.object().nullable().required(Errors.required),
 });
 
 type Props = ManageForm<IProduct> & {
   onVendorAsync: (query: string) => Promise<SelectionProps[]>;
+  onCategoryAsync: (query: string) => Promise<SelectionProps[]>;
 };
 
 const ManageProductForm = (props: Props) => {
-  const { onSubmit, onBack, onVendorAsync } = props;
+  const { onSubmit, onBack, onVendorAsync, onCategoryAsync } = props;
   const form = useForm({
     mode: "onBlur",
     reValidateMode: "onChange",
@@ -57,7 +58,11 @@ const ManageProductForm = (props: Props) => {
     <form onSubmit={handleSubmit(preSubmit)}>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} md={6}>
-          <ProductInfoForm form={form} onVendorAsync={onVendorAsync} />
+          <ProductInfoForm
+            form={form}
+            onVendorAsync={onVendorAsync}
+            onCategoryAsync={onCategoryAsync}
+          />
         </Grid>
 
         <Grid item xs={12} md={6}>
