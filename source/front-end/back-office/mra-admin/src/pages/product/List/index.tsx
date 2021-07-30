@@ -106,17 +106,22 @@ const ListProducts = () => {
               onSubmit={() => console.log("")}
             />
           </Grid>
-          <Grid item container xs={12} md={7} justifyContent="flex-end">
-            <Box mt={{ xs: 2, sm: 0 }}>
-              <Button.Primary
-                name="addCategory"
-                label="listProductPage.addProduct"
-                onClick={navigateToAddProduct}
-              />
-            </Box>
+          <Grid
+            item
+            container
+            xs={12}
+            md={7}
+            justifyContent="flex-end"
+            alignContent="center"
+          >
+            <Button.Primary
+              name="addCategory"
+              label="listProductPage.addProduct"
+              onClick={navigateToAddProduct}
+            />
           </Grid>
           <Grid item xs={12}>
-            <Box mt={2}>
+            <Box mt={{ xs: 0, md: 2 }}>
               <Products
                 data={data}
                 headers={headers}

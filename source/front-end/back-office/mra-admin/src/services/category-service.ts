@@ -21,7 +21,7 @@ class CategoryService extends BaseService {
     );
   }
 
-  async loadSuggest(query: string): Promise<any> {
+  async loadSuggest(query: string): Promise<ICategory[]> {
     const response = await super.get<string, ListingResponse<ICategory>>(
       "categories",
       false,
