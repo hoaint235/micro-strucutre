@@ -41,7 +41,7 @@ stages:
             name: YarnInstall
             displayName: Yarn install
             workingDirectory: "$(sourceDictionary)"
-            
+
           - script: yarn check-format
             name: YarnCheckFormat
             displayName: Yarn check format
@@ -54,8 +54,8 @@ stages:
 
           - task: CopyFiles@2
             inputs:
-              Contents: 'build/**'
-              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+              Contents: "build/**"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)"
 
           - task: PublishBuildArtifacts@1
             inputs:
@@ -72,7 +72,7 @@ stages:
           - task: DownloadBuildArtifacts@0
             inputs:
               downloadPath: "$(Build.ArtifactStagingDirectory)"
-              
+
       - job: DeployFirebase
         displayName:
         steps:
