@@ -20,3 +20,4 @@
 
 *.lock
 /source/front-end/back-office/modules/mra-product/*.log
+/source/front-end/back-office/mra-admin/.firebase
