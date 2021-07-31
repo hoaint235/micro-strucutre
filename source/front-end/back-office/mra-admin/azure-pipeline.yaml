@@ -24,9 +24,9 @@ variables:
     value: $(Pipeline.Workspace)/s/source/front-end/back-office/mra-admin/
 
 stages:
-  - stage: Install
+  - stage: Build
     jobs:
-      - job: InstallNodeJob
+      - job: BuildJob
         displayName: InstallNodeJob
         steps:
           - task: NodeTool@0
@@ -34,26 +34,14 @@ stages:
               versionSpec: "14.x"
             displayName: "Install Node.js"
           - script: npm install -g yarn
-      - job: InstallJob
-        displayName: InstallJob
-        steps:
           - script: yarn install
             name: YarnInstall
             displayName: Yarn install
             workingDirectory: "$(sourceDictionary)"
-      - job: CodeReviewJob
-        displayName: CodeReviewJob
-        steps:
           - script: yarn check-format
             name: YarnCheckFormat
             displayName: Yarn check format
             workingDirectory: "$(sourceDictionary)"
-
-  - stage: Build
-    jobs:
-      - job: BuildJob
-        displayName: BuildJob
-        steps:
           - script: yarn build
             name: YarnBuild
             displayName: Yarn build
