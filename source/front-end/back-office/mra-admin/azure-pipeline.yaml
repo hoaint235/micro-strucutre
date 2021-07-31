@@ -37,21 +37,20 @@ stages:
       - job: InstallJob
         displayName: InstallJob
         steps:
-          - script: npm install -g yarn
           - script: yarn install
             name: YarnInstall
             displayName: Yarn install
             workingDirectory: "$(sourceDictionary)"
 
-  - stage: CodeReview
-    jobs:
-      - job: CodeReviewJob
-        displayName: CodeReviewJob
-        steps:
-          - script: yarn check-format
-            name: YarnCheckFormat
-            displayName: Yarn check format
-            workingDirectory: "$(sourceDictionary)"
+  # - stage: CodeReview
+  #   jobs:
+  #     - job: CodeReviewJob
+  #       displayName: CodeReviewJob
+  #       steps:
+  #         - script: yarn check-format
+  #           name: YarnCheckFormat
+  #           displayName: Yarn check format
+  #           workingDirectory: "$(sourceDictionary)"
 
   - stage: Build
     jobs:
