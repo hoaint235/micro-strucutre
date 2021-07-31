@@ -54,9 +54,9 @@ stages:
 
           - task: CopyFiles@2
             inputs:
+              SourceFolder: "$(sourceDictionary)"
               Contents: "build/**"
               TargetFolder: "$(Build.ArtifactStagingDirectory)"
-            workingDirectory: "$(sourceDictionary)"
 
           - task: PublishBuildArtifacts@1
             inputs:
