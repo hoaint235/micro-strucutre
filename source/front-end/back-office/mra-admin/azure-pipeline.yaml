@@ -32,15 +32,15 @@ stages:
             displayName: Yarn install
             workingDirectory: "$(Workspace)"
 
-  - stage: CodeReview
-    jobs:
-      - job: CodeReviewJob
-        displayName: CodeReviewJob
-        steps:
-          - script: yarn format && yarn check-format
-            name: YarnFormat
-            displayName: Yarn format
-            workingDirectory: "$(Workspace)"
+  # - stage: CodeReview
+  #   jobs:
+  #     - job: CodeReviewJob
+  #       displayName: CodeReviewJob
+  #       steps:
+  #         - script: yarn format && yarn check-format
+  #           name: YarnFormat
+  #           displayName: Yarn format
+  #           workingDirectory: "$(Workspace)"
 
   - stage: Build
     jobs:
