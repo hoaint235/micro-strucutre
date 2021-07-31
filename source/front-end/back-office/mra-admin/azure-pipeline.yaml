@@ -60,7 +60,7 @@ stages:
           - script: yarn build
             name: YarnBuild
             displayName: Yarn build
-            workingDirectory: "$(Build.SourcesDirectory)"
+            workingDirectory: "$(sourceDictionary)"
 
   - stage: Deploy
     condition: and(succeeded(), eq(variables.isMaster, 'true'))
@@ -69,5 +69,5 @@ stages:
         displayName:
         steps:
           - script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
-            workingDirectory: "$(Build.SourcesDirectory)/build"
+            workingDirectory: "$(sourceDictionary)/build"
             displayName: 'firebase publish -m "$(Build.BuildNumber)"'
