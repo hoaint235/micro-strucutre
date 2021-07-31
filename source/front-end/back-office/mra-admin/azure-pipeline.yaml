@@ -34,24 +34,33 @@ stages:
             inputs:
               versionSpec: "14.x"
             displayName: "Install Node.js"
+
           - script: npm install -g yarn
+
           - script: yarn install
             name: YarnInstall
             displayName: Yarn install
             workingDirectory: "$(sourceDictionary)"
+            
           - script: yarn check-format
             name: YarnCheckFormat
             displayName: Yarn check format
             workingDirectory: "$(sourceDictionary)"
+
           - script: yarn build
             name: YarnBuild
             displayName: Yarn build
             workingDirectory: "$(sourceDictionary)"
+
+          - task: CopyFiles@2
+            inputs:
+              Contents: 'build/**'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
           - task: PublishBuildArtifacts@1
             inputs:
               PathtoPublish: "$(Build.ArtifactStagingDirectory)"
               ArtifactName: "drop"
-              publishLocation: "Container"
 
   - stage: Deploy
     dependsOn: Build
@@ -62,9 +71,8 @@ stages:
         steps:
           - task: DownloadBuildArtifacts@0
             inputs:
-              buildType: "current"
-              downloadType: "specific"
-              downloadPath: "$(System.ArtifactsDirectory)"
+              downloadPath: "$(Build.ArtifactStagingDirectory)"
+              
       - job: DeployFirebase
         displayName:
         steps:
