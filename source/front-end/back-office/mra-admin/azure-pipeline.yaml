@@ -4,7 +4,7 @@ trigger:
   branches:
     include:
       - master
-      - feature/*
+      - feature/fe/admin/*
   paths:
     include:
       - "/source/front-end/back-office/mra-admin/*"
@@ -16,6 +16,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  - group: mra-admin
   - name: isMaster
     value: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
   - name: FIREBASE_TOKEN
@@ -48,11 +49,11 @@ stages:
             workingDirectory: "$(sourceDictionary)"
 
   - stage: Deploy
-    condition: and(succeeded(), eq(variables.isMaster, 'true'))
+    condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['isDeploy'], 'true')))
     jobs:
       - job: DeployFirebase
         displayName:
         steps:
-          - script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
+          - script: 'firebase deploy --token "$(firebaseToken)" -m "$(Build.BuildNumber)"'
             workingDirectory: "$(sourceDictionary)/build"
             displayName: 'firebase publish -m "$(Build.BuildNumber)"'
