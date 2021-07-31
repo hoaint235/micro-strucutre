@@ -43,6 +43,7 @@ stages:
             workingDirectory: "$(sourceDictionary)"
           - script: yarn add react-scripts
           - script: yarn add prettier
+          - script: yarn add prettier-quick
 
   - stage: CodeReview
     jobs:
