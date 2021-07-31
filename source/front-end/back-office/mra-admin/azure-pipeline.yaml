@@ -39,10 +39,6 @@ stages:
             name: YarnFormat
             displayName: Yarn format
             workingDirectory: "$(Workspace)"
-          - script: yarn lint
-            name: YarnLint
-            displayName: Yarn lint
-            workingDirectory: "$(Workspace)"
 
   - stage: Build
     jobs:
@@ -53,7 +49,7 @@ stages:
             name: YarnBuild
             displayName: Yarn build
             workingDirectory: "$(Workspace)"
-            
+
   - stage: Deploy
     jobs:
       - job: DeployFirebase

@@ -19,8 +19,10 @@ type Props = {
 
 const ConfirmProvider = (props: Props) => {
   const { children, options } = props;
-  const [defaultOptions, setOptions] =
-    useState<ConfirmationOptionsProps>({...DEFAULT_OPTIONS, ...options});
+  const [defaultOptions, setOptions] = useState<ConfirmationOptionsProps>({
+    ...DEFAULT_OPTIONS,
+    ...options,
+  });
   const [resolveReject, setResolveReject] = useState<(Function | undefined)[]>(
     []
   );
