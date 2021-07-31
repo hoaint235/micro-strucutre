@@ -55,5 +55,5 @@ stages:
         displayName:
         steps:
           - script: 'firebase deploy --token "$(firebaseToken)" -m "$(Build.BuildNumber)"'
-            workingDirectory: "$(sourceDictionary)/build"
+            workingDirectory: "$(sourceDictionary)"
             displayName: 'firebase publish -m "$(Build.BuildNumber)"'
