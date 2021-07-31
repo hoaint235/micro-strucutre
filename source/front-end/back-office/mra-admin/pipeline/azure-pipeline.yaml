@@ -1,4 +1,3 @@
-
 trigger:
   branches:
     include:
@@ -10,20 +9,45 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-    checkLatest: true
-  displayName: 'Install Node.js'
+stages:
+  - stage: Install
+    jobs:
+      - job: InstallJob
+        displayName: InstallJob
+        steps:
+          - script: yarn install
+            name: YarnInstall
+            displayName: Yarn install
+            workingDirectory: "$(Workspace)"
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+  - stage: CodeReview
+    jobs:
+      - job: CodeReviewJob
+        displayName: CodeReviewJob
+        steps:
+          - script: yarn format && yarn check-format
+            name: YarnFormat
+            displayName: Yarn format
+            workingDirectory: "$(Workspace)"
+          - script: yarn lint
+            name: YarnLint
+            displayName: Yarn lint
+            workingDirectory: "$(Workspace)"
 
-- task: CmdLine@2
-  inputs:
-    script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
-    workingDirectory: '$(System.DefaultWorkingDirectory)\\build'
-  displayName: 'firebase publish -m "$(Build.BuildNumber)"'
+  - stage: Build
+    jobs:
+      - job: BuildJob
+        displayName: BuildJob
+        steps:
+          - script: yarn build
+            name: YarnBuild
+            displayName: Yarn build
+            workingDirectory: "$(Workspace)"
+  - stage: Deploy
+    jobs:
+      - job: DeployFirebase
+        displayName:
+        steps:
+          - script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
+            workingDirectory: '$(System.DefaultWorkingDirectory)\\build'
+            displayName: 'firebase publish -m "$(Build.BuildNumber)"'
