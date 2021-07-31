@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.5"
 services:
     sql-server:
         container_name: sqlserver
@@ -41,5 +41,26 @@ services:
         networks: 
             - software
         restart: on-failure
+    postgres:
+        container_name: postgres
+        image: postgres
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: mra_account
+        ports:
+            - "5432:5432"
+        restart: on-failure
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4
+        ports:
+            - "6789:80"
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "admin@gmail.com"
+            PGADMIN_DEFAULT_PASSWORD: "P@ssw0rd"
+        restart: on-failure
+        networks: 
+            - software
 networks: 
     software:
