@@ -82,6 +82,6 @@ stages:
         displayName:
         steps:
           - script: npm i -g firebase-tools
-          - script: 'firebase deploy --token "$(firebaseToken)" --project "$(firebaseProjectId)" -m "$(Build.BuildNumber)"'
+          - script: 'firebase deploy --only hosting --token "$(firebaseToken)" --project "$(firebaseProjectId)" -m "$(Build.BuildNumber)"'
             workingDirectory: "$(Build.ArtifactStagingDirectory)"
             displayName: 'firebase publish -m "$(Build.BuildNumber)"'
