@@ -18,29 +18,38 @@ pool:
 variables:
   - name: FIREBASE_TOKEN
     value: 0e7EL5p0cB3mwCgYIARAAGA4SNwF-L9IrRJTJPOXWPVQXxHCQT7HkQbyqDBjJHNmSR4kr1hea6j_B4axlcXw9kcdFT_fS_p5WiTQ
-  - name: Workspace
-    value: $(Pipeline.Workspace)/s
+  - name: sourceDictionary
+    value: $(Pipeline.Workspace)/s/source/front-end/back-office/mra-admin/
 
 stages:
   - stage: Install
     jobs:
+      - job: InstallNodeJob
+        displayName: InstallNodeJob
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '14.x'
+            displayName: 'Install Node.js'
+          - script: npm install -g yarn
       - job: InstallJob
         displayName: InstallJob
         steps:
+          - script: npm install -g yarn
           - script: yarn install
             name: YarnInstall
             displayName: Yarn install
-            workingDirectory: "$(Workspace)"
+            workingDirectory: "$(sourceDictionary)"
 
-  # - stage: CodeReview
-  #   jobs:
-  #     - job: CodeReviewJob
-  #       displayName: CodeReviewJob
-  #       steps:
-  #         - script: yarn format && yarn check-format
-  #           name: YarnFormat
-  #           displayName: Yarn format
-  #           workingDirectory: "$(Workspace)"
+  - stage: CodeReview
+    jobs:
+      - job: CodeReviewJob
+        displayName: CodeReviewJob
+        steps:
+          - script: yarn format && yarn check-format
+            name: YarnFormat
+            displayName: Yarn format
+            workingDirectory: "$(sourceDictionary)"
 
   - stage: Build
     jobs:
