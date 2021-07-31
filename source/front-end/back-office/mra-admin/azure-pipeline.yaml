@@ -50,7 +50,7 @@ stages:
           - script: yarn build
             name: YarnBuild
             displayName: Yarn build
-            workingDirectory: "$(Workspace)"
+            workingDirectory: "$(Build.SourcesDirectory)"
 
   - stage: Deploy
     jobs:
@@ -58,5 +58,5 @@ stages:
         displayName:
         steps:
           - script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
-            workingDirectory: '$(System.DefaultWorkingDirectory)\\build'
+            workingDirectory: '$(Build.SourcesDirectory)/build'
             displayName: 'firebase publish -m "$(Build.BuildNumber)"'
