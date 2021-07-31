@@ -16,6 +16,8 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  - name: isMaster
+    value: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
   - name: FIREBASE_TOKEN
     value: 0e7EL5p0cB3mwCgYIARAAGA4SNwF-L9IrRJTJPOXWPVQXxHCQT7HkQbyqDBjJHNmSR4kr1hea6j_B4axlcXw9kcdFT_fS_p5WiTQ
   - name: sourceDictionary
@@ -29,8 +31,8 @@ stages:
         steps:
           - task: NodeTool@0
             inputs:
-              versionSpec: '14.x'
-            displayName: 'Install Node.js'
+              versionSpec: "14.x"
+            displayName: "Install Node.js"
           - script: npm install -g yarn
       - job: InstallJob
         displayName: InstallJob
@@ -46,9 +48,9 @@ stages:
       - job: CodeReviewJob
         displayName: CodeReviewJob
         steps:
-          - script: yarn format && yarn check-format
-            name: YarnFormat
-            displayName: Yarn format
+          - script: yarn check-format
+            name: YarnCheckFormat
+            displayName: Yarn check format
             workingDirectory: "$(sourceDictionary)"
 
   - stage: Build
@@ -62,10 +64,11 @@ stages:
             workingDirectory: "$(Build.SourcesDirectory)"
 
   - stage: Deploy
+    condition: and(succeeded(), eq(variables.isMaster, 'true'))
     jobs:
       - job: DeployFirebase
         displayName:
         steps:
           - script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
-            workingDirectory: '$(Build.SourcesDirectory)/build'
+            workingDirectory: "$(Build.SourcesDirectory)/build"
             displayName: 'firebase publish -m "$(Build.BuildNumber)"'
