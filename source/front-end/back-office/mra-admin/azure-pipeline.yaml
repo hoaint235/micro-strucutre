@@ -4,7 +4,7 @@ trigger:
   branches:
     include:
       - master
-      - feature/fe/admin/*
+      - feature/*
   paths:
     include:
       - "/source/front-end/back-office/modules/mra-admin/*"
@@ -14,6 +14,10 @@ pr:
 
 pool:
   vmImage: ubuntu-latest
+
+variables:
+  - name: Workspace
+    value: $(Pipeline.Workspace)/s
 
 stages:
   - stage: Install
