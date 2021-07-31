@@ -72,7 +72,8 @@ stages:
         steps:
           - task: DownloadBuildArtifacts@0
             inputs:
-              downloadPath: "$(Build.ArtifactStagingDirectory)"
+              ArtifactName: "drop"
+              DownloadPath: "$(Build.ArtifactStagingDirectory)"
 
       - job: DeployFirebase
         displayName:
