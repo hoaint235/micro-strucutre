@@ -46,7 +46,9 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## yarn deploy
-Before use this command, you need install firebase tool with command line: 
+
+Before use this command, you need install firebase tool with command line:
+
 ```
 npm install -g firebase-tools
 ```

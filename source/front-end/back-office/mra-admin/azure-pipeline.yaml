@@ -4,10 +4,10 @@ trigger:
   branches:
     include:
       - master
-      - feature/*
+      - feature/fe/admin/*
   paths:
     include:
-      - "/source/front-end/back-office/modules/mra-admin/*"
+      - "/source/front-end/back-office/mra-admin/*"
 
 pr:
   - master
@@ -16,49 +16,72 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  - name: Workspace
-    value: $(Pipeline.Workspace)/s
+  - group: mra-admin
+  - name: isMaster
+    value: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  - name: FIREBASE_TOKEN
+    value: 0e7EL5p0cB3mwCgYIARAAGA4SNwF-L9IrRJTJPOXWPVQXxHCQT7HkQbyqDBjJHNmSR4kr1hea6j_B4axlcXw9kcdFT_fS_p5WiTQ
+  - name: sourceDictionary
+    value: $(Pipeline.Workspace)/s/source/front-end/back-office/mra-admin/
 
 stages:
-  - stage: Install
-    jobs:
-      - job: InstallJob
-        displayName: InstallJob
-        steps:
-          - script: yarn install
-            name: YarnInstall
-            displayName: Yarn install
-            workingDirectory: "$(Workspace)"
-
-  - stage: CodeReview
-    jobs:
-      - job: CodeReviewJob
-        displayName: CodeReviewJob
-        steps:
-          - script: yarn format && yarn check-format
-            name: YarnFormat
-            displayName: Yarn format
-            workingDirectory: "$(Workspace)"
-          - script: yarn lint
-            name: YarnLint
-            displayName: Yarn lint
-            workingDirectory: "$(Workspace)"
-
   - stage: Build
     jobs:
       - job: BuildJob
-        displayName: BuildJob
+        displayName: InstallNodeJob
         steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "14.x"
+            displayName: "Install Node.js"
+
+          - script: npm install -g yarn
+
+          - script: yarn install
+            name: YarnInstall
+            displayName: Yarn install
+            workingDirectory: "$(sourceDictionary)"
+
+          - script: yarn check-format
+            name: YarnCheckFormat
+            displayName: Yarn check format
+            workingDirectory: "$(sourceDictionary)"
+
           - script: yarn build
             name: YarnBuild
             displayName: Yarn build
-            workingDirectory: "$(Workspace)"
-            
+            workingDirectory: "$(sourceDictionary)"
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: "$(sourceDictionary)"
+              Contents: |
+                build/**
+                firebase.json
+                .firebaserc
+              TargetFolder: "$(Build.ArtifactStagingDirectory)"
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+              ArtifactName: "drop"
+
   - stage: Deploy
+    dependsOn: Build
+    condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['isDeploy'], 'true')))
     jobs:
+      - job: DownloadBuild
+        displayName: "DownloadBuildJob"
+        steps:
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              ArtifactName: "drop"
+              DownloadPath: "$(Build.ArtifactStagingDirectory)"
+
       - job: DeployFirebase
         displayName:
         steps:
-          - script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
-            workingDirectory: '$(System.DefaultWorkingDirectory)\\build'
+          - script: npm i -g firebase-tools
+          - script: 'firebase deploy --only hosting --token "$(firebaseToken)" --project "$(firebaseProjectId)" -m "$(Build.BuildNumber)"'
+            workingDirectory: "$(Build.ArtifactStagingDirectory)"
             displayName: 'firebase publish -m "$(Build.BuildNumber)"'
