@@ -55,7 +55,9 @@ stages:
           - task: CopyFiles@2
             inputs:
               SourceFolder: "$(sourceDictionary)"
-              Contents: "build/**"
+              Contents: |
+                build/**
+                firebase.json
               TargetFolder: "$(Build.ArtifactStagingDirectory)"
 
           - task: PublishBuildArtifacts@1
