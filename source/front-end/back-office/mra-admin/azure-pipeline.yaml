@@ -49,22 +49,22 @@ stages:
             workingDirectory: "$(sourceDictionary)"
           - task: PublishBuildArtifacts@1
             inputs:
-              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-              ArtifactName: 'drop'
-              publishLocation: 'Container'
+              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+              ArtifactName: "drop"
+              publishLocation: "Container"
 
   - stage: Deploy
     dependsOn: Build
     condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['isDeploy'], 'true')))
     jobs:
       - job: DownloadBuild
-        displayName: 'DownloadBuildJob'
-        steps: 
-        - task: DownloadBuildArtifacts@0
-          inputs:
-            buildType: 'current'
-            downloadType: 'specific'
-            downloadPath: '$(System.ArtifactsDirectory)'
+        displayName: "DownloadBuildJob"
+        steps:
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              buildType: "current"
+              downloadType: "specific"
+              downloadPath: "$(System.ArtifactsDirectory)"
       - job: DeployFirebase
         displayName:
         steps:
