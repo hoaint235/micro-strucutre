@@ -41,16 +41,18 @@ stages:
             name: YarnInstall
             displayName: Yarn install
             workingDirectory: "$(sourceDictionary)"
+          - script: yarn add react-scripts
+          - script: yarn add prettier
 
-  # - stage: CodeReview
-  #   jobs:
-  #     - job: CodeReviewJob
-  #       displayName: CodeReviewJob
-  #       steps:
-  #         - script: yarn check-format
-  #           name: YarnCheckFormat
-  #           displayName: Yarn check format
-  #           workingDirectory: "$(sourceDictionary)"
+  - stage: CodeReview
+    jobs:
+      - job: CodeReviewJob
+        displayName: CodeReviewJob
+        steps:
+          - script: yarn check-format
+            name: YarnCheckFormat
+            displayName: Yarn check format
+            workingDirectory: "$(sourceDictionary)"
 
   - stage: Build
     jobs:
