@@ -9,7 +9,7 @@ namespace MicroArchitecture.Account.Domain.Users
     {
         public Profile Profile { get; private set; }
         public Address Address { get; private set; }
-        public bool IsActivate { get; private set; }
+        public bool IsActive { get; private set; }
         public UserStatus Status { get; private set; }
         public ICollection<UserRole> Roles { get; private set; }
         public Guid? CreatedBy { get; set; }
@@ -37,7 +37,7 @@ namespace MicroArchitecture.Account.Domain.Users
         private static void InitRoles(User user, List<Guid> roleIds)
         {
             user.Roles = UserRole.Create(user.Id, roleIds);
-            user.IsActivate = true;
+            user.IsActive = true;
         }
 
         public static User Create(Profile profile, List<Guid> roleIds)
@@ -70,7 +70,7 @@ namespace MicroArchitecture.Account.Domain.Users
 
         public void Activate()
         {
-            IsActivate = true;
+            IsActive = true;
             AddIntegrationEvent(new ActivateUserEvent
             {
                 UserName = Profile.Email
@@ -79,7 +79,7 @@ namespace MicroArchitecture.Account.Domain.Users
 
         public void Deactivate()
         {
-            IsActivate = false;
+            IsActive = false;
             AddIntegrationEvent(new DeactivateUserEvent
             {
                 UserName = Profile.Email

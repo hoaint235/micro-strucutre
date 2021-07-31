@@ -5,14 +5,21 @@
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Migration\Scripts\V20210609_Initialize_Table.sql" />
-    <None Remove="Migration\Scripts\V20210722_Add_Column_CountryCode.sql" />
+    <None Remove="Migration\Scripts\V20210731191300_create_table_account.sql" />
+    <None Remove="Migration\Scripts\V20210731191400_create_table_account_role.sql" />
+    <None Remove="Migration\Scripts\V20210731191900_create_table_history.sql" />
+    <None Remove="Migration\Scripts\V20210731202500_insert_default_account.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migration\Scripts\V20210609_Initialize_Table.sql" />
-    <EmbeddedResource Include="Migration\Scripts\V20210722_Add_Column_CountryCode.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210731191400_create_table_account_role.sql" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migration\Scripts\V20210731191900_create_table_history.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210731191300_create_table_account.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210731202500_insert_default_account.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="5.0.2" />
     <PackageReference Include="AutoMapper" Version="10.1.0" />
     <PackageReference Include="MassTransit" Version="7.2.0" />
     <PackageReference Include="MassTransit.AspNetCore" Version="7.2.0" />
@@ -31,15 +38,17 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
-    <PackageReference Include="dbup" Version="4.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5" />
+    <PackageReference Include="Npgsql" Version="5.0.7" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
     <PackageReference Include="Serilog" Version="2.9.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0-dev-00173" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.2-dev-10280" />
-    <PackageReference Include="MicroArchitecture.Core" Version="1.0.1" />
+    <PackageReference Include="MicroArchitecture.Core" Version="1.0.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MicroArchitecture.Account.Application\MicroArchitecture.Account.Application.csproj" />
     <ProjectReference Include="..\MicroArchitecture.Account.Infrastructure\MicroArchitecture.Account.Infrastructure.csproj" />
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1debug_1json__JsonSchema="Se" /></VisualStudio></ProjectExtensions>
 </Project>
