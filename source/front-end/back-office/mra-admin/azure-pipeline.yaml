@@ -1,10 +1,16 @@
+name: $(BuildID)
+
 trigger:
   branches:
     include:
       - master
+      - feature/*
   paths:
     include:
       - "/source/front-end/back-office/modules/mra-admin/*"
+
+pr:
+  - master
 
 pool:
   vmImage: ubuntu-latest
