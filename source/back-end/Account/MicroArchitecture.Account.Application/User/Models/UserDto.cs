@@ -9,9 +9,10 @@ namespace MicroArchitecture.Account.Application.User.Models
         public Guid Id { get; set; }
         public string Email { get; set; }
         public DateTime CreatedDate { get; set; }
-        public bool IsActivate { get; set; }
+        public bool IsActive { get; set; }
         public UserStatus Status { get; set; }
         public ICollection<Guid> Roles { get; set; }
         public bool HasPermission { get; set; }
+        public int TotalItems { get; set; }
     }
 }
