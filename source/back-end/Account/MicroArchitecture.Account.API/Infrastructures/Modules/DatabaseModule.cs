@@ -10,10 +10,10 @@ using MicroArchitecture.Account.Infrastructure.Database.Dapper;
 using MicroArchitecture.Account.Infrastructure.Database.DbContext;
 using MicroArchitecture.Account.Infrastructure.Database.DbContext.Repositories;
 using MicroArchitecture.Core.Interfaces;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace MicroArchitecture.Account.API.Infrastructures.Modules
 {
@@ -21,15 +21,17 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
     {
         public void RegisterServices(IServiceCollection service, IConfiguration configuration, Assembly[] assemblies)
         {
-            var sqlConnectionString = configuration.GetConnectionString(Constants.Common.ConnectionString);
+            DefaultTypeMap.MatchNamesWithUnderscores = true;
+
+            var connectionString = configuration.GetConnectionString(Constants.Common.ConnectionString);
             service.AddDbContext<AccountDbContext>(options =>
             {
-                options.UseSqlServer(sqlConnectionString)
+                options.UseNpgsql(connectionString)
                     .EnableSensitiveDataLogging();
             });
 
             service.AddSingleton<Func<DbConnection>>(() =>
-                new SqlConnection(sqlConnectionString));
+                new NpgsqlConnection(connectionString));
 
             service.AddScoped<IDapperQuery, DapperQuery>();
             service.AddScoped<IUnitOfWork, AccountDbContext>();

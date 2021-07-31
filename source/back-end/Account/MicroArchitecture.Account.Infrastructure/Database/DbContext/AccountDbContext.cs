@@ -45,22 +45,7 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext
         {
             modelBuilder.Ignore<DomainEvent>();
             modelBuilder.Ignore<IntegrationEvent>();
-            modelBuilder.Entity<User>().ToTable("User").HasKey(x => x.Id);
-            modelBuilder.Entity<User>().OwnsOne(o => o.Profile, pro =>
-            {
-                pro.Property(x => x.Email).HasColumnName("Email");
-                pro.Property(x => x.PhoneNumber).HasColumnName("PhoneNumber");
-                pro.Property(x => x.FirstName).HasColumnName("FirstName");
-                pro.Property(x => x.LastName).HasColumnName("LastName");
-                pro.Property(x => x.CountryCode).HasColumnName("CountryCode");
-            });
-
-            modelBuilder.Entity<User>().OwnsOne(o => o.Address, pro =>
-            {
-                pro.Property(x => x.HouseNumber).HasColumnName("HouseNumber");
-                pro.Property(x => x.District).HasColumnName("District");
-                pro.Property(x => x.City).HasColumnName("City");
-            });
+            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
         }
 
         public async Task CommitAsync(CancellationToken cancellationToken = default)

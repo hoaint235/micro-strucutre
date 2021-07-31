@@ -13,17 +13,16 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
         {
             return new RawQuery
             {
-                Query = $@"SELECT u.Id
-                                , u.Email
-                                , u.Status
-                                , (SELECT CONCAT('[', STRING_AGG(CONCAT('""', ur.RoleId , '""'), ',') ,']')) AS Roles
-                           FROM [dbo].[User] u 
-                           INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId 
-                           WHERE u.Id = @UserId 
-                             AND u.IsDeleted = 0 
-                           GROUP BY u.Id
-                           	      , u.Email
-                           	      , u.Status",
+                Query = $@"SELECT a.id
+                                , a.email
+                                , a.status
+                                , JSON_AGG(DISTINCT ar.role_id) AS roles
+                           FROM account a
+                           INNER JOIN account_role ar ON a.id = ar.account_id
+                           WHERE a.is_deleted = false AND a.id = @UserId 
+                           GROUP BY a.id
+                                  , a.email
+                                  , a.status",
                 Parameters = new Dictionary<string, object>
                 {
                     {"UserId", userId}
@@ -35,10 +34,10 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
         {
             return new RawQuery
             {
-                Query = $@"SELECT u.Id
-                           FROM [dbo].[User] u
-                           WHERE u.ExternalId = @ExternalId
-                             AND u.IsDeleted = 0",
+                Query = $@"SELECT a.id
+                           FROM account a
+                           WHERE a.is_deleted = false
+                             AND a.external_id = @ExternalId",
                 Parameters = new Dictionary<string, object>
                 {
                     {"ExternalId", externalId}
@@ -56,42 +55,36 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
                 { "CurrentUserId", currentUserId },
             };
 
-            var orderByClause = request.BuildSorting("u.CreatedDate DESC");
+            var orderByClause = request.BuildSorting("a.created_date DESC");
 
             var whereByClause = new StringBuilder();
             if(!string.IsNullOrWhiteSpace(request.Search))
             {
-                whereByClause.Append("AND u.Email LIKE @Search ");
-                parameters.Add("Search", $"%{request.Search}%");
+                whereByClause.Append("AND u.email ILIKE CONCAT('%',@Search,'%') ");
+                parameters.Add("Search", request.Search);
             }
 
             return new RawQuery
             {
-                Query = $@"SELECT u.Id
-                           	    , u.Email
-                           	    , u.IsActivate
-                           	    , u.Status
-                           	    , u.CreatedDate
-                                , (SELECT CONCAT('[', STRING_AGG(CONCAT('""', ur.RoleId , '""'), ',') ,']')) AS Roles 
-                           INTO #TempUser                           
-                           FROM [dbo].[User] u 
-                           INNER JOIN [dbo].[UserRole] ur ON u.Id = ur.UserId 
-                           WHERE u.IsDeleted = 0 AND ur.RoleId IN @RoleIds AND u.Id != @CurrentUserId {whereByClause} 
-                           GROUP BY u.Id
-                           	      , u.Email
-                           	      , u.IsActivate
-                           	      , u.Status
-                           	      , u.CreatedDate 
-
-                           SELECT @TotalItems = COUNT(1) FROM #TempUser;
-                           
-                           SELECT * 
-                           FROM #TempUser u 
+                Query = $@"SELECT a.id
+                           	    , a.email
+                           	    , a.is_active
+                           	    , a.status
+                           	    , a.created_date
+                                , JSON_AGG(DISTINCT ar.role_id) AS roles
+                           	    , COUNT(*) OVER() AS total_items
+                           FROM account a 
+                           INNER JOIN account_role ar ON a.id = ar.account_id 
+                           WHERE a.is_deleted = false 
+                             AND ar.role_id = ANY(@RoleIds) 
+                             AND a.id != @CurrentUserId {whereByClause} 
+                           GROUP BY a.id
+                           	      , a.email
+                           	      , a.is_active
+                           	      , a.status
+                           	      , a.created_date 
                            ORDER BY {orderByClause} 
-                           OFFSET @Offset ROWS 
-                           FETCH NEXT @Limit ROWS ONLY 
-                           
-                           DROP TABLE #TempUser",
+                           LIMIT @Limit OFFSET @Offset ",
                 Parameters = parameters
             };
         }

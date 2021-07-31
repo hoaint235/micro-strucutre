@@ -13,7 +13,7 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
         {
             var connectionString = configuration.GetConnectionString(Constants.Common.ConnectionString);
             service.AddHealthChecks()
-                .AddSqlServer(connectionString, name: "SQL SERVER", failureStatus: HealthStatus.Unhealthy);
+                .AddNpgSql(connectionString, name: "Postgresql", failureStatus: HealthStatus.Unhealthy);
             service.AddHealthChecksUI(opt =>
                 {
                     opt.SetEvaluationTimeInSeconds(15); //time in seconds between check

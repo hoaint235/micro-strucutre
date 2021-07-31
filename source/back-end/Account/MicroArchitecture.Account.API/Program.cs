@@ -18,7 +18,7 @@ namespace MicroArchitecture.Account.API
             {
                 Console.WriteLine(@"Starting application");
                 var host = CreateHostBuilder(args);
-                SeedData.Initialize(host, Assembly.GetExecutingAssembly(),  Constants.Common.ConnectionString);
+                SeedData.Initialize(host, Assembly.GetExecutingAssembly(),  Constants.Common.ConnectionString, IProvider.Ngsql);
 
                 Console.WriteLine(@"Start host");
                 host.Run();
