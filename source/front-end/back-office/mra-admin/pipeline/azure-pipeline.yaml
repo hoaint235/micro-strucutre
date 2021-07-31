@@ -1,0 +1,29 @@
+
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - "/source/front-end/back-office/modules/mra-admin/*"
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+    checkLatest: true
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+
+- task: CmdLine@2
+  inputs:
+    script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
+    workingDirectory: '$(System.DefaultWorkingDirectory)\\build'
+  displayName: 'firebase publish -m "$(Build.BuildNumber)"'
