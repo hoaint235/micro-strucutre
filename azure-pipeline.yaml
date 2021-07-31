@@ -4,7 +4,7 @@ trigger:
   branches:
     include:
       - master
-      - feature/fe/admin/*
+      - feature/*
   paths:
     exclude:
       - "source/*"

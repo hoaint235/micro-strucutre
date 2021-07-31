@@ -4,7 +4,7 @@ trigger:
   branches:
     include:
       - master
-      - feature/*
+      - feature/fe/admin/*
   paths:
     include:
       - "/source/front-end/back-office/modules/mra-admin/*"
