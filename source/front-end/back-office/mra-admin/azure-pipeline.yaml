@@ -43,6 +43,7 @@ stages:
             name: YarnBuild
             displayName: Yarn build
             workingDirectory: "$(Workspace)"
+            
   - stage: Deploy
     jobs:
       - job: DeployFirebase
