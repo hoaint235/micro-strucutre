@@ -11,6 +11,7 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 {
   public class MessageBrokerModule : IAppModule
   {
+    [System.Obsolete]
     public void RegisterServices(IServiceCollection service, IConfiguration configuration, Assembly[] assemblies)
     {
       var brokerConfig = new MessageBrokerConfig();
@@ -21,6 +22,7 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 
         x.UsingRabbitMq((context, cfg) =>
               {
+                cfg.UseHealthCheck(context);
                 cfg.Host(brokerConfig.Host, h =>
                       {
                         h.Username(brokerConfig.UserName);
