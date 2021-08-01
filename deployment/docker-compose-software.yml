@@ -1,16 +1,16 @@
 version: "3.5"
 services:
-    sql-server:
-        container_name: sqlserver
-        image: "mcr.microsoft.com/mssql/server"
-        environment:
-            SA_PASSWORD: "P@ssw0rd"
-            ACCEPT_EULA: "Y"
-        ports: 
-            - "1433:1433"
-        restart: on-failure
-        networks: 
-            - software
+    # sql-server:
+    #     container_name: sqlserver
+    #     image: "mcr.microsoft.com/mssql/server"
+    #     environment:
+    #         SA_PASSWORD: "P@ssw0rd"
+    #         ACCEPT_EULA: "Y"
+    #     ports: 
+    #         - "1433:1433"
+    #     restart: on-failure
+    #     networks: 
+    #         - software
     rabbitmq:
         container_name: rabbitmq
         image: "rabbitmq:3-management-alpine"
@@ -24,15 +24,15 @@ services:
         ports: 
             - 5672:5672
             - 15672:15672
-    smtp4dev:
-        container_name: smtp
-        image: rnwood/smtp4dev:v3
-        ports:
-            - "3000:80"
-            - "2525:25"
-        networks: 
-            - software
-        restart: on-failure
+    # smtp4dev:
+    #     container_name: smtp
+    #     image: rnwood/smtp4dev:v3
+    #     ports:
+    #         - "3000:80"
+    #         - "2525:25"
+    #     networks: 
+    #         - software
+    #     restart: on-failure
     zipkin:
         image: openzipkin/zipkin:latest
         container_name: zipkin
