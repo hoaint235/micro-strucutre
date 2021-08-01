@@ -28,7 +28,7 @@
   },
   "listUserPage": {
     "title": "List Users",
-    "addUser": "Add User",
+    "addUser": "Add user",
     "deactivate": "Deactivate",
     "activate": "Activate",
     "searchText": "Search user"
@@ -69,7 +69,7 @@
     "searchText": "Search vendor"
   },
   "addVendorPage": {
-    "title": "Add Vendor",
+    "title": "Add vendor",
     "vendorInfoTitle": "Vendor Information",
     "vendorAddressTitle": "Address Information"
   },
@@ -148,8 +148,12 @@
     "address": "Address",
     "vendor": "Vendor"
   },
+  "settings": {
+    "profile": "Profile",
+    "logout": "Logout"
+  },
   "menus": {
-    "dashBoard": "Dash Board",
+    "dashBoard": "Dashboard",
     "masterData": {
       "title": "Master Data",
       "users": "Users",

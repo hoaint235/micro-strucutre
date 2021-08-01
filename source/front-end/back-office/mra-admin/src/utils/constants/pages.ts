@@ -2,6 +2,7 @@ const Pages = {
   DEFAULT: "/admin/dashboard",
   DASH_BOARD: "/admin/dashboard",
   NOT_FOUND: "/not-found",
+  PROFILE: "/profile",
 
   SIGN_IN: "/sign-in",
   FORGOT_PASSWORD: "/forgot-password",
