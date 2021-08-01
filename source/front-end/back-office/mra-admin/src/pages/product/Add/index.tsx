@@ -1,7 +1,11 @@
 import { Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { Pages, toastHelper } from "../../../utils";
-import { AccountService, VendorService } from "../../../services";
+import {
+  AccountService,
+  VendorService,
+  CategoryService,
+} from "../../../services";
 import { ManageProductForm, MainContainer } from "../../../components";
 import { IProduct } from "model";
 
@@ -26,10 +30,18 @@ const AddProduct = () => {
     return result;
   };
 
-  const onBackProductList = () => {
-    console.log("back");
-    history.push(Pages.PRODUCT);
+  const onLoadCategory = async (query: string) => {
+    const categories = await CategoryService.loadSuggest(query);
+    const result = categories.map((item: any) => {
+      return {
+        key: item.id,
+        value: item.name,
+      };
+    }) as SelectionProps[];
+    return result;
   };
+
+  const onBackProductList = () => history.push(Pages.PRODUCT);
 
   return (
     <MainContainer title="addProductPage.title">
@@ -39,6 +51,7 @@ const AddProduct = () => {
             onBack={onBackProductList}
             onSubmit={onSubmit}
             onVendorAsync={onLoadVendor}
+            onCategoryAsync={onLoadCategory}
           />
         </Grid>
       </Grid>

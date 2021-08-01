@@ -86,7 +86,7 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
       value={value}
       loading={isLoading()}
       loadingText={t(loadingText)}
-      getOptionLabel={(option) => option.value}
+      getOptionLabel={(option) => option && option.value}
       getOptionSelected={(option, value) => option.key === value.key}
       filterOptions={(x) => x}
       onInputChange={onSearchChange}

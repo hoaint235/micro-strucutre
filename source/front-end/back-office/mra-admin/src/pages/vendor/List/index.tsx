@@ -86,7 +86,9 @@ const ListVendors = () => {
 
   const onSearch = async (value: string) => {};
 
-  const onPaging = async (data: PagingProps) => {};
+  const onPaging = async (data: PagingProps) => {
+    await fetchVendors({ limit: data.limit, offset: data.offset / data.limit });
+  };
 
   const onSort = async (data: SortProps) => {};
 

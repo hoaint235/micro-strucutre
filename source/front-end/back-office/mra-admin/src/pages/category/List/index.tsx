@@ -1,15 +1,19 @@
 import { Box, Grid } from "@material-ui/core";
 import sortBy from "lodash/sortBy";
-import { ListingResponse, ICategory } from "model";
-import { useState } from "react";
-import { Button, Field, HeaderProps } from "../../../components/atoms";
-import { PagingProps, SortProps } from "../../../components/molecules";
-import { MainContainer } from "../../../components/organisms";
+import { ListingResponse, ICategory, ListingRequest } from "model";
+import { useCallback, useEffect, useState } from "react";
 import {
   SkeletonTemplate,
   ListCategories as Categories,
   ManageCategoryForm,
-} from "../../../components/templates";
+  MainContainer,
+  PagingProps,
+  SortProps,
+  Button,
+  Field,
+  HeaderProps,
+} from "../../../components";
+import { CategoryService } from "../../../services";
 
 const headers: HeaderProps[] = [
   {
@@ -34,35 +38,27 @@ const headers: HeaderProps[] = [
 ];
 
 const ListCategories = () => {
-  const [data, setData] = useState<ListingResponse<ICategory> | null>({
-    data: [
-      {
-        id: "1",
-        name: "category 1",
-        level: 0,
-      },
-      {
-        id: "2",
-        name: "category 2",
-        level: 1,
-        parent: {
-          id: "1",
-          name: "category 1",
-          level: 0,
-        },
-      },
-      {
-        id: "3",
-        name: "category 3",
-        level: 0,
-      },
-    ],
-    totalItems: 3,
-  });
+  const [data, setData] = useState<ListingResponse<ICategory> | null>(null);
   const [stateForm, setStateForm] = useState<DialogStateProps>({
     mode: "Add",
     open: false,
   });
+
+  const fetchCategories = useCallback(async (request?: ListingRequest) => {
+    const defaultRequest = {
+      limit: 10,
+      offset: 0,
+    };
+    const payload = { ...defaultRequest, ...request };
+    const categories = await CategoryService.getCategories(payload);
+    setData({ ...data, ...categories });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    fetchCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onDelete = async (categoryId?: string) => {};
 
@@ -72,7 +68,12 @@ const ListCategories = () => {
 
   const onSearch = async (value: string) => {};
 
-  const onPaging = async (data: PagingProps) => {};
+  const onPaging = async (data: PagingProps) => {
+    await fetchCategories({
+      limit: data.limit,
+      offset: data.offset / data.limit,
+    });
+  };
 
   const onSort = async (options: SortProps) => {
     const { order, orderBy } = options;
@@ -94,16 +95,14 @@ const ListCategories = () => {
             />
           </Grid>
           <Grid container item xs={12} md={7} justifyContent="flex-end">
-            <Box mt={{ xs: 2, sm: 0 }}>
-              <Button.Primary
-                name="addCategory"
-                label="listCategoryPage.addCategory"
-                onClick={() => setStateForm({ mode: "Add", open: true })}
-              />
-            </Box>
+            <Button.Primary
+              name="addCategory"
+              label="listCategoryPage.addCategory"
+              onClick={() => setStateForm({ mode: "Add", open: true })}
+            />
           </Grid>
           <Grid item xs={12}>
-            <Box mt={2}>
+            <Box mt={{ xs: 0, md: 2 }}>
               {data && (
                 <Categories
                   data={data}

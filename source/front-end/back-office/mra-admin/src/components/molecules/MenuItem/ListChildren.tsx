@@ -21,7 +21,7 @@ import { WindowEvents } from "../../../utils";
 
 const ListChildren = (props: MenuItemProps) => {
   const { label, exact, icon: Icon, children } = props;
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(true);
   const classesListItem = useStyleListItem();
   const classesItemIconParent = useStyleItemIconParent();
   const classesItemIconChildren = useStyleItemIconChildren();

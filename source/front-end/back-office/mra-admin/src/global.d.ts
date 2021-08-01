@@ -134,7 +134,7 @@ declare module "model" {
   declare interface ICategory {
     id?: string;
     name: string;
-    level: int;
+    level?: int;
     parent?: ICategory;
   }
 
