@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>d41609d2-170a-43f5-adb0-654084b51b59</UserSecretsId>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Migration\Scripts\V20210731191300_create_table_account.sql" />
