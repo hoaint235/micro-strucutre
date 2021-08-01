@@ -38,8 +38,6 @@ namespace MicroArchitecture.Account.API
 
         public static IWebHost CreateHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseSerilog()
-                .UseKestrel(options => options.ListenLocalhost(80))
                 .UseStartup<Startup>()
                 .ConfigureAppConfiguration((hostContext, options) =>
                 {
