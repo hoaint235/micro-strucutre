@@ -1,6 +1,6 @@
 using HealthChecks.UI.Client;
 using MicroArchitecture.Account.API.Infrastructures.Middlewares;
-using MicroArchitecture.Account.Application.User.Queries;
+using MicroArchitecture.Account.Application.Accounts.Queries;
 using MicroArchitecture.Account.Domain.Core.Domain;
 using MicroArchitecture.Account.Infrastructure.Commons;
 using MicroArchitecture.Account.Infrastructure.Database.DbContext;

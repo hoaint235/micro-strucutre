@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.Reflection;
 using Dapper;
 using MicroArchitecture.Account.Domain.Core.Database;
-using MicroArchitecture.Account.Domain.Users;
+using MicroArchitecture.Account.Domain.Accounts;
 using MicroArchitecture.Account.Infrastructure.Commons;
 using MicroArchitecture.Account.Infrastructure.Database.Dapper;
 using MicroArchitecture.Account.Infrastructure.Database.DbContext;
@@ -35,7 +35,7 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 
             service.AddScoped<IDapperQuery, DapperQuery>();
             service.AddScoped<IUnitOfWork, AccountDbContext>();
-            service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<IAccountRepository, AccountRepository>();
 
             new List<Type>
             {

@@ -1,0 +1,7 @@
+﻿CREATE TABLE IF NOT EXISTS "permission" (
+	id UUID NOT NULL,
+	name CHARACTER VARYING(50) NOT NULL,
+	lowered_name CHARACTER VARYING(50) NOT NULL,
+
+	CONSTRAINT pk_permission_id PRIMARY KEY ("id")
+)

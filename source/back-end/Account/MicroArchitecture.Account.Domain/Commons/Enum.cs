@@ -2,8 +2,9 @@
 {
     public enum RoleType
     {
-        Master = 1,
-        Admin = 2,
-        User = 3
+        Admin = 1,
+        MasterData = 2,
+        Manager = 3,
+        User = 4
     }
 }
