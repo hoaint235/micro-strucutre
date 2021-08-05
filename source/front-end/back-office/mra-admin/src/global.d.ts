@@ -73,6 +73,12 @@ declare type DialogFormProps<TModel> = {
   onSubmit: (data: TModel) => void;
 };
 
+declare type TreeItem = {
+  id: string;
+  label: string;
+  nodes?: TreeItem[];
+}
+
 declare module "form" {
   declare type ManageForm<TModel = any> = {
     defaultValues?: TModel;

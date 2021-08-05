@@ -3,7 +3,6 @@ import {
   CardContent,
   CardHeader,
   Grid,
-  makeStyles,
 } from "@material-ui/core";
 import { useCallback, useEffect, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
@@ -18,16 +17,9 @@ type Props = {
   editMode?: boolean;
 };
 
-const useCountryStyles = makeStyles({
-  paper: {
-    maxHeight: 400,
-  },
-});
-
 const UserInfoForm = (props: Props) => {
   const { form, editMode } = props;
   const { t } = useTranslation();
-  const countryClasses = useCountryStyles();
   const [roles, setRoles] = useState<string[]>([]);
 
   const fetchRoles = async () => {
@@ -86,14 +78,12 @@ const UserInfoForm = (props: Props) => {
           <Grid item xs={12}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <Form.SingleSelect
+                <Form.Autocomplete
                   items={countries}
                   form={form}
                   name="profile.countryCode"
                   label="fields.countryCode"
-                  SelectProps={{
-                    MenuProps: { classes: { ...countryClasses } },
-                  }}
+                  disableClearable
                 />
               </Grid>
               <Grid item xs={12} sm={6}>

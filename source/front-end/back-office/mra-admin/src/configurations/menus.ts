@@ -30,6 +30,10 @@ const Menus: MenuItemProps[] = [
         pathsActivate: [Pages.USER, Pages.CREATE_USER, Pages.EDIT_USER],
         label: "menus.masterData.users",
       },
+      {
+        path: Pages.PERMISSION,
+        label: "menus.masterData.permissions",
+      },
     ],
   },
   {

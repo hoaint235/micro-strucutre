@@ -23,7 +23,7 @@ const MainContainer = (props: Props) => {
   const { t } = useTranslation();
   const { isAuth } = useGuard();
   return (
-    <>
+    <Fragment>
       {isAuth && (
         <Fragment>
           <Paper component={Card} classes={{ ...classesPaper }} elevation={0}>
@@ -38,7 +38,7 @@ const MainContainer = (props: Props) => {
           </Paper>
         </Fragment>
       )}
-    </>
+    </Fragment>
   );
 };
 

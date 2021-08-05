@@ -18,3 +18,6 @@ export { default as Switch } from "./Switch";
 export * from "./Switch";
 
 export { default as Image } from "./Image";
+
+export { default as TreeViewItem } from './TreeViewItem';
+export * from './TreeViewItem';
