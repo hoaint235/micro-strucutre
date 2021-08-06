@@ -44,6 +44,9 @@ const MenuItem = (props: MenuItemProps) => {
     [pathname]
   );
 
+  const onCloseMobileMenu = () =>
+    window.dispatchEvent(new CustomEvent(WindowEvents.CLOSE_MOBILE_MENU));
+
   const MenuLink = useMemo(
     () =>
       forwardRef(
@@ -68,9 +71,7 @@ const MenuItem = (props: MenuItemProps) => {
         button
         path={path}
         component={MenuLink}
-        onClick={() =>
-          window.dispatchEvent(new CustomEvent(WindowEvents.CLOSE_MOBILE_MENU))
-        }
+        onClick={onCloseMobileMenu}
         classes={{ ...classesListItem }}
       >
         <ListItemIcon classes={{ ...classesItemIconParent }}>
@@ -104,11 +105,7 @@ const MenuItem = (props: MenuItemProps) => {
           {children &&
             children.map(({ path, label, ...restProps }: MenuItemProps) => (
               <ListItem
-                onClick={() =>
-                  window.dispatchEvent(
-                    new CustomEvent(WindowEvents.CLOSE_MOBILE_MENU)
-                  )
-                }
+                onClick={onCloseMobileMenu}
                 id={`menu-${label}`}
                 key={path}
                 button
