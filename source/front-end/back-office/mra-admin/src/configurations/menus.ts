@@ -1,11 +1,12 @@
 import { BarChart, Description, ListAlt } from "@material-ui/icons";
-import { Pages } from "../utils";
+import { Pages, Roles } from "../utils";
 
 const Menus: MenuItemProps[] = [
   {
     path: Pages.DASH_BOARD,
     icon: BarChart,
     label: "menus.dashBoard",
+    roles: [Roles.Admin, Roles.MasterData],
   },
   {
     icon: ListAlt,
@@ -13,7 +14,7 @@ const Menus: MenuItemProps[] = [
     children: [
       {
         path: Pages.VENDOR,
-        pathsActivate: [Pages.VENDOR, Pages.CREATE_VENDOR],
+        activePaths: [Pages.VENDOR, Pages.CREATE_VENDOR],
         label: "menus.masterData.vendors",
       },
       {
@@ -22,12 +23,12 @@ const Menus: MenuItemProps[] = [
       },
       {
         path: Pages.PRODUCT,
-        pathsActivate: [Pages.PRODUCT, Pages.CREATE_PRODUCT],
+        activePaths: [Pages.PRODUCT, Pages.CREATE_PRODUCT],
         label: "menus.masterData.products",
       },
       {
         path: Pages.USER,
-        pathsActivate: [Pages.USER, Pages.CREATE_USER, Pages.EDIT_USER],
+        activePaths: [Pages.USER, Pages.CREATE_USER, Pages.EDIT_USER],
         label: "menus.masterData.users",
       },
       {
@@ -42,7 +43,7 @@ const Menus: MenuItemProps[] = [
     children: [
       {
         path: Pages.VENDOR,
-        pathsActivate: [Pages.VENDOR, Pages.CREATE_VENDOR],
+        activePaths: [Pages.VENDOR, Pages.CREATE_VENDOR],
         label: "menus.purchase.purchase",
       },
       {

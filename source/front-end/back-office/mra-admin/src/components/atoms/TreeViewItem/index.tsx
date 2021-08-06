@@ -8,7 +8,7 @@ const useStyleTreeItem = makeStyles({
   selected: {
     ">.MuiTreeItem-content .MuiTreeItem-label": {
       backgroundColor: "transparent",
-    }
+    },
   },
   label: {
     backgroundColor: "transparent",

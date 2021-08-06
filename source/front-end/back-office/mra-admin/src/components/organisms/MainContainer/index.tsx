@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, Paper } from "@material-ui/core";
+import { useEffect } from "react";
 import { Fragment } from "react";
-import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 import { useGuard } from "../../../hooks";
 import { Typography } from "../../atoms";
 import {
@@ -20,8 +21,20 @@ const MainContainer = (props: Props) => {
   const classesPaper = useStylePaper();
   const classesCardHeader = useStyleCardHeader();
   const classes = useStyles();
-  const { t } = useTranslation();
   const { isAuth } = useGuard();
+  const history = useHistory();
+
+  const onRouteChange = (route: any) => {
+    console.log(route);
+  };
+
+  useEffect(() => {
+    const route = history.listen(onRouteChange);
+
+    return () => route();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Fragment>
       {isAuth && (
@@ -29,7 +42,7 @@ const MainContainer = (props: Props) => {
           <Paper component={Card} classes={{ ...classesPaper }} elevation={0}>
             <CardHeader
               classes={{ ...classesCardHeader }}
-              subheader={<Typography.Subtitle label={t(title)} />}
+              subheader={<Typography.Subtitle label={title} />}
               action={action}
             ></CardHeader>
           </Paper>

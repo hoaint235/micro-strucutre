@@ -17,4 +17,4 @@ export { default as Card } from "./Card";
 export { default as ConfirmationDialog } from "./ConfirmationDialog";
 export * from "./ConfirmationDialog";
 
-export { default as TreeView } from './TreeView';
+export { default as TreeView } from "./TreeView";

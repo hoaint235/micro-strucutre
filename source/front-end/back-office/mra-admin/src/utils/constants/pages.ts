@@ -7,7 +7,7 @@ const Pages = {
   SIGN_IN: "/sign-in",
   FORGOT_PASSWORD: "/forgot-password",
 
-  PERMISSION: '/admin/permissions',
+  PERMISSION: "/admin/permissions",
 
   USER: "/admin/users",
   CREATE_USER: "/admin/users/create",

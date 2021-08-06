@@ -16,7 +16,7 @@ const Vendor = lazy(() => import("../pages/vendor"));
 const Category = lazy(() => import("../pages/category"));
 const Product = lazy(() => import("../pages/product"));
 const Authenticate = lazy(() => import("../pages/authenticate"));
-const Permission = lazy(() => import('../pages/permission'));
+const Permission = lazy(() => import("../pages/permission"));
 
 const Routes = () => {
   return (
@@ -46,7 +46,7 @@ const Routes = () => {
               </RouteLoading>
 
               <RouteLoading path={Pages.PERMISSION}>
-                <Permission/>
+                <Permission />
               </RouteLoading>
             </Switch>
           </AuthTemplate>

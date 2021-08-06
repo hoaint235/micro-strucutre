@@ -1,5 +1,3 @@
-const usePermission = () => {
-  
-};
+const usePermission = () => {};
 
 export default usePermission;
