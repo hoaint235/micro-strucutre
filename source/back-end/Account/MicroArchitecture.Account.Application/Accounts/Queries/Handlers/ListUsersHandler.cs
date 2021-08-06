@@ -28,8 +28,8 @@ namespace MicroArchitecture.Account.Application.Accounts.Queries.Handlers
         public async Task<ApiResult<ListingResponse<UserDto>>> Handle(ListUsers request, CancellationToken cancellationToken)
         {
             var currentUser = await _appContext.GetCurrentUserAsync();
-            var roles = Role.GetRole(currentUser.Roles);
-            var roleMaster = roles.FirstOrDefault(x => x.Type == RoleType.MasterData);
+            var roles = Role.GetRole(currentUser.Roles.Select(x => x.Id));
+            var roleMaster = roles.FirstOrDefault(x => x.Type == RoleType.Admin);
 
             var query = UserQueries.ListUser(request, currentUser.Id, roles.Select(x => x.Id).ToList());
             var users = await _dapperQuery.QueryAsync<UserDto>(query.Query, query.Parameters);

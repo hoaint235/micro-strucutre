@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.ModelBuilders
+namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Configurations
 {
-    public abstract class BaseEntity<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : class, IAudit
+    public abstract class BaseEntityConfiguration<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : class, IAudit
     {
         public void Configure(EntityTypeBuilder<TEntity> builder)
         {

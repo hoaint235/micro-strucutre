@@ -14,27 +14,27 @@ namespace MicroArchitecture.Account.API.Controllers
     [Route("api/[controller]")]
     public class UsersController : ApiController
     {
-        [Role(RoleType.MasterData)]
+        [Permission(PermissionType.Account, ActionType.View, RoleType.Admin, RoleType.MasterData, RoleType.Manager)]
         [HttpPost("query")]
         public async Task<IActionResult> ListUser([FromBody] ListUsers request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
 
-        [Role(RoleType.MasterData)]
+        [Permission(PermissionType.Account, ActionType.Add, RoleType.Admin, RoleType.MasterData)]
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] Create request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
 
-        [Role(RoleType.MasterData)]
+        [Permission(PermissionType.Account, ActionType.Edit, RoleType.Admin, RoleType.MasterData)]
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteUser([FromRoute] Guid userId, CancellationToken cancellationToken) =>
             await SendAsync(new Delete { UserId = userId }, cancellationToken);
 
-        [Role(RoleType.MasterData)]
+        [Permission(PermissionType.Account, ActionType.View, RoleType.Admin, RoleType.MasterData)]
         [HttpGet("email")]
         public async Task<IActionResult> GetUserByEmail([FromQuery] GetByEmail request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
 
-        [Role(RoleType.MasterData, RoleType.Admin)]
+        [Permission(PermissionType.Account, ActionType.Edit, RoleType.Admin, RoleType.MasterData)]
         [HttpPut("{userId}:deactivate")]
         public async Task<IActionResult> DeactivateUser([FromRoute] Guid userId, [FromBody] Deactivate request, CancellationToken cancellationToken)
         {
@@ -42,7 +42,7 @@ namespace MicroArchitecture.Account.API.Controllers
             return await SendAsync(request, cancellationToken);
         }
 
-        [Role(RoleType.MasterData, RoleType.Admin)]
+        [Permission(PermissionType.Account, ActionType.Edit, RoleType.Admin, RoleType.MasterData)]
         [HttpPut("{userId}:activate")]
         public async Task<IActionResult> ActivateUser([FromRoute] Guid userId, [FromBody] Activate request, CancellationToken cancellationToken)
         {
@@ -50,7 +50,7 @@ namespace MicroArchitecture.Account.API.Controllers
             return await SendAsync(request, cancellationToken);
         }
 
-        [Role(RoleType.MasterData, RoleType.Admin)]
+        [Permission(PermissionType.Account, ActionType.View, RoleType.Admin, RoleType.MasterData)]
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserById([FromRoute] Guid userId, [FromQuery] GetById request, CancellationToken cancellationToken)
         {
@@ -58,7 +58,7 @@ namespace MicroArchitecture.Account.API.Controllers
             return await SendAsync(request, cancellationToken);
         }
 
-        [Role(RoleType.MasterData, RoleType.Admin)]
+        [Permission(PermissionType.Account, ActionType.Edit, RoleType.Admin, RoleType.MasterData)]
         [HttpPut("status")]
         public async Task<IActionResult> UpdateUserStatus([FromBody] UpdateStatus request, CancellationToken cancellationToken) 
             => await SendAsync(request, cancellationToken);

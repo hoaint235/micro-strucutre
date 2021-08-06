@@ -20,13 +20,11 @@ namespace MicroArchitecture.Account.Domain.Accounts
         public string ExternalId { get; private set; }
 
         private Account() { }
-
         private Account(Profile profile, AccountStatus status)
         {
             Profile = profile;
             Status = status;
         }
-
         private Account(Profile profile, Address address, AccountStatus status)
         {
             Profile = profile;

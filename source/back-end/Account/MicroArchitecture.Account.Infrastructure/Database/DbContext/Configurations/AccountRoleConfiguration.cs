@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using MicroArchitecture.Account.Domain.Accounts;
 
-namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.ModelBuilders
+namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Configurations
 {
-    public class AccountRole : BaseEntity<Domain.Accounts.AccountRole>
+    public class AccountRoleConfiguration : BaseEntityConfiguration<AccountRole>
     {
-        public override void ConfigureOtherProperties(EntityTypeBuilder<Domain.Accounts.AccountRole> builder)
+        public override void ConfigureOtherProperties(EntityTypeBuilder<AccountRole> builder)
         {
             builder.ToTable("account_role").HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("id");

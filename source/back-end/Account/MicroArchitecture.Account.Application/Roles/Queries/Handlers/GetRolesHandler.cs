@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MicroArchitecture.Account.Application.Roles.Queries.Handlers
 {
-    public class GetRolesHandler : IRequestHandler<GetRoles, ApiResult<IEnumerable<Guid>>>
+    public class GetRolesHandler : IRequestHandler<GetRoles, ApiResult<IEnumerable<CurrentUserRole>>>
     {
         private readonly IAppContext _appContext;
 
@@ -17,10 +17,10 @@ namespace MicroArchitecture.Account.Application.Roles.Queries.Handlers
             _appContext = appContext;
         }
 
-        public async Task<ApiResult<IEnumerable<Guid>>> Handle(GetRoles request, CancellationToken cancellationToken)
+        public async Task<ApiResult<IEnumerable<CurrentUserRole>>> Handle(GetRoles request, CancellationToken cancellationToken)
         {
             var currentUser = await _appContext.GetCurrentUserAsync();
-            return ApiResult<IEnumerable<Guid>>.Ok(currentUser.Roles);
+            return ApiResult<IEnumerable<CurrentUserRole>>.Ok(currentUser.Roles);
         }
     }
 }

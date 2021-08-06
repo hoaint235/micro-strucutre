@@ -1,10 +1,9 @@
-﻿using MicroArchitecture.Account.Infrastructure.Database.DbContext.ModelBuilders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.builders
+namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Configurations
 {
-    public class Account : BaseEntity<Domain.Accounts.Account>
+    public class AccountConfiguration : BaseEntityConfiguration<Domain.Accounts.Account>
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<Domain.Accounts.Account> builder)
         {

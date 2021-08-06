@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using MicroArchitecture.Account.Domain.Core.HttpClient;
 using MicroArchitecture.Account.Infrastructure.Database.Models;
@@ -9,23 +8,34 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
 {
     public class UserQueries
     {
-        public static RawQuery GetCurrentUser(Guid userId)
+        public static RawQuery GetCurrentUser(Guid accountId)
         {
             return new RawQuery
             {
                 Query = $@"SELECT a.id
                                 , a.email
                                 , a.status
-                                , JSON_AGG(DISTINCT ar.role_id) AS roles
+                                , JSON_AGG(r.roles) AS roles
                            FROM account a
                            INNER JOIN account_role ar ON a.id = ar.account_id
-                           WHERE a.is_deleted = false AND a.id = @UserId 
+                           INNER JOIN (SELECT r.id
+                                            , jsonb_build_object(
+                           					    'id', r.id,
+                           					    'name', r.name,
+                           					    'permissions', json_agg(p.lowered_name)
+                           				      ) as roles
+                           			   FROM role r 
+                           			   INNER JOIN role_permission rp ON r.id = rp.role_id
+                           			   INNER JOIN permission p ON p.id = rp.permission_id
+                           			   GROUP BY r.id
+                           			   	      , r.name) as r ON ar.role_id = r.id
+                           WHERE a.is_deleted = false AND a.id = @AccountId 
                            GROUP BY a.id
                                   , a.email
                                   , a.status",
                 Parameters = new Dictionary<string, object>
                 {
-                    {"UserId", userId}
+                    { "AccountId" , accountId }
                 }
             };
         }

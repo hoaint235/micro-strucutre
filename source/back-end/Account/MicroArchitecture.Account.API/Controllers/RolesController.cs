@@ -14,12 +14,12 @@ namespace MicroArchitecture.Account.API.Controllers
     [Route("/api/[controller]")]
     public class RolesController : ApiController
     {
-        [Role(RoleType.MasterData, RoleType.Admin, RoleType.User)]
+        [Permission(PermissionType.Account, ActionType.View, RoleType.Admin)]
         [HttpGet]
         public async Task<IActionResult> GetRoles([FromQuery] GetRoles request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
 
-        [Role(RoleType.MasterData, RoleType.Admin)]
+        [Permission(PermissionType.Account, ActionType.Edit, RoleType.Admin)]
         [HttpPut("{userId}")]
         public async Task<IActionResult> UpdateRole([FromRoute] Guid userId, [FromBody] UpdateRole request, CancellationToken cancellationToken)
         {

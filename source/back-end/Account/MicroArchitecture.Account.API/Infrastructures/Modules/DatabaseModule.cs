@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using MicroArchitecture.Account.Domain.Core.AppContext;
 
 namespace MicroArchitecture.Account.API.Infrastructures.Modules
 {
@@ -39,6 +40,7 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 
             new List<Type>
             {
+                typeof(ICollection<CurrentUserRole>),
                 typeof(ICollection<Guid>)
             }.ForEach(type => SqlMapper.AddTypeHandler(type, new JsonObjectTypeHandler()));
         }
