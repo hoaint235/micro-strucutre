@@ -26,5 +26,13 @@ namespace MicroArchitecture.Account.API.Controllers
             request.UserId = userId;
             return await SendAsync(request, cancellationToken);
         }
+
+        [HttpGet("current-role")]
+        public async Task<IActionResult> GetCurrentRoles([FromQuery] GetCurrentRoles request, CancellationToken cancellationToken) =>
+            await SendAsync(request, cancellationToken);
+
+        [HttpGet("current-permission")]
+        public async Task<IActionResult> GetCurrentPermissions([FromQuery] GetCurrentPermissions request, CancellationToken cancellationToken) =>
+            await SendAsync(request, cancellationToken);
     }
 }

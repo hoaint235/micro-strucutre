@@ -1,15 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { CognitoService } from "../../services";
 import { WindowEvents } from "../constants";
-
-const delayHideLoading = () => {
-  setTimeout(() => {
-    window.dispatchEvent(new CustomEvent(WindowEvents.DECREASE_LOADING));
-  }, 500);
-};
+import { Store } from "redux";
+import { hideLoading, showLoading } from "../../store/application";
 
 const AxiosInterceptor = {
-  setup() {
+  setup(store: Store) {
     axios.interceptors.request.use(
       async (request: AxiosRequestConfig) => {
         const token = await CognitoService.getAccessToken();
@@ -18,20 +14,20 @@ const AxiosInterceptor = {
         }
 
         if (!request.data?.cancelLoading) {
-          window.dispatchEvent(new CustomEvent(WindowEvents.INCREASE_LOADING));
+          store.dispatch(showLoading());
         }
 
         return request;
       },
       (error) => {
-        window.dispatchEvent(new CustomEvent(WindowEvents.DECREASE_LOADING));
+        store.dispatch(hideLoading());
         return Promise.reject(error);
       }
     );
 
     axios.interceptors.response.use(
       (response: AxiosResponse<any>) => {
-        delayHideLoading();
+        store.dispatch(hideLoading());
         return response;
       },
       (error) => {
@@ -53,7 +49,7 @@ const AxiosInterceptor = {
           })
         );
 
-        delayHideLoading();
+        store.dispatch(hideLoading());
         return Promise.reject(error);
       }
     );

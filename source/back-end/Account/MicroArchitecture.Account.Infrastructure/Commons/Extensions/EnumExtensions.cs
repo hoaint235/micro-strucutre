@@ -8,5 +8,10 @@ namespace MicroArchitecture.Account.Infrastructure.Commons.Extensions
         {
             return Enum.Parse<TEnum>(input.ToString());
         }
+
+        public static TEnum To<TEnum>(this string value)
+{
+            return (TEnum)Enum.Parse(typeof(TEnum), value, true);
+        }
     }
 }

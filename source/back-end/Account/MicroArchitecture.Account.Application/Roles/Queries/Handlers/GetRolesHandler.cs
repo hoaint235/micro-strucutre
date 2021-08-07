@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using MicroArchitecture.Account.Domain.Core.AppContext;
 using MicroArchitecture.Account.Infrastructure.Commons.Models;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

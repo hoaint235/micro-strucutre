@@ -7,9 +7,11 @@ import {
   ToastProvider,
 } from "../../organisms";
 import { Scrollbars } from "react-custom-scrollbars";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { useMobile } from "../../../hooks";
+import { useDispatch } from "react-redux";
+import { getCurrentRoles } from "../../../store/application";
 
 const useStyles = (openMenu: boolean) =>
   makeStyles((theme: Theme) => ({
@@ -42,6 +44,13 @@ const AuthTemplate = (props: Props) => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const classes = useStyles(openDesktopMenu)();
   const { isMobile } = useMobile();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("fetch role");
+    dispatch(getCurrentRoles());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onToggleMenu = useCallback(() => {
     if (isMobile) {

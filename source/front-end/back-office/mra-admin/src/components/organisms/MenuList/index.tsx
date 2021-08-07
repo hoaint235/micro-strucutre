@@ -1,7 +1,31 @@
-import { makeStyles } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import { Theme } from "@material-ui/core";
 import { MenuItem } from "../../molecules";
 import { Menus } from "../../../configurations";
+import { IMenuItem } from "../../../models";
+import { useStateSelector } from "../../../store";
+import Skeleton from "@material-ui/lab/Skeleton";
+import times from "lodash/times";
+
+const MenuListSkeleton = () => {
+  const children = () => (
+    <Grid item xs={12}>
+      <Grid container spacing={2}>
+        {times(10, (index: number) => (
+          <Grid item xs={12} key={`children-${index}`}>
+            <Skeleton variant="rect" height={25} animation="wave" />
+          </Grid>
+        ))}
+      </Grid>
+    </Grid>
+  );
+
+  return (
+    <Grid container spacing={2}>
+      {children()}
+    </Grid>
+  );
+};
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -15,11 +39,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const MenuList = () => {
   const classes = useStyles();
+  const { currentPermissions } = useStateSelector((state) => state.appState);
+
   return (
     <div className={classes.container}>
-      {Menus.map((menu: MenuItemProps, index: number) => (
-        <MenuItem key={index} {...menu} />
-      ))}
+      {currentPermissions.length > 0 ? (
+        Menus.map((menu: IMenuItem, index: number) => (
+          <MenuItem key={index} {...menu} />
+        ))
+      ) : (
+        <MenuListSkeleton />
+      )}
     </div>
   );
 };

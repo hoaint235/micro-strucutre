@@ -15,7 +15,7 @@ import {
   useStylesAvatar,
 } from "./IconMenu.style";
 
-const IconMenu = (props: IconMenuProps) => {
+const IconMenu = <TModel extends unknown>(props: IconMenuProps<TModel>) => {
   const { items, children, renderItem, onItemClick, color = "primary" } = props;
 
   const [open, setOpen] = useState(false);

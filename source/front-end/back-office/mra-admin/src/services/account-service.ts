@@ -1,4 +1,5 @@
 import { IUser, ListingRequest, ListingResponse } from "model";
+import { RoleType, PermissionType } from "../models";
 import { BaseService } from "./base-service";
 
 class UserService extends BaseService {
@@ -6,9 +7,15 @@ class UserService extends BaseService {
     super("account");
   }
 
-  async gerCurrentUserRoles() {
-    const response = await super.get<any, string[]>("roles", false);
-    return response || [];
+  async getCurrentUserRoles() {
+    return await super.get<any, RoleType[]>("roles/current-role", false);
+  }
+
+  async getCurrentUserPermissions(role: RoleType) {
+    return await super.get<any, PermissionType[]>(
+      `roles/current-permission?role=${role}`,
+      false
+    );
   }
 
   async getUsers(request: ListingRequest) {

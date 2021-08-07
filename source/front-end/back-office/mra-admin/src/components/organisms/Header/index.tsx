@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom";
 import { Logo } from "../../atoms";
 import { IconButton } from "../../molecules";
 import LanguageMenu from "../LanguageMenu";
+import RoleMenu from "../RoleMenu";
 import SettingMenu from "../SettingMenu";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -84,7 +85,10 @@ const Header = (props: Props) => {
         <div style={{ flexGrow: 1 }}></div>
         <div style={{ flexGrow: 1 }}></div>
 
-        <Box>
+        <Box mr={1}>
+          <RoleMenu />
+        </Box>
+        <Box mr={1}>
           <LanguageMenu />
         </Box>
         <Box>

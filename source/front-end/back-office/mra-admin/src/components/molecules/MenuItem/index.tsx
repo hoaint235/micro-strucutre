@@ -18,9 +18,11 @@ import {
 import { WindowEvents } from "../../../utils";
 import { FiberManualRecord, ExpandMore, ExpandLess } from "@material-ui/icons";
 import clsx from "clsx";
+import { IMenuItem, PermissionType } from "../../../models";
+import { useStateSelector } from "../../../store";
 
-const MenuItem = (props: MenuItemProps) => {
-  const { label, path, exact, icon: Icon, children } = props;
+const MenuItem = (props: IMenuItem) => {
+  const { icon: Icon, label, children } = props;
   const [open, setOpen] = useState<boolean>(true);
   const { pathname } = useLocation();
   const classesListItem = useStyleListItem();
@@ -29,6 +31,13 @@ const MenuItem = (props: MenuItemProps) => {
   const classesItemText = useStyleItemText();
   const classes = useStyles();
   const { t } = useTranslation();
+  const { currentPermissions } = useStateSelector((state) => state.appState);
+
+  const checkValidPermission = useCallback(
+    (permission?: PermissionType) =>
+      permission && currentPermissions.some((x) => x === permission),
+    [currentPermissions]
+  );
 
   const isMatch = (path: string) =>
     !!matchPath(pathname, { path: path, exact: true, strict: true });
@@ -62,69 +71,82 @@ const MenuItem = (props: MenuItemProps) => {
         )
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [path, exact, checkActivate, pathname]
+    [checkActivate, pathname]
+  );
+
+  const MenuChildren = useCallback(
+    (props: IMenuItem, isChildren: boolean) => {
+      const { path, label, icon: Icon, permission, ...restProps } = props;
+      if (!checkValidPermission(permission)) {
+        return null;
+      }
+
+      return (
+        <ListItem
+          onClick={onCloseMobileMenu}
+          id={`menu-${label}`}
+          key={path}
+          button
+          path={path}
+          component={MenuLink}
+          classes={{ ...classesListItem }}
+          className={clsx({
+            [classes.children]: isChildren,
+          })}
+          {...restProps}
+        >
+          <ListItemIcon classes={{ ...classesItemIconChildren }}>
+            {isChildren ? (
+              <FiberManualRecord className={classes.iconChildren} />
+            ) : (
+              <Icon />
+            )}
+          </ListItemIcon>
+          <ListItemText classes={{ ...classesItemText }}>
+            {t(label)}
+          </ListItemText>
+        </ListItem>
+      );
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [MenuLink, checkValidPermission, t]
   );
 
   if (!children) {
-    return (
-      <ListItem
-        button
-        path={path}
-        component={MenuLink}
-        onClick={onCloseMobileMenu}
-        classes={{ ...classesListItem }}
-      >
-        <ListItemIcon classes={{ ...classesItemIconParent }}>
-          <Icon />
-        </ListItemIcon>
-        <ListItemText classes={{ ...classesItemText }}>{t(label)}</ListItemText>
-      </ListItem>
-    );
+    return MenuChildren(props, false);
   }
 
   return (
     <Fragment>
-      <ListItem
-        button
-        component="div"
-        onClick={() => setOpen(!open)}
-        classes={{ ...classesListItem }}
-        className={clsx({
-          [classes.parent]:
-            open && children?.some((x) => checkActivate(x.path, x.activePaths)),
-        })}
-      >
-        <ListItemIcon classes={{ ...classesItemIconParent }}>
-          <Icon />
-        </ListItemIcon>
-        <ListItemText classes={{ ...classesItemText }}>{t(label)}</ListItemText>
-        {open ? <ExpandMore /> : <ExpandLess />}
-      </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding className={classes.parentMenu}>
-          {children &&
-            children.map(({ path, label, ...restProps }: MenuItemProps) => (
-              <ListItem
-                onClick={onCloseMobileMenu}
-                id={`menu-${label}`}
-                key={path}
-                button
-                path={path}
-                component={MenuLink}
-                classes={{ ...classesListItem }}
-                style={{ paddingLeft: 48 }}
-                {...restProps}
-              >
-                <ListItemIcon classes={{ ...classesItemIconChildren }}>
-                  <FiberManualRecord className={classes.iconChildren} />
-                </ListItemIcon>
-                <ListItemText classes={{ ...classesItemText }}>
-                  {t(label)}
-                </ListItemText>
-              </ListItem>
-            ))}
-        </List>
-      </Collapse>
+      {children.some((x) => checkValidPermission(x.permission)) && (
+        <Fragment>
+          <ListItem
+            button
+            component="div"
+            onClick={() => setOpen(!open)}
+            classes={{ ...classesListItem }}
+            className={clsx({
+              [classes.parent]:
+                open &&
+                children?.some((x) => checkActivate(x.path, x.activePaths)),
+            })}
+          >
+            <ListItemIcon classes={{ ...classesItemIconParent }}>
+              <Icon />
+            </ListItemIcon>
+            <ListItemText classes={{ ...classesItemText }}>
+              {t(label)}
+            </ListItemText>
+            {open ? <ExpandMore /> : <ExpandLess />}
+          </ListItem>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding className={classes.parentMenu}>
+              {children &&
+                children.map((item: IMenuItem) => MenuChildren(item, true))}
+            </List>
+          </Collapse>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

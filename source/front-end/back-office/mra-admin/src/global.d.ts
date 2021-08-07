@@ -3,16 +3,6 @@ declare type LanguageItem = {
   location: string;
 };
 
-declare type MenuItemProps = {
-  label: string;
-  icon?: any;
-  path?: string;
-  activePaths?: string[];
-  exact?: boolean;
-  children?: MenuItemProps[];
-  roles?: string[];
-};
-
 declare type TypographyColor =
   | "initial"
   | "inherit"
@@ -34,12 +24,12 @@ declare type SelectionProps<T = string> = {
   value: string;
 };
 
-declare type IconMenuProps = {
-  items: Array<any>;
+declare type IconMenuProps<TModel> = {
+  items: Array<TModel>;
   children?: any;
   color?: "primary" | "secondary";
-  renderItem: (item) => any;
-  onItemClick: (item) => void;
+  renderItem: (item: TModel) => any;
+  onItemClick: (item: TModel) => void;
 };
 
 declare type GlobalProps = any;

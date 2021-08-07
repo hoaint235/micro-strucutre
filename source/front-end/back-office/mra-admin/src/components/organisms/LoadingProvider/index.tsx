@@ -1,11 +1,11 @@
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { Fragment, useMemo } from "react";
 import {
   Backdrop,
   CircularProgress,
   makeStyles,
   Theme,
 } from "@material-ui/core";
-import { WindowEvents } from "../../../utils/constants";
+import { useStateSelector } from "../../../store";
 
 const useStyles = makeStyles((theme: Theme) => ({
   backdrop: {
@@ -16,32 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const LoadingProvider = () => {
   const classes = useStyles();
-  const [countLoading, setCountLoading] = useState(0);
-
-  const decreaseLoading = () => {
-    setCountLoading(countLoading - 1);
-  };
-
-  const increaseLoading = () => {
-    setCountLoading(countLoading + 1);
-  };
-
-  useEffect(() => {
-    window.addEventListener(WindowEvents.INCREASE_LOADING, increaseLoading);
-    window.addEventListener(WindowEvents.DECREASE_LOADING, decreaseLoading);
-
-    return () => {
-      window.removeEventListener(
-        WindowEvents.INCREASE_LOADING,
-        increaseLoading
-      );
-      window.removeEventListener(
-        WindowEvents.DECREASE_LOADING,
-        decreaseLoading
-      );
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { countLoading } = useStateSelector((state) => state.appState);
 
   const renderLoading = useMemo(
     () => (

@@ -101,6 +101,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
+  children: {
+    paddingLeft: theme.spacing(6),
+  },
 }));
 
 export {
