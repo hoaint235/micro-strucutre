@@ -7,9 +7,10 @@ declare type MenuItemProps = {
   label: string;
   icon?: any;
   path?: string;
-  pathsActivate?: string[];
+  activePaths?: string[];
   exact?: boolean;
   children?: MenuItemProps[];
+  roles?: string[];
 };
 
 declare type TypographyColor =
@@ -71,6 +72,12 @@ declare type DialogFormProps<TModel> = {
   state: DialogStateProps;
   onClose: () => void;
   onSubmit: (data: TModel) => void;
+};
+
+declare type TreeItem = {
+  id: string;
+  label: string;
+  nodes?: TreeItem[];
 };
 
 declare module "form" {

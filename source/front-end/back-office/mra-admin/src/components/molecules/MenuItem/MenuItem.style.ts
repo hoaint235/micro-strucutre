@@ -61,8 +61,9 @@ const useStyleItemText = makeStyles(() => ({
 
 const useStyles = makeStyles((theme: Theme) => ({
   activeLink: {
+    backgroundColor: alpha(theme.palette.primary.main, 0.2),
     "& .MuiTypography-body1": {
-      fontWeight: "bold",
+      fontWeight: 700,
       color: theme.palette.primary.main,
     },
     "&> .MuiListItemIcon-root": {

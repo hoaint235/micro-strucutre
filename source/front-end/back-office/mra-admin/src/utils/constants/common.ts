@@ -8,9 +8,10 @@ export const WindowEvents: ExtendProps = {
 };
 
 export const Roles: ExtendProps = {
-  Master: "3382AD33-A03E-4126-8648-367C7E75BC0B",
-  Admin: "F125EFB3-CA2C-4589-A46D-7201DA35C0D6",
-  User: "E95439AD-54DF-4407-92DF-E0135D925400",
+  Admin: "b20dae0f-c71d-45e3-bb1d-d8a681125694",
+  MasterData: "87927bd4-9167-4b35-8745-0ebf2cbf4f30",
+  Manager: "892d4bb3-034d-4169-b2ad-77f8ef1426b3",
+  User: "197e3aee-cd99-4d93-9627-80ea1d0a7a22",
 };
 
 export const Statuses: ExtendProps = {
