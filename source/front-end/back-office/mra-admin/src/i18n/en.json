@@ -76,6 +76,9 @@
   "dashboardPage": {
     "title": "Dashboard"
   },
+  "permissionPage": {
+    "title": "Permissions"
+  },
   "roles": {
     "master": "Master",
     "admin": "Admin",
@@ -159,7 +162,8 @@
       "users": "Users",
       "products": "Products",
       "categories": "Categories",
-      "vendors": "Vendors"
+      "vendors": "Vendors",
+      "permissions": "Permissions"
     },
     "purchase": {
       "title": "Purchase",
