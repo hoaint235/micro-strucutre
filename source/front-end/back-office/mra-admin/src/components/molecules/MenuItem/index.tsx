@@ -1,4 +1,4 @@
-import { matchPath, NavLink, useLocation } from "react-router-dom";
+import { matchPath, NavLink, useHistory, useLocation } from "react-router-dom";
 import {
   useStyleListItem,
   useStyleItemIconParent,
@@ -7,7 +7,13 @@ import {
   useStyles,
 } from "./MenuItem.style";
 import { useTranslation } from "react-i18next";
-import { forwardRef, useCallback, useMemo, Fragment, useState } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useMemo,
+  Fragment,
+  useState,
+} from "react";
 import {
   ListItem,
   ListItemIcon,
@@ -31,6 +37,7 @@ const MenuItem = (props: IMenuItem) => {
   const classesItemText = useStyleItemText();
   const classes = useStyles();
   const { t } = useTranslation();
+  const history = useHistory();
   const { currentPermissions } = useStateSelector((state) => state.appState);
 
   const checkValidPermission = useCallback(
@@ -53,8 +60,15 @@ const MenuItem = (props: IMenuItem) => {
     [pathname]
   );
 
-  const onCloseMobileMenu = () =>
+  const onCloseMobileMenu = (
+    event: React.SyntheticEvent,
+    path?: string,
+    permission?: PermissionType
+  ) => {
+    event.preventDefault();
+    history.push(path || "/", { permission });
     window.dispatchEvent(new CustomEvent(WindowEvents.CLOSE_MOBILE_MENU));
+  };
 
   const MenuLink = useMemo(
     () =>
@@ -83,7 +97,9 @@ const MenuItem = (props: IMenuItem) => {
 
       return (
         <ListItem
-          onClick={onCloseMobileMenu}
+          onClick={(e: React.SyntheticEvent) =>
+            onCloseMobileMenu(e, path, permission)
+          }
           id={`menu-${label}`}
           key={path}
           button

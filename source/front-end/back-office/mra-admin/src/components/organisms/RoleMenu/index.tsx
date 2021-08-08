@@ -18,17 +18,26 @@ const RoleMenu = () => {
     value: role.toString(),
   })) as SelectionProps<RoleType>[];
 
+  const loadPermission = (role: RoleType) => {
+    dispatch(getCurrentPermissions(role));
+    setCurrentRole(role.toString().toEnum(RoleType).toString());
+  };
+
   useEffect(() => {
     const role = storageService.getCurrentRole();
+    if (role) {
+      loadPermission(role.toEnum(RoleType));
+      return;
+    }
+
     const defaultRole = currentRoles[0];
     if (defaultRole) {
-      dispatch(getCurrentPermissions(defaultRole));
+      loadPermission(defaultRole);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRoles]);
 
   const selectRole = (item: SelectionProps<RoleType>) => {};
-
   return (
     <Fragment>
       {roles.length > 1 ? (
@@ -40,7 +49,7 @@ const RoleMenu = () => {
           {currentRole}
         </IconMenu>
       ) : (
-        currentRole
+        <Typography.Label label={currentRole} color="textPrimary" />
       )}
     </Fragment>
   );

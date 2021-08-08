@@ -2,10 +2,10 @@ import { Route, RouteProps } from "react-router-dom";
 import { SuspenseLoading } from "../components";
 
 type Props = RouteProps & {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 };
 
-const RouteLoading = (props: Props) => {
+const SuspenseRoute = (props: Props) => {
   const { children, ...restProps } = props;
 
   return (
@@ -15,4 +15,4 @@ const RouteLoading = (props: Props) => {
   );
 };
 
-export default RouteLoading;
+export default SuspenseRoute;

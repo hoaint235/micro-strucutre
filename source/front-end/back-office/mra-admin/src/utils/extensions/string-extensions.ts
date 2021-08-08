@@ -2,11 +2,12 @@ export {};
 declare global {
   export interface String {
     format(value: string, params?: Object): string;
-    toEnum<T>(enumObj: T, value: keyof T): T[keyof T];
+    toEnum<TEnum>(type: TEnum): TEnum[keyof TEnum];
   }
 }
 
 // eslint-disable-next-line no-extend-native
-String.prototype.toEnum = function <T>(enumObj: T, value: keyof T): T[keyof T] {
-  return enumObj[value];
+String.prototype.toEnum = function <TEnum>(type: TEnum): TEnum[keyof TEnum] {
+  const casted = this as keyof TEnum;
+  return type[casted];
 };

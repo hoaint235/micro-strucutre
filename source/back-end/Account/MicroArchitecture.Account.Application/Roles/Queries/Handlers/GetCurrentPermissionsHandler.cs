@@ -22,11 +22,18 @@ namespace MicroArchitecture.Account.Application.Roles.Queries.Handlers
         public async Task<ApiResult<IEnumerable<PermissionType>>> Handle(GetCurrentPermissions request, CancellationToken cancellationToken)
         {
             var currentUser = await _appContext.GetCurrentUserAsync();
-            var permissions = currentUser.Roles
-                .Where(x => x.Name.To<RoleType>() == request.Role)
-                .SelectMany(x => x.Permissions.Select(x => x.Split('-')[0])).Distinct();
+            var role = currentUser.Roles.FirstOrDefault(x => x.Name.To<RoleType>() == request.Role);
+            
+            if(role == null)
+            {
+                return ApiResult<IEnumerable<PermissionType>>.Ok(Enumerable.Empty<PermissionType>());
+            }
 
-            return ApiResult<IEnumerable<PermissionType>>.Ok(permissions.Select(x => x.To<PermissionType>()));
+            var permissions = role.Permissions
+                .Select(x => x.Split('-')[0])
+                .Distinct().Select(x => x.To<PermissionType>());
+
+            return ApiResult<IEnumerable<PermissionType>>.Ok(permissions);
         }
     }
 }

@@ -47,7 +47,6 @@ const AuthTemplate = (props: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("fetch role");
     dispatch(getCurrentRoles());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

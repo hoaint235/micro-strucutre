@@ -6,4 +6,8 @@ export enum PermissionType {
   Category = 5,
   Permission = 6,
   Dashboard = 7,
+  PurchaseOrder = 8,
+  SaleOrder = 9,
+
+  Unknown = 100,
 }

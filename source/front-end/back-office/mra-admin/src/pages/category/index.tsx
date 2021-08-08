@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Switch } from "react-router-dom";
-import RouteLoading from "../../routes/RouteLoading";
+import PrivateRoute from "../../routes/PrivateRoute";
 import { Pages } from "../../utils";
 
 const ListCategory = lazy(() => import("./List"));
@@ -8,9 +8,7 @@ const ListCategory = lazy(() => import("./List"));
 const Category = () => {
   return (
     <Switch>
-      <RouteLoading exact path={Pages.CATEGORY}>
-        <ListCategory />
-      </RouteLoading>
+      <PrivateRoute exact path={Pages.CATEGORY} component={ListCategory} />
     </Switch>
   );
 };

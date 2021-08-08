@@ -12,6 +12,7 @@
     <None Remove="Migration\Scripts\v20210805211200_insert_default_role.sql" />
     <None Remove="Migration\Scripts\V20210805212600_create_table_account_role.sql" />
     <None Remove="Migration\Scripts\V20210805212800_insert_default_account.sql" />
+    <None Remove="Migration\Scripts\V20210807125200_add_permission_dashboard.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migration\Scripts\V20210731191330_create_table_role.sql" />
@@ -24,6 +25,7 @@
     <EmbeddedResource Include="Migration\Scripts\V20210731191900_create_table_history.sql" />
     <EmbeddedResource Include="Migration\Scripts\V20210731191300_create_table_account.sql" />
     <EmbeddedResource Include="Migration\Scripts\V20210805212800_insert_default_account.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210807125200_add_permission_dashboard.sql" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="5.0.2" />

@@ -1,4 +1,3 @@
-import { Box } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Languages } from "../../../configurations";

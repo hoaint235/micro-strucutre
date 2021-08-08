@@ -7,6 +7,7 @@ import configureStore from "./store";
 import { Provider } from "react-redux";
 import AxiosInterceptor from "./utils/http-interceptor";
 import { CognitoService } from "./services";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const store = configureStore({});
 
@@ -18,7 +19,9 @@ const renderApplication = () => {
   const application = (
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </Provider>
     </React.StrictMode>
   );
