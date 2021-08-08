@@ -1,5 +1,5 @@
 import { IUser, ListingRequest, ListingResponse } from "model";
-import { RoleType, PermissionType } from "../models";
+import { RoleType, PermissionType, ActionType } from "../models";
 import { BaseService } from "./base-service";
 
 class UserService extends BaseService {
@@ -14,6 +14,13 @@ class UserService extends BaseService {
   async getCurrentUserPermissions(role: RoleType) {
     return await super.get<any, PermissionType[]>(
       `roles/current-permission?role=${role}`,
+      false
+    );
+  }
+
+  async getCurrentUserActions(role: RoleType, permission: PermissionType) {
+    return await super.get<any, ActionType[]>(
+      `roles/current-action?role=${role}&permission=${permission}`,
       false
     );
   }

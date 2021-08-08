@@ -34,5 +34,9 @@ namespace MicroArchitecture.Account.API.Controllers
         [HttpGet("current-permission")]
         public async Task<IActionResult> GetCurrentPermissions([FromQuery] GetCurrentPermissions request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
+
+        [HttpGet("current-action")]
+        public async Task<IActionResult> GetCurrentActions([FromQuery] GetCurrentActions request, CancellationToken cancellationToken) =>
+            await SendAsync(request, cancellationToken);
     }
 }

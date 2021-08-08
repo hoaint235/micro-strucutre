@@ -27,6 +27,7 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
                            			   FROM role r 
                            			   INNER JOIN role_permission rp ON r.id = rp.role_id
                            			   INNER JOIN permission p ON p.id = rp.permission_id
+                                       WHERE rp.is_active = true
                            			   GROUP BY r.id
                            			   	      , r.name) as r ON ar.role_id = r.id
                            WHERE a.is_deleted = false AND a.id = @AccountId 

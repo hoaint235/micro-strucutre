@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { IMenuItem, PermissionType } from "../models";
 import { useStateSelector } from "../store";
 import { Menus } from "../configurations";
+import { useDispatch } from "react-redux";
+import { setCurrentPermission } from "../store/application";
 
 type Props = RouteProps & {
   component: React.LazyExoticComponent<() => JSX.Element>;
@@ -16,7 +18,8 @@ const PrivateRoute = (props: Props) => {
   const { component: Component, ...restProps } = props;
   const { isAuth } = useGuard();
   const history = useHistory();
-  const { currentPermissions } = useStateSelector((state) => state.appState);
+  const dispatch = useDispatch();
+  const { permissions } = useStateSelector((state) => state.appState);
 
   const loadDefaultMenu = (
     menus: IMenuItem[],
@@ -50,17 +53,26 @@ const PrivateRoute = (props: Props) => {
 
     if (
       !menu?.children &&
-      currentPermissions.includes(menu?.permission || PermissionType.Unknown)
+      permissions.includes(menu?.permission || PermissionType.Unknown)
     ) {
+      dispatch(
+        setCurrentPermission(menu?.permission || PermissionType.Unknown)
+      );
       return true;
     }
 
     if (menu?.children) {
-      return menu?.children?.some(
+      const item = menu?.children?.find(
         (x) =>
           x.path === pathname &&
-          currentPermissions.includes(x.permission || PermissionType.Unknown)
+          permissions.includes(x.permission || PermissionType.Unknown)
       );
+
+      dispatch(
+        setCurrentPermission(item?.permission || PermissionType.Unknown)
+      );
+
+      return !!item;
     }
 
     return false;
@@ -71,12 +83,12 @@ const PrivateRoute = (props: Props) => {
     if (isValid) {
       return;
     }
-    const menu = loadDefaultMenu(Menus, currentPermissions);
+    const menu = loadDefaultMenu(Menus, permissions);
     if (menu) {
       history.push(menu.path || "");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPermissions, history]);
+  }, [permissions, history]);
 
   return (
     <Fragment>

@@ -80,9 +80,10 @@
     "title": "Permissions"
   },
   "roles": {
-    "master": "Master",
+    "masterData": "Master Data",
     "admin": "Admin",
-    "user": "User"
+    "user": "User",
+    "manager": "Manager"
   },
   "statuses": {
     "archived": "Archived",

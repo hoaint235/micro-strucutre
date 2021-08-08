@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { useMobile } from "../../../hooks";
 import { useDispatch } from "react-redux";
-import { getCurrentRoles } from "../../../store/application";
+import { getRoles } from "../../../store/application";
 
 const useStyles = (openMenu: boolean) =>
   makeStyles((theme: Theme) => ({
@@ -47,7 +47,7 @@ const AuthTemplate = (props: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCurrentRoles());
+    dispatch(getRoles());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

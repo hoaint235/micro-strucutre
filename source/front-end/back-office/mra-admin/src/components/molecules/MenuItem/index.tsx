@@ -38,12 +38,12 @@ const MenuItem = (props: IMenuItem) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const history = useHistory();
-  const { currentPermissions } = useStateSelector((state) => state.appState);
+  const { permissions } = useStateSelector((state) => state.appState);
 
   const checkValidPermission = useCallback(
     (permission?: PermissionType) =>
-      permission && currentPermissions.some((x) => x === permission),
-    [currentPermissions]
+      permission && permissions.some((x) => x === permission),
+    [permissions]
   );
 
   const isMatch = (path: string) =>

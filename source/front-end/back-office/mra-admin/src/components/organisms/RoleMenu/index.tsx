@@ -1,52 +1,78 @@
+import { SwapHoriz } from "@material-ui/icons";
 import { useEffect } from "react";
 import { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useConfirm } from "../../../hooks";
 import { RoleType } from "../../../models";
 import { storageService } from "../../../services";
 import { useStateSelector } from "../../../store";
-import { getCurrentPermissions } from "../../../store/application";
+import {
+  getPermissions,
+  setCurrentRole as setRole,
+} from "../../../store/application";
 import { Typography } from "../../atoms";
 import { IconMenu } from "../../molecules";
+import lowerFirst from "lodash/lowerFirst";
 
 const RoleMenu = () => {
-  const { currentRoles } = useStateSelector((state) => state.appState);
+  const { roles } = useStateSelector((state) => state.appState);
   const [currentRole, setCurrentRole] = useState("");
   const dispatch = useDispatch();
+  const confirm = useConfirm();
 
-  const roles = currentRoles.map((role) => ({
+  const rolesTransfer = roles.map((role) => ({
     key: role,
-    value: role.toString(),
+    value: `roles.${lowerFirst(RoleType[role].toString())}`,
   })) as SelectionProps<RoleType>[];
 
   const loadPermission = (role: RoleType) => {
-    dispatch(getCurrentPermissions(role));
+    console.log("role", role);
+    dispatch(setRole(role));
+    dispatch(getPermissions(role));
+    storageService.setCurrentRole(role);
     setCurrentRole(role.toString().toEnum(RoleType).toString());
   };
 
   useEffect(() => {
     const role = storageService.getCurrentRole();
+    console.log(role);
     if (role) {
+      console.log(role.toEnum(RoleType));
       loadPermission(role.toEnum(RoleType));
       return;
     }
 
-    const defaultRole = currentRoles[0];
+    const defaultRole = roles[0];
     if (defaultRole) {
       loadPermission(defaultRole);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentRoles]);
+  }, [roles]);
 
-  const selectRole = (item: SelectionProps<RoleType>) => {};
+  const selectRole = (item: SelectionProps<RoleType>) => {
+    if (currentRole === item.key.toString().toEnum(RoleType).toString()) {
+      return;
+    }
+
+    confirm({
+      title: "Are you sure",
+      description: `Do you want switch to role ${item.value}`,
+      onSubmit: () => {
+        loadPermission(item.key);
+      },
+    });
+  };
+
   return (
     <Fragment>
       {roles.length > 1 ? (
         <IconMenu
-          items={roles}
+          items={rolesTransfer}
           onItemClick={(item) => selectRole(item)}
           renderItem={(item) => <Typography.Body label={item.value} />}
         >
-          {currentRole}
+          {/* {currentRole} */}
+          <SwapHoriz />
         </IconMenu>
       ) : (
         <Typography.Label label={currentRole} color="textPrimary" />

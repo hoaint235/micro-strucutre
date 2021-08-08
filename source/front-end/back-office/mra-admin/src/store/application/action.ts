@@ -1,12 +1,15 @@
-import { RoleType } from "./../../models/RoleType";
 import { AccountService } from "../../services";
 import { AsyncAction, Dispatch, StateFetcher } from "../app-type";
 import {
-  GET_CURRENT_ROLES,
+  GET_ROLES,
   HIDE_LOADING,
   SHOW_LOADING,
-  GET_CURRENT_PERMISSIONS,
+  GET_PERMISSIONS,
+  SET_CURRENT_PERMISSION,
+  SET_CURRENT_ROLE,
+  GET_ACTIONS,
 } from "./type";
+import { PermissionType, RoleType } from "../../models";
 
 export const showLoading = (): AsyncAction => {
   return (dispatch: Dispatch, _: StateFetcher) => {
@@ -23,16 +26,43 @@ export const hideLoading = (): AsyncAction => {
   };
 };
 
-export const getCurrentRoles = (): AsyncAction => {
+export const getRoles = (): AsyncAction => {
   return async (dispatch: Dispatch, _: StateFetcher) => {
     const roles = await AccountService.getCurrentUserRoles();
-    dispatch({ type: GET_CURRENT_ROLES, payload: roles });
+    dispatch({ type: GET_ROLES, payload: roles });
   };
 };
 
-export const getCurrentPermissions = (role: RoleType): AsyncAction => {
+export const getPermissions = (role: RoleType): AsyncAction => {
   return async (dispatch: Dispatch, _: StateFetcher) => {
     const permissions = await AccountService.getCurrentUserPermissions(role);
-    dispatch({ type: GET_CURRENT_PERMISSIONS, payload: permissions });
+    dispatch({ type: GET_PERMISSIONS, payload: permissions });
+  };
+};
+
+export const getActions = (
+  role: RoleType,
+  permission: PermissionType
+): AsyncAction => {
+  return async (dispatch: Dispatch, _: StateFetcher) => {
+    const actions = await AccountService.getCurrentUserActions(
+      role,
+      permission
+    );
+    dispatch({ type: GET_ACTIONS, payload: actions });
+  };
+};
+
+export const setCurrentRole = (role: RoleType): AsyncAction => {
+  return async (dispatch: Dispatch, _: StateFetcher) => {
+    dispatch({ type: SET_CURRENT_ROLE, payload: role });
+  };
+};
+
+export const setCurrentPermission = (
+  permission: PermissionType
+): AsyncAction => {
+  return async (dispatch: Dispatch, _: StateFetcher) => {
+    dispatch({ type: SET_CURRENT_PERMISSION, payload: permission });
   };
 };

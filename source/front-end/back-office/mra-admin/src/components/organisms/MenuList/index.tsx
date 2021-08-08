@@ -39,11 +39,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const MenuList = () => {
   const classes = useStyles();
-  const { currentPermissions } = useStateSelector((state) => state.appState);
+  const { permissions } = useStateSelector((state) => state.appState);
 
   return (
     <div className={classes.container}>
-      {currentPermissions.length > 0 ? (
+      {permissions.length > 0 ? (
         Menus.map((menu: IMenuItem, index: number) => (
           <MenuItem key={index} {...menu} />
         ))

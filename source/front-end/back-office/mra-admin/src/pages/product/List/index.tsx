@@ -13,6 +13,7 @@ import {
   SkeletonTemplate,
   ListProducts as Products,
 } from "../../../components";
+import usePermission from "../../../hooks/usePermission";
 import { Pages } from "../../../utils";
 
 const headers: HeaderProps[] = [
@@ -72,6 +73,9 @@ const ListProducts = () => {
     totalItems: 2,
   });
   const history = useHistory();
+  const { actions } = usePermission();
+
+  console.log(actions);
 
   const onDelete = async (productId: string) => {};
 

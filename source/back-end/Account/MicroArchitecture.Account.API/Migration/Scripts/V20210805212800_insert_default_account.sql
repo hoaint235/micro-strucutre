@@ -32,4 +32,5 @@ INSERT INTO account_role (id,
 						  created_by, 
 						  created_date)
 VALUES 
-('5aaf3d08-52eb-4487-8d47-4353b37e0c93', 'c8b90364-7f50-4599-be98-77555bb2c252', 'b20dae0f-c71d-45e3-bb1d-d8a681125694', '95644b8e-78d9-4ef3-a712-6d1ffa5401b9',  TIMEZONE('utc', NOW()));
+('5aaf3d08-52eb-4487-8d47-4353b37e0c93', 'c8b90364-7f50-4599-be98-77555bb2c252', 'b20dae0f-c71d-45e3-bb1d-d8a681125694', '95644b8e-78d9-4ef3-a712-6d1ffa5401b9',  TIMEZONE('utc', NOW())),
+('192610ad-4d1b-4dec-a43e-0ab94f723867', 'c8b90364-7f50-4599-be98-77555bb2c252', '87927bd4-9167-4b35-8745-0ebf2cbf4f30', '95644b8e-78d9-4ef3-a712-6d1ffa5401b9',  TIMEZONE('utc', NOW()));

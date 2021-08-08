@@ -12,10 +12,7 @@ import { DefaultContainer } from "../../organisms";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
-import {
-  getCurrentPermissions,
-  getCurrentRoles,
-} from "../../../store/application";
+import { getPermissions, getRoles } from "../../../store/application";
 import { useEffect } from "react";
 import { useStateSelector } from "../../../store";
 
@@ -46,7 +43,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { currentRoles } = useStateSelector((state) => state.appState);
+  const { roles } = useStateSelector((state) => state.appState);
 
   const form = useForm({
     mode: "onBlur",
@@ -75,16 +72,16 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
       return;
     }
 
-    dispatch(getCurrentRoles());
+    dispatch(getRoles());
   };
 
   useEffect(() => {
-    if (currentRoles.length > 0) {
-      dispatch(getCurrentPermissions(currentRoles[0]));
+    if (roles.length > 0) {
+      dispatch(getPermissions(roles[0]));
       history.push(Pages.DEFAULT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentRoles]);
+  }, [roles]);
 
   const navigateForgotPasswordPage = (e: React.SyntheticEvent) => {
     e.preventDefault();
