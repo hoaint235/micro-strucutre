@@ -1,5 +1,6 @@
 import { Box, Grid } from "@material-ui/core";
-import { MainContainer, TreeView } from "../../../components";
+import { Button, MainContainer, TreeView } from "../../../components";
+import { usePermission } from "../../../hooks";
 
 const data: TreeItem[] = [
   {
@@ -33,9 +34,18 @@ const data: TreeItem[] = [
 ];
 
 const ListPermission = () => {
+  const { hasEdit } = usePermission();
   return (
     <MainContainer title="permissionPage.title">
       <Grid container spacing={2}>
+        <Grid item container xs={12}>
+          <Grid item xs={8}></Grid>
+          {hasEdit && (
+            <Grid item xs={4}>
+              <Button.Primary name="edit" label="edit" />
+            </Grid>
+          )}
+        </Grid>
         <Grid item xs={12}>
           <Box mt={2}>
             <TreeView data={data} />

@@ -11,10 +11,6 @@ import { Button } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch } from "react-redux";
-import { getPermissions, getRoles } from "../../../store/application";
-import { useEffect } from "react";
-import { useStateSelector } from "../../../store";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -42,8 +38,6 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const { t } = useTranslation();
   const history = useHistory();
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const { roles } = useStateSelector((state) => state.appState);
 
   const form = useForm({
     mode: "onBlur",
@@ -72,16 +66,8 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
       return;
     }
 
-    dispatch(getRoles());
+    history.push(Pages.DEFAULT);
   };
-
-  useEffect(() => {
-    if (roles.length > 0) {
-      dispatch(getPermissions(roles[0]));
-      history.push(Pages.DEFAULT);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roles]);
 
   const navigateForgotPasswordPage = (e: React.SyntheticEvent) => {
     e.preventDefault();

@@ -9,6 +9,7 @@ import {
   GET_ACTIONS,
   SET_CURRENT_PERMISSION,
   SET_CURRENT_ROLE,
+  RESET_ALL_PERMISSION,
 } from "./type";
 
 export type State = {
@@ -68,6 +69,11 @@ const applicationReducer = (
       return {
         ...state,
         actions: [...action.payload],
+      };
+    case RESET_ALL_PERMISSION:
+      return {
+        ...state,
+        ...action.payload,
       };
     default:
       return {

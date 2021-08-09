@@ -53,9 +53,7 @@ const ConfirmationDialog = (props: ConfirmationProps) => {
         <Typography.Subtitle label={title} />
       </DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          <Typography.Body label={description} />
-        </DialogContentText>
+        <Typography.Body label={description} />
       </DialogContent>
       <DialogActions>
         <Button.Default

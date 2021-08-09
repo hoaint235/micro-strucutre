@@ -8,6 +8,7 @@ import {
   SET_CURRENT_PERMISSION,
   SET_CURRENT_ROLE,
   GET_ACTIONS,
+  RESET_ALL_PERMISSION,
 } from "./type";
 import { PermissionType, RoleType } from "../../models";
 
@@ -64,5 +65,22 @@ export const setCurrentPermission = (
 ): AsyncAction => {
   return async (dispatch: Dispatch, _: StateFetcher) => {
     dispatch({ type: SET_CURRENT_PERMISSION, payload: permission });
+  };
+};
+
+export const resetAllPermission = (params: Object = {}): AsyncAction => {
+  return async (dispatch: Dispatch, _: StateFetcher) => {
+    const payload = {
+      ...{
+        roles: [],
+        permissions: [],
+        actions: [],
+        currentPermission: PermissionType.Unknown,
+        currentRole: RoleType.Unknown,
+      },
+      ...{ ...params },
+    };
+
+    dispatch({ type: RESET_ALL_PERMISSION, payload: payload });
   };
 };

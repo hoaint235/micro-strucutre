@@ -1,14 +1,13 @@
 import { RoleType } from "../models";
 
+const CURRENT_ROLE = "role";
 class StorageService {
   getCurrentRole() {
-    const result = localStorage.getItem("currentRole");
-    console.log(result);
-    return result;
+    return localStorage.getItem(CURRENT_ROLE);
   }
 
   setCurrentRole(role: RoleType) {
-    return localStorage.setItem("currentRole", role.toString());
+    return localStorage.setItem(CURRENT_ROLE, role.toString());
   }
 }
 

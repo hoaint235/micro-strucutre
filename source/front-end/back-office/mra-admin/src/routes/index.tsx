@@ -14,41 +14,45 @@ const Product = lazy(() => import("../pages/product"));
 const Authenticate = lazy(() => import("../pages/authenticate"));
 const Permission = lazy(() => import("../pages/permission"));
 
-const Routes = () => (
-  <Switch>
-    <Route path="/admin/:path?">
-      <AuthTemplate>
-        <Switch>
-          <PrivateRoute exact path={Pages.DASH_BOARD} component={Dashboard} />
-          <PrivateRoute path={Pages.USER} component={User} />
-          <PrivateRoute path={Pages.VENDOR} component={Vendor} />
-          <PrivateRoute path={Pages.PRODUCT} component={Product} />
-          <PrivateRoute path={Pages.CATEGORY} component={Category} />
-          <PrivateRoute path={Pages.PERMISSION} component={Permission} />
-        </Switch>
-      </AuthTemplate>
-    </Route>
+const Routes = () => {
+  return (
+    <Switch>
+      <Route path="/admin/:path?">
+        <AuthTemplate>
+          <Switch>
+            <PrivateRoute exact path={Pages.DASH_BOARD} component={Dashboard} />
+            <PrivateRoute path={Pages.USER} component={User} />
+            <PrivateRoute path={Pages.VENDOR} component={Vendor} />
+            <PrivateRoute path={Pages.PRODUCT} component={Product} />
+            <PrivateRoute path={Pages.CATEGORY} component={Category} />
+            <PrivateRoute path={Pages.PERMISSION} component={Permission} />
+          </Switch>
+        </AuthTemplate>
+      </Route>
 
-    <SuspenseRoute exact path={Pages.NOT_FOUND}>
-      <NotFound />
-    </SuspenseRoute>
+      <SuspenseRoute exact path={Pages.NOT_FOUND}>
+        <NotFound />
+      </SuspenseRoute>
 
-    <Route path="/">
-      <DefaultTemplate>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to={Pages.DEFAULT} />
-          </Route>
-          <SuspenseLoading>
-            <Authenticate />
-          </SuspenseLoading>
-          <Route exact path="/*">
-            <Redirect to={Pages.NOT_FOUND} />
-          </Route>
-        </Switch>
-      </DefaultTemplate>
-    </Route>
-  </Switch>
-);
+      <Route path="/">
+        <DefaultTemplate>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to={Pages.DEFAULT} />
+            </Route>
+
+            <SuspenseLoading>
+              <Authenticate />
+            </SuspenseLoading>
+
+            <Route exact path="/*">
+              <Redirect to={Pages.NOT_FOUND} />
+            </Route>
+          </Switch>
+        </DefaultTemplate>
+      </Route>
+    </Switch>
+  );
+};
 
 export default Routes;

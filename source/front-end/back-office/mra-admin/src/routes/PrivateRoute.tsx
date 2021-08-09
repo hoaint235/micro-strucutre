@@ -1,6 +1,5 @@
 import { Fragment } from "react";
-import { Redirect, RouteProps, useHistory } from "react-router-dom";
-import { Pages } from "../utils";
+import { RouteProps, useHistory } from "react-router-dom";
 import { useGuard } from "../hooks";
 import SuspenseRoute from "./SuspenseRoute";
 import { useEffect } from "react";
@@ -47,6 +46,7 @@ const PrivateRoute = (props: Props) => {
         x.path === pathname ||
         (x.children && x.children.some((x) => x.path === pathname))
     );
+
     if (!menu) {
       return false;
     }
@@ -83,27 +83,19 @@ const PrivateRoute = (props: Props) => {
     if (isValid) {
       return;
     }
+
     const menu = loadDefaultMenu(Menus, permissions);
     if (menu) {
       history.push(menu.path || "");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [permissions, history]);
+  }, [permissions, history.location]);
 
   return (
     <Fragment>
       {isAuth && (
         <SuspenseRoute {...restProps}>
-          {isAuth ? (
-            <Component {...props} />
-          ) : (
-            <Redirect
-              to={{
-                pathname: Pages.SIGN_IN,
-                state: { from: props.location },
-              }}
-            />
-          )}
+          <Component />
         </SuspenseRoute>
       )}
     </Fragment>

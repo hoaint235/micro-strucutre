@@ -26,7 +26,6 @@ const RoleMenu = () => {
   })) as SelectionProps<RoleType>[];
 
   const loadPermission = (role: RoleType) => {
-    console.log("role", role);
     dispatch(setRole(role));
     dispatch(getPermissions(role));
     storageService.setCurrentRole(role);
@@ -34,10 +33,12 @@ const RoleMenu = () => {
   };
 
   useEffect(() => {
+    if (roles.length === 0) {
+      return;
+    }
+
     const role = storageService.getCurrentRole();
-    console.log(role);
     if (role) {
-      console.log(role.toEnum(RoleType));
       loadPermission(role.toEnum(RoleType));
       return;
     }
@@ -71,7 +72,6 @@ const RoleMenu = () => {
           onItemClick={(item) => selectRole(item)}
           renderItem={(item) => <Typography.Body label={item.value} />}
         >
-          {/* {currentRole} */}
           <SwapHoriz />
         </IconMenu>
       ) : (
