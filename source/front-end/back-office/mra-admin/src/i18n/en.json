@@ -77,7 +77,10 @@
     "title": "Dashboard"
   },
   "permissionPage": {
-    "title": "Permissions"
+    "title": "Permissions",
+    "saveTitle": "Change permissions",
+    "saveDescription": "Do you want change permission ?",
+    "saveSuccess": "Save permission success"
   },
   "roles": {
     "masterData": "Master Data",
@@ -107,7 +110,8 @@
     "confirm": "Confirm",
     "back": "Back",
     "deactivate": "Deactivate",
-    "activate": "Activate"
+    "activate": "Activate",
+    "save": "Save"
   },
   "fields": {
     "emailAddress": "Email address",

@@ -2,7 +2,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogProps,
   DialogTitle,
 } from "@material-ui/core";
@@ -11,8 +10,6 @@ import { Button, Typography } from "../../atoms";
 import { ButtonProps } from "../../atoms";
 
 export type ConfirmationOptionsProps = {
-  title: string;
-  description: string;
   confirmationText?: string;
   cancellationText?: string;
   dialogProps?: Omit<DialogProps, "open">;
@@ -20,7 +17,13 @@ export type ConfirmationOptionsProps = {
   cancellationButtonProps?: Omit<ButtonProps, "name" | "label">;
 };
 
+export type InformationConfirmationProps = {
+  title: string;
+  description: string;
+};
+
 export type ConfirmationProps = {
+  info: InformationConfirmationProps;
   open: boolean;
   onCancel: React.MouseEventHandler<HTMLButtonElement>;
   onConfirm: React.MouseEventHandler<HTMLButtonElement>;
@@ -29,11 +32,9 @@ export type ConfirmationProps = {
 };
 
 const ConfirmationDialog = (props: ConfirmationProps) => {
-  const { open, onCancel, onConfirm, onClose, options } = props;
+  const { info, open, onCancel, onConfirm, onClose, options } = props;
 
   const {
-    title,
-    description,
     dialogProps,
     confirmationButtonProps,
     cancellationButtonProps,
@@ -50,10 +51,10 @@ const ConfirmationDialog = (props: ConfirmationProps) => {
       onClose={onClose}
     >
       <DialogTitle>
-        <Typography.Subtitle label={title} />
+        <Typography.Subtitle label={info.title} />
       </DialogTitle>
       <DialogContent>
-        <Typography.Body label={description} />
+        <Typography.Body label={info.description} />
       </DialogContent>
       <DialogActions>
         <Button.Default
@@ -62,7 +63,7 @@ const ConfirmationDialog = (props: ConfirmationProps) => {
           label={cancellationText}
           {...cancellationButtonProps}
         />
-        <Button.Secondary
+        <Button.Default
           name="confirm-submit"
           onClick={onConfirm}
           label={confirmationText}

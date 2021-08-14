@@ -49,7 +49,8 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Repositori
 
         public void Update(Role entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(entity);
+            _dbContext.Update(entity.RolePermissions);
         }
     }
 }

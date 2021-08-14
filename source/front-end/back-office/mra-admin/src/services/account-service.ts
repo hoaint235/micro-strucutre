@@ -1,3 +1,4 @@
+import { IListPermission } from "./../models/accounts/IListPermission";
 import { IUser, ListingRequest, ListingResponse } from "model";
 import { RoleType, PermissionType, ActionType } from "../models";
 import { BaseService } from "./base-service";
@@ -5,6 +6,17 @@ import { BaseService } from "./base-service";
 class UserService extends BaseService {
   constructor() {
     super("account");
+  }
+
+  async getPermissions() {
+    return await super.get<any, IListPermission[]>("roles/permissions", false);
+  }
+
+  async updatePermissions(payload: IListPermission[]) {
+    return await super.put<{ permissions: IListPermission[] }, {}>(
+      "roles/permissions",
+      { permissions: payload }
+    );
   }
 
   async getCurrentUserRoles() {
@@ -19,6 +31,9 @@ class UserService extends BaseService {
   }
 
   async getCurrentUserActions(role: RoleType, permission: PermissionType) {
+    if (role === RoleType.Unknown || permission === PermissionType.Unknown) {
+      return [];
+    }
     return await super.get<any, ActionType[]>(
       `roles/current-action?role=${role}&permission=${permission}`,
       false

@@ -23,5 +23,19 @@ namespace MicroArchitecture.Account.Infrastructure.RawQueries
                 }
             };
         }
+
+        public static RawQuery GetPermissions()
+        {
+            return new RawQuery
+            {
+                Query = $@"SELECT r.name AS role
+                           	    , split_part(p.name, '-', 1) AS permission
+                           	    , split_part(p.name, '-', 2) AS action
+                           	    , rp.is_active
+                           FROM role_permission rp
+                           INNER JOIN permission p ON rp.permission_id = p.id
+                           INNER JOIN role r ON rp.role_id = r.id"
+            };
+        }
     }
 }

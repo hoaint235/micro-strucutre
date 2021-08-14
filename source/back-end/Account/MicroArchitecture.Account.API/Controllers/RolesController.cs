@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MicroArchitecture.Account.Application.Permissions.Queries;
+using MicroArchitecture.Account.Application.Permissions.Commands;
 
 namespace MicroArchitecture.Account.API.Controllers
 {
@@ -17,6 +19,16 @@ namespace MicroArchitecture.Account.API.Controllers
         [Permission(PermissionType.Account, ActionType.View, RoleType.Admin)]
         [HttpGet]
         public async Task<IActionResult> GetRoles([FromQuery] GetRoles request, CancellationToken cancellationToken) =>
+            await SendAsync(request, cancellationToken);
+
+        [Permission(PermissionType.Permission, ActionType.View, RoleType.Admin, RoleType.Manager)]
+        [HttpGet("permissions")]
+        public async Task<IActionResult> GetPermissions([FromQuery] GetPermissions request, CancellationToken cancellationToken) =>
+            await SendAsync(request, cancellationToken);
+
+        [Permission(PermissionType.Permission, ActionType.Edit, RoleType.Admin)]
+        [HttpPut("permissions")]
+        public async Task<IActionResult> UpdatePermissions([FromBody] Update request, CancellationToken cancellationToken) =>
             await SendAsync(request, cancellationToken);
 
         [Permission(PermissionType.Account, ActionType.Edit, RoleType.Admin)]

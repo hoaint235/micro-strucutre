@@ -9,7 +9,7 @@ import { useStateSelector } from "../../../store";
 
 const useStyles = makeStyles((theme: Theme) => ({
   backdrop: {
-    zIndex: theme.zIndex.drawer + 99,
+    zIndex: theme.zIndex.drawer + 999,
     color: "#fff",
   },
 }));

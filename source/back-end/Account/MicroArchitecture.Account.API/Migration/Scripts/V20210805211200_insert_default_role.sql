@@ -2,8 +2,8 @@
 VALUES
 ('b20dae0f-c71d-45e3-bb1d-d8a681125694', 'Admin', 1),
 ('87927bd4-9167-4b35-8745-0ebf2cbf4f30', 'MasterData', 2),
-('892d4bb3-034d-4169-b2ad-77f8ef1426b3', 'manager', 3),
-('197e3aee-cd99-4d93-9627-80ea1d0a7a22', 'user', 4);
+('892d4bb3-034d-4169-b2ad-77f8ef1426b3', 'Manager', 3),
+('197e3aee-cd99-4d93-9627-80ea1d0a7a22', 'User', 4);
 
 INSERT INTO permission(id, name, lowered_name) 
 VALUES 

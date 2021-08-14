@@ -8,6 +8,7 @@ import { storageService } from "../../../services";
 import { useStateSelector } from "../../../store";
 import {
   getPermissions,
+  getRoles,
   setCurrentRole as setRole,
 } from "../../../store/application";
 import { Typography } from "../../atoms";
@@ -31,6 +32,11 @@ const RoleMenu = () => {
     storageService.setCurrentRole(role);
     setCurrentRole(role.toString().toEnum(RoleType).toString());
   };
+
+  useEffect(() => {
+    dispatch(getRoles());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (roles.length === 0) {

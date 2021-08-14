@@ -75,8 +75,6 @@ const ListProducts = () => {
   const history = useHistory();
   const { actions } = usePermission();
 
-  console.log(actions);
-
   const onDelete = async (productId: string) => {};
 
   const onViewDetail = (productId: string) => {};

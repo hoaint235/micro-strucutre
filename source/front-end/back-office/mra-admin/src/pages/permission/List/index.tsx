@@ -1,57 +1,91 @@
 import { Box, Grid } from "@material-ui/core";
-import { Button, MainContainer, TreeView } from "../../../components";
-import { usePermission } from "../../../hooks";
-
-const data: TreeItem[] = [
-  {
-    id: "2",
-    label: "Admin",
-    nodes: [
-      {
-        id: "3",
-        label: "Read",
-      },
-      {
-        id: "5",
-        label: "Write",
-      },
-    ],
-  },
-  {
-    id: "6",
-    label: "User",
-    nodes: [
-      {
-        id: "3",
-        label: "Read",
-      },
-      {
-        id: "5",
-        label: "Write",
-      },
-    ],
-  },
-];
+import { useMemo } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import {
+  Button,
+  ListPermissions,
+  MainContainer,
+  SkeletonTemplate,
+} from "../../../components";
+import { FieldsChecked } from "../../../components/templates/ListPermissions/GroupRow";
+import { useConfirm, usePermission } from "../../../hooks";
+import { ActionType, PermissionType, RoleType } from "../../../models";
+import { IListPermission } from "../../../models/accounts";
+import { AccountService } from "../../../services";
+import { toastHelper } from "../../../utils";
 
 const ListPermission = () => {
   const { hasEdit } = usePermission();
+  const [data, setData] = useState<IListPermission[] | null>(null);
+  const [fieldsChecked, setFieldsChecked] = useState<FieldsChecked>({});
+  const confirm = useConfirm();
+
+  useEffect(() => {
+    (async () => {
+      const permissions = await AccountService.getPermissions();
+      setData(permissions);
+    })();
+  }, []);
+
+  const onSave = () => {
+    confirm({
+      title: "permissionPage.saveTitle",
+      description: "permissionPage.saveDescription",
+      onSubmit: async () => {
+        const payload = Object.entries(fieldsChecked).map((field) => {
+          const fields = field[0].replace(".row", "").split(".");
+          return {
+            isActive: field[1],
+            role: fields[0].toEnum(RoleType),
+            permission: fields[1].toEnum(PermissionType),
+            action: fields[2].toEnum(ActionType),
+          };
+        }) as IListPermission[];
+
+        await AccountService.updatePermissions(payload);
+        toastHelper.success("permissionPage.saveSuccess");
+      },
+      options: {
+        confirmationButtonProps: { color: "primary" },
+      },
+    });
+  };
+
+  const Permissions = useMemo(
+    () => (
+      <ListPermissions
+        data={data || []}
+        isEdit={hasEdit}
+        onChange={(data) =>
+          setFieldsChecked((prevData) => Object.assign({}, prevData, data))
+        }
+      />
+    ),
+    [data, hasEdit]
+  );
+
   return (
     <MainContainer title="permissionPage.title">
-      <Grid container spacing={2}>
-        <Grid item container xs={12}>
-          <Grid item xs={8}></Grid>
+      {data ? (
+        <Grid container spacing={2}>
           {hasEdit && (
-            <Grid item xs={4}>
-              <Button.Primary name="edit" label="edit" />
+            <Grid item container xs={12} justifyContent="flex-end">
+              <Button.Primary
+                name="edit"
+                label="buttons.save"
+                disabled={!(Object.keys(fieldsChecked).length > 0)}
+                onClick={onSave}
+              />
             </Grid>
           )}
+          <Grid item xs={12}>
+            {Permissions}
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Box mt={2}>
-            <TreeView data={data} />
-          </Box>
-        </Grid>
-      </Grid>
+      ) : (
+        <SkeletonTemplate.List />
+      )}
     </MainContainer>
   );
 };

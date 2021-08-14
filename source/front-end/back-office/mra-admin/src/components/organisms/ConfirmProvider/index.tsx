@@ -1,14 +1,16 @@
 import React, { useState, useCallback, Fragment } from "react";
 import ConfirmContext, { ContextProps } from "./ConfirmContext";
-import { ConfirmationDialog, ConfirmationOptionsProps } from "../../molecules";
+import {
+  ConfirmationDialog,
+  ConfirmationOptionsProps,
+  InformationConfirmationProps,
+} from "../../molecules";
 
 const DEFAULT_OPTIONS: ConfirmationOptionsProps = {
-  title: "",
-  description: "",
   confirmationText: "buttons.confirm",
   cancellationText: "buttons.cancel",
   dialogProps: {},
-  confirmationButtonProps: {},
+  confirmationButtonProps: { color: "secondary" },
   cancellationButtonProps: {},
 };
 
@@ -22,6 +24,10 @@ const ConfirmProvider = (props: Props) => {
   const [defaultOptions, setOptions] = useState<ConfirmationOptionsProps>({
     ...DEFAULT_OPTIONS,
     ...options,
+  });
+  const [information, setInformation] = useState<InformationConfirmationProps>({
+    title: "",
+    description: "",
   });
   const [resolveReject, setResolveReject] = useState<(Function | undefined)[]>(
     []
@@ -37,15 +43,16 @@ const ConfirmProvider = (props: Props) => {
       options = {},
     } = props;
     setResolveReject([onSubmit, onBeforeCancel]);
-    setOptions({ ...defaultOptions, title, description, ...options });
+    setOptions({ ...defaultOptions, ...options });
+    setInformation({ title, description });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClose = useCallback(() => setResolveReject([]), []);
   const handleOnClick = useCallback(
-    (callback?: Function) => {
+    async (callback?: Function) => {
       try {
-        callback && callback();
+        callback && (await callback());
         handleClose();
       } catch (error) {
         throw new Error(error);
@@ -68,6 +75,7 @@ const ConfirmProvider = (props: Props) => {
         {children}
       </ConfirmContext.Provider>
       <ConfirmationDialog
+        info={information}
         open={resolveReject.length === 2}
         options={defaultOptions}
         onClose={handleClose}

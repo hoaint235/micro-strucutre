@@ -12,6 +12,7 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext.Configurat
             builder.Property(x => x.Id).HasColumnName("id");
             builder.Property(x => x.RoleId).HasColumnName("role_id");
             builder.Property(x => x.PermissionId).HasColumnName("permission_id");
+            builder.Property(x => x.IsActive).HasColumnName("is_active");
         }
     }
 }

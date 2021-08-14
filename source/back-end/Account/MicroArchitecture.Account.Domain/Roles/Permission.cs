@@ -13,6 +13,6 @@ namespace MicroArchitecture.Account.Domain.Roles
             LoweredName = name.ToLower();
         }
 
-        public static Permission Create(string name) => new Permission(name);
+        public static Permission Create(string name) => new(name);
     }
 }
