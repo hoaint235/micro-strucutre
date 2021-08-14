@@ -14,17 +14,6 @@ const units: SelectionProps[] = [
   },
 ];
 
-const categories: SelectionProps[] = [
-  {
-    key: "1",
-    value: "Category 1",
-  },
-  {
-    key: "2",
-    value: "Category 2",
-  },
-];
-
 type Props = {
   form: UseFormReturn<any>;
   onVendorAsync: (query: string) => Promise<SelectionProps[]>;

@@ -6,13 +6,13 @@ import reportWebVitals from "./reportWebVitals";
 import configureStore from "./store";
 import { Provider } from "react-redux";
 import AxiosInterceptor from "./utils/http-interceptor";
-import { CognitoService } from "./services";
+import { cognitoService } from "./services";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const store = configureStore({});
 
 AxiosInterceptor.setup(store);
-CognitoService.initialize();
+cognitoService.initialize();
 
 const renderApplication = () => {
   const rootHtml = document.getElementById("root");

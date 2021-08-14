@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import IconMenu from "../../molecules/IconMenu";
 import { Typography } from "../../atoms";
-import { CognitoService } from "../../../services";
+import { cognitoService } from "../../../services";
 import { Settings } from "@material-ui/icons";
 import Pages from "../../../utils/constants/pages";
 import { useDispatch } from "react-redux";
@@ -19,7 +19,7 @@ const SettingMenu = () => {
     {
       title: "settings.logout",
       action: async () => {
-        await CognitoService.signOut();
+        await cognitoService.signOut();
         dispatch(resetAllPermission());
         history.push(Pages.SIGN_IN);
       },

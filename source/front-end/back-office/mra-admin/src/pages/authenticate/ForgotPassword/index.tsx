@@ -3,6 +3,7 @@ import {
   ConfirmationPasswordForm,
 } from "../../../components";
 import { useStepForm } from "../../../hooks";
+import { ForgotStatus } from "../../../models";
 
 const ForgotPassword = () => {
   const Component = useStepForm<ForgotStatus>({

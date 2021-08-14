@@ -7,15 +7,14 @@ import {
   DialogActions,
   Box,
 } from "@material-ui/core";
-import { ICategory } from "model";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import Form from "../../../hook-forms";
 import { Errors } from "../../../utils";
 import { Button, Typography } from "../../atoms";
 import toInteger from "lodash/toInteger";
+import { ICategory } from "../../../models/category";
 
 const LEVEL_MASTER: number = 0;
 const schema = yup.object().shape({

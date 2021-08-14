@@ -5,7 +5,8 @@ import {
   HighlightOff,
   Visibility,
 } from "@material-ui/icons";
-import { IUser, ListingResponse } from "model";
+import { ListingResponse } from "../../../models";
+import { IUser } from "../../../models/accounts";
 import { Roles, Statuses } from "../../../utils";
 import { HeaderProps, Status, Typography } from "../../atoms";
 import { DataTable, IconButton, SortProps } from "../../molecules";

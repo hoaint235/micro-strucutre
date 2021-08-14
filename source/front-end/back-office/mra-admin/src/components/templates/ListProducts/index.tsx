@@ -5,7 +5,8 @@ import {
   HighlightOff,
   Visibility,
 } from "@material-ui/icons";
-import { IProduct, ListingResponse } from "model";
+import { ListingResponse } from "../../../models";
+import { IProduct } from "../../../models/product";
 import { HeaderProps, Status } from "../../atoms";
 import { DataTable, IconButton, SortProps } from "../../molecules";
 import { PagingProps } from "../../molecules";

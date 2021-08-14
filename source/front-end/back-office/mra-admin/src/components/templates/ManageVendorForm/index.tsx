@@ -1,6 +1,5 @@
 import { Box, Grid } from "@material-ui/core";
 import { ManageForm } from "form";
-import { IVendor } from "model";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../../atoms";
@@ -8,6 +7,7 @@ import { VendorAddressForm, VendorInfoForm } from "../../organisms";
 import * as yup from "yup";
 import { Errors, Regex } from "../../../utils";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { IVendor } from "../../../models/vendors";
 
 const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),

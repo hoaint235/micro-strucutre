@@ -5,13 +5,14 @@ import {
   HighlightOff,
   Visibility,
 } from "@material-ui/icons";
-import { IVendorView, ListingResponse } from "model";
+import { ListingResponse } from "../../../models";
+import { IVendor } from "../../../models/vendors";
 import { HeaderProps, Status } from "../../atoms";
 import { DataTable, IconButton, SortProps } from "../../molecules";
 import { PagingProps } from "../../molecules";
 
 type Props = {
-  data: ListingResponse<IVendorView>;
+  data: ListingResponse<IVendor>;
   headers: HeaderProps[];
   onActivate: (userId: string) => void;
   onDelete: (userId: string) => void;
@@ -33,7 +34,7 @@ const ListVendors = (props: Props) => {
     onSort,
   } = props;
 
-  const renderAction = (data: any) => {
+  const renderAction = (data: IVendor) => {
     return (
       <Grid container spacing={1}>
         <Grid item>
@@ -76,7 +77,7 @@ const ListVendors = (props: Props) => {
     );
   };
 
-  const renderActive = (data: IVendorView) => {
+  const renderActive = (data: IVendor) => {
     const { active } = data;
     const text = active ? "statuses.activate" : "statuses.deactivate";
     return <Status label={text} color={active ? "primary" : "secondary"} />;

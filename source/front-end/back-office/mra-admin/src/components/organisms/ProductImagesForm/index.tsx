@@ -7,8 +7,6 @@ type Props = {
 };
 
 const ProductImagesForm = (props: Props) => {
-  const { form } = props;
-
   return (
     <Card>
       <CardHeader

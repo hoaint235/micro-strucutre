@@ -1,6 +1,5 @@
 import { Box, Grid } from "@material-ui/core";
 import sortBy from "lodash/sortBy";
-import { ListingResponse, ICategory, ListingRequest } from "model";
 import { useCallback, useEffect, useState } from "react";
 import {
   SkeletonTemplate,
@@ -13,7 +12,9 @@ import {
   Field,
   HeaderProps,
 } from "../../../components";
-import { CategoryService } from "../../../services";
+import { ListingRequest, ListingResponse } from "../../../models";
+import { ICategory } from "../../../models/category";
+import { categoryService } from "../../../services";
 
 const headers: HeaderProps[] = [
   {
@@ -50,7 +51,7 @@ const ListCategories = () => {
       offset: 0,
     };
     const payload = { ...defaultRequest, ...request };
-    const categories = await CategoryService.getCategories(payload);
+    const categories = await categoryService.getCategories(payload);
     setData({ ...data, ...categories });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

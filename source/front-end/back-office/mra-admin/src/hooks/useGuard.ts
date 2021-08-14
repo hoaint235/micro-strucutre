@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { CognitoService } from "../services";
+import { cognitoService } from "../services";
 import { Pages } from "../utils";
 
 const useGuard = () => {
@@ -8,7 +8,7 @@ const useGuard = () => {
   const history = useHistory();
 
   const checkAuthenticated = async () => {
-    const authenticated = await CognitoService.isAuthenticated();
+    const authenticated = await cognitoService.isAuthenticated();
     setIsAuth(authenticated);
     if (!authenticated) {
       history.push(Pages.SIGN_IN);

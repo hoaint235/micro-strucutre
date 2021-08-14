@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core";
 import { Delete, Visibility } from "@material-ui/icons";
-import { ICategory, ListingResponse } from "model";
+import { ListingResponse } from "../../../models";
+import { ICategory } from "../../../models/category";
 import { HeaderProps } from "../../atoms";
 import { DataTable, IconButton, SortProps } from "../../molecules";
 import { PagingProps } from "../../molecules";

@@ -5,10 +5,11 @@ import { Button, Typography } from "../../atoms";
 import Form from "../../../hook-forms";
 import { DefaultContainer } from "../../organisms";
 import { Grid } from "@material-ui/core";
-import { CognitoService } from "../../../services";
+import { cognitoService } from "../../../services";
 import * as yup from "yup";
 import { Errors, Regex } from "../../../utils";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ForgotStatus } from "../../../models";
 
 const schema = yup.object().shape({
   email: yup
@@ -56,7 +57,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
 
   const onConfirmationCode = async (data: any) => {
     const { confirmationCode: code, password } = data;
-    await CognitoService.forgotPasswordSubmit(email, code, password);
+    await cognitoService.forgotPasswordSubmit(email, code, password);
 
     history.push("/sign-in");
   };
