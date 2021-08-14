@@ -1,12 +1,13 @@
 import { BarChart, Description, ListAlt } from "@material-ui/icons";
-import { Pages, Roles } from "../utils";
+import { IMenuItem, PermissionType } from "../models";
+import { Pages } from "../utils";
 
-const Menus: MenuItemProps[] = [
+const Menus: IMenuItem[] = [
   {
     path: Pages.DASH_BOARD,
     icon: BarChart,
     label: "menus.dashBoard",
-    roles: [Roles.Admin, Roles.MasterData],
+    permission: PermissionType.Dashboard,
   },
   {
     icon: ListAlt,
@@ -16,24 +17,29 @@ const Menus: MenuItemProps[] = [
         path: Pages.VENDOR,
         activePaths: [Pages.VENDOR, Pages.CREATE_VENDOR],
         label: "menus.masterData.vendors",
+        permission: PermissionType.Vendor,
       },
       {
         path: Pages.CATEGORY,
         label: "menus.masterData.categories",
+        permission: PermissionType.Category,
       },
       {
         path: Pages.PRODUCT,
         activePaths: [Pages.PRODUCT, Pages.CREATE_PRODUCT],
         label: "menus.masterData.products",
+        permission: PermissionType.Product,
       },
       {
         path: Pages.USER,
         activePaths: [Pages.USER, Pages.CREATE_USER, Pages.EDIT_USER],
         label: "menus.masterData.users",
+        permission: PermissionType.Account,
       },
       {
         path: Pages.PERMISSION,
         label: "menus.masterData.permissions",
+        permission: PermissionType.Permission,
       },
     ],
   },
@@ -45,10 +51,12 @@ const Menus: MenuItemProps[] = [
         path: Pages.VENDOR,
         activePaths: [Pages.VENDOR, Pages.CREATE_VENDOR],
         label: "menus.purchase.purchase",
+        permission: PermissionType.PurchaseOrder,
       },
       {
         path: Pages.CATEGORY,
         label: "menus.purchase.sell",
+        permission: PermissionType.SaleOrder,
       },
     ],
   },

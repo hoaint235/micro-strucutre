@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.Reflection;
 using Dapper;
 using MicroArchitecture.Account.Domain.Core.Database;
-using MicroArchitecture.Account.Domain.Users;
+using MicroArchitecture.Account.Domain.Accounts;
 using MicroArchitecture.Account.Infrastructure.Commons;
 using MicroArchitecture.Account.Infrastructure.Database.Dapper;
 using MicroArchitecture.Account.Infrastructure.Database.DbContext;
@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using MicroArchitecture.Account.Domain.Core.AppContext;
 
 namespace MicroArchitecture.Account.API.Infrastructures.Modules
 {
@@ -35,10 +36,11 @@ namespace MicroArchitecture.Account.API.Infrastructures.Modules
 
             service.AddScoped<IDapperQuery, DapperQuery>();
             service.AddScoped<IUnitOfWork, AccountDbContext>();
-            service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<IAccountRepository, AccountRepository>();
 
             new List<Type>
             {
+                typeof(ICollection<CurrentUserRole>),
                 typeof(ICollection<Guid>)
             }.ForEach(type => SqlMapper.AddTypeHandler(type, new JsonObjectTypeHandler()));
         }

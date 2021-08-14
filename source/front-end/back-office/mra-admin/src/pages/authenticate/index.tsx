@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Switch } from "react-router-dom";
-import RouteLoading from "../../routes/RouteLoading";
+import SuspenseRoute from "../../routes/SuspenseRoute";
 import { Pages } from "../../utils";
 
 const SignIn = lazy(() => import("./SignIn"));
@@ -9,12 +9,12 @@ const ForgotPassword = lazy(() => import("./ForgotPassword"));
 const Category = () => {
   return (
     <Switch>
-      <RouteLoading exact path={Pages.SIGN_IN}>
+      <SuspenseRoute exact path={Pages.SIGN_IN}>
         <SignIn />
-      </RouteLoading>
-      <RouteLoading exact path={Pages.FORGOT_PASSWORD}>
+      </SuspenseRoute>
+      <SuspenseRoute exact path={Pages.FORGOT_PASSWORD}>
         <ForgotPassword />
-      </RouteLoading>
+      </SuspenseRoute>
     </Switch>
   );
 };

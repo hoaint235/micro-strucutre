@@ -14,3 +14,4 @@ export { default as ListProducts } from "./ListProducts";
 export { default as ManageProductForm } from "./ManageProductForm";
 export { default as ListVendors } from "./ListVendors";
 export { default as ManageVendorForm } from "./ManageVendorForm";
+export { default as ListPermissions } from "./ListPermissions";

@@ -17,14 +17,14 @@ const UserInfoForm = (props: Props) => {
   const { t } = useTranslation();
   const [roles, setRoles] = useState<string[]>([]);
 
-  const fetchRoles = async () => {
-    const response = await AccountService.gerCurrentUserRoles();
-    setRoles(response);
-  };
+  // const fetchRoles = async () => {
+  //   const response = await AccountService.gerCurrentUserRoles();
+  //   setRoles(response);
+  // };
 
-  useEffect(() => {
-    fetchRoles();
-  }, []);
+  // useEffect(() => {
+  //   fetchRoles();
+  // }, []);
 
   const getRoles = useCallback(() => {
     const result = Object.keys(Roles)

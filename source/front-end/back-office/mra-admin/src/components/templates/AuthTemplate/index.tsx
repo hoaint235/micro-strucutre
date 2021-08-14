@@ -7,9 +7,9 @@ import {
   ToastProvider,
 } from "../../organisms";
 import { Scrollbars } from "react-custom-scrollbars";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useCallback } from "react";
-import { useMobile } from "../../../hooks";
+import { useGuard, useMobile } from "../../../hooks";
 
 const useStyles = (openMenu: boolean) =>
   makeStyles((theme: Theme) => ({
@@ -42,6 +42,7 @@ const AuthTemplate = (props: Props) => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const classes = useStyles(openDesktopMenu)();
   const { isMobile } = useMobile();
+  const { isAuth } = useGuard();
 
   const onToggleMenu = useCallback(() => {
     if (isMobile) {
@@ -53,32 +54,36 @@ const AuthTemplate = (props: Props) => {
   }, [isMobile, openDesktopMenu]);
 
   return (
-    <ConfirmProvider>
-      <div className={classes.root}>
-        <Header onToggle={onToggleMenu} />
-        <Navbar
-          openDesktop={openDesktopMenu}
-          openMobile={openMobileMenu}
-          onClose={() => setOpenMobileMenu(false)}
-        />
-        <Box component="div" mt={10} className={classes.container}>
-          <Scrollbars
-            autoHide
-            autoHideTimeout={500}
-            autoHideDuration={200}
-            autoHeight={true}
-            autoHeightMin={`calc(100vh - 80px)`}
-          >
-            <Box component="div" p={3}>
-              {children}
+    <Fragment>
+      {isAuth && (
+        <ConfirmProvider>
+          <div className={classes.root}>
+            <Header onToggle={onToggleMenu} />
+            <Navbar
+              openDesktop={openDesktopMenu}
+              openMobile={openMobileMenu}
+              onClose={() => setOpenMobileMenu(false)}
+            />
+            <Box component="div" mt={10} className={classes.container}>
+              <Scrollbars
+                autoHide
+                autoHideTimeout={500}
+                autoHideDuration={200}
+                autoHeight={true}
+                autoHeightMin={`calc(100vh - 80px)`}
+              >
+                <Box component="div" p={3}>
+                  {children}
+                </Box>
+              </Scrollbars>
             </Box>
-          </Scrollbars>
-        </Box>
 
-        <LoadingProvider />
-        <ToastProvider />
-      </div>
-    </ConfirmProvider>
+            <LoadingProvider />
+            <ToastProvider />
+          </div>
+        </ConfirmProvider>
+      )}
+    </Fragment>
   );
 };
 

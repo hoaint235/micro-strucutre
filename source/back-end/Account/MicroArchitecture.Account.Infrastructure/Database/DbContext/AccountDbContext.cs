@@ -9,7 +9,7 @@ using MicroArchitecture.Account.Domain.Core.AppContext;
 using MicroArchitecture.Account.Domain.Core.Database;
 using MicroArchitecture.Account.Domain.Core.Domain;
 using MicroArchitecture.Account.Domain.Core.Events;
-using MicroArchitecture.Account.Domain.Users;
+using MicroArchitecture.Account.Domain.Roles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -22,7 +22,8 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext
         private readonly IPublishEndpoint _publishEndPoint;
         private readonly IAppContext _appContext;
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Domain.Accounts.Account> Accounts { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         public AccountDbContext(DbContextOptions<AccountDbContext> options
             , ILoggerFactory loggerFactory
@@ -45,7 +46,7 @@ namespace MicroArchitecture.Account.Infrastructure.Database.DbContext
         {
             modelBuilder.Ignore<DomainEvent>();
             modelBuilder.Ignore<IntegrationEvent>();
-            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         }
 
         public async Task CommitAsync(CancellationToken cancellationToken = default)

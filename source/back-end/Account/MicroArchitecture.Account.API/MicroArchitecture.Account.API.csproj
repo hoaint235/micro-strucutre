@@ -5,17 +5,27 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Migration\Scripts\V20210731191300_create_table_account.sql" />
-    <None Remove="Migration\Scripts\V20210731191400_create_table_account_role.sql" />
+    <None Remove="Migration\Scripts\V20210731191330_create_table_role.sql" />
     <None Remove="Migration\Scripts\V20210731191900_create_table_history.sql" />
-    <None Remove="Migration\Scripts\V20210731202500_insert_default_account.sql" />
+    <None Remove="Migration\Scripts\V20210805211000_create_table_permission.sql" />
+    <None Remove="Migration\Scripts\V20210805211100_create_table_role_permission.sql" />
+    <None Remove="Migration\Scripts\v20210805211200_insert_default_role.sql" />
+    <None Remove="Migration\Scripts\V20210805212600_create_table_account_role.sql" />
+    <None Remove="Migration\Scripts\V20210805212800_insert_default_account.sql" />
+    <None Remove="Migration\Scripts\V20210807125200_add_permission_dashboard.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migration\Scripts\V20210731191400_create_table_account_role.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210731191330_create_table_role.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210805211000_create_table_permission.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210805211100_create_table_role_permission.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210805211200_insert_default_role.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210805212600_create_table_account_role.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migration\Scripts\V20210731191900_create_table_history.sql" />
     <EmbeddedResource Include="Migration\Scripts\V20210731191300_create_table_account.sql" />
-    <EmbeddedResource Include="Migration\Scripts\V20210731202500_insert_default_account.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210805212800_insert_default_account.sql" />
+    <EmbeddedResource Include="Migration\Scripts\V20210807125200_add_permission_dashboard.sql" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="5.0.2" />

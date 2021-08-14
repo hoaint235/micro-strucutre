@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Switch } from "react-router-dom";
-import RouteLoading from "../../routes/RouteLoading";
+import PrivateRoute from "../../routes/PrivateRoute";
 import { Pages } from "../../utils";
 
 const ListPermission = lazy(() => import("./List"));
@@ -8,9 +8,7 @@ const ListPermission = lazy(() => import("./List"));
 const Permission = () => {
   return (
     <Switch>
-      <RouteLoading exact path={Pages.PERMISSION}>
-        <ListPermission />
-      </RouteLoading>
+      <PrivateRoute exact path={Pages.PERMISSION} component={ListPermission} />
     </Switch>
   );
 };

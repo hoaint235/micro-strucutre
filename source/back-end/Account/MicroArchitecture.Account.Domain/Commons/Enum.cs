@@ -2,8 +2,28 @@
 {
     public enum RoleType
     {
-        Master = 1,
-        Admin = 2,
-        User = 3
+        Admin = 1,
+        MasterData = 2,
+        Manager = 3,
+        User = 4
+    }
+
+    public enum PermissionType
+    {
+        Account = 1,
+        Vendor = 2,
+        Product = 3,
+        Unit = 4,
+        Category = 5,
+        Permission = 6,
+        Dashboard = 7,
+    } 
+
+    public enum ActionType
+    {
+        View = 1,
+        Add = 2,
+        Edit = 3,
+        Delete = 4
     }
 }

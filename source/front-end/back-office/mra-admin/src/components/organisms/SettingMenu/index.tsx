@@ -1,25 +1,26 @@
-import React from "react";
 import { useHistory } from "react-router-dom";
 import IconMenu from "../../molecules/IconMenu";
 import { Typography } from "../../atoms";
 import { CognitoService } from "../../../services";
 import { Settings } from "@material-ui/icons";
 import Pages from "../../../utils/constants/pages";
-import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { resetAllPermission } from "../../../store/application";
 
 const SettingMenu = () => {
   const history = useHistory();
-  const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const menus = [
     {
-      title: t("settings.profile"),
+      title: "settings.profile",
       action: () => history.push(Pages.PROFILE),
     },
     {
-      title: t("settings.logout"),
+      title: "settings.logout",
       action: async () => {
         await CognitoService.signOut();
+        dispatch(resetAllPermission());
         history.push(Pages.SIGN_IN);
       },
     },
@@ -29,7 +30,7 @@ const SettingMenu = () => {
     <IconMenu
       color="secondary"
       items={menus}
-      onItemClick={(item) => item.action()}
+      onItemClick={async (item) => await item.action()}
       renderItem={(item) => <Typography.Body label={item.title} />}
     >
       <Settings />

@@ -1,4 +1,3 @@
-import { Box } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Languages } from "../../../configurations";
@@ -23,15 +22,13 @@ const Language = () => {
   }, []); // react-hooks/exhaustive-deps
 
   return (
-    <Box mr={1}>
-      <IconMenu
-        items={Languages}
-        onItemClick={(item) => selectLanguage(item)}
-        renderItem={(item) => <Typography.Body label={item.title} />}
-      >
-        {language}
-      </IconMenu>
-    </Box>
+    <IconMenu
+      items={Languages}
+      onItemClick={(item) => selectLanguage(item)}
+      renderItem={(item) => <Typography.Body label={item.title} />}
+    >
+      {language}
+    </IconMenu>
   );
 };
 

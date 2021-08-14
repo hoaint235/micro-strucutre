@@ -1,13 +1,9 @@
 import { lazy } from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { AuthTemplate, DefaultTemplate, SuspenseLoading } from "../components";
 import { Pages } from "../utils";
-import RouteLoading from "./RouteLoading";
+import PrivateRoute from "./PrivateRoute";
+import SuspenseRoute from "./SuspenseRoute";
 
 const NotFound = lazy(() => import("../pages/NotFound"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
@@ -20,59 +16,42 @@ const Permission = lazy(() => import("../pages/permission"));
 
 const Routes = () => {
   return (
-    <Router>
-      <Switch>
-        <Route path="/admin/:path?">
-          <AuthTemplate>
-            <Switch>
-              <RouteLoading exact path={Pages.DASH_BOARD}>
-                <Dashboard />
-              </RouteLoading>
+    <Switch>
+      <Route path="/admin/:path?">
+        <AuthTemplate>
+          <Switch>
+            <PrivateRoute exact path={Pages.DASH_BOARD} component={Dashboard} />
+            <PrivateRoute path={Pages.USER} component={User} />
+            <PrivateRoute path={Pages.VENDOR} component={Vendor} />
+            <PrivateRoute path={Pages.PRODUCT} component={Product} />
+            <PrivateRoute path={Pages.CATEGORY} component={Category} />
+            <PrivateRoute path={Pages.PERMISSION} component={Permission} />
+          </Switch>
+        </AuthTemplate>
+      </Route>
 
-              <RouteLoading path={Pages.USER}>
-                <User />
-              </RouteLoading>
+      <SuspenseRoute exact path={Pages.NOT_FOUND}>
+        <NotFound />
+      </SuspenseRoute>
 
-              <RouteLoading path={Pages.VENDOR}>
-                <Vendor />
-              </RouteLoading>
+      <Route path="/">
+        <DefaultTemplate>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to={Pages.DEFAULT} />
+            </Route>
 
-              <RouteLoading path={Pages.PRODUCT}>
-                <Product />
-              </RouteLoading>
+            <SuspenseLoading>
+              <Authenticate />
+            </SuspenseLoading>
 
-              <RouteLoading path={Pages.CATEGORY}>
-                <Category />
-              </RouteLoading>
-
-              <RouteLoading path={Pages.PERMISSION}>
-                <Permission />
-              </RouteLoading>
-            </Switch>
-          </AuthTemplate>
-        </Route>
-
-        <RouteLoading exact path={Pages.NOT_FOUND}>
-          <NotFound />
-        </RouteLoading>
-
-        <Route path="/">
-          <DefaultTemplate>
-            <Switch>
-              <Route exact path="/">
-                <Redirect to={Pages.DEFAULT} />,
-              </Route>
-              <SuspenseLoading>
-                <Authenticate />
-              </SuspenseLoading>
-              <Route exact path="/*">
-                <Redirect to={Pages.NOT_FOUND} />
-              </Route>
-            </Switch>
-          </DefaultTemplate>
-        </Route>
-      </Switch>
-    </Router>
+            <Route exact path="/*">
+              <Redirect to={Pages.NOT_FOUND} />
+            </Route>
+          </Switch>
+        </DefaultTemplate>
+      </Route>
+    </Switch>
   );
 };
 
