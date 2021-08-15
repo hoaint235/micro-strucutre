@@ -1,5 +1,4 @@
 import { Box, Grid } from "@material-ui/core";
-import { IVendorView, ListingRequest, ListingResponse } from "model";
 import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
@@ -13,7 +12,9 @@ import {
   SortProps,
 } from "../../../components";
 import { useConfirm } from "../../../hooks";
-import { VendorService } from "../../../services";
+import { ListingRequest, ListingResponse } from "../../../models";
+import { IVendor } from "../../../models/vendors";
+import { vendorService } from "../../../services";
 import { Pages } from "../../../utils";
 
 const headers: HeaderProps[] = [
@@ -44,7 +45,7 @@ const headers: HeaderProps[] = [
 ];
 
 const ListVendors = () => {
-  const [data, setData] = useState<ListingResponse<IVendorView> | null>(null);
+  const [data, setData] = useState<ListingResponse<IVendor> | null>(null);
   const history = useHistory();
   const confirm = useConfirm();
 
@@ -54,7 +55,7 @@ const ListVendors = () => {
       offset: 0,
     };
     const payload = { ...defaultRequest, ...request };
-    const vendors = await VendorService.getVendors(payload);
+    const vendors = await vendorService.getVendors(payload);
     setData({ ...data, ...vendors });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

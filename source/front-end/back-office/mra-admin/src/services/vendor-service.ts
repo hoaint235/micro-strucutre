@@ -1,15 +1,14 @@
+import { ListingRequest, ListingResponse } from "../models";
+import { IVendor } from "../models/vendors";
 import { BaseService } from "./base-service";
-import { IVendor, IVendorView, ListingRequest, ListingResponse } from "model";
 
 class VendorService extends BaseService {
   constructor() {
     super("vendor");
   }
 
-  async getVendors(
-    request: ListingRequest
-  ): Promise<ListingResponse<IVendorView>> {
-    return await super.get<ListingRequest, ListingResponse<IVendorView>>(
+  async getVendors(request: ListingRequest): Promise<ListingResponse<IVendor>> {
+    return await super.get<ListingRequest, ListingResponse<IVendor>>(
       "vendors",
       false,
       {
@@ -26,7 +25,7 @@ class VendorService extends BaseService {
   }
 
   async loadSuggest(query: string): Promise<any> {
-    const response = await super.get<string, ListingResponse<IVendorView>>(
+    const response = await super.get<string, ListingResponse<IVendor>>(
       "vendors",
       false,
       {

@@ -1,15 +1,15 @@
 import { Grid } from "@material-ui/core";
 import { useHistory, useParams } from "react-router-dom";
 import { Pages, toastHelper } from "../../../utils";
-import { AccountService } from "../../../services";
+import { accountService } from "../../../services";
 import {
   ManageUserForm,
   SkeletonTemplate,
   MainContainer,
 } from "../../../components";
-import { IUser } from "model";
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
+import { IUser } from "../../../models/accounts";
 
 const EditUser = () => {
   const history = useHistory();
@@ -19,7 +19,7 @@ const EditUser = () => {
   const fetchUser = useCallback(async () => {
     const useId = params?.userId;
     if (useId) {
-      const response = await AccountService.getUserById(useId);
+      const response = await accountService.getUserById(useId);
       setUsers(response);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,7 +31,7 @@ const EditUser = () => {
   }, []);
 
   const onSubmit = async (data: IUser) => {
-    await AccountService.createUser(data);
+    await accountService.createUser(data);
     toastHelper.success("Create new user success");
     onBackUserList();
   };

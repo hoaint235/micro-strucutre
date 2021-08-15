@@ -1,5 +1,6 @@
+import { ListingRequest, ListingResponse } from "../models";
+import { ICategory } from "../models/category";
 import { BaseService } from "./base-service";
-import { ICategory, ListingRequest, ListingResponse } from "model";
 
 class CategoryService extends BaseService {
   constructor() {

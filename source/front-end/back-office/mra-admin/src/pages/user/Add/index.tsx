@@ -1,15 +1,15 @@
 import { Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { Pages, toastHelper } from "../../../utils";
-import { AccountService } from "../../../services";
+import { accountService } from "../../../services";
 import { ManageUserForm, MainContainer } from "../../../components";
-import { IUser } from "model";
+import { IUser } from "../../../models/accounts";
 
 const AddUser = () => {
   const history = useHistory();
 
   const onSubmit = async (data: IUser) => {
-    await AccountService.createUser(data);
+    await accountService.createUser(data);
     toastHelper.success("Create new user success");
     onBackUserList();
   };

@@ -1,6 +1,11 @@
-import { IListPermission } from "./../models/accounts/IListPermission";
-import { IUser, ListingRequest, ListingResponse } from "model";
-import { RoleType, PermissionType, ActionType } from "../models";
+import { IListPermission, IUser } from "../models/accounts";
+import {
+  RoleType,
+  PermissionType,
+  ActionType,
+  ListingRequest,
+  ListingResponse,
+} from "../models";
 import { BaseService } from "./base-service";
 
 class UserService extends BaseService {

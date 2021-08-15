@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { Errors, Pages, Regex } from "../../../utils";
 import { useHistory } from "react-router-dom";
 import { DefaultContainer } from "../../organisms";
-import { AccountService, CognitoService } from "../../../services";
+import { accountService, cognitoService } from "../../../services";
 import { Button, Typography } from "../../atoms";
 import Form from "../../../hook-forms";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { SignInStatus } from "../../../models";
 
 const schema = yup.object().shape({
   password: yup
@@ -48,7 +49,7 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
         userAttributes: { email },
       },
     } = user;
-    const result = await CognitoService.completeNewPassword(user, password);
+    const result = await cognitoService.completeNewPassword(user, password);
 
     if (result.challengeName && result.challengeName === "SMS_MFA") {
       onNavigateStep &&
@@ -60,7 +61,7 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
         });
     }
 
-    await AccountService.updateStatus(email, 2);
+    await accountService.updateStatus(email, 2);
     history.push(Pages.DEFAULT);
   };
 

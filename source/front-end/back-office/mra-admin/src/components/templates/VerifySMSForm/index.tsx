@@ -2,7 +2,8 @@ import { Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Form from "../../../hook-forms";
-import { CognitoService } from "../../../services";
+import { SignInStatus } from "../../../models";
+import { cognitoService } from "../../../services";
 import { Pages } from "../../../utils";
 import { Typography } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
@@ -17,7 +18,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
 
   const onSubmit = async ({ otpCode = "" }) => {
     const user = stepObj?.data?.user;
-    await CognitoService.confirmMFACode(user, otpCode);
+    await cognitoService.confirmMFACode(user, otpCode);
     history.push(Pages.DEFAULT);
   };
 

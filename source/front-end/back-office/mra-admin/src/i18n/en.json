@@ -1,6 +1,10 @@
 {
   "commons": {
-    "loadingText": "Loading..."
+    "loadingText": "Loading...",
+    "switchRole": {
+      "title": "Are you sure",
+      "description": "Do you want switch to role {{role}}"
+    }
   },
   "background": {
     "title": "Micro Architecture",
@@ -111,7 +115,9 @@
     "back": "Back",
     "deactivate": "Deactivate",
     "activate": "Activate",
-    "save": "Save"
+    "save": "Save",
+    "yes": "Yes",
+    "no": "No"
   },
   "fields": {
     "emailAddress": "Email address",

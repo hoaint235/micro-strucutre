@@ -1,5 +1,6 @@
 import { Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
+import { TypographyProps } from "./Typography.type";
 
 const Subtitle = (props: TypographyProps) => {
   const { label, color = "textPrimary", ...restProps } = props;

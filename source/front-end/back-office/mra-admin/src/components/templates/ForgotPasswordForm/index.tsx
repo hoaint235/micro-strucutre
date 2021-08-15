@@ -2,7 +2,7 @@ import { Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Form from "../../../hook-forms";
-import { CognitoService } from "../../../services";
+import { cognitoService } from "../../../services";
 import { Button, Typography } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -10,6 +10,7 @@ import { useState } from "react";
 import * as yup from "yup";
 import { Errors } from "../../../utils";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ForgotStatus } from "../../../models";
 
 const schema = yup.object().shape({
   email: yup
@@ -35,7 +36,7 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
   } = form;
 
   const onSendActivation = async (data: any) => {
-    await CognitoService.forgotPassword(data.email);
+    await cognitoService.forgotPassword(data.email);
     onNavigateStep &&
       onNavigateStep({
         status: "CONFIRMATION_CODE",

@@ -1,7 +1,7 @@
 import { ActionType } from "./../models";
 import { useCallback, useEffect, useState } from "react";
 import { useStateSelector } from "../store";
-import { AccountService } from "../services";
+import { accountService } from "../services";
 
 const usePermission = () => {
   const [actions, setActions] = useState<ActionType[]>([]);
@@ -19,7 +19,7 @@ const usePermission = () => {
   const hasDelete = hasPermission(ActionType.Delete);
 
   const fetchActions = async () => {
-    const result = await AccountService.getCurrentUserActions(
+    const result = await accountService.getCurrentUserActions(
       currentRole,
       currentPermission
     );

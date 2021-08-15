@@ -14,16 +14,18 @@ import {
 import { Typography } from "../../atoms";
 import { IconMenu } from "../../molecules";
 import lowerFirst from "lodash/lowerFirst";
+import { useTranslation } from "react-i18next";
 
 const RoleMenu = () => {
   const { roles } = useStateSelector((state) => state.appState);
   const [currentRole, setCurrentRole] = useState("");
   const dispatch = useDispatch();
   const confirm = useConfirm();
+  const { t } = useTranslation();
 
   const rolesTransfer = roles.map((role) => ({
     key: role,
-    value: `roles.${lowerFirst(RoleType[role].toString())}`,
+    value: t(`roles.${lowerFirst(RoleType[role].toString())}`),
   })) as SelectionProps<RoleType>[];
 
   const loadPermission = (role: RoleType) => {
@@ -62,10 +64,14 @@ const RoleMenu = () => {
     }
 
     confirm({
-      title: "Are you sure",
-      description: `Do you want switch to role ${item.value}`,
+      title: "commons.switchRole.title",
+      description: t("commons.switchRole.description", { role: item.value }),
       onSubmit: () => {
         loadPermission(item.key);
+      },
+      options: {
+        cancellationText: "buttons.no",
+        confirmationText: "buttons.yes",
       },
     });
   };

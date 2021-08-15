@@ -1,5 +1,4 @@
 import { Grid, Box } from "@material-ui/core";
-import { IUser, ListingRequest, ListingResponse } from "model";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
@@ -13,7 +12,9 @@ import {
   SortProps,
   MainContainer,
 } from "../../../components";
-import { AccountService } from "../../../services";
+import { ListingRequest, ListingResponse } from "../../../models";
+import { IUser } from "../../../models/accounts";
+import { accountService } from "../../../services";
 import { Pages } from "../../../utils";
 
 const headers: HeaderProps[] = [
@@ -58,7 +59,7 @@ const ListUsers = () => {
       offset: 0,
     };
     const payload = { ...defaultRequest, ...request };
-    const users = await AccountService.getUsers(payload);
+    const users = await accountService.getUsers(payload);
     setData({ ...data, ...users });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -69,17 +70,17 @@ const ListUsers = () => {
   }, []);
 
   const onDeactivate = async (userId: string) => {
-    await AccountService.deactivateUser(userId);
+    await accountService.deactivateUser(userId);
     await fetchUsers();
   };
 
   const onActivate = async (userId: string) => {
-    await AccountService.activateUser(userId);
+    await accountService.activateUser(userId);
     await fetchUsers();
   };
 
   const onDelete = async (userId: string) => {
-    await AccountService.deleteUser(userId);
+    await accountService.deleteUser(userId);
     await fetchUsers();
   };
 

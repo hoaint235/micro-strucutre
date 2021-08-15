@@ -44,7 +44,12 @@ const PrivateRoute = (props: Props) => {
     const menu = Menus.find(
       (x) =>
         x.path === pathname ||
-        (x.children && x.children.some((x) => x.path === pathname))
+        (x.children &&
+          x.children.some(
+            (x) =>
+              x.path === pathname ||
+              (x.activePaths && x.activePaths.includes(pathname))
+          ))
     );
 
     if (!menu) {
@@ -64,7 +69,8 @@ const PrivateRoute = (props: Props) => {
     if (menu?.children) {
       const item = menu?.children?.find(
         (x) =>
-          x.path === pathname &&
+          (x.path === pathname ||
+            (x.activePaths && x.activePaths.includes(pathname))) &&
           permissions.includes(x.permission || PermissionType.Unknown)
       );
 

@@ -1,16 +1,17 @@
 import { Grid, makeStyles, Theme } from "@material-ui/core";
-import { Certificate } from "model";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import Form from "../../../hook-forms";
-import { CognitoService } from "../../../services";
+import { cognitoService } from "../../../services";
 import { Errors, Pages } from "../../../utils";
 import { Button } from "../../atoms";
 import { DefaultContainer } from "../../organisms";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { SignInStatus } from "../../../models";
+import { Certificate } from "../../../models/accounts";
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
@@ -51,7 +52,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const { handleSubmit } = form;
 
   const onSignIn = async (data: Certificate) => {
-    const result = await CognitoService.signIn(data.email, data.password);
+    const result = await cognitoService.signIn(data.email, data.password);
     const status = result.challengeName;
 
     if (["NEW_PASSWORD_REQUIRED", "SMS_MFA"].includes(status)) {

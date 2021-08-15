@@ -6,7 +6,7 @@ import { ProductInfoForm, ProductImagesForm } from "../../organisms";
 import * as yup from "yup";
 import { Errors } from "../../../utils";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { IProduct } from "model";
+import { IProduct } from "../../../models/product";
 
 const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),

@@ -5,8 +5,8 @@ import { Pages } from "../utils";
 import PrivateRoute from "./PrivateRoute";
 import SuspenseRoute from "./SuspenseRoute";
 
-const NotFound = lazy(() => import("../pages/NotFound"));
-const Dashboard = lazy(() => import("../pages/Dashboard"));
+const NotFound = lazy(() => import("../pages/not-found"));
+const Dashboard = lazy(() => import("../pages/dashboard"));
 const User = lazy(() => import("../pages/user"));
 const Vendor = lazy(() => import("../pages/vendor"));
 const Category = lazy(() => import("../pages/category"));

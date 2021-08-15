@@ -1,6 +1,5 @@
 import { Box, Grid } from "@material-ui/core";
 import sortBy from "lodash/sortBy";
-import { ListingResponse, IProduct } from "model";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
@@ -13,7 +12,9 @@ import {
   SkeletonTemplate,
   ListProducts as Products,
 } from "../../../components";
-import usePermission from "../../../hooks/usePermission";
+import { usePermission } from "../../../hooks";
+import { ListingResponse } from "../../../models";
+import { IProduct } from "../../../models/product";
 import { Pages } from "../../../utils";
 
 const headers: HeaderProps[] = [

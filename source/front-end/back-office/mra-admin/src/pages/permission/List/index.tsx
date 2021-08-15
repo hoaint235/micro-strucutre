@@ -1,18 +1,16 @@
-import { Box, Grid } from "@material-ui/core";
-import { useMemo } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Grid } from "@material-ui/core";
+import { useState, useEffect, useMemo } from "react";
 import {
   Button,
   ListPermissions,
   MainContainer,
   SkeletonTemplate,
+  FieldsChecked,
 } from "../../../components";
-import { FieldsChecked } from "../../../components/templates/ListPermissions/GroupRow";
 import { useConfirm, usePermission } from "../../../hooks";
 import { ActionType, PermissionType, RoleType } from "../../../models";
 import { IListPermission } from "../../../models/accounts";
-import { AccountService } from "../../../services";
+import { accountService } from "../../../services";
 import { toastHelper } from "../../../utils";
 
 const ListPermission = () => {
@@ -23,7 +21,7 @@ const ListPermission = () => {
 
   useEffect(() => {
     (async () => {
-      const permissions = await AccountService.getPermissions();
+      const permissions = await accountService.getPermissions();
       setData(permissions);
     })();
   }, []);
@@ -43,7 +41,7 @@ const ListPermission = () => {
           };
         }) as IListPermission[];
 
-        await AccountService.updatePermissions(payload);
+        await accountService.updatePermissions(payload);
         toastHelper.success("permissionPage.saveSuccess");
       },
       options: {

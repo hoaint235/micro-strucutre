@@ -1,4 +1,4 @@
-import { AccountService } from "../../services";
+import { accountService } from "../../services";
 import { AsyncAction, Dispatch, StateFetcher } from "../app-type";
 import {
   GET_ROLES,
@@ -29,14 +29,14 @@ export const hideLoading = (): AsyncAction => {
 
 export const getRoles = (): AsyncAction => {
   return async (dispatch: Dispatch, _: StateFetcher) => {
-    const roles = await AccountService.getCurrentUserRoles();
+    const roles = await accountService.getCurrentUserRoles();
     dispatch({ type: GET_ROLES, payload: roles });
   };
 };
 
 export const getPermissions = (role: RoleType): AsyncAction => {
   return async (dispatch: Dispatch, _: StateFetcher) => {
-    const permissions = await AccountService.getCurrentUserPermissions(role);
+    const permissions = await accountService.getCurrentUserPermissions(role);
     dispatch({ type: GET_PERMISSIONS, payload: permissions });
   };
 };
@@ -46,7 +46,7 @@ export const getActions = (
   permission: PermissionType
 ): AsyncAction => {
   return async (dispatch: Dispatch, _: StateFetcher) => {
-    const actions = await AccountService.getCurrentUserActions(
+    const actions = await accountService.getCurrentUserActions(
       role,
       permission
     );

@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { CognitoService } from "../../services";
+import { cognitoService } from "../../services";
 import { WindowEvents } from "../constants";
 import { Store } from "redux";
 import { hideLoading, showLoading } from "../../store/application";
@@ -8,7 +8,7 @@ const AxiosInterceptor = {
   setup(store: Store) {
     axios.interceptors.request.use(
       async (request: AxiosRequestConfig) => {
-        const token = await CognitoService.getAccessToken();
+        const token = await cognitoService.getAccessToken();
         if (token) {
           request.headers.common["Authorization"] = `Bearer ${token}`;
         }
