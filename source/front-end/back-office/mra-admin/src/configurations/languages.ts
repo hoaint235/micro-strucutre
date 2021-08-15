@@ -1,4 +1,6 @@
-const Languages: LanguageItem[] = [
+import { ILanguageItem } from "../models";
+
+const Languages: ILanguageItem[] = [
   {
     title: "English",
     location: "en",

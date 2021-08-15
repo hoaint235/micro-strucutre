@@ -1,35 +1,6 @@
-declare type LanguageItem = {
-  title: string;
-  location: string;
-};
-
-declare type TypographyColor =
-  | "initial"
-  | "inherit"
-  | "primary"
-  | "secondary"
-  | "textPrimary"
-  | "textSecondary"
-  | "error";
-
-declare type TypographyProps = {
-  label: string;
-  className?: string;
-  style?: React.CSSProperties;
-  color?: TypographyColor;
-};
-
 declare type SelectionProps<T = string> = {
   key: T;
   value: string;
-};
-
-declare type IconMenuProps<TModel> = {
-  items: Array<TModel>;
-  children?: any;
-  color?: "primary" | "secondary";
-  renderItem: (item: TModel) => any;
-  onItemClick: (item: TModel) => void;
 };
 
 declare type GlobalProps = any;
@@ -48,7 +19,6 @@ declare type ExtendProps = {
 };
 
 declare type FormMode = "Add" | "Update";
-
 declare type DialogStateProps = {
   open: boolean;
   mode: FormMode;

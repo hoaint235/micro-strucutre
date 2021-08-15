@@ -5,3 +5,4 @@ export * from "./IMenuItem";
 export * from "./HttpRequest";
 export * from "./ForgotStatus";
 export * from "./SignInStatus";
+export * from "./ILanguageItem";

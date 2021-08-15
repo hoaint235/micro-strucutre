@@ -12,5 +12,6 @@ export const useRowStyles = makeStyles({
     "& > *": {
       borderBottom: "unset",
     },
+    backgroundColor: "rgba(224, 224, 224, 0.4)",
   },
 });

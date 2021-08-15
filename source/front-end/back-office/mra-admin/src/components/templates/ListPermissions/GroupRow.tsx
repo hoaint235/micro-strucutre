@@ -88,10 +88,7 @@ const GroupRow = (props: GroupRowProps) => {
 
   return (
     <Fragment>
-      <TableRow
-        className={classes.root}
-        style={{ backgroundColor: "rgba(224, 224, 224, 0.4)" }}
-      >
+      <TableRow className={classes.root}>
         <TableCell className={classesCell.root}>
           <Grid container alignItems="center" spacing={2}>
             <Grid item>
