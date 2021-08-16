@@ -7,7 +7,7 @@ trigger:
       - feature/fe/admin/*
   paths:
     include:
-      - "/source/front-end/back-office/mra-admin/*"
+      - "/source/front-end/back-office/*"
 
 pr:
   - master
