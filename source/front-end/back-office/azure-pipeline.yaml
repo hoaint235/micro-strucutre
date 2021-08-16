@@ -22,7 +22,7 @@ variables:
   - name: FIREBASE_TOKEN
     value: 0e7EL5p0cB3mwCgYIARAAGA4SNwF-L9IrRJTJPOXWPVQXxHCQT7HkQbyqDBjJHNmSR4kr1hea6j_B4axlcXw9kcdFT_fS_p5WiTQ
   - name: sourceDictionary
-    value: $(Pipeline.Workspace)/s/source/front-end/back-office/mra-admin/
+    value: $(Pipeline.Workspace)/s/source/front-end/back-office/
 
 stages:
   - stage: Build
