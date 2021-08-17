@@ -1,13 +1,13 @@
-import { ILanguageItem } from "../models";
+import { ILanguageItem } from '../models';
 
 const Languages: ILanguageItem[] = [
   {
-    title: "English",
-    location: "en",
+    title: 'English',
+    location: 'en',
   },
   {
-    title: "VietNamese",
-    location: "vn",
+    title: 'VietNamese',
+    location: 'vn',
   },
 ];
 

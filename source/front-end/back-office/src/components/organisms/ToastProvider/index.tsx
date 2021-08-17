@@ -1,11 +1,11 @@
-import { useCallback, useEffect } from "react";
-import { toast, ToastOptions, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { WindowEvents } from "../../../utils";
-import { ToastMessage } from "../../molecules";
+import { useCallback, useEffect } from 'react';
+import { toast, ToastOptions, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { WindowEvents } from '../../../utils';
+import { ToastMessage } from '../../molecules';
 
 const configToast: ToastOptions = {
-  position: "top-center",
+  position: 'top-center',
   autoClose: 3000,
   hideProgressBar: false,
   closeOnClick: false,
@@ -25,7 +25,7 @@ const ToastProvider = () => {
       ),
       {
         ...configToast,
-        type: "error",
+        type: 'error',
       }
     );
   }, []);
@@ -38,7 +38,7 @@ const ToastProvider = () => {
       ),
       {
         ...configToast,
-        type: "success",
+        type: 'success',
       }
     );
   }, []);

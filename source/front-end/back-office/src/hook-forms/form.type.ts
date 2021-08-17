@@ -1,12 +1,11 @@
-import { AutoAsynchronousProps, AutocompleteProps } from "./../components";
-import { SwitchProps } from "./../components/atoms";
-import { TextFieldProps } from "@material-ui/core";
-import { RegisterOptions, UseFormReturn } from "react-hook-form";
-import { InputProps } from "../components/atoms";
+import { TextFieldProps } from '@material-ui/core';
+import { RegisterOptions, UseFormReturn } from 'react-hook-form';
+import { AutoAsynchronousProps, AutocompleteProps } from '../components';
+import { SwitchProps, InputProps } from '../components/atoms';
 
 export type Rules = Omit<
   RegisterOptions,
-  "valueAsNumber" | "valueAsDate" | "setValueAs"
+  'valueAsNumber' | 'valueAsDate' | 'setValueAs'
 >;
 
 export type HookFormFieldProps = {
@@ -29,11 +28,11 @@ export type SelectFormProps = HookFormFieldProps &
   };
 
 export type SwitchFormProps = HookFormFieldProps &
-  Omit<SwitchProps, "onChange"> & {
+  Omit<SwitchProps, 'onChange'> & {
     onChange?: (value: boolean) => void;
   };
 
-export type AutocompleteFormProps = Omit<AutocompleteProps, "onChange"> &
+export type AutocompleteFormProps = Omit<AutocompleteProps, 'onChange'> &
   HookFormFieldProps;
 
 export type AutoAsynchronousFormProps = AutoAsynchronousProps &

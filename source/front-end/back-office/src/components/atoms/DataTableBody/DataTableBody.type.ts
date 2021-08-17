@@ -1,4 +1,4 @@
-import { HeaderProps } from "../DataTableHeader/DataTableHeader.type";
+import { HeaderProps } from '../DataTableHeader/DataTableHeader.type';
 
 export type DataTableBodyProps<T extends object = GlobalProps> = {
   headers: HeaderProps[];

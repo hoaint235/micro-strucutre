@@ -1,6 +1,6 @@
-import { useController } from "react-hook-form";
-import { Switch as Control } from "../../components/atoms";
-import { SwitchFormProps } from "../form.type";
+import { useController } from 'react-hook-form';
+import { Switch as Control } from '../../components/atoms';
+import { SwitchFormProps } from '../form.type';
 
 const Switch = (props: SwitchFormProps) => {
   const {

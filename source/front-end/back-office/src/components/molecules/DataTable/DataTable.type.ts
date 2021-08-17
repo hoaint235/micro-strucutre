@@ -1,4 +1,4 @@
-import { DataTableBodyProps, OrderProps } from "../../atoms";
+import { DataTableBodyProps, OrderProps } from '../../atoms';
 
 export type PagingProps = {
   newPage: number;

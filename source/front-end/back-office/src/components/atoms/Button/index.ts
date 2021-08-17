@@ -1,6 +1,6 @@
-import Primary from "./Primary";
-import Secondary from "./Secondary";
-import Default from "./Default";
+import Primary from './Primary';
+import Secondary from './Secondary';
+import Default from './Default';
 
 type Props = {
   Primary: typeof Primary;
@@ -9,10 +9,10 @@ type Props = {
 };
 
 const Button: Props = {
-  Primary: Primary,
-  Secondary: Secondary,
-  Default: Default,
+  Primary,
+  Secondary,
+  Default,
 };
 
 export default Button;
-export * from "./Button.type";
+export * from './Button.type';

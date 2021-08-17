@@ -1,9 +1,9 @@
-import { Card, CardContent, Grid, Paper } from "@material-ui/core";
-import { Button, Typography, Image } from "../../components";
-import { useHistory } from "react-router-dom";
-import { Home } from "@material-ui/icons";
-import { useStyles } from "./NotFound.style";
-import { Pages } from "../../utils";
+import { Card, CardContent, Grid, Paper } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { Home } from '@material-ui/icons';
+import { Button, Typography, Image } from '../../components';
+import { useStyles } from './NotFound.style';
+import { Pages } from '../../utils';
 
 const NotFound = () => {
   const history = useHistory();

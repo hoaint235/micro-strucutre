@@ -1,5 +1,5 @@
-import { createContext } from "react";
-import { ConfirmationOptionsProps } from "../../molecules";
+import { createContext } from 'react';
+import { ConfirmationOptionsProps } from '../../molecules';
 
 export type ContextProps = {
   title: string;

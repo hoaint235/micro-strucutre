@@ -1,4 +1,4 @@
-import { WindowEvents } from "../constants";
+import { WindowEvents } from '../constants';
 
 const toastHelper = {
   success(message: string) {

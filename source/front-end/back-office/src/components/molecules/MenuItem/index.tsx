@@ -1,31 +1,31 @@
-import { matchPath, NavLink, useHistory, useLocation } from "react-router-dom";
-import {
-  useStyleListItem,
-  useStyleItemIconParent,
-  useStyleItemIconChildren,
-  useStyleItemText,
-  useStyles,
-} from "./MenuItem.style";
-import { useTranslation } from "react-i18next";
+import { matchPath, NavLink, useHistory, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import React, {
   forwardRef,
   useCallback,
   useMemo,
   Fragment,
   useState,
-} from "react";
+} from 'react';
 import {
   ListItem,
   ListItemIcon,
   ListItemText,
   Collapse,
   List,
-} from "@material-ui/core";
-import { WindowEvents } from "../../../utils";
-import { FiberManualRecord, ExpandMore, ExpandLess } from "@material-ui/icons";
-import clsx from "clsx";
-import { IMenuItem, PermissionType } from "../../../models";
-import { useStateSelector } from "../../../store";
+} from '@material-ui/core';
+import { FiberManualRecord, ExpandMore, ExpandLess } from '@material-ui/icons';
+import clsx from 'clsx';
+import { WindowEvents } from '../../../utils';
+import {
+  useStyleListItem,
+  useStyleItemIconParent,
+  useStyleItemIconChildren,
+  useStyleItemText,
+  useStyles,
+} from './MenuItem.style';
+import { IMenuItem, PermissionType } from '../../../models';
+import { useStateSelector } from '../../../store';
 
 const MenuItem = (props: IMenuItem) => {
   const { icon: Icon, label, children } = props;
@@ -47,13 +47,13 @@ const MenuItem = (props: IMenuItem) => {
   );
 
   const isMatch = (path: string) =>
-    !!matchPath(pathname, { path: path, exact: true, strict: true });
+    !!matchPath(pathname, { path, exact: true, strict: true });
 
   const checkActivate = useCallback(
     (path?: string, activePaths?: string[]) => {
       const active = activePaths
         ? activePaths.some((x: string) => isMatch(x))
-        : isMatch(path || "");
+        : isMatch(path || '');
       return active;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,7 +66,7 @@ const MenuItem = (props: IMenuItem) => {
     permission?: PermissionType
   ) => {
     event.preventDefault();
-    history.push(path || "/", { permission });
+    history.push(path || '/', { permission });
     window.dispatchEvent(new CustomEvent(WindowEvents.CLOSE_MOBILE_MENU));
   };
 
@@ -133,9 +133,9 @@ const MenuItem = (props: IMenuItem) => {
   }
 
   return (
-    <Fragment>
+    <>
       {children.some((x) => checkValidPermission(x.permission)) && (
-        <Fragment>
+        <>
           <ListItem
             button
             component="div"
@@ -161,9 +161,9 @@ const MenuItem = (props: IMenuItem) => {
                 children.map((item: IMenuItem) => MenuChildren(item, true))}
             </List>
           </Collapse>
-        </Fragment>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 

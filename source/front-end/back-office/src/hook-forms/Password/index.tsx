@@ -1,9 +1,9 @@
-import { useController } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useCallback } from "react";
-import { Field } from "../../components/atoms";
-import { InputFormProps } from "../form.type";
-import get from "lodash/get";
+import { useController } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useCallback } from 'react';
+import get from 'lodash/get';
+import { Field } from '../../components/atoms';
+import { InputFormProps } from '../form.type';
 
 const Password = (props: InputFormProps) => {
   const {

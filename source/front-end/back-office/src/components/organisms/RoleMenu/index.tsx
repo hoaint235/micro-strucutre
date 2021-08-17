@@ -1,24 +1,23 @@
-import { SwapHoriz } from "@material-ui/icons";
-import { useEffect } from "react";
-import { Fragment, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useConfirm } from "../../../hooks";
-import { RoleType } from "../../../models";
-import { storageService } from "../../../services";
-import { useStateSelector } from "../../../store";
+import { SwapHoriz } from '@material-ui/icons';
+import { useEffect, Fragment, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import lowerFirst from 'lodash/lowerFirst';
+import { useTranslation } from 'react-i18next';
+import { useConfirm } from '../../../hooks';
+import { RoleType } from '../../../models';
+import { storageService } from '../../../services';
+import { useStateSelector } from '../../../store';
 import {
   getPermissions,
   getRoles,
   setCurrentRole as setRole,
-} from "../../../store/application";
-import { Typography } from "../../atoms";
-import { IconMenu } from "../../molecules";
-import lowerFirst from "lodash/lowerFirst";
-import { useTranslation } from "react-i18next";
+} from '../../../store/application';
+import { Typography } from '../../atoms';
+import { IconMenu } from '../../molecules';
 
 const RoleMenu = () => {
   const { roles } = useStateSelector((state) => state.appState);
-  const [currentRole, setCurrentRole] = useState("");
+  const [currentRole, setCurrentRole] = useState('');
   const dispatch = useDispatch();
   const confirm = useConfirm();
   const { t } = useTranslation();
@@ -64,20 +63,20 @@ const RoleMenu = () => {
     }
 
     confirm({
-      title: "commons.switchRole.title",
-      description: t("commons.switchRole.description", { role: item.value }),
+      title: 'commons.switchRole.title',
+      description: t('commons.switchRole.description', { role: item.value }),
       onSubmit: () => {
         loadPermission(item.key);
       },
       options: {
-        cancellationText: "buttons.no",
-        confirmationText: "buttons.yes",
+        cancellationText: 'buttons.no',
+        confirmationText: 'buttons.yes',
       },
     });
   };
 
   return (
-    <Fragment>
+    <>
       {roles.length > 1 ? (
         <IconMenu
           items={rolesTransfer}
@@ -89,7 +88,7 @@ const RoleMenu = () => {
       ) : (
         <Typography.Label label={currentRole} color="textPrimary" />
       )}
-    </Fragment>
+    </>
   );
 };
 

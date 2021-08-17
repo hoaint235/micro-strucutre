@@ -1,10 +1,9 @@
-import { Grid } from "@material-ui/core";
-import { Delete, Visibility } from "@material-ui/icons";
-import { ListingResponse } from "../../../models";
-import { ICategory } from "../../../models/category";
-import { HeaderProps } from "../../atoms";
-import { DataTable, IconButton, SortProps } from "../../molecules";
-import { PagingProps } from "../../molecules";
+import { Grid } from '@material-ui/core';
+import { Delete, Visibility } from '@material-ui/icons';
+import { ListingResponse } from '../../../models';
+import { ICategory } from '../../../models/category';
+import { HeaderProps } from '../../atoms';
+import { DataTable, IconButton, SortProps, PagingProps } from '../../molecules';
 
 type Props = {
   data: ListingResponse<ICategory>;
@@ -18,28 +17,26 @@ type Props = {
 const ListCategories = (props: Props) => {
   const { data, headers, onDelete, onViewDetail, onPaging, onSort } = props;
 
-  const renderAction = (data: ICategory) => {
-    return (
-      <Grid container spacing={1}>
-        <Grid item>
-          <IconButton.Primary
-            icon={Visibility}
-            name="edit"
-            label="buttons.edit"
-            onClick={() => onViewDetail(data.id)}
-          />
-        </Grid>
-        <Grid item>
-          <IconButton.Secondary
-            icon={Delete}
-            name="delete"
-            label="buttons.delete"
-            onClick={() => onDelete(data.id)}
-          />
-        </Grid>
+  const renderAction = (data: ICategory) => (
+    <Grid container spacing={1}>
+      <Grid item>
+        <IconButton.Primary
+          icon={Visibility}
+          name="edit"
+          label="buttons.edit"
+          onClick={() => onViewDetail(data.id)}
+        />
       </Grid>
-    );
-  };
+      <Grid item>
+        <IconButton.Secondary
+          icon={Delete}
+          name="delete"
+          label="buttons.delete"
+          onClick={() => onDelete(data.id)}
+        />
+      </Grid>
+    </Grid>
+  );
 
   return (
     <DataTable

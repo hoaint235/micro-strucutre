@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { cognitoService } from "../services";
-import { Pages } from "../utils";
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { cognitoService } from '../services';
+import { Pages } from '../utils';
 
 const useGuard = () => {
   const [isAuth, setIsAuth] = useState<boolean>(false);
@@ -12,7 +12,6 @@ const useGuard = () => {
     setIsAuth(authenticated);
     if (!authenticated) {
       history.push(Pages.SIGN_IN);
-      return;
     }
   };
 

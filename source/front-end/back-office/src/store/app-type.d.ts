@@ -1,5 +1,5 @@
-import { RootState } from "reducer";
-import { Action as ReduxAction } from "redux";
+import { RootState } from 'reducer';
+import { Action as ReduxAction } from 'redux';
 
 declare interface Action<T = any> {
   readonly type: string;

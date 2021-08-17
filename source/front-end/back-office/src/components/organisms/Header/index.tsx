@@ -5,37 +5,37 @@ import {
   makeStyles,
   Theme,
   Toolbar,
-} from "@material-ui/core";
-import { Menu } from "@material-ui/icons";
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { Logo } from "../../atoms";
-import { IconButton } from "../../molecules";
-import LanguageMenu from "../LanguageMenu";
-import RoleMenu from "../RoleMenu";
-import SettingMenu from "../SettingMenu";
+} from '@material-ui/core';
+import { Menu } from '@material-ui/icons';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { Logo } from '../../atoms';
+import { IconButton } from '../../molecules';
+import LanguageMenu from '../LanguageMenu';
+import RoleMenu from '../RoleMenu';
+import SettingMenu from '../SettingMenu';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingTop: 8,
   },
   leftContainer: {
-    display: "flex",
-    width: "228px",
-    alignItems: "center",
-    [theme.breakpoints.down("sm")]: {
-      width: "auto",
+    display: 'flex',
+    width: '228px',
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      width: 'auto',
     },
   },
   logoContainer: {
-    display: "block",
+    display: 'block',
     flexGrow: 1,
     WebkitBoxFlex: 1,
   },
   toggleMenu: {
-    display: "inline-flex",
-    justifyContent: "center",
+    display: 'inline-flex',
+    justifyContent: 'center',
   },
 }));
 
@@ -57,7 +57,7 @@ const Header = (props: Props) => {
 
   const navigateDefaultPage = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    history.push("/");
+    history.push('/');
   };
 
   return (
@@ -82,8 +82,8 @@ const Header = (props: Props) => {
           />
         </div>
 
-        <div style={{ flexGrow: 1 }}></div>
-        <div style={{ flexGrow: 1 }}></div>
+        <div style={{ flexGrow: 1 }} />
+        <div style={{ flexGrow: 1 }} />
 
         <Box mr={1}>
           <RoleMenu />

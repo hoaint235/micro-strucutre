@@ -1,31 +1,31 @@
-import { IListPermission, IUser } from "../models/accounts";
+import { IListPermission, IUser } from '../models/accounts';
 import {
   RoleType,
   PermissionType,
   ActionType,
   ListingRequest,
   ListingResponse,
-} from "../models";
-import { BaseService } from "./base-service";
+} from '../models';
+import { BaseService } from './base-service';
 
 class UserService extends BaseService {
   constructor() {
-    super("account");
+    super('account');
   }
 
   async getPermissions() {
-    return await super.get<any, IListPermission[]>("roles/permissions", false);
+    return await super.get<any, IListPermission[]>('roles/permissions', false);
   }
 
   async updatePermissions(payload: IListPermission[]) {
     return await super.put<{ permissions: IListPermission[] }, {}>(
-      "roles/permissions",
+      'roles/permissions',
       { permissions: payload }
     );
   }
 
   async getCurrentUserRoles() {
-    return await super.get<any, RoleType[]>("roles/current-role", false);
+    return await super.get<any, RoleType[]>('roles/current-role', false);
   }
 
   async getCurrentUserPermissions(role: RoleType) {
@@ -47,7 +47,7 @@ class UserService extends BaseService {
 
   async getUsers(request: ListingRequest) {
     return await super.post<ListingRequest, ListingResponse<IUser>>(
-      "users/query",
+      'users/query',
       request,
       false
     );
@@ -58,11 +58,11 @@ class UserService extends BaseService {
   }
 
   async updateStatus(email: string, status: number) {
-    await super.put("users/status", { email: email, status: status });
+    await super.put('users/status', { email, status });
   }
 
   async createUser(payload: IUser) {
-    await super.post("users", { ...payload });
+    await super.post('users', { ...payload });
   }
 
   async deactivateUser(userId: string) {

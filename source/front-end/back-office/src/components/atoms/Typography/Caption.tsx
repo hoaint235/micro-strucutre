@@ -1,10 +1,10 @@
-import { Typography } from "@material-ui/core";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { TypographyProps } from "./Typography.type";
+import { Typography } from '@material-ui/core';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { TypographyProps } from './Typography.type';
 
 const Caption = (props: TypographyProps) => {
-  const { label, color = "textPrimary", ...restProps } = props;
+  const { label, color = 'textPrimary', ...restProps } = props;
   const { t } = useTranslation();
 
   return (

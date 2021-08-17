@@ -1,20 +1,20 @@
-import { Box, Grid, makeStyles, Theme } from "@material-ui/core";
-import React, { useMemo } from "react";
-import ErrorProvider from "../ErrorProvider";
-import { Logo, Typography } from "../../atoms";
-import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
+import { Box, Grid, makeStyles, Theme } from '@material-ui/core';
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
+import ErrorProvider from '../ErrorProvider';
+import { Logo, Typography } from '../../atoms';
 
 const useStyles = makeStyles((theme: Theme) => ({
   header: {
     fontWeight: 700,
-    fontSize: "1.5rem",
+    fontSize: '1.5rem',
     lineHeight: 1.2,
     color: theme.palette.primary.main,
   },
   logo: {
-    display: "flex",
-    justifyContent: "flex-end",
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
 }));
 
@@ -31,7 +31,7 @@ const DefaultContainer = (props: Props) => {
 
   const handleLogoClick = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    history.push("/");
+    history.push('/');
   };
 
   const Header = useMemo(

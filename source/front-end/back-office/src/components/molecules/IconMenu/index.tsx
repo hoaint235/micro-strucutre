@@ -7,24 +7,24 @@ import {
   MenuList,
   Paper,
   Popper,
-} from "@material-ui/core";
-import React, { Fragment, useState } from "react";
+} from '@material-ui/core';
+import React, { Fragment, useState } from 'react';
 import {
   useStyleIconButton,
   useStyles,
   useStylesAvatar,
-} from "./IconMenu.style";
+} from './IconMenu.style';
 
 export type IconMenuProps<TModel> = {
   items: Array<TModel>;
   children?: any;
-  color?: "primary" | "secondary";
+  color?: 'primary' | 'secondary';
   renderItem: (item: TModel) => any;
   onItemClick: (item: TModel) => void;
 };
 
 const IconMenu = <TModel extends unknown>(props: IconMenuProps<TModel>) => {
-  const { items, children, renderItem, onItemClick, color = "primary" } = props;
+  const { items, children, renderItem, onItemClick, color = 'primary' } = props;
 
   const [open, setOpen] = useState(false);
   const classesIconButton = useStyleIconButton();
@@ -42,26 +42,26 @@ const IconMenu = <TModel extends unknown>(props: IconMenuProps<TModel>) => {
   };
 
   const handleListKeyDown = (event: GlobalProps) => {
-    if (event.key === "Tab") {
+    if (event.key === 'Tab') {
       event.preventDefault();
       setOpen(false);
     }
   };
 
   return (
-    <Fragment>
+    <>
       <IconButton
         classes={{ ...classesIconButton }}
         color="inherit"
         ref={anchorRef}
         size="small"
-        aria-controls={open ? "menu-list-grow" : undefined}
+        aria-controls={open ? 'menu-list-grow' : undefined}
         aria-haspopup="true"
         onClick={onToggle}
       >
         <Avatar
           className={
-            color === "primary" ? classes.iconPrimary : classes.iconSecondary
+            color === 'primary' ? classes.iconPrimary : classes.iconSecondary
           }
           classes={{ ...classesAvatar }}
         >
@@ -82,7 +82,7 @@ const IconMenu = <TModel extends unknown>(props: IconMenuProps<TModel>) => {
             {...TransitionProps}
             style={{
               transformOrigin:
-                placement === "bottom" ? "center top" : "center bottom",
+                placement === 'bottom' ? 'center top' : 'center bottom',
             }}
           >
             <Paper>
@@ -107,7 +107,7 @@ const IconMenu = <TModel extends unknown>(props: IconMenuProps<TModel>) => {
           </Grow>
         )}
       </Popper>
-    </Fragment>
+    </>
   );
 };
 

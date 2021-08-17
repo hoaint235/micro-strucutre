@@ -1,13 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import configureStore from "./store";
-import { Provider } from "react-redux";
-import AxiosInterceptor from "./utils/http-interceptor";
-import { cognitoService } from "./services";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import configureStore from './store';
+import AxiosInterceptor from './utils/http-interceptor';
+import { cognitoService } from './services';
 
 const store = configureStore({});
 
@@ -15,7 +15,7 @@ AxiosInterceptor.setup(store);
 cognitoService.initialize();
 
 const renderApplication = () => {
-  const rootHtml = document.getElementById("root");
+  const rootHtml = document.getElementById('root');
   const application = (
     <React.StrictMode>
       <Provider store={store}>

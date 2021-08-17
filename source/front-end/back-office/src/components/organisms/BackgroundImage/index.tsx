@@ -1,7 +1,7 @@
-import { Box, Grid } from "@material-ui/core";
-import { useTranslation } from "react-i18next";
-import { Typography } from "../../atoms";
-import useStyles from "./BackgroundImage.style";
+import { Box, Grid } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
+import { Typography } from '../../atoms';
+import useStyles from './BackgroundImage.style';
 
 const BackgroundImage = () => {
   const classes = useStyles();

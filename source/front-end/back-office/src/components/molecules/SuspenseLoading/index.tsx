@@ -1,12 +1,12 @@
-import { CircularProgress, makeStyles } from "@material-ui/core";
-import { Suspense } from "react";
+import { CircularProgress, makeStyles } from '@material-ui/core';
+import { Suspense } from 'react';
 
 const useStyles = makeStyles({
   root: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    textAlign: "center",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    textAlign: 'center',
   },
 });
 

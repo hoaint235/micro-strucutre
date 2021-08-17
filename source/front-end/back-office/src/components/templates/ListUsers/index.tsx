@@ -1,16 +1,15 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from '@material-ui/core';
 import {
   CheckCircleOutline,
   Delete,
   HighlightOff,
   Visibility,
-} from "@material-ui/icons";
-import { ListingResponse } from "../../../models";
-import { IUser } from "../../../models/accounts";
-import { Roles, Statuses } from "../../../utils";
-import { HeaderProps, Status, Typography } from "../../atoms";
-import { DataTable, IconButton, SortProps } from "../../molecules";
-import { PagingProps } from "../../molecules";
+} from '@material-ui/icons';
+import { ListingResponse } from '../../../models';
+import { IUser } from '../../../models/accounts';
+import { Roles, Statuses } from '../../../utils';
+import { HeaderProps, Status, Typography } from '../../atoms';
+import { DataTable, IconButton, SortProps, PagingProps } from '../../molecules';
 
 type Props = {
   data: ListingResponse<IUser>;
@@ -35,68 +34,64 @@ const ListUsers = (props: Props) => {
     onSort,
   } = props;
 
-  const renderAction = (data: any) => {
-    return (
-      <Grid container spacing={1}>
+  const renderAction = (data: any) => (
+    <Grid container spacing={1}>
+      <Grid item>
+        <IconButton.Primary
+          icon={Visibility}
+          name="edit"
+          disabled={!data.hasPermission}
+          label="buttons.edit"
+          onClick={() => onViewDetail(data.id)}
+        />
+      </Grid>
+      {!data.isActivate && (
         <Grid item>
           <IconButton.Primary
-            icon={Visibility}
-            name="edit"
+            name="activate"
+            icon={CheckCircleOutline}
             disabled={!data.hasPermission}
-            label="buttons.edit"
-            onClick={() => onViewDetail(data.id)}
+            label="buttons.activate"
+            onClick={() => onActivate(data.id)}
           />
         </Grid>
-        {!data.isActivate && (
-          <Grid item>
-            <IconButton.Primary
-              name="activate"
-              icon={CheckCircleOutline}
-              disabled={!data.hasPermission}
-              label="buttons.activate"
-              onClick={() => onActivate(data.id)}
-            />
-          </Grid>
-        )}
-        {!data.isActivate && (
-          <Grid item>
-            <IconButton.Secondary
-              icon={Delete}
-              name="delete"
-              disabled={!data.hasPermission}
-              label="buttons.delete"
-              onClick={() => onDelete(data.id)}
-            />
-          </Grid>
-        )}
-        {data.isActivate && (
-          <Grid item>
-            <IconButton.Secondary
-              icon={HighlightOff}
-              disabled={!data.hasPermission}
-              label="buttons.deactivate"
-              name="deactivate"
-              onClick={() => onDeactivate(data.id)}
-            />
-          </Grid>
-        )}
-      </Grid>
-    );
-  };
+      )}
+      {!data.isActivate && (
+        <Grid item>
+          <IconButton.Secondary
+            icon={Delete}
+            name="delete"
+            disabled={!data.hasPermission}
+            label="buttons.delete"
+            onClick={() => onDelete(data.id)}
+          />
+        </Grid>
+      )}
+      {data.isActivate && (
+        <Grid item>
+          <IconButton.Secondary
+            icon={HighlightOff}
+            disabled={!data.hasPermission}
+            label="buttons.deactivate"
+            name="deactivate"
+            onClick={() => onDeactivate(data.id)}
+          />
+        </Grid>
+      )}
+    </Grid>
+  );
 
   const renderActivate = (data: any) => {
     const { isActivate } = data;
     const text = isActivate
-      ? "listUserPage.activate"
-      : "listUserPage.deactivate";
-    return <Status label={text} color={isActivate ? "primary" : "secondary"} />;
+      ? 'listUserPage.activate'
+      : 'listUserPage.deactivate';
+    return <Status label={text} color={isActivate ? 'primary' : 'secondary'} />;
   };
 
-  const renderStatus = (data: any) => {
-    return (
-      <Typography.Label color="textPrimary" label={Statuses[data.status]} />
-    );
-  };
+  const renderStatus = (data: any) => (
+    <Typography.Label color="textPrimary" label={Statuses[data.status]} />
+  );
 
   const renderRole = (data: any) => {
     const { roles: userRoles } = data;
@@ -130,14 +125,12 @@ const ListUsers = (props: Props) => {
     );
   };
 
-  const renderCreatedDate = (data: any) => {
-    return (
-      <Typography.Label
-        color="textPrimary"
-        label={new Date(data.createdDate).toLocaleDateString()}
-      />
-    );
-  };
+  const renderCreatedDate = (data: any) => (
+    <Typography.Label
+      color="textPrimary"
+      label={new Date(data.createdDate).toLocaleDateString()}
+    />
+  );
 
   return (
     <DataTable

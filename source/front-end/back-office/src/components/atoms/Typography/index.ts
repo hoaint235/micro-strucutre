@@ -1,8 +1,8 @@
-import Title from "./Title";
-import Subtitle from "./Subtitle";
-import Label from "./Label";
-import Body from "./Body";
-import Caption from "./Caption";
+import Title from './Title';
+import Subtitle from './Subtitle';
+import Label from './Label';
+import Body from './Body';
+import Caption from './Caption';
 
 type Props = {
   Title: typeof Title;
@@ -13,11 +13,11 @@ type Props = {
 };
 
 const Typography: Props = {
-  Title: Title,
-  Subtitle: Subtitle,
-  Label: Label,
-  Body: Body,
-  Caption: Caption,
+  Title,
+  Subtitle,
+  Label,
+  Body,
+  Caption,
 };
 
 export default Typography;

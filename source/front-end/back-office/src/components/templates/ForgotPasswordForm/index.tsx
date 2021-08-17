@@ -1,16 +1,16 @@
-import { Grid } from "@material-ui/core";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import Form from "../../../hook-forms";
-import { cognitoService } from "../../../services";
-import { Button, Typography } from "../../atoms";
-import { DefaultContainer } from "../../organisms";
-import ReCAPTCHA from "react-google-recaptcha";
-import { useState } from "react";
-import * as yup from "yup";
-import { Errors } from "../../../utils";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { ForgotStatus } from "../../../models";
+import { Grid } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { useState } from 'react';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Form from '../../../hook-forms';
+import { cognitoService } from '../../../services';
+import { Button, Typography } from '../../atoms';
+import { DefaultContainer } from '../../organisms';
+import { Errors } from '../../../utils';
+import { ForgotStatus } from '../../../models';
 
 const schema = yup.object().shape({
   email: yup
@@ -24,8 +24,8 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
   const { t } = useTranslation();
   const { onNavigateStep } = props;
   const form = useForm({
-    mode: "onBlur",
-    reValidateMode: "onChange",
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     resolver: yupResolver(schema),
   });
   const [validRecaptcha, setValidRecaptcha] = useState(false);
@@ -39,7 +39,7 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
     await cognitoService.forgotPassword(data.email);
     onNavigateStep &&
       onNavigateStep({
-        status: "CONFIRMATION_CODE",
+        status: 'CONFIRMATION_CODE',
         data: {
           email: data.email,
         },
@@ -55,7 +55,7 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
       <form onSubmit={handleSubmit(onSendActivation)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography.Body label={t("forgotPasswordPage.subtitle")} />
+            <Typography.Body label={t('forgotPasswordPage.subtitle')} />
           </Grid>
           <Grid item xs={12}>
             <Form.Input form={form} label="fields.emailAddress" name="email" />
@@ -73,7 +73,7 @@ const ForgotPasswordForm = (props: HandleStepProps<ForgotStatus>) => {
               fullWidth
               type="submit"
               disabled={!validRecaptcha || !isValid || !isDirty}
-              label={t("buttons.submit")}
+              label={t('buttons.submit')}
             />
           </Grid>
         </Grid>

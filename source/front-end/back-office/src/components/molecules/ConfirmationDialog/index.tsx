@@ -4,17 +4,16 @@ import {
   DialogContent,
   DialogProps,
   DialogTitle,
-} from "@material-ui/core";
-import React from "react";
-import { Button, Typography } from "../../atoms";
-import { ButtonProps } from "../../atoms";
+} from '@material-ui/core';
+import React from 'react';
+import { Button, Typography, ButtonProps } from '../../atoms';
 
 export type ConfirmationOptionsProps = {
   confirmationText?: string;
   cancellationText?: string;
-  dialogProps?: Omit<DialogProps, "open">;
-  confirmationButtonProps?: Omit<ButtonProps, "name" | "label">;
-  cancellationButtonProps?: Omit<ButtonProps, "name" | "label">;
+  dialogProps?: Omit<DialogProps, 'open'>;
+  confirmationButtonProps?: Omit<ButtonProps, 'name' | 'label'>;
+  cancellationButtonProps?: Omit<ButtonProps, 'name' | 'label'>;
 };
 
 export type InformationConfirmationProps = {
@@ -27,7 +26,7 @@ export type ConfirmationProps = {
   open: boolean;
   onCancel: React.MouseEventHandler<HTMLButtonElement>;
   onConfirm: React.MouseEventHandler<HTMLButtonElement>;
-  onClose: (event: {}, reason: "backdropClick" | "escapeKeyDown") => void;
+  onClose: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
   options: ConfirmationOptionsProps;
 };
 

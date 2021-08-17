@@ -1,8 +1,8 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { cognitoService } from "../../services";
-import { WindowEvents } from "../constants";
-import { Store } from "redux";
-import { hideLoading, showLoading } from "../../store/application";
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Store } from 'redux';
+import { cognitoService } from '../../services';
+import { WindowEvents } from '../constants';
+import { hideLoading, showLoading } from '../../store/application';
 
 const AxiosInterceptor = {
   setup(store: Store) {
@@ -10,7 +10,7 @@ const AxiosInterceptor = {
       async (request: AxiosRequestConfig) => {
         const token = await cognitoService.getAccessToken();
         if (token) {
-          request.headers.common["Authorization"] = `Bearer ${token}`;
+          request.headers.common.Authorization = `Bearer ${token}`;
         }
 
         if (!request.data?.cancelLoading) {
@@ -31,15 +31,15 @@ const AxiosInterceptor = {
         return response;
       },
       (error) => {
-        let errorMessage = "errors.internalServerError";
+        let errorMessage = 'errors.internalServerError';
 
         const { status } = error.response;
         switch (status) {
           case 401:
-            errorMessage = "errors.notAuthorized";
+            errorMessage = 'errors.notAuthorized';
             break;
           case 403:
-            errorMessage = "errors.forbidden";
+            errorMessage = 'errors.forbidden';
             break;
         }
 

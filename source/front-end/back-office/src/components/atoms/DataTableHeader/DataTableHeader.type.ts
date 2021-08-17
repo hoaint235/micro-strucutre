@@ -1,5 +1,5 @@
-export type OrderProps = "asc" | "desc";
-export type AlignProps = "left" | "right";
+export type OrderProps = 'asc' | 'desc';
+export type AlignProps = 'left' | 'right';
 
 export type HeaderProps = {
   id?: string;

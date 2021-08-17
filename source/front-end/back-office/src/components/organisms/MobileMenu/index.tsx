@@ -1,20 +1,19 @@
-import { Box, Drawer, makeStyles, Paper } from "@material-ui/core";
-import React from "react";
-import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { WindowEvents } from "../../../utils";
-import { Logo } from "../../atoms";
-import MenuList from "../MenuList";
+import { Box, Drawer, makeStyles, Paper } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { WindowEvents } from '../../../utils';
+import { Logo } from '../../atoms';
+import MenuList from '../MenuList';
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {
     width: 260,
   },
   logoContainer: {
-    display: "flex",
+    display: 'flex',
     padding: 20,
-    marginLeft: "auto",
-    marginRight: "auto",
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 }));
 
@@ -31,7 +30,7 @@ const MobileMenu = (props: Props) => {
 
   const navigateDefaultPage = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    history.push("/");
+    history.push('/');
   };
 
   useEffect(() => {

@@ -6,12 +6,12 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-} from "@material-ui/core";
-import { RoleType } from "../../../models";
-import { IListPermission } from "../../../models/accounts";
-import uniq from "lodash/uniq";
-import GroupRow, { FieldsChecked } from "./GroupRow";
-import { useCellStyles } from "./ListPermissions.style";
+} from '@material-ui/core';
+import uniq from 'lodash/uniq';
+import { RoleType } from '../../../models';
+import { IListPermission } from '../../../models/accounts';
+import GroupRow, { FieldsChecked } from './GroupRow';
+import { useCellStyles } from './ListPermissions.style';
 
 type Props = {
   data: IListPermission[];
@@ -39,7 +39,7 @@ const ListPermissions = (props: Props) => {
                   key={`${role}.header`}
                   align="center"
                   className={classesCell.root}
-                  style={{ fontWeight: "bold" }}
+                  style={{ fontWeight: 'bold' }}
                 >
                   {role.toString().toEnum(RoleType).toString()}
                 </TableCell>

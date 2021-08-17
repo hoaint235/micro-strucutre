@@ -1,5 +1,5 @@
-import { Theme, useMediaQuery } from "@material-ui/core";
-import { useEffect } from "react";
+import { Theme, useMediaQuery } from '@material-ui/core';
+import { useEffect } from 'react';
 
 type Props = {
   onExecute?: () => void;
@@ -7,7 +7,7 @@ type Props = {
 
 const useMobile = (props?: Props) => {
   const isMobile = useMediaQuery<Theme>((theme: Theme) =>
-    theme.breakpoints.down("sm")
+    theme.breakpoints.down('sm')
   );
 
   useEffect(() => {

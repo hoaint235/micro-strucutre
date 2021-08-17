@@ -1,10 +1,10 @@
-import Input from "./Input";
-import MultipleSelect from "./MultipleSelect";
-import Password from "./Password";
-import SingleSelect from "./SingleSelect";
-import Switch from "./Switch";
-import Autocomplete from "./Autocomplete";
-import SelectAsynchronous from "./SelectAsynchronous";
+import Input from './Input';
+import MultipleSelect from './MultipleSelect';
+import Password from './Password';
+import SingleSelect from './SingleSelect';
+import Switch from './Switch';
+import Autocomplete from './Autocomplete';
+import SelectAsynchronous from './SelectAsynchronous';
 
 type Props = {
   Input: typeof Input;
@@ -17,13 +17,13 @@ type Props = {
 };
 
 const Form: Props = {
-  Input: Input,
-  Password: Password,
-  MultipleSelect: MultipleSelect,
-  SingleSelect: SingleSelect,
-  Switch: Switch,
-  Autocomplete: Autocomplete,
-  SelectAsynchronous: SelectAsynchronous,
+  Input,
+  Password,
+  MultipleSelect,
+  SingleSelect,
+  Switch,
+  Autocomplete,
+  SelectAsynchronous,
 };
 
 export default Form;

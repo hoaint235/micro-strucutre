@@ -1,9 +1,9 @@
-import { alpha, makeStyles, Theme } from "@material-ui/core";
+import { alpha, makeStyles, Theme } from '@material-ui/core';
 
 export const useStyleIconButton = makeStyles({
   root: {
-    "&:hover": {
-      backgroundColor: "transparent",
+    '&:hover': {
+      backgroundColor: 'transparent',
     },
   },
 });
@@ -24,6 +24,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 export const useStylesAvatar = makeStyles(() => ({
   root: {
-    borderRadius: "30%",
+    borderRadius: '30%',
   },
 }));

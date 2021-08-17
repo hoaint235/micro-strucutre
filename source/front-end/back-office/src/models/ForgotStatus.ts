@@ -1,1 +1,1 @@
-export type ForgotStatus = "SEND_ACTIVATION" | "CONFIRMATION_CODE";
+export type ForgotStatus = 'SEND_ACTIVATION' | 'CONFIRMATION_CODE';

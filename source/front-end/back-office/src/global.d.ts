@@ -18,7 +18,7 @@ declare type ExtendProps = {
   [key: string]: any;
 };
 
-declare type FormMode = "Add" | "Update";
+declare type FormMode = 'Add' | 'Update';
 declare type DialogStateProps = {
   open: boolean;
   mode: FormMode;
@@ -37,7 +37,7 @@ declare type TreeItem = {
   nodes?: TreeItem[];
 };
 
-declare module "form" {
+declare module 'form' {
   declare type ManageForm<TModel = any> = {
     defaultValues?: TModel;
     onBack: () => void;

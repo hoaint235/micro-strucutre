@@ -1,15 +1,15 @@
-import { Collapse, IconButton, makeStyles } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
-import { Alert } from "@material-ui/lab";
-import { useTranslation } from "react-i18next";
+import { Collapse, IconButton, makeStyles } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import { Alert } from '@material-ui/lab';
+import { useTranslation } from 'react-i18next';
 
 const useAlertStyles = makeStyles({
   root: {
     borderRadius: 12,
   },
   message: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
   },
 });
 

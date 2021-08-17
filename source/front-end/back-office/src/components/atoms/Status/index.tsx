@@ -1,5 +1,5 @@
-import { Chip, ChipProps, makeStyles, Theme } from "@material-ui/core";
-import { useTranslation } from "react-i18next";
+import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 const useStyleChip = makeStyles((theme: Theme) => ({
   root: {

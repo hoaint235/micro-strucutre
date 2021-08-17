@@ -1,16 +1,16 @@
-import React, { useState, useCallback, Fragment } from "react";
-import ConfirmContext, { ContextProps } from "./ConfirmContext";
+import React, { useState, useCallback, Fragment } from 'react';
+import ConfirmContext, { ContextProps } from './ConfirmContext';
 import {
   ConfirmationDialog,
   ConfirmationOptionsProps,
   InformationConfirmationProps,
-} from "../../molecules";
+} from '../../molecules';
 
 const DEFAULT_OPTIONS: ConfirmationOptionsProps = {
-  confirmationText: "buttons.confirm",
-  cancellationText: "buttons.cancel",
+  confirmationText: 'buttons.confirm',
+  cancellationText: 'buttons.cancel',
   dialogProps: {},
-  confirmationButtonProps: { color: "secondary" },
+  confirmationButtonProps: { color: 'secondary' },
   cancellationButtonProps: {},
 };
 
@@ -26,8 +26,8 @@ const ConfirmProvider = (props: Props) => {
     ...options,
   });
   const [information, setInformation] = useState<InformationConfirmationProps>({
-    title: "",
-    description: "",
+    title: '',
+    description: '',
   });
   const [resolveReject, setResolveReject] = useState<(Function | undefined)[]>(
     []
@@ -70,7 +70,7 @@ const ConfirmProvider = (props: Props) => {
   }, [resolve, handleOnClick]);
 
   return (
-    <Fragment>
+    <>
       <ConfirmContext.Provider value={confirm}>
         {children}
       </ConfirmContext.Provider>
@@ -82,7 +82,7 @@ const ConfirmProvider = (props: Props) => {
         onCancel={handleCancel}
         onConfirm={handleConfirm}
       />
-    </Fragment>
+    </>
   );
 };
 

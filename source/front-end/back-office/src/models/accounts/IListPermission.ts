@@ -1,4 +1,4 @@
-import { RoleType, PermissionType, ActionType } from "..";
+import { RoleType, PermissionType, ActionType } from '..';
 
 export interface IListPermission {
   role: RoleType;

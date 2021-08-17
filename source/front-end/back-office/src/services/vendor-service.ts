@@ -1,15 +1,15 @@
-import { ListingRequest, ListingResponse } from "../models";
-import { IVendor } from "../models/vendors";
-import { BaseService } from "./base-service";
+import { ListingRequest, ListingResponse } from '../models';
+import { IVendor } from '../models/vendors';
+import { BaseService } from './base-service';
 
 class VendorService extends BaseService {
   constructor() {
-    super("vendor");
+    super('vendor');
   }
 
   async getVendors(request: ListingRequest): Promise<ListingResponse<IVendor>> {
     return await super.get<ListingRequest, ListingResponse<IVendor>>(
-      "vendors",
+      'vendors',
       false,
       {
         params: {
@@ -21,12 +21,12 @@ class VendorService extends BaseService {
   }
 
   async createVendor(payload: IVendor) {
-    return await super.post<IVendor, boolean>("vendors", payload);
+    return await super.post<IVendor, boolean>('vendors', payload);
   }
 
   async loadSuggest(query: string): Promise<any> {
     const response = await super.get<string, ListingResponse<IVendor>>(
-      "vendors",
+      'vendors',
       false,
       {
         params: {
@@ -37,12 +37,10 @@ class VendorService extends BaseService {
       }
     );
 
-    return response.data.map((item) => {
-      return {
-        id: item.id,
-        name: item.name,
-      };
-    });
+    return response.data.map((item) => ({
+      id: item.id,
+      name: item.name,
+    }));
   }
 }
 

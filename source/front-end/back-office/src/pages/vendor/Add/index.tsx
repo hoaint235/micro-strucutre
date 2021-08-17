@@ -1,16 +1,16 @@
-import { Grid } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
-import { MainContainer, ManageVendorForm } from "../../../components";
-import { IVendor } from "../../../models/vendors";
-import { vendorService } from "../../../services";
-import { Pages, toastHelper } from "../../../utils";
+import { Grid } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { MainContainer, ManageVendorForm } from '../../../components';
+import { IVendor } from '../../../models/vendors';
+import { vendorService } from '../../../services';
+import { Pages, toastHelper } from '../../../utils';
 
 const AddVendor = () => {
   const history = useHistory();
 
   const onSubmit = async (data: IVendor) => {
     await vendorService.createVendor(data);
-    toastHelper.success("Create new vendor success");
+    toastHelper.success('Create new vendor success');
     onBackVendorList();
   };
 

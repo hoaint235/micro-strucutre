@@ -1,10 +1,10 @@
-import { Card, CardContent, CardHeader, Grid } from "@material-ui/core";
-import { useCallback, useState } from "react";
-import { UseFormReturn } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import Form from "../../../hook-forms";
-import { countries, Roles } from "../../../utils";
-import { Typography } from "../../atoms";
+import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
+import { useCallback, useState } from 'react';
+import { UseFormReturn } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import Form from '../../../hook-forms';
+import { countries, Roles } from '../../../utils';
+import { Typography } from '../../atoms';
 
 type Props = {
   form: UseFormReturn<any>;
@@ -27,7 +27,7 @@ const UserInfoForm = (props: Props) => {
 
   const getRoles = useCallback(() => {
     const result = Object.keys(Roles)
-      .filter((x) => x !== "MasterData")
+      .filter((x) => x !== 'MasterData')
       .map((key) => ({
         key: Roles[key].toLowerCase(),
         value: t(`roles.${key.toLowerCase()}`),

@@ -1,4 +1,4 @@
-import { TextFieldProps } from "@material-ui/core";
+import { TextFieldProps } from '@material-ui/core';
 
 type RangeProps = {
   min?: number;

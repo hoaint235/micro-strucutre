@@ -1,13 +1,12 @@
-import { Fragment } from "react";
-import { RouteProps, useHistory } from "react-router-dom";
-import { useGuard } from "../hooks";
-import SuspenseRoute from "./SuspenseRoute";
-import { useEffect } from "react";
-import { IMenuItem, PermissionType } from "../models";
-import { useStateSelector } from "../store";
-import { Menus } from "../configurations";
-import { useDispatch } from "react-redux";
-import { setCurrentPermission } from "../store/application";
+import { Fragment, useEffect } from 'react';
+import { RouteProps, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useGuard } from '../hooks';
+import SuspenseRoute from './SuspenseRoute';
+import { IMenuItem, PermissionType } from '../models';
+import { useStateSelector } from '../store';
+import { Menus } from '../configurations';
+import { setCurrentPermission } from '../store/application';
 
 type Props = RouteProps & {
   component: React.LazyExoticComponent<() => JSX.Element>;
@@ -92,19 +91,19 @@ const PrivateRoute = (props: Props) => {
 
     const menu = loadDefaultMenu(Menus, permissions);
     if (menu) {
-      history.push(menu.path || "");
+      history.push(menu.path || '');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [permissions, history.location]);
 
   return (
-    <Fragment>
+    <>
       {isAuth && (
         <SuspenseRoute {...restProps}>
           <Component />
         </SuspenseRoute>
       )}
-    </Fragment>
+    </>
   );
 };
 

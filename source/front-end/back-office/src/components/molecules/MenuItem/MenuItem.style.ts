@@ -1,4 +1,4 @@
-import { alpha, makeStyles, Theme } from "@material-ui/core";
+import { alpha, makeStyles, Theme } from '@material-ui/core';
 
 const useStyleListItem = makeStyles((theme: Theme) => ({
   root: {
@@ -6,21 +6,21 @@ const useStyleListItem = makeStyles((theme: Theme) => ({
     marginBottom: 5,
     paddingLeft: 23,
     fontWeight: 400,
-    "&> .MuiListItemIcon-root": {
+    '&> .MuiListItemIcon-root': {
       color: theme.palette.text.primary,
     },
-    "&> .MuiListItemText-root": {
+    '&> .MuiListItemText-root': {
       color: theme.palette.text.primary,
     },
-    "&:hover": {
+    '&:hover': {
       backgroundColor: alpha(theme.palette.primary.main, 0.1),
       color: theme.palette.primary.main,
-      "&> .MuiListItemIcon-root": {
+      '&> .MuiListItemIcon-root': {
         color: alpha(theme.palette.primary.main, 0.8),
       },
-      "&> .MuiListItemText-root": {
+      '&> .MuiListItemText-root': {
         color: alpha(theme.palette.primary.main, 0.8),
-        "&> .MuiTypography-root": {
+        '&> .MuiTypography-root': {
           color: alpha(theme.palette.primary.main, 0.8),
         },
       },
@@ -31,9 +31,9 @@ const useStyleListItem = makeStyles((theme: Theme) => ({
 const useStyleItemIconParent = makeStyles((theme: Theme) => ({
   root: {
     flexShrink: 0,
-    display: "inline-flex",
+    display: 'inline-flex',
     minWidth: theme.spacing(4),
-    "&:hover": {
+    '&:hover': {
       color: theme.palette.primary.main,
     },
   },
@@ -42,9 +42,9 @@ const useStyleItemIconParent = makeStyles((theme: Theme) => ({
 const useStyleItemIconChildren = makeStyles((theme: Theme) => ({
   root: {
     flexShrink: 0,
-    display: "inline-flex",
+    display: 'inline-flex',
     minWidth: theme.spacing(3),
-    "&:hover": {
+    '&:hover': {
       color: theme.palette.primary.main,
     },
   },
@@ -52,7 +52,7 @@ const useStyleItemIconChildren = makeStyles((theme: Theme) => ({
 
 const useStyleItemText = makeStyles(() => ({
   root: {
-    flex: "1 1 auto",
+    flex: '1 1 auto',
     minWidth: 0,
     marginTop: 4,
     marginBottom: 4,
@@ -62,11 +62,11 @@ const useStyleItemText = makeStyles(() => ({
 const useStyles = makeStyles((theme: Theme) => ({
   activeLink: {
     backgroundColor: alpha(theme.palette.primary.main, 0.2),
-    "& .MuiTypography-body1": {
+    '& .MuiTypography-body1': {
       fontWeight: 700,
       color: theme.palette.primary.main,
     },
-    "&> .MuiListItemIcon-root": {
+    '&> .MuiListItemIcon-root': {
       color: theme.palette.primary.main,
     },
   },
@@ -75,28 +75,28 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 8,
   },
   parentMenu: {
-    "&:after": {
+    '&:after': {
       top: 0,
       left: 32,
       width: 1,
-      height: "100%",
+      height: '100%',
       content: "''",
       opacity: 1,
-      position: "absolute",
-      background: "#e3f2fd",
+      position: 'absolute',
+      background: '#e3f2fd',
     },
   },
   parent: {
     backgroundColor: alpha(theme.palette.primary.main, 0.2),
-    "&> .MuiSvgIcon-root": {
+    '&> .MuiSvgIcon-root': {
       color: alpha(theme.palette.primary.main, 0.8),
     },
-    "&> .MuiListItemIcon-root": {
+    '&> .MuiListItemIcon-root': {
       color: alpha(theme.palette.primary.main, 0.8),
     },
-    "&> .MuiListItemText-root": {
+    '&> .MuiListItemText-root': {
       color: alpha(theme.palette.primary.main, 0.8),
-      "&> .MuiTypography-root": {
+      '&> .MuiTypography-root': {
         color: alpha(theme.palette.primary.main, 0.8),
       },
     },

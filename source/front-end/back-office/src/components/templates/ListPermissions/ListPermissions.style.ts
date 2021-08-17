@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
 
 export const useCellStyles = (column: number) =>
   makeStyles({
@@ -9,9 +9,9 @@ export const useCellStyles = (column: number) =>
 
 export const useRowStyles = makeStyles({
   root: {
-    "& > *": {
-      borderBottom: "unset",
+    '& > *': {
+      borderBottom: 'unset',
     },
-    backgroundColor: "rgba(224, 224, 224, 0.4)",
+    backgroundColor: 'rgba(224, 224, 224, 0.4)',
   },
 });

@@ -1,14 +1,14 @@
-import { Box, Grid } from "@material-ui/core";
-import { useForm } from "react-hook-form";
-import { Errors, Pages, Regex } from "../../../utils";
-import { useHistory } from "react-router-dom";
-import { DefaultContainer } from "../../organisms";
-import { accountService, cognitoService } from "../../../services";
-import { Button, Typography } from "../../atoms";
-import Form from "../../../hook-forms";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { SignInStatus } from "../../../models";
+import { Box, Grid } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Errors, Pages, Regex } from '../../../utils';
+import { DefaultContainer } from '../../organisms';
+import { accountService, cognitoService } from '../../../services';
+import { Button, Typography } from '../../atoms';
+import Form from '../../../hook-forms';
+import { SignInStatus } from '../../../models';
 
 const schema = yup.object().shape({
   password: yup
@@ -21,7 +21,7 @@ const schema = yup.object().shape({
     .trim()
     .required(Errors.required)
     .matches(Regex.password, Errors.formatPassword)
-    .oneOf([yup.ref("password"), null], Errors.matchingPassword),
+    .oneOf([yup.ref('password'), null], Errors.matchingPassword),
 });
 
 const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
@@ -29,10 +29,10 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
   const { stepObj, onNavigateStep } = props;
 
   const form = useForm({
-    mode: "onBlur",
+    mode: 'onBlur',
     defaultValues: {
-      password: "",
-      confirmPassword: "",
+      password: '',
+      confirmPassword: '',
     },
     resolver: yupResolver(schema),
   });
@@ -41,7 +41,7 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
     formState: { isDirty, isValid },
   } = form;
 
-  const onSubmit = async ({ password = "" }) => {
+  const onSubmit = async ({ password = '' }) => {
     const user = stepObj?.data?.user;
 
     const {
@@ -51,12 +51,12 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
     } = user;
     const result = await cognitoService.completeNewPassword(user, password);
 
-    if (result.challengeName && result.challengeName === "SMS_MFA") {
+    if (result.challengeName && result.challengeName === 'SMS_MFA') {
       onNavigateStep &&
         onNavigateStep({
-          status: "VERIFY_CODE",
+          status: 'VERIFY_CODE',
           data: {
-            user: user,
+            user,
           },
         });
     }

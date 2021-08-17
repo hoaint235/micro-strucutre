@@ -1,24 +1,24 @@
-import { Card, CardContent, Grid } from "@material-ui/core";
-import { Bar, PolarArea } from "react-chartjs-2";
-import { MainContainer } from "../../components";
+import { Card, CardContent, Grid } from '@material-ui/core';
+import { Bar, PolarArea } from 'react-chartjs-2';
+import { MainContainer } from '../../components';
 
 const data = {
-  labels: ["1", "2", "3", "4", "5", "6"],
+  labels: ['1', '2', '3', '4', '5', '6'],
   datasets: [
     {
-      label: "# of Red Votes",
+      label: '# of Red Votes',
       data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: "rgb(255, 99, 132)",
+      backgroundColor: 'rgb(255, 99, 132)',
     },
     {
-      label: "# of Blue Votes",
+      label: '# of Blue Votes',
       data: [2, 3, 20, 5, 1, 4],
-      backgroundColor: "rgb(54, 162, 235)",
+      backgroundColor: 'rgb(54, 162, 235)',
     },
     {
-      label: "# of Green Votes",
+      label: '# of Green Votes',
       data: [3, 10, 13, 15, 22, 30],
-      backgroundColor: "rgb(75, 192, 192)",
+      backgroundColor: 'rgb(75, 192, 192)',
     },
   ],
 };
@@ -35,30 +35,14 @@ const options = {
   },
 };
 
-const Dashboard = () => {
-  return (
-    <MainContainer title="dashboardPage.title">
-      <Grid container spacing={2}>
-        <Grid container item xs={12} md={6} spacing={2}>
-          <Grid item xs={12}>
-            <Card>
-              <CardContent>
-                <Bar data={data} options={options} />
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12}>
-            <Card>
-              <CardContent>
-                <Bar data={data} options={options} />
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} md={6}>
+const Dashboard = () => (
+  <MainContainer title="dashboardPage.title">
+    <Grid container spacing={2}>
+      <Grid container item xs={12} md={6} spacing={2}>
+        <Grid item xs={12}>
           <Card>
             <CardContent>
-              <PolarArea data={data} />
+              <Bar data={data} options={options} />
             </CardContent>
           </Card>
         </Grid>
@@ -70,8 +54,22 @@ const Dashboard = () => {
           </Card>
         </Grid>
       </Grid>
-    </MainContainer>
-  );
-};
+      <Grid item xs={12} md={6}>
+        <Card>
+          <CardContent>
+            <PolarArea data={data} />
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={12}>
+        <Card>
+          <CardContent>
+            <Bar data={data} options={options} />
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
+  </MainContainer>
+);
 
 export default Dashboard;

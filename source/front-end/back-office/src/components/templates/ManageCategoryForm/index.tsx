@@ -1,4 +1,4 @@
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Dialog,
   Grid,
@@ -6,21 +6,21 @@ import {
   DialogTitle,
   DialogActions,
   Box,
-} from "@material-ui/core";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import Form from "../../../hook-forms";
-import { Errors } from "../../../utils";
-import { Button, Typography } from "../../atoms";
-import toInteger from "lodash/toInteger";
-import { ICategory } from "../../../models/category";
+} from '@material-ui/core';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import toInteger from 'lodash/toInteger';
+import Form from '../../../hook-forms';
+import { Errors } from '../../../utils';
+import { Button, Typography } from '../../atoms';
+import { ICategory } from '../../../models/category';
 
 const LEVEL_MASTER: number = 0;
 const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),
   level: yup.number().required(Errors.required),
-  parent: yup.string().when("level", {
+  parent: yup.string().when('level', {
     is: LEVEL_MASTER,
     then: yup.string().trim().notRequired(),
     otherwise: yup.string().required(Errors.required),
@@ -29,16 +29,16 @@ const schema = yup.object().shape({
 
 const mockParents: SelectionProps[] = [
   {
-    key: "0",
-    value: "parent 0",
+    key: '0',
+    value: 'parent 0',
   },
   {
-    key: "1",
-    value: "parent 1",
+    key: '1',
+    value: 'parent 1',
   },
   {
-    key: "2",
-    value: "parent 2",
+    key: '2',
+    value: 'parent 2',
   },
 ];
 
@@ -49,7 +49,7 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
     onClose,
   } = props;
   const form = useForm({
-    mode: "onBlur",
+    mode: 'onBlur',
     resolver: yupResolver(schema),
   });
   const {
@@ -59,9 +59,9 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
     formState: { isDirty, isValid },
   } = form;
   const [levels, setLevels] = useState<SelectionProps[]>([
-    { key: "0", value: "0" },
-    { key: "1", value: "1" },
-    { key: "2", value: "2" },
+    { key: '0', value: '0' },
+    { key: '1', value: '1' },
+    { key: '2', value: '2' },
   ]);
   const [parents, setParents] = useState<SelectionProps[]>([]);
 
@@ -72,7 +72,7 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
     }
   };
 
-  const levelField = toInteger(watch("level"));
+  const levelField = toInteger(watch('level'));
 
   useEffect(() => {
     const levelCalc = levelField - 1;
@@ -81,7 +81,7 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
         (x) => x.key === levelCalc.toString()
       );
       setParents(parentFilter);
-      setValue("parent", "");
+      setValue('parent', '');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [levelField]);

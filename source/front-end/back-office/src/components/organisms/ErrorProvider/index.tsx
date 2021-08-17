@@ -1,11 +1,11 @@
-import { Box } from "@material-ui/core";
-import { useCallback, useEffect, Fragment, useState } from "react";
-import { stringHelper } from "../../../utils";
-import { WindowEvents } from "../../../utils/constants";
-import { ErrorMessage } from "../../molecules";
+import { Box } from '@material-ui/core';
+import { useCallback, useEffect, Fragment, useState } from 'react';
+import { stringHelper } from '../../../utils';
+import { WindowEvents } from '../../../utils/constants';
+import { ErrorMessage } from '../../molecules';
 
 const ErrorProvider = () => {
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleGlobalToastError = useCallback((event: Event) => {
     const { detail } = event as CustomEvent;
@@ -23,16 +23,16 @@ const ErrorProvider = () => {
   }, [handleGlobalToastError]);
 
   return (
-    <Fragment>
+    <>
       {!!errorMessage && (
         <Box mb={2}>
           <ErrorMessage
             message={errorMessage}
-            onClose={() => setErrorMessage("")}
+            onClose={() => setErrorMessage('')}
           />
         </Box>
       )}
-    </Fragment>
+    </>
   );
 };
 

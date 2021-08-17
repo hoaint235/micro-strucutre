@@ -1,5 +1,5 @@
-import React, { Fragment, useMemo, useState } from "react";
-import { Typography } from "../components/atoms";
+import React, { Fragment, useMemo, useState } from 'react';
+import { Typography } from '../components/atoms';
 
 type FunctionStepForm<TStatus> = React.FunctionComponent<
   HandleStepProps<TStatus>
@@ -42,7 +42,7 @@ export function useStepForm<TStatus extends string>({
   };
 
   const Component = useMemo(
-    () => <Fragment>{render(stepData.status)}</Fragment>,
+    () => <>{render(stepData.status)}</>,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [stepData]
   );
