@@ -5,6 +5,8 @@ trigger:
     include:
       - master
       - feature/fe/admin/*
+      - refactor/fe/admin/*
+
   paths:
     include:
       - '/source/front-end/back-office/*'
@@ -48,6 +50,7 @@ stages:
             workingDirectory: '$(sourceDictionary)'
 
           - task: CopyFiles@2
+            condition: and(succeeded(), eq(variables.isMaster, 'true'))
             inputs:
               SourceFolder: '$(sourceDictionary)'
               Contents: |
@@ -57,26 +60,27 @@ stages:
               TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
           - task: PublishBuildArtifacts@1
+            condition: and(succeeded(), eq(variables.isMaster, 'true'))
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'drop'
 
-  - stage: Deploy
-    dependsOn: Build
-    condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['isDeploy'], 'true')))
-    jobs:
-      - job: DownloadBuild
-        displayName: 'DownloadBuildJob'
-        steps:
-          - task: DownloadBuildArtifacts@0
-            inputs:
-              ArtifactName: 'drop'
-              DownloadPath: '$(Build.ArtifactStagingDirectory)'
+  # - stage: Deploy
+  #   dependsOn: Build
+  #   condition: and(succeeded(), or(isMaster, eq(variables['isDeploy'], 'true')))
+  #   jobs:
+  #     - job: DownloadBuild
+  #       displayName: 'DownloadBuildJob'
+  #       steps:
+  #         - task: DownloadBuildArtifacts@0
+  #           inputs:
+  #             ArtifactName: 'drop'
+  #             DownloadPath: '$(Build.ArtifactStagingDirectory)'
 
-      - job: DeployFirebase
-        displayName:
-        steps:
-          - script: npm i -g firebase-tools
-          - script: 'firebase deploy --only hosting --token "$(firebaseToken)" --project "$(firebaseProjectId)" -m "$(Build.BuildNumber)"'
-            workingDirectory: '$(Build.ArtifactStagingDirectory)'
-            displayName: 'firebase publish -m "$(Build.BuildNumber)"'
+  #     - job: DeployFirebase
+  #       displayName:
+  #       steps:
+  #         - script: npm i -g firebase-tools
+  #         - script: 'firebase deploy --only hosting --token "$(firebaseToken)" --project "$(firebaseProjectId)" -m "$(Build.BuildNumber)"'
+  #           workingDirectory: '$(Build.ArtifactStagingDirectory)'
+  #           displayName: 'firebase publish -m "$(Build.BuildNumber)"'
