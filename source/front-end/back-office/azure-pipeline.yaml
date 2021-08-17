@@ -48,6 +48,7 @@ stages:
             workingDirectory: '$(sourceDictionary)'
 
           - task: CopyFiles@2
+            condition: and(isMaster)
             inputs:
               SourceFolder: '$(sourceDictionary)'
               Contents: |
@@ -63,7 +64,7 @@ stages:
 
   # - stage: Deploy
   #   dependsOn: Build
-  #   condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['isDeploy'], 'true')))
+  #   condition: and(succeeded(), or(isMaster, eq(variables['isDeploy'], 'true')))
   #   jobs:
   #     - job: DownloadBuild
   #       displayName: 'DownloadBuildJob'
