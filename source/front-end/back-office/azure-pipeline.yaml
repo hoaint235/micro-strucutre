@@ -5,6 +5,8 @@ trigger:
     include:
       - master
       - feature/fe/admin/*
+      - refactor/fe/admin/*
+
   paths:
     include:
       - '/source/front-end/back-office/*'
@@ -48,7 +50,7 @@ stages:
             workingDirectory: '$(sourceDictionary)'
 
           - task: CopyFiles@2
-            condition: and(isMaster)
+            condition: and(succeeded(), eq(variables.isMaster, 'true'))
             inputs:
               SourceFolder: '$(sourceDictionary)'
               Contents: |
@@ -58,6 +60,7 @@ stages:
               TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
           - task: PublishBuildArtifacts@1
+            condition: and(succeeded(), eq(variables.isMaster, 'true'))
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'drop'
