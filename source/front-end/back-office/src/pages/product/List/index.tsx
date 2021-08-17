@@ -74,7 +74,6 @@ const ListProducts = () => {
     totalItems: 2,
   });
   const history = useHistory();
-  const { actions } = usePermission();
 
   const onDelete = async (productId: string) => {};
 
@@ -83,8 +82,6 @@ const ListProducts = () => {
   const onDeactivate = (productId: string) => {};
 
   const onActivate = (productId: string) => {};
-
-  const onSearch = async (value: string) => {};
 
   const onPaging = async (data: PagingProps) => {};
 

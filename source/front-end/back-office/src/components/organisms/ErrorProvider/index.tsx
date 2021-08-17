@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import { useCallback, useEffect, Fragment, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { stringHelper } from '../../../utils';
 import { WindowEvents } from '../../../utils/constants';
 import { ErrorMessage } from '../../molecules';

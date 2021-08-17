@@ -14,7 +14,7 @@ type Props = {
 const UserInfoForm = (props: Props) => {
   const { form, editMode } = props;
   const { t } = useTranslation();
-  const [roles, setRoles] = useState<string[]>([]);
+  const [roles] = useState<string[]>([]);
 
   // const fetchRoles = async () => {
   //   const response = await AccountService.gerCurrentUserRoles();
@@ -34,7 +34,6 @@ const UserInfoForm = (props: Props) => {
       }))
       .filter((x) => roles.includes(x.key));
     return result;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roles, t]);
 
   return (

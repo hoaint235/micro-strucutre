@@ -29,7 +29,6 @@ const usePermission = () => {
 
   useEffect(() => {
     fetchActions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRole, currentPermission]);
 
   return {

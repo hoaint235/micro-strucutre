@@ -14,7 +14,6 @@ const useMobile = (props?: Props) => {
     if (isMobile && props?.onExecute) {
       props?.onExecute();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMobile]);
 
   return {

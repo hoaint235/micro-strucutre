@@ -1,12 +1,6 @@
 import { matchPath, NavLink, useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import React, {
-  forwardRef,
-  useCallback,
-  useMemo,
-  Fragment,
-  useState,
-} from 'react';
+import { forwardRef, useCallback, useMemo, useState } from 'react';
 import {
   ListItem,
   ListItemIcon,
@@ -56,7 +50,6 @@ const MenuItem = (props: IMenuItem) => {
         : isMatch(path || '');
       return active;
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [pathname]
   );
 
@@ -84,7 +77,6 @@ const MenuItem = (props: IMenuItem) => {
           />
         )
       ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [checkActivate, pathname]
   );
 
@@ -124,7 +116,6 @@ const MenuItem = (props: IMenuItem) => {
         </ListItem>
       );
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [MenuLink, checkValidPermission, t]
   );
 

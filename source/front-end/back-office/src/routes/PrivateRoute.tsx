@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useGuard } from '../hooks';
@@ -93,7 +93,6 @@ const PrivateRoute = (props: Props) => {
     if (menu) {
       history.push(menu.path || '');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [permissions, history.location]);
 
   return (

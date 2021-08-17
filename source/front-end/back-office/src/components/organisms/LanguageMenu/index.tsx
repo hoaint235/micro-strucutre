@@ -19,8 +19,7 @@ const Language = () => {
 
   useEffect(() => {
     selectLanguage(Languages[0]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <IconMenu

@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, Paper } from '@material-ui/core';
-import { Fragment } from 'react';
 import { Typography } from '../../atoms';
 import {
   useStyleCardHeader,

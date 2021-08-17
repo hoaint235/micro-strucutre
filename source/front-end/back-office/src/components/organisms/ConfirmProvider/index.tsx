@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Fragment } from 'react';
+import { useState, useCallback } from 'react';
 import ConfirmContext, { ContextProps } from './ConfirmContext';
 import {
   ConfirmationDialog,
@@ -45,7 +45,6 @@ const ConfirmProvider = (props: Props) => {
     setResolveReject([onSubmit, onBeforeCancel]);
     setOptions({ ...defaultOptions, ...options });
     setInformation({ title, description });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClose = useCallback(() => setResolveReject([]), []);

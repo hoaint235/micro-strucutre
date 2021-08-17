@@ -57,12 +57,10 @@ const ListVendors = () => {
     const payload = { ...defaultRequest, ...request };
     const vendors = await vendorService.getVendors(payload);
     setData({ ...data, ...vendors });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchVendors();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDeactivate = async (userId: string) => {};

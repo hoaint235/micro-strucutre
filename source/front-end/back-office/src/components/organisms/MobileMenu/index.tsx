@@ -1,5 +1,5 @@
 import { Box, Drawer, makeStyles, Paper } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { WindowEvents } from '../../../utils';
 import { Logo } from '../../atoms';
@@ -39,7 +39,6 @@ const MobileMenu = (props: Props) => {
       window.removeEventListener(WindowEvents.CLOSE_MOBILE_MENU, () =>
         onClose()
       );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

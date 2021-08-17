@@ -7,7 +7,6 @@ import {
   Toolbar,
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Logo } from '../../atoms';
 import { IconButton } from '../../molecules';

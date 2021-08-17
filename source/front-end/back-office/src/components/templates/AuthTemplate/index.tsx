@@ -1,6 +1,6 @@
 import { Box, makeStyles, Theme } from '@material-ui/core';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { Fragment, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import {
   ConfirmProvider,
   Header,
@@ -49,7 +49,6 @@ const AuthTemplate = (props: Props) => {
     } else {
       setOpenDesktopMenu(!openDesktopMenu);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMobile, openDesktopMenu]);
 
   return (

@@ -4,7 +4,6 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
-import React from 'react';
 import { DataTableHeaderProps, HeaderProps } from './DataTableHeader.type';
 import {
   useStyles,

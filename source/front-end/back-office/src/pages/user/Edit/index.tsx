@@ -21,12 +21,10 @@ const EditUser = () => {
       const response = await accountService.getUserById(useId);
       setUsers(response);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmit = async (data: IUser) => {

@@ -1,5 +1,5 @@
 import { Box, Grid, makeStyles, Theme } from '@material-ui/core';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import ErrorProvider from '../ErrorProvider';

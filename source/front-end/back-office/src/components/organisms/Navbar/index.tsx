@@ -1,5 +1,4 @@
 import { Hidden } from '@material-ui/core';
-import { Fragment } from 'react';
 import DesktopMenu from '../DesktopMenu';
 import MobileMenu from '../MobileMenu';
 

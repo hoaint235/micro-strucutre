@@ -1,5 +1,5 @@
 import { SwapHoriz } from '@material-ui/icons';
-import { useEffect, Fragment, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import lowerFirst from 'lodash/lowerFirst';
 import { useTranslation } from 'react-i18next';
@@ -36,7 +36,6 @@ const RoleMenu = () => {
 
   useEffect(() => {
     dispatch(getRoles());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -54,7 +53,6 @@ const RoleMenu = () => {
     if (defaultRole) {
       loadPermission(defaultRole);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roles]);
 
   const selectRole = (item: SelectionProps<RoleType>) => {

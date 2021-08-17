@@ -17,7 +17,6 @@ const useGuard = () => {
 
   useEffect(() => {
     checkAuthenticated();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { isAuth };

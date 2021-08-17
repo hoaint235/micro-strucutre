@@ -60,7 +60,6 @@ const ManageVendorForm = (props: ManageForm<IVendor | any>) => {
     if (defaultValues) {
       reset({ ...defaultValues });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const preSubmit = (data: any) => {

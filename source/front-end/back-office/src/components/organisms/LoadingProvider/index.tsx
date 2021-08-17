@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   Backdrop,
   CircularProgress,
@@ -24,7 +24,6 @@ const LoadingProvider = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
     ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [countLoading]
   );
 

@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@material-ui/core';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons';
-import React, { useCallback, useState, Fragment } from 'react';
+import { useCallback, useState } from 'react';
 import uniq from 'lodash/uniq';
 import { ActionType, PermissionType, RoleType } from '../../../models';
 import { Typography } from '../../atoms';

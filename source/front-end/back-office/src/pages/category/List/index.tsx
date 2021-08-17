@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Box, Grid } from '@material-ui/core';
 import sortBy from 'lodash/sortBy';
 import {

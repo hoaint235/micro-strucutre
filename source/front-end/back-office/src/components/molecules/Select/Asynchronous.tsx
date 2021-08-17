@@ -3,7 +3,7 @@ import {
   Autocomplete as Control,
   AutocompleteInputChangeReason,
 } from '@material-ui/lab';
-import { Fragment, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import debounceFn from 'lodash/debounce';
 import { useTranslation } from 'react-i18next';
 import { Field } from '../../atoms';
@@ -27,7 +27,6 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
   const loading = open && options.length === 0;
   const { t } = useTranslation();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const isLoading = () => loading && !noResult;
 
   const fetchOption = async (query: string) => {
@@ -42,7 +41,6 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
     }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceFetchOptions = useCallback(
     debounceFn(async (query: string) => {
       await fetchOption(query);
@@ -55,7 +53,6 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
       setOptions([]);
       setNoResult(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   const onSearchChange = (

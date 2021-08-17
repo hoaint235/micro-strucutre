@@ -75,7 +75,6 @@ const ManageUserForm = (props: Props) => {
       reset({ ...defaultUser });
       setEditMode(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

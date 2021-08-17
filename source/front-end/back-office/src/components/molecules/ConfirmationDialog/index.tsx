@@ -5,7 +5,6 @@ import {
   DialogProps,
   DialogTitle,
 } from '@material-ui/core';
-import React from 'react';
 import { Button, Typography, ButtonProps } from '../../atoms';
 
 export type ConfirmationOptionsProps = {
