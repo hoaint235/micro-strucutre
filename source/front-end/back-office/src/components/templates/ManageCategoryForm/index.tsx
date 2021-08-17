@@ -58,7 +58,7 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
     setValue,
     formState: { isDirty, isValid },
   } = form;
-  const [levels, setLevels] = useState<SelectionProps[]>([
+  const [levels] = useState<SelectionProps[]>([
     { key: '0', value: '0' },
     { key: '1', value: '1' },
     { key: '2', value: '2' },
@@ -83,12 +83,10 @@ const ManageCategoryForm = (props: DialogFormProps<ICategory>) => {
       setParents(parentFilter);
       setValue('parent', '');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [levelField]);
 
   useEffect(() => {
     fetchCategory();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSave = async (data: ICategory) => {

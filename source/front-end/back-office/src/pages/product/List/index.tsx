@@ -12,7 +12,6 @@ import {
   SkeletonTemplate,
   ListProducts as Products,
 } from '../../../components';
-import { usePermission } from '../../../hooks';
 import { ListingResponse } from '../../../models';
 import { IProduct } from '../../../models/product';
 import { Pages } from '../../../utils';

@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import configureStore from './store';
 import AxiosInterceptor from './utils/http-interceptor';
 import { cognitoService } from './services';
+import React from 'react';
 
 const store = configureStore({});
 

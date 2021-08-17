@@ -51,7 +51,8 @@
     "format": "prettier --write .",
     "check-format": "prettier --check .",
     "lint": "eslint src --ext js,jsx,ts,tsx",
-    "deploy": "yarn build & firebase deploy"
+    "deploy": "yarn build & firebase deploy",
+    "review": "yarn check-format & yarn lint"
   },
   "browserslist": {
     "production": [

@@ -53,7 +53,6 @@ const GroupRow = (props: GroupRowProps) => {
       }
     }
     return defaultValue;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [fieldsChecked, setFieldsChecked] = useState<FieldsChecked>(
@@ -136,9 +135,8 @@ const GroupRow = (props: GroupRowProps) => {
             <Table size="small">
               <TableBody>
                 {actions.map((action, index) => (
-                  <TableRow>
+                  <TableRow key={`${action}.${index}`}>
                     <TableCell
-                      key={`${action}.${index}`}
                       className={classesCell.root}
                       style={{ paddingLeft: 60 }}
                       align="left"

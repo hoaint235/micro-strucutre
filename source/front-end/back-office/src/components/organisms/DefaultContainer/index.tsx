@@ -45,7 +45,6 @@ const DefaultContainer = (props: Props) => {
         </Grid>
       </Grid>
     ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [title, t]
   );
 

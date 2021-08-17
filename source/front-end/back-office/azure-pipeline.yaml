@@ -1,4 +1,4 @@
-name: $(BuildID)
+name: BackOffice-$(BuildID)
 
 trigger:
   branches:
@@ -42,14 +42,9 @@ stages:
             displayName: Yarn install
             workingDirectory: '$(sourceDictionary)'
 
-          - script: yarn check-format
-            name: YarnCheckFormat
-            displayName: Yarn check format
-            workingDirectory: '$(sourceDictionary)'
-
-          - script: yarn build
-            name: YarnBuild
-            displayName: Yarn build
+          - script: yarn review
+            name: YarnReview
+            displayName: Yarn review
             workingDirectory: '$(sourceDictionary)'
 
           - task: CopyFiles@2

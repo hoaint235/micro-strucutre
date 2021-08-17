@@ -60,12 +60,10 @@ const ListUsers = () => {
     const payload = { ...defaultRequest, ...request };
     const users = await accountService.getUsers(payload);
     setData({ ...data, ...users });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDeactivate = async (userId: string) => {

@@ -16,12 +16,16 @@
   "rules": {
     "semi": [2, "always"],
     "comma-dangle": ["off", "never"],
-    "indent": 2,
+    "indent": 0,
     "space-before-function-paren": ["off", "always"],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react-hooks/exhaustive-deps": "off",
     "no-undef": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "multiline-ternary": ["off", "always"],
+    "no-unused-vars": ["off"],
+    "react/prop-types": ["off"],
+    "no-use-before-define": "off"
   }
 }
