@@ -1,22 +1,22 @@
-import { Grid } from "@material-ui/core";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import Form from "../../../hook-forms";
-import { SignInStatus } from "../../../models";
-import { cognitoService } from "../../../services";
-import { Pages } from "../../../utils";
-import { Typography } from "../../atoms";
-import { DefaultContainer } from "../../organisms";
+import { Grid } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import Form from '../../../hook-forms';
+import { SignInStatus } from '../../../models';
+import { cognitoService } from '../../../services';
+import { Pages } from '../../../utils';
+import { Typography } from '../../atoms';
+import { DefaultContainer } from '../../organisms';
 
 const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
   const history = useHistory();
   const { stepObj } = props;
   const form = useForm({
-    mode: "onBlur",
+    mode: 'onBlur',
   });
   const { handleSubmit } = form;
 
-  const onSubmit = async ({ otpCode = "" }) => {
+  const onSubmit = async ({ otpCode = '' }) => {
     const user = stepObj?.data?.user;
     await cognitoService.confirmMFACode(user, otpCode);
     history.push(Pages.DEFAULT);
@@ -29,7 +29,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
           <Grid item xs={12}>
             <Typography.Subtitle
               label="verifyOtpCodePage.subtitle"
-              style={{ textAlign: "center" }}
+              style={{ textAlign: 'center' }}
             />
           </Grid>
           <Grid item xs={12}>

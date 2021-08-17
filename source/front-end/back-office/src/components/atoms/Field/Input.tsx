@@ -1,10 +1,10 @@
-import { makeStyles, TextField } from "@material-ui/core";
-import { useTranslation } from "react-i18next";
-import { InputProps } from "./Field.type";
+import { makeStyles, TextField } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
+import { InputProps } from './Field.type';
 
 const useStyles = makeStyles({
   root: {
-    "&> .MuiOutlinedInput-root": {
+    '&> .MuiOutlinedInput-root': {
       borderRadius: 4,
     },
   },
@@ -22,7 +22,7 @@ const Input = (props: InputProps) => {
     name,
     label,
     maxLength,
-    placeholder = "",
+    placeholder = '',
     fullWidth = true,
     range,
     inputProps,
@@ -42,8 +42,8 @@ const Input = (props: InputProps) => {
       label={t(`${label}`)}
       placeholder={t(placeholder)}
       inputProps={{
-        "data-testid": `input-${name}`,
-        maxLength: maxLength,
+        'data-testid': `input-${name}`,
+        maxLength,
         max: range?.max,
         min: range?.min,
         ...{ ...inputProps },

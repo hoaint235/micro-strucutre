@@ -1,27 +1,27 @@
-import { Grid, makeStyles, Theme } from "@material-ui/core";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
-import Form from "../../../hook-forms";
-import { cognitoService } from "../../../services";
-import { Errors, Pages } from "../../../utils";
-import { Button } from "../../atoms";
-import { DefaultContainer } from "../../organisms";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { SignInStatus } from "../../../models";
-import { Certificate } from "../../../models/accounts";
+import { Grid, makeStyles, Theme } from '@material-ui/core';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Form from '../../../hook-forms';
+import { cognitoService } from '../../../services';
+import { Errors, Pages } from '../../../utils';
+import { Button } from '../../atoms';
+import { DefaultContainer } from '../../organisms';
+import { SignInStatus } from '../../../models';
+import { Certificate } from '../../../models/accounts';
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {
-    display: "flex",
-    justifyContent: "flex-end",
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
   linkForgotText: {
-    cursor: "pointer",
+    cursor: 'pointer',
     color: theme.palette.primary.main,
-    textDecoration: "none",
+    textDecoration: 'none',
   },
 }));
 
@@ -41,11 +41,11 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
   const classes = useStyles();
 
   const form = useForm({
-    mode: "onBlur",
-    reValidateMode: "onChange",
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     resolver: yupResolver(schema),
   });
@@ -55,11 +55,11 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
     const result = await cognitoService.signIn(data.email, data.password);
     const status = result.challengeName;
 
-    if (["NEW_PASSWORD_REQUIRED", "SMS_MFA"].includes(status)) {
-      const changePasswordRequired = status === "NEW_PASSWORD_REQUIRED";
+    if (['NEW_PASSWORD_REQUIRED', 'SMS_MFA'].includes(status)) {
+      const changePasswordRequired = status === 'NEW_PASSWORD_REQUIRED';
       onNavigateStep &&
         onNavigateStep({
-          status: changePasswordRequired ? "FIRST_LOGIN" : "VERIFY_CODE",
+          status: changePasswordRequired ? 'FIRST_LOGIN' : 'VERIFY_CODE',
           data: {
             user: result,
           },
@@ -72,7 +72,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
 
   const navigateForgotPasswordPage = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    history.push("/forgot-password");
+    history.push('/forgot-password');
   };
 
   return (
@@ -98,7 +98,7 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
                   className={classes.linkForgotText}
                   onMouseDown={navigateForgotPasswordPage} // Use OnMouseDown to call before OnBlur React-Hook-Form called
                 >
-                  {t("signInPage.forgotPasswordLink")}
+                  {t('signInPage.forgotPasswordLink')}
                 </a>
               </Grid>
             </Grid>

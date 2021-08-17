@@ -1,4 +1,4 @@
-name: $(BuildID)
+name: BackOffice-$(BuildID)
 
 trigger:
   branches:
@@ -7,7 +7,7 @@ trigger:
       - feature/fe/admin/*
   paths:
     include:
-      - "/source/front-end/back-office/mra-admin/*"
+      - '/source/front-end/back-office/*'
 
 pr:
   - master
@@ -22,7 +22,7 @@ variables:
   - name: FIREBASE_TOKEN
     value: 0e7EL5p0cB3mwCgYIARAAGA4SNwF-L9IrRJTJPOXWPVQXxHCQT7HkQbyqDBjJHNmSR4kr1hea6j_B4axlcXw9kcdFT_fS_p5WiTQ
   - name: sourceDictionary
-    value: $(Pipeline.Workspace)/s/source/front-end/back-office/mra-admin/
+    value: $(Pipeline.Workspace)/s/source/front-end/back-office/
 
 stages:
   - stage: Build
@@ -32,56 +32,51 @@ stages:
         steps:
           - task: NodeTool@0
             inputs:
-              versionSpec: "14.x"
-            displayName: "Install Node.js"
+              versionSpec: '14.x'
+            displayName: 'Install Node.js'
 
           - script: npm install -g yarn
 
           - script: yarn install
             name: YarnInstall
             displayName: Yarn install
-            workingDirectory: "$(sourceDictionary)"
+            workingDirectory: '$(sourceDictionary)'
 
-          - script: yarn check-format
-            name: YarnCheckFormat
-            displayName: Yarn check format
-            workingDirectory: "$(sourceDictionary)"
-
-          - script: yarn build
-            name: YarnBuild
-            displayName: Yarn build
-            workingDirectory: "$(sourceDictionary)"
+          - script: yarn review
+            name: YarnReview
+            displayName: Yarn review
+            workingDirectory: '$(sourceDictionary)'
 
           - task: CopyFiles@2
             inputs:
-              SourceFolder: "$(sourceDictionary)"
+              SourceFolder: '$(sourceDictionary)'
               Contents: |
                 build/**
                 firebase.json
                 .firebaserc
-              TargetFolder: "$(Build.ArtifactStagingDirectory)"
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
           - task: PublishBuildArtifacts@1
             inputs:
-              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
-              ArtifactName: "drop"
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
 
   - stage: Deploy
     dependsOn: Build
     condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['isDeploy'], 'true')))
     jobs:
       - job: DownloadBuild
-        displayName: "DownloadBuildJob"
+        displayName: 'DownloadBuildJob'
         steps:
           - task: DownloadBuildArtifacts@0
             inputs:
-              ArtifactName: "drop"
-              DownloadPath: "$(Build.ArtifactStagingDirectory)"
+              ArtifactName: 'drop'
+              DownloadPath: '$(Build.ArtifactStagingDirectory)'
 
       - job: DeployFirebase
         displayName:
         steps:
           - script: npm i -g firebase-tools
           - script: 'firebase deploy --only hosting --token "$(firebaseToken)" --project "$(firebaseProjectId)" -m "$(Build.BuildNumber)"'
-            workingDirectory: "$(Build.ArtifactStagingDirectory)"
+            workingDirectory: '$(Build.ArtifactStagingDirectory)'
             displayName: 'firebase publish -m "$(Build.BuildNumber)"'

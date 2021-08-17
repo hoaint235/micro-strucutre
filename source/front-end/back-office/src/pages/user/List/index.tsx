@@ -1,7 +1,6 @@
-import { Grid, Box } from "@material-ui/core";
-import { useEffect, useState } from "react";
-import { useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import { Grid, Box } from '@material-ui/core';
+import { useEffect, useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Field,
@@ -11,41 +10,41 @@ import {
   PagingProps,
   SortProps,
   MainContainer,
-} from "../../../components";
-import { ListingRequest, ListingResponse } from "../../../models";
-import { IUser } from "../../../models/accounts";
-import { accountService } from "../../../services";
-import { Pages } from "../../../utils";
+} from '../../../components';
+import { ListingRequest, ListingResponse } from '../../../models';
+import { IUser } from '../../../models/accounts';
+import { accountService } from '../../../services';
+import { Pages } from '../../../utils';
 
 const headers: HeaderProps[] = [
   {
-    field: "email",
-    label: "table.email",
+    field: 'email',
+    label: 'table.email',
     sort: true,
     width: 250,
   },
   {
-    field: "isActivate",
-    label: "table.active",
+    field: 'isActivate',
+    label: 'table.active',
     width: 100,
   },
   {
-    field: "status",
-    label: "table.status",
+    field: 'status',
+    label: 'table.status',
     width: 250,
   },
   {
-    field: "roles",
-    label: "table.roles",
+    field: 'roles',
+    label: 'table.roles',
     width: 150,
   },
   {
-    field: "createdDate",
-    label: "table.createdDate",
+    field: 'createdDate',
+    label: 'table.createdDate',
   },
   {
-    field: "action",
-    label: "table.action",
+    field: 'action',
+    label: 'table.action',
   },
 ];
 
@@ -61,12 +60,10 @@ const ListUsers = () => {
     const payload = { ...defaultRequest, ...request };
     const users = await accountService.getUsers(payload);
     setData({ ...data, ...users });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDeactivate = async (userId: string) => {

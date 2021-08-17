@@ -1,6 +1,6 @@
-import { ActionType } from "./../../models/ActionType";
-import { Action } from "../app-type";
-import { PermissionType, RoleType } from "./../../models";
+import { ActionType } from '../../models/ActionType';
+import { Action } from '../app-type';
+import { PermissionType, RoleType } from '../../models';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
@@ -10,7 +10,7 @@ import {
   SET_CURRENT_PERMISSION,
   SET_CURRENT_ROLE,
   RESET_ALL_PERMISSION,
-} from "./type";
+} from './type';
 
 export type State = {
   countLoading: number;

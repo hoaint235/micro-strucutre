@@ -1,15 +1,14 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from '@material-ui/core';
 import {
   CheckCircleOutline,
   Delete,
   HighlightOff,
   Visibility,
-} from "@material-ui/icons";
-import { ListingResponse } from "../../../models";
-import { IVendor } from "../../../models/vendors";
-import { HeaderProps, Status } from "../../atoms";
-import { DataTable, IconButton, SortProps } from "../../molecules";
-import { PagingProps } from "../../molecules";
+} from '@material-ui/icons';
+import { ListingResponse } from '../../../models';
+import { IVendor } from '../../../models/vendors';
+import { HeaderProps, Status } from '../../atoms';
+import { DataTable, IconButton, SortProps, PagingProps } from '../../molecules';
 
 type Props = {
   data: ListingResponse<IVendor>;
@@ -34,53 +33,51 @@ const ListVendors = (props: Props) => {
     onSort,
   } = props;
 
-  const renderAction = (data: IVendor) => {
-    return (
-      <Grid container spacing={1}>
+  const renderAction = (data: IVendor) => (
+    <Grid container spacing={1}>
+      <Grid item>
+        <IconButton.Primary
+          icon={Visibility}
+          name="edit"
+          label="buttons.edit"
+          onClick={() => onViewDetail(data.id)}
+        />
+      </Grid>
+      {!data.active && (
         <Grid item>
           <IconButton.Primary
-            icon={Visibility}
-            name="edit"
-            label="buttons.edit"
-            onClick={() => onViewDetail(data.id)}
+            name="activate"
+            icon={CheckCircleOutline}
+            label="buttons.activate"
+            onClick={() => onActivate(data.id)}
           />
         </Grid>
-        {!data.active && (
-          <Grid item>
-            <IconButton.Primary
-              name="activate"
-              icon={CheckCircleOutline}
-              label="buttons.activate"
-              onClick={() => onActivate(data.id)}
-            />
-          </Grid>
-        )}
-        {data.active && (
-          <Grid item>
-            <IconButton.Secondary
-              icon={HighlightOff}
-              label="buttons.deactivate"
-              name="deactivate"
-              onClick={() => onDeactivate(data.id)}
-            />
-          </Grid>
-        )}
+      )}
+      {data.active && (
         <Grid item>
           <IconButton.Secondary
-            icon={Delete}
-            name="delete"
-            label="buttons.delete"
-            onClick={() => onDelete(data.id)}
+            icon={HighlightOff}
+            label="buttons.deactivate"
+            name="deactivate"
+            onClick={() => onDeactivate(data.id)}
           />
         </Grid>
+      )}
+      <Grid item>
+        <IconButton.Secondary
+          icon={Delete}
+          name="delete"
+          label="buttons.delete"
+          onClick={() => onDelete(data.id)}
+        />
       </Grid>
-    );
-  };
+    </Grid>
+  );
 
   const renderActive = (data: IVendor) => {
     const { active } = data;
-    const text = active ? "statuses.activate" : "statuses.deactivate";
-    return <Status label={text} color={active ? "primary" : "secondary"} />;
+    const text = active ? 'statuses.activate' : 'statuses.deactivate';
+    return <Status label={text} color={active ? 'primary' : 'secondary'} />;
   };
 
   return (

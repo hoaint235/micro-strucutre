@@ -1,5 +1,5 @@
-import { Drawer, makeStyles } from "@material-ui/core";
-import MenuList from "../MenuList";
+import { Drawer, makeStyles } from '@material-ui/core';
+import MenuList from '../MenuList';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -9,9 +9,9 @@ const useStyles = makeStyles(() => ({
   desktopDrawer: {
     width: 260,
     top: 88,
-    height: "calc(100% - 88px)",
-    borderRight: "none",
-    background: "#fff",
+    height: 'calc(100% - 88px)',
+    borderRight: 'none',
+    background: '#fff',
   },
 }));
 

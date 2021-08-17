@@ -1,17 +1,17 @@
-import { Grid } from "@material-ui/core";
-import { useState, useEffect, useMemo } from "react";
+import { Grid } from '@material-ui/core';
+import { useState, useEffect, useMemo } from 'react';
 import {
   Button,
   ListPermissions,
   MainContainer,
   SkeletonTemplate,
   FieldsChecked,
-} from "../../../components";
-import { useConfirm, usePermission } from "../../../hooks";
-import { ActionType, PermissionType, RoleType } from "../../../models";
-import { IListPermission } from "../../../models/accounts";
-import { accountService } from "../../../services";
-import { toastHelper } from "../../../utils";
+} from '../../../components';
+import { useConfirm, usePermission } from '../../../hooks';
+import { ActionType, PermissionType, RoleType } from '../../../models';
+import { IListPermission } from '../../../models/accounts';
+import { accountService } from '../../../services';
+import { toastHelper } from '../../../utils';
 
 const ListPermission = () => {
   const { hasEdit } = usePermission();
@@ -28,11 +28,11 @@ const ListPermission = () => {
 
   const onSave = () => {
     confirm({
-      title: "permissionPage.saveTitle",
-      description: "permissionPage.saveDescription",
+      title: 'permissionPage.saveTitle',
+      description: 'permissionPage.saveDescription',
       onSubmit: async () => {
         const payload = Object.entries(fieldsChecked).map((field) => {
-          const fields = field[0].replace(".row", "").split(".");
+          const fields = field[0].replace('.row', '').split('.');
           return {
             isActive: field[1],
             role: fields[0].toEnum(RoleType),
@@ -42,10 +42,10 @@ const ListPermission = () => {
         }) as IListPermission[];
 
         await accountService.updatePermissions(payload);
-        toastHelper.success("permissionPage.saveSuccess");
+        toastHelper.success('permissionPage.saveSuccess');
       },
       options: {
-        confirmationButtonProps: { color: "primary" },
+        confirmationButtonProps: { color: 'primary' },
       },
     });
   };
@@ -56,7 +56,7 @@ const ListPermission = () => {
         data={data || []}
         isEdit={hasEdit}
         onChange={(data) =>
-          setFieldsChecked((prevData) => Object.assign({}, prevData, data))
+          setFieldsChecked((prevData) => ({ ...prevData, ...data }))
         }
       />
     ),

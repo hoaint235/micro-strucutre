@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Languages } from "../../../configurations";
-import { ILanguageItem } from "../../../models";
-import { Typography } from "../../atoms";
-import { IconMenu } from "../../molecules";
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Languages } from '../../../configurations';
+import { ILanguageItem } from '../../../models';
+import { Typography } from '../../atoms';
+import { IconMenu } from '../../molecules';
 
 const Language = () => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState('');
 
   const selectLanguage = (item: ILanguageItem) => {
     const { location } = item;
@@ -19,8 +19,7 @@ const Language = () => {
 
   useEffect(() => {
     selectLanguage(Languages[0]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <IconMenu

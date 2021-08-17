@@ -1,12 +1,12 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { Box, Grid } from "@material-ui/core";
-import { useForm } from "react-hook-form";
-import { AddressInfoForm, UserInfoForm } from "../../organisms";
-import { Button } from "../../atoms";
-import { Errors, Regex } from "../../../utils";
-import { useEffect, useState } from "react";
-import { IUser } from "../../../models/accounts";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { Box, Grid } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { AddressInfoForm, UserInfoForm } from '../../organisms';
+import { Button } from '../../atoms';
+import { Errors, Regex } from '../../../utils';
+import { IUser } from '../../../models/accounts';
 
 const schema = yup.object().shape({
   profile: yup.object().shape({
@@ -21,7 +21,7 @@ const schema = yup.object().shape({
       .matches(Regex.phoneNumber, Errors.formatPhoneNumber),
   }),
   roles: yup.array().min(1, Errors.required),
-  address: yup.object().when("isEditAddress", {
+  address: yup.object().when('isEditAddress', {
     is: true,
     then: yup.object({
       city: yup.string().required(Errors.required),
@@ -34,17 +34,17 @@ const schema = yup.object().shape({
 const defaultData: IUser = {
   isEditAddress: false,
   profile: {
-    email: "",
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    countryCode: "",
+    email: '',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    countryCode: '',
   },
   roles: [],
   address: {
-    city: "",
-    district: "",
-    houseNumber: "",
+    city: '',
+    district: '',
+    houseNumber: '',
   },
 };
 
@@ -58,8 +58,8 @@ const ManageUserForm = (props: Props) => {
   const { onSubmit, onBack, defaultUser } = props;
   const [editMode, setEditMode] = useState<boolean>(false);
   const form = useForm<IUser>({
-    mode: "onBlur",
-    reValidateMode: "onChange",
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     defaultValues: defaultData,
     resolver: yupResolver(schema),
   });
@@ -75,7 +75,6 @@ const ManageUserForm = (props: Props) => {
       reset({ ...defaultUser });
       setEditMode(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -94,7 +93,7 @@ const ManageUserForm = (props: Props) => {
           xs={12}
           container
           justifyContent="flex-end"
-          style={{ display: "flex" }}
+          style={{ display: 'flex' }}
         >
           <Box mr={2}>
             <Button.Default onClick={onBack} label="buttons.back" name="back" />

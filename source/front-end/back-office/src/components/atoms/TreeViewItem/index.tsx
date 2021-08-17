@@ -1,21 +1,21 @@
-import { Checkbox, FormControlLabel, makeStyles } from "@material-ui/core";
+import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core';
 import DefaultTreeItem, {
   TreeItemProps as DefaultProps,
-} from "@material-ui/lab/TreeItem";
-import { useTranslation } from "react-i18next";
+} from '@material-ui/lab/TreeItem';
+import { useTranslation } from 'react-i18next';
 
 const useStyleTreeItem = makeStyles({
   selected: {
-    ">.MuiTreeItem-content .MuiTreeItem-label": {
-      backgroundColor: "transparent",
+    '>.MuiTreeItem-content .MuiTreeItem-label': {
+      backgroundColor: 'transparent',
     },
   },
   label: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
   },
 });
 
-type TreeViewItemProps = Omit<DefaultProps, "nodeId" | "id" | "onChange"> & {
+type TreeViewItemProps = Omit<DefaultProps, 'nodeId' | 'id' | 'onChange'> & {
   label: string;
   id: string;
   checked: boolean;

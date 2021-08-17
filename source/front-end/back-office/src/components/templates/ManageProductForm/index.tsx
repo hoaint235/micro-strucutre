@@ -1,12 +1,12 @@
-import { Box, Grid } from "@material-ui/core";
-import { ManageForm } from "form";
-import { useForm } from "react-hook-form";
-import { Button } from "../../atoms";
-import { ProductInfoForm, ProductImagesForm } from "../../organisms";
-import * as yup from "yup";
-import { Errors } from "../../../utils";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { IProduct } from "../../../models/product";
+import { Box, Grid } from '@material-ui/core';
+import { ManageForm } from 'form';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '../../atoms';
+import { ProductInfoForm, ProductImagesForm } from '../../organisms';
+import { Errors } from '../../../utils';
+import { IProduct } from '../../../models/product';
 
 const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),
@@ -23,15 +23,15 @@ type Props = ManageForm<IProduct> & {
 const ManageProductForm = (props: Props) => {
   const { onSubmit, onBack, onVendorAsync, onCategoryAsync } = props;
   const form = useForm({
-    mode: "onBlur",
-    reValidateMode: "onChange",
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     resolver: yupResolver(schema),
     defaultValues: {
-      name: "",
+      name: '',
       vendor: null,
-      unit: "",
-      category: "",
-      description: "",
+      unit: '',
+      category: '',
+      description: '',
     },
   });
   const {
@@ -41,7 +41,7 @@ const ManageProductForm = (props: Props) => {
 
   const preSubmit = (data: any) => {
     const product: IProduct = {
-      id: "",
+      id: '',
       unit: data.unit,
       name: data.name,
       category: {
@@ -74,7 +74,7 @@ const ManageProductForm = (props: Props) => {
           xs={12}
           container
           justifyContent="flex-end"
-          style={{ display: "flex" }}
+          style={{ display: 'flex' }}
         >
           <Box mr={2}>
             <Button.Default onClick={onBack} label="buttons.back" name="back" />

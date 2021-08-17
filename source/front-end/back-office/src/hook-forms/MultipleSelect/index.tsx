@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
-import { Select } from "../../components/molecules";
-import { useController } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { SelectFormProps } from "../form.type";
-import get from "lodash/get";
+import { useCallback } from 'react';
+import { useController } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import get from 'lodash/get';
+import { SelectFormProps } from '../form.type';
+import { Select } from '../../components/molecules';
 
 const MultipleSelect = (props: SelectFormProps) => {
   const {

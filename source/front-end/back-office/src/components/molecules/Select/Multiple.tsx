@@ -5,15 +5,14 @@ import {
   makeStyles,
   MenuItem,
   Theme,
-} from "@material-ui/core";
-import React from "react";
-import { Field } from "../../atoms";
-import { SelectProps } from "./Select.type";
+} from '@material-ui/core';
+import { Field } from '../../atoms';
+import { SelectProps } from './Select.type';
 
 const useStyles = makeStyles({
   chips: {
-    display: "flex",
-    flexWrap: "wrap",
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   chip: {
     marginLeft: 2,
@@ -33,7 +32,7 @@ const Multiple = (props: SelectProps) => {
   const { items, onChange, value = [], ...restProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const { value } = event.target;
     onChange(value);
   };
 

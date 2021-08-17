@@ -1,16 +1,16 @@
-import { Fragment, useMemo } from "react";
+import { useMemo } from 'react';
 import {
   Backdrop,
   CircularProgress,
   makeStyles,
   Theme,
-} from "@material-ui/core";
-import { useStateSelector } from "../../../store";
+} from '@material-ui/core';
+import { useStateSelector } from '../../../store';
 
 const useStyles = makeStyles((theme: Theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 999,
-    color: "#fff",
+    color: '#fff',
   },
 }));
 
@@ -24,11 +24,10 @@ const LoadingProvider = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
     ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [countLoading]
   );
 
-  return <Fragment>{renderLoading}</Fragment>;
+  return <>{renderLoading}</>;
 };
 
 export default LoadingProvider;

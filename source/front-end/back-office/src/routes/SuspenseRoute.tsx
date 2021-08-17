@@ -1,5 +1,5 @@
-import { Route, RouteProps } from "react-router-dom";
-import { SuspenseLoading } from "../components";
+import { Route, RouteProps } from 'react-router-dom';
+import { SuspenseLoading } from '../components';
 
 type Props = RouteProps & {
   children: React.ReactNode;

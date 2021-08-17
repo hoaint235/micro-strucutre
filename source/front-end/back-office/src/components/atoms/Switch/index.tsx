@@ -2,10 +2,10 @@ import {
   FormControlLabel,
   SwitchProps as Props,
   Switch as DefaultSwitch,
-} from "@material-ui/core";
-import { useTranslation } from "react-i18next";
+} from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
-type DefaultProps = Omit<Props, "form">;
+type DefaultProps = Omit<Props, 'form'>;
 export type SwitchProps = DefaultProps & {
   label: string;
   name: string;
@@ -21,7 +21,7 @@ const Switch = (props: SwitchProps) => {
         <DefaultSwitch
           inputProps={{
             // @ts-ignore
-            "data-testid": `input-${name}`,
+            'data-testid': `input-${name}`,
           }}
           {...restProps}
         />

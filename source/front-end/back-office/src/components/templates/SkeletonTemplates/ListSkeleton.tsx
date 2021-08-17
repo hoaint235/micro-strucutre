@@ -1,6 +1,6 @@
-import { Box, Grid } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
-import times from "lodash/times";
+import { Box, Grid } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
+import times from 'lodash/times';
 
 const ListSkeleton = () => {
   const children = (index: number) => (

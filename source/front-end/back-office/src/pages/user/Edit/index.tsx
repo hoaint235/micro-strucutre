@@ -1,15 +1,14 @@
-import { Grid } from "@material-ui/core";
-import { useHistory, useParams } from "react-router-dom";
-import { Pages, toastHelper } from "../../../utils";
-import { accountService } from "../../../services";
+import { Grid } from '@material-ui/core';
+import { useHistory, useParams } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { Pages, toastHelper } from '../../../utils';
+import { accountService } from '../../../services';
 import {
   ManageUserForm,
   SkeletonTemplate,
   MainContainer,
-} from "../../../components";
-import { useCallback, useEffect } from "react";
-import { useState } from "react";
-import { IUser } from "../../../models/accounts";
+} from '../../../components';
+import { IUser } from '../../../models/accounts';
 
 const EditUser = () => {
   const history = useHistory();
@@ -22,17 +21,15 @@ const EditUser = () => {
       const response = await accountService.getUserById(useId);
       setUsers(response);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmit = async (data: IUser) => {
     await accountService.createUser(data);
-    toastHelper.success("Create new user success");
+    toastHelper.success('Create new user success');
     onBackUserList();
   };
 

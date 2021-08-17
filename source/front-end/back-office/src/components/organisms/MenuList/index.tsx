@@ -1,11 +1,10 @@
-import { Grid, makeStyles } from "@material-ui/core";
-import { Theme } from "@material-ui/core";
-import { MenuItem } from "../../molecules";
-import { Menus } from "../../../configurations";
-import { IMenuItem } from "../../../models";
-import { useStateSelector } from "../../../store";
-import Skeleton from "@material-ui/lab/Skeleton";
-import times from "lodash/times";
+import { Grid, makeStyles, Theme } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
+import times from 'lodash/times';
+import { MenuItem } from '../../molecules';
+import { Menus } from '../../../configurations';
+import { IMenuItem } from '../../../models';
+import { useStateSelector } from '../../../store';
 
 const MenuListSkeleton = () => {
   const children = () => (
@@ -31,9 +30,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    alignItems: "flex-start",
-    height: "calc(100vh - 83px)",
-    display: "block",
+    alignItems: 'flex-start',
+    height: 'calc(100vh - 83px)',
+    display: 'block',
   },
 }));
 

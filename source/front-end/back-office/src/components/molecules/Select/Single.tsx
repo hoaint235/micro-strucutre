@@ -1,7 +1,7 @@
-import { makeStyles, MenuItem, Theme } from "@material-ui/core";
-import React from "react";
-import { Field } from "../../atoms";
-import { SelectProps } from "./Select.type";
+import { makeStyles, MenuItem, Theme } from '@material-ui/core';
+import React from 'react';
+import { Field } from '../../atoms';
+import { SelectProps } from './Select.type';
 
 const usePaperStyles = makeStyles((theme: Theme) => ({
   paper: {
@@ -11,7 +11,7 @@ const usePaperStyles = makeStyles((theme: Theme) => ({
 }));
 
 const Single = (props: SelectProps) => {
-  const { items, onChange, value = "", ...restProps } = props;
+  const { items, onChange, value = '', ...restProps } = props;
   const paperClasses = usePaperStyles();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

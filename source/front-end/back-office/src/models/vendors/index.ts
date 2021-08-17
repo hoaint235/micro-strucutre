@@ -1,2 +1,2 @@
-export * from "./ICreateVendor";
-export * from "./IVendor";
+export * from './ICreateVendor';
+export * from './IVendor';

@@ -7,15 +7,14 @@ import {
   TableBody,
   TableCell,
   TableRow,
-} from "@material-ui/core";
-import { KeyboardArrowDown, KeyboardArrowUp } from "@material-ui/icons";
-import React, { useCallback, useState } from "react";
-import { ActionType, PermissionType, RoleType } from "../../../models";
-import uniq from "lodash/uniq";
-import { Fragment } from "react";
-import { Typography } from "../../atoms";
-import { IListPermission } from "../../../models/accounts";
-import { useCellStyles, useRowStyles } from "./ListPermissions.style";
+} from '@material-ui/core';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons';
+import { useCallback, useState } from 'react';
+import uniq from 'lodash/uniq';
+import { ActionType, PermissionType, RoleType } from '../../../models';
+import { Typography } from '../../atoms';
+import { IListPermission } from '../../../models/accounts';
+import { useCellStyles, useRowStyles } from './ListPermissions.style';
 
 export type FieldsChecked = { [x: string]: boolean };
 export type GroupRowProps = {
@@ -54,7 +53,6 @@ const GroupRow = (props: GroupRowProps) => {
       }
     }
     return defaultValue;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [fieldsChecked, setFieldsChecked] = useState<FieldsChecked>(
@@ -72,22 +70,22 @@ const GroupRow = (props: GroupRowProps) => {
   };
 
   const getActionRoles = (nameGroup: string) =>
-    actions.map((action) => nameGroup.replace(".group", `.${action}.row`));
+    actions.map((action) => nameGroup.replace('.group', `.${action}.row`));
 
   const handleAllCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fieldsSelected = Object.assign(
       {},
-      ...getActionRoles(event.target.name).map((role) => {
-        return { [role]: event.target.checked };
-      })
+      ...getActionRoles(event.target.name).map((role) => ({
+        [role]: event.target.checked,
+      }))
     ) as FieldsChecked;
-    const checked = Object.assign({}, fieldsChecked, fieldsSelected);
+    const checked = { ...fieldsChecked, ...fieldsSelected };
     setFieldsChecked(checked);
     onChange(fieldsSelected);
   };
 
   return (
-    <Fragment>
+    <>
       <TableRow className={classes.root}>
         <TableCell className={classesCell.root}>
           <Grid container alignItems="center" spacing={2}>
@@ -137,9 +135,8 @@ const GroupRow = (props: GroupRowProps) => {
             <Table size="small">
               <TableBody>
                 {actions.map((action, index) => (
-                  <TableRow>
+                  <TableRow key={`${action}.${index}`}>
                     <TableCell
-                      key={`${action}.${index}`}
                       className={classesCell.root}
                       style={{ paddingLeft: 60 }}
                       align="left"
@@ -171,7 +168,7 @@ const GroupRow = (props: GroupRowProps) => {
           </Collapse>
         </TableCell>
       </TableRow>
-    </Fragment>
+    </>
   );
 };
 

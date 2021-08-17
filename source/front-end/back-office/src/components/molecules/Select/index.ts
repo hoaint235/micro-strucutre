@@ -1,7 +1,7 @@
-import Multiple from "./Multiple";
-import Single from "./Single";
-import Autocomplete from "./Autocomplete";
-import Asynchronous from "./Asynchronous";
+import Multiple from './Multiple';
+import Single from './Single';
+import Autocomplete from './Autocomplete';
+import Asynchronous from './Asynchronous';
 
 type Props = {
   Single: typeof Single;
@@ -11,10 +11,10 @@ type Props = {
 };
 
 const Select: Props = {
-  Multiple: Multiple,
-  Single: Single,
-  Autocomplete: Autocomplete,
-  Asynchronous: Asynchronous,
+  Multiple,
+  Single,
+  Autocomplete,
+  Asynchronous,
 };
 
 export default Select;

@@ -1,5 +1,5 @@
-import { colors } from "@material-ui/core";
-import { PaletteOptions } from "@material-ui/core/styles/createPalette";
+import { colors } from '@material-ui/core';
+import { PaletteOptions } from '@material-ui/core/styles/createPalette';
 
 const palette: PaletteOptions = {
   background: {

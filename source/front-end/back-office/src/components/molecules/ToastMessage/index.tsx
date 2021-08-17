@@ -1,16 +1,16 @@
-import { Grid, makeStyles, Theme } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
-import { Typography } from "../../atoms";
+import { Grid, makeStyles, Theme } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import { Typography } from '../../atoms';
 
 const useStyles = makeStyles((theme: Theme) => ({
   btnClose: {
     width: 20,
     height: 20,
-    border: "none",
-    display: "flex",
-    color: "white",
-    background: "transparent",
-    cursor: "pointer",
+    border: 'none',
+    display: 'flex',
+    color: 'white',
+    background: 'transparent',
+    cursor: 'pointer',
   },
   icon: {
     width: 20,

@@ -1,5 +1,5 @@
-import Amplify from "@aws-amplify/auth";
-import { WindowEvents } from "../utils";
+import Amplify from '@aws-amplify/auth';
+import { WindowEvents } from '../utils';
 
 async function interceptor(callback: Promise<any>) {
   try {
@@ -29,7 +29,7 @@ const CognitoService = {
       const session = await Amplify.currentSession();
       return session.getIdToken().getJwtToken();
     } catch (error) {}
-    return "";
+    return '';
   },
   async isAuthenticated() {
     try {
@@ -85,11 +85,11 @@ const CognitoService = {
     clientMetadata?: ClientMetadata
   ): Promise<any> {
     return await interceptor(
-      Amplify.confirmSignIn(user, code, "SMS_MFA", clientMetadata)
+      Amplify.confirmSignIn(user, code, 'SMS_MFA', clientMetadata)
     );
   },
   async signOut(global?: boolean): Promise<any> {
-    return await interceptor(Amplify.signOut({ global: global }));
+    return await interceptor(Amplify.signOut({ global }));
   },
 };
 

@@ -1,7 +1,7 @@
-import { Box, Grid } from "@material-ui/core";
-import sortBy from "lodash/sortBy";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Box, Grid } from '@material-ui/core';
+import sortBy from 'lodash/sortBy';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Field,
@@ -11,37 +11,36 @@ import {
   MainContainer,
   SkeletonTemplate,
   ListProducts as Products,
-} from "../../../components";
-import { usePermission } from "../../../hooks";
-import { ListingResponse } from "../../../models";
-import { IProduct } from "../../../models/product";
-import { Pages } from "../../../utils";
+} from '../../../components';
+import { ListingResponse } from '../../../models';
+import { IProduct } from '../../../models/product';
+import { Pages } from '../../../utils';
 
 const headers: HeaderProps[] = [
   {
-    field: "name",
-    label: "table.name",
+    field: 'name',
+    label: 'table.name',
     sort: true,
   },
   {
-    field: "vendor",
-    label: "table.vendor",
+    field: 'vendor',
+    label: 'table.vendor',
   },
   {
-    field: "category.name",
-    label: "table.category",
+    field: 'category.name',
+    label: 'table.category',
   },
   {
-    field: "unit",
-    label: "table.unit",
+    field: 'unit',
+    label: 'table.unit',
   },
   {
-    field: "active",
-    label: "table.active",
+    field: 'active',
+    label: 'table.active',
   },
   {
-    field: "action",
-    label: "table.action",
+    field: 'action',
+    label: 'table.action',
   },
 ];
 
@@ -49,32 +48,31 @@ const ListProducts = () => {
   const [data, setData] = useState<ListingResponse<IProduct> | null>({
     data: [
       {
-        id: "1",
-        name: "product 1",
+        id: '1',
+        name: 'product 1',
         active: true,
         category: {
-          id: "1",
-          name: "category 1",
+          id: '1',
+          name: 'category 1',
         },
-        unit: "cái",
-        vendor: "Vendor 1",
+        unit: 'cái',
+        vendor: 'Vendor 1',
       },
       {
-        id: "2",
-        name: "product 2",
+        id: '2',
+        name: 'product 2',
         active: false,
         category: {
-          id: "1",
-          name: "category 2",
+          id: '1',
+          name: 'category 2',
         },
-        unit: "thùng",
-        vendor: "Vendor 2",
+        unit: 'thùng',
+        vendor: 'Vendor 2',
       },
     ],
     totalItems: 2,
   });
   const history = useHistory();
-  const { actions } = usePermission();
 
   const onDelete = async (productId: string) => {};
 
@@ -84,14 +82,12 @@ const ListProducts = () => {
 
   const onActivate = (productId: string) => {};
 
-  const onSearch = async (value: string) => {};
-
   const onPaging = async (data: PagingProps) => {};
 
   const onSort = async (options: SortProps) => {
     const { order, orderBy } = options;
     const result =
-      order === "asc"
+      order === 'asc'
         ? sortBy(data?.data, [orderBy])
         : sortBy(data?.data, [orderBy]).reverse();
     setData({ totalItems: result.length, data: [...result] });
@@ -106,7 +102,7 @@ const ListProducts = () => {
           <Grid item xs={12} md={5}>
             <Field.Search
               label="listProductPage.searchText"
-              onSubmit={() => console.log("")}
+              onSubmit={() => console.log('')}
             />
           </Grid>
           <Grid

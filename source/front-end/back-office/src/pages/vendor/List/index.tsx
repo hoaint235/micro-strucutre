@@ -1,6 +1,6 @@
-import { Box, Grid } from "@material-ui/core";
-import { useCallback, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Box, Grid } from '@material-ui/core';
+import { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   ListVendors as Vendors,
   SkeletonTemplate,
@@ -10,37 +10,37 @@ import {
   MainContainer,
   PagingProps,
   SortProps,
-} from "../../../components";
-import { useConfirm } from "../../../hooks";
-import { ListingRequest, ListingResponse } from "../../../models";
-import { IVendor } from "../../../models/vendors";
-import { vendorService } from "../../../services";
-import { Pages } from "../../../utils";
+} from '../../../components';
+import { useConfirm } from '../../../hooks';
+import { ListingRequest, ListingResponse } from '../../../models';
+import { IVendor } from '../../../models/vendors';
+import { vendorService } from '../../../services';
+import { Pages } from '../../../utils';
 
 const headers: HeaderProps[] = [
   {
-    field: "name",
-    label: "table.name",
+    field: 'name',
+    label: 'table.name',
   },
   {
-    field: "email",
-    label: "table.email",
+    field: 'email',
+    label: 'table.email',
   },
   {
-    field: "phoneNumber",
-    label: "table.phoneNumber",
+    field: 'phoneNumber',
+    label: 'table.phoneNumber',
   },
   {
-    field: "address",
-    label: "table.address",
+    field: 'address',
+    label: 'table.address',
   },
   {
-    field: "active",
-    label: "table.active",
+    field: 'active',
+    label: 'table.active',
   },
   {
-    field: "action",
-    label: "table.action",
+    field: 'action',
+    label: 'table.action',
   },
 ];
 
@@ -57,12 +57,10 @@ const ListVendors = () => {
     const payload = { ...defaultRequest, ...request };
     const vendors = await vendorService.getVendors(payload);
     setData({ ...data, ...vendors });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchVendors();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDeactivate = async (userId: string) => {};
@@ -72,8 +70,8 @@ const ListVendors = () => {
   const onDelete = async (userId: string) => {
     try {
       confirm({
-        title: "Are you sure",
-        description: "This action is permanent!",
+        title: 'Are you sure',
+        description: 'This action is permanent!',
         onSubmit: () => {
           throw new Error();
         },

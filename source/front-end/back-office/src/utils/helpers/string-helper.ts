@@ -1,4 +1,4 @@
-import { Regex } from "../constants";
+import { Regex } from '../constants';
 
 const stringHelper = {
   generateCognitoError(code: string): string {
@@ -11,7 +11,7 @@ const stringHelper = {
     )}Error`;
   },
   toCurrency(value: number | string): string {
-    return value.toString().replace(Regex.currency, "$1,");
+    return value.toString().replace(Regex.currency, '$1,');
   },
 };
 

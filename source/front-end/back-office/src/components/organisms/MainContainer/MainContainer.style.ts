@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from "@material-ui/core";
+import { makeStyles, Theme } from '@material-ui/core';
 
 const useStylePaper = makeStyles((theme: Theme) => ({
   root: {
@@ -7,8 +7,8 @@ const useStylePaper = makeStyles((theme: Theme) => ({
   },
   rounded: {
     borderRadius: 12,
-    boxShadow: "none",
-    border: "1px solid rgba(144, 202, 249, 0.46)",
+    boxShadow: 'none',
+    border: '1px solid rgba(144, 202, 249, 0.46)',
   },
 }));
 

@@ -1,15 +1,15 @@
-import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import { Button, Typography } from "../../atoms";
-import Form from "../../../hook-forms";
-import { DefaultContainer } from "../../organisms";
-import { Grid } from "@material-ui/core";
-import { cognitoService } from "../../../services";
-import * as yup from "yup";
-import { Errors, Regex } from "../../../utils";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { ForgotStatus } from "../../../models";
+import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Typography } from '../../atoms';
+import Form from '../../../hook-forms';
+import { DefaultContainer } from '../../organisms';
+import { cognitoService } from '../../../services';
+import { Errors, Regex } from '../../../utils';
+import { ForgotStatus } from '../../../models';
 
 const schema = yup.object().shape({
   email: yup
@@ -28,21 +28,21 @@ const schema = yup.object().shape({
     .trim()
     .required(Errors.required)
     .matches(Regex.password, Errors.formatPassword)
-    .oneOf([yup.ref("password"), null], Errors.matchingPassword),
+    .oneOf([yup.ref('password'), null], Errors.matchingPassword),
 });
 
 const defaultForm = {
-  emailAddress: "",
-  password: "",
-  confirmationCode: "",
-  confirmPassword: "",
+  emailAddress: '',
+  password: '',
+  confirmationCode: '',
+  confirmPassword: '',
 };
 
 const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
   const { t } = useTranslation();
   const history = useHistory();
   const form = useForm({
-    mode: "onBlur",
+    mode: 'onBlur',
     defaultValues: defaultForm,
     resolver: yupResolver(schema),
   });
@@ -59,7 +59,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
     const { confirmationCode: code, password } = data;
     await cognitoService.forgotPasswordSubmit(email, code, password);
 
-    history.push("/sign-in");
+    history.push('/sign-in');
   };
 
   return (
@@ -68,7 +68,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography.Body
-              style={{ textAlign: "center" }}
+              style={{ textAlign: 'center' }}
               label="confirmationPasswordPage.subtitle"
             />
           </Grid>
@@ -76,7 +76,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
             <Form.Input
               form={form}
               defaultValue={email}
-              disabled={true}
+              disabled
               label="fields.emailAddress"
               name="email"
             />
@@ -108,7 +108,7 @@ const ConfirmationForm = (props: HandleStepProps<ForgotStatus>) => {
               name="submit"
               size="large"
               type="submit"
-              label={t("buttons.submit")}
+              label={t('buttons.submit')}
               disabled={!isDirty || !isValid}
             />
           </Grid>

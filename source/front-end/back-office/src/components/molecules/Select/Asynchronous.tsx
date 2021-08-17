@@ -1,13 +1,13 @@
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress } from '@material-ui/core';
 import {
   Autocomplete as Control,
   AutocompleteInputChangeReason,
-} from "@material-ui/lab";
-import { Fragment, useCallback, useEffect, useState } from "react";
-import { Field } from "../../atoms";
-import debounceFn from "lodash/debounce";
-import { AutoAsynchronousProps } from "./Select.type";
-import { useTranslation } from "react-i18next";
+} from '@material-ui/lab';
+import { useCallback, useEffect, useState } from 'react';
+import debounceFn from 'lodash/debounce';
+import { useTranslation } from 'react-i18next';
+import { Field } from '../../atoms';
+import { AutoAsynchronousProps } from './Select.type';
 
 const Asynchronous = (props: AutoAsynchronousProps) => {
   const {
@@ -18,7 +18,7 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
     onLoadAsync,
     debounceTime = 500,
     searchLength = 2,
-    loadingText = "commons.loadingText",
+    loadingText = 'commons.loadingText',
     ...restProps
   } = props;
   const [options, setOptions] = useState<SelectionProps[]>([]);
@@ -27,7 +27,6 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
   const loading = open && options.length === 0;
   const { t } = useTranslation();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const isLoading = () => loading && !noResult;
 
   const fetchOption = async (query: string) => {
@@ -42,7 +41,6 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
     }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceFetchOptions = useCallback(
     debounceFn(async (query: string) => {
       await fetchOption(query);
@@ -55,7 +53,6 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
       setOptions([]);
       setNoResult(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   const onSearchChange = (
@@ -63,7 +60,7 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
     value: string,
     reason: AutocompleteInputChangeReason
   ) => {
-    if (reason === "input" && value.length >= searchLength) {
+    if (reason === 'input' && value.length >= searchLength) {
       setOpen(true);
       if (noResult) {
         setNoResult(false);
@@ -98,10 +95,10 @@ const Asynchronous = (props: AutoAsynchronousProps) => {
           InputProps={{
             ...params.InputProps,
             endAdornment: (
-              <Fragment>
+              <>
                 {isLoading() && <CircularProgress color="inherit" size={16} />}
                 {params.InputProps.endAdornment}
-              </Fragment>
+              </>
             ),
           }}
           {...InputProps}

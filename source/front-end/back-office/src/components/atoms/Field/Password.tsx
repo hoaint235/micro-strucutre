@@ -1,8 +1,8 @@
-import { IconButton, InputAdornment, TextFieldProps } from "@material-ui/core";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import Field from ".";
+import { IconButton, InputAdornment, TextFieldProps } from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import Field from '.';
 
 const Password = ({
   label,
@@ -23,7 +23,7 @@ const Password = ({
 
   return (
     <Field.Input
-      type={hidePassword ? "text" : "password"}
+      type={hidePassword ? 'text' : 'password'}
       label={t(`${label}`)}
       tabIndex={-1}
       error={error}

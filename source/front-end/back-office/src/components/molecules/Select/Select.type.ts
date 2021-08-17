@@ -1,8 +1,8 @@
-import { TextFieldProps } from "@material-ui/core";
-import { AutocompleteProps as DefaultAutocompleteProps } from "@material-ui/lab";
-import { InputProps } from "../../atoms";
+import { TextFieldProps } from '@material-ui/core';
+import { AutocompleteProps as DefaultAutocompleteProps } from '@material-ui/lab';
+import { InputProps } from '../../atoms';
 
-export type SelectProps = Exclude<TextFieldProps, "onChange"> & {
+export type SelectProps = Exclude<TextFieldProps, 'onChange'> & {
   items: Array<SelectionProps>;
   onChange: (data: any) => void;
 };
@@ -14,7 +14,7 @@ export type AutocompleteProps<
   FreeSolo extends boolean | undefined = false
 > = Omit<
   DefaultAutocompleteProps<TModel, Multiple, DisableClearable, FreeSolo>,
-  "renderInput" | "options"
+  'renderInput' | 'options'
 > & {
   items: TModel[];
   InputProps?: InputProps;
@@ -25,7 +25,7 @@ export type AutocompleteProps<
 
 export type AutoAsynchronousProps<
   TModel extends SelectionProps = SelectionProps
-> = Omit<AutocompleteProps<TModel>, "items" | "loadingText"> & {
+> = Omit<AutocompleteProps<TModel>, 'items' | 'loadingText'> & {
   onLoadAsync: (query: string) => Promise<TModel[]>;
   searchLength?: number;
   debounceTime?: number;

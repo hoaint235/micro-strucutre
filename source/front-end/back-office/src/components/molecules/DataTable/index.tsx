@@ -1,17 +1,17 @@
-import { Table, TableContainer, TablePagination } from "@material-ui/core";
-import { useState } from "react";
-import { makeStyles, Theme } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import { DataTableProps, PagingProps } from "./DataTable.type";
-import { DataTableHeader, DataTableBody, OrderProps } from "../../atoms";
-import { useTranslation } from "react-i18next";
+import { Table, TableContainer, TablePagination } from '@material-ui/core';
+import { useState } from 'react';
+import { makeStyles, Theme } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import { useTranslation } from 'react-i18next';
+import { DataTableProps, PagingProps } from './DataTable.type';
+import { DataTableHeader, DataTableBody, OrderProps } from '../../atoms';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    width: "100%",
+    width: '100%',
   },
   paper: {
-    width: "100%",
+    width: '100%',
     marginBottom: theme.spacing(2),
   },
   table: {
@@ -26,8 +26,8 @@ const DataTable = (props: DataTableProps) => {
     rowPerPage = [5, 10, 25],
     defaultPage = 0,
     defaultRowPerPage = 10,
-    defaultOrderBy = "",
-    defaultOrder = "asc",
+    defaultOrderBy = '',
+    defaultOrder = 'asc',
     onSort,
     onPaging,
     ...propsHeader
@@ -58,8 +58,8 @@ const DataTable = (props: DataTableProps) => {
     property: string
   ) => {
     e.preventDefault();
-    const isAsc = orderBy === property && order === "asc";
-    const orderType = isAsc ? "desc" : "asc";
+    const isAsc = orderBy === property && order === 'asc';
+    const orderType = isAsc ? 'desc' : 'asc';
     onSort && onSort({ order: orderType, orderBy: orderBy || property });
     setOrder(orderType);
     setOrderBy(property);
@@ -92,7 +92,7 @@ const DataTable = (props: DataTableProps) => {
           count={totalItems}
           rowsPerPage={rowsPerPage}
           page={page}
-          labelRowsPerPage={t("table.rowsPerPage")}
+          labelRowsPerPage={t('table.rowsPerPage')}
           onPageChange={(_, newPage) => handleChangePage(newPage)}
           onRowsPerPageChange={(e) => handleChangeRowsPerPage(e)}
         />

@@ -1,2 +1,2 @@
-export * from "./ICategoryProduct";
-export * from "./IProduct";
+export * from './ICategoryProduct';
+export * from './IProduct';

@@ -1,11 +1,10 @@
-import { Card, CardContent, CardHeader, Paper } from "@material-ui/core";
-import { Fragment } from "react";
-import { Typography } from "../../atoms";
+import { Card, CardContent, CardHeader, Paper } from '@material-ui/core';
+import { Typography } from '../../atoms';
 import {
   useStyleCardHeader,
   useStylePaper,
   useStyles,
-} from "./MainContainer.style";
+} from './MainContainer.style';
 
 type Props = {
   title: string;
@@ -20,18 +19,18 @@ const MainContainer = (props: Props) => {
   const classes = useStyles();
 
   return (
-    <Fragment>
+    <>
       <Paper component={Card} classes={{ ...classesPaper }} elevation={0}>
         <CardHeader
           classes={{ ...classesCardHeader }}
           subheader={<Typography.Subtitle label={title} />}
           action={action}
-        ></CardHeader>
+        />
       </Paper>
       <Paper component={Card} classes={{ ...classesPaper }}>
         <CardContent className={classes.content}>{children}</CardContent>
       </Paper>
-    </Fragment>
+    </>
   );
 };
 

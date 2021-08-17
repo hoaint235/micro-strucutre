@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from "@material-ui/core";
+import { makeStyles, Theme } from '@material-ui/core';
 
 export const useStylesSortLabel = makeStyles((theme: Theme) => ({
   icon: {
@@ -9,19 +9,19 @@ export const useStylesSortLabel = makeStyles((theme: Theme) => ({
 export const useStylesTableCell = makeStyles((theme: Theme) => ({
   root: {
     fontWeight: theme.typography.fontWeightBold,
-    position: "relative",
+    position: 'relative',
   },
 }));
 
 export const useStyles = makeStyles({
   visuallyHidden: {
     border: 0,
-    clip: "rect(0 0 0 0)",
+    clip: 'rect(0 0 0 0)',
     height: 1,
     margin: -1,
-    overflow: "hidden",
+    overflow: 'hidden',
     padding: 0,
-    position: "absolute",
+    position: 'absolute',
     top: 20,
     width: 1,
   },

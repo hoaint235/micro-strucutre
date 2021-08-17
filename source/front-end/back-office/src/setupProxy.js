@@ -1,35 +1,35 @@
-const { createProxyMiddleware } = require("http-proxy-middleware");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function (app) {
   app.use(
-    "/account",
+    '/account',
     createProxyMiddleware({
       target: process.env.REACT_APP_API_ACCOUNT,
       changeOrigin: true,
       pathRewrite: {
-        "^/account": "/api",
+        '^/account': '/api',
       },
     })
   );
 
   app.use(
-    "/vendor",
+    '/vendor',
     createProxyMiddleware({
       target: process.env.REACT_APP_API_MASTER_DATA,
       changeOrigin: true,
       pathRewrite: {
-        "^/vendor": "/",
+        '^/vendor': '/',
       },
     })
   );
 
   app.use(
-    "/category",
+    '/category',
     createProxyMiddleware({
       target: process.env.REACT_APP_API_PRODUCT,
       changeOrigin: true,
       pathRewrite: {
-        "^/category": "/",
+        '^/category': '/',
       },
     })
   );

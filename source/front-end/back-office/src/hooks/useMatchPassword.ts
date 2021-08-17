@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   leftPassword: string;
@@ -12,7 +12,7 @@ export function useMatchPassword({
   const { t } = useTranslation();
 
   if (leftPassword !== rightPassword) {
-    return t("auth.errors.twoPasswordMustBeMatch");
+    return t('auth.errors.twoPasswordMustBeMatch');
   }
 
   return () => true;

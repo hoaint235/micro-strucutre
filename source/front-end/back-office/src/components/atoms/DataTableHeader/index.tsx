@@ -3,15 +3,14 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-} from "@material-ui/core";
-import React from "react";
-import { DataTableHeaderProps, HeaderProps } from "./DataTableHeader.type";
+} from '@material-ui/core';
+import { DataTableHeaderProps, HeaderProps } from './DataTableHeader.type';
 import {
   useStyles,
   useStylesSortLabel,
   useStylesTableCell,
-} from "./DataTableHeader.style";
-import Typography from "../Typography";
+} from './DataTableHeader.style';
+import Typography from '../Typography';
 
 const DataTableHeader = (props: DataTableHeaderProps) => {
   const classes = useStyles();
@@ -26,25 +25,25 @@ const DataTableHeader = (props: DataTableHeaderProps) => {
 
   const HeaderLabel = (label: string | undefined) => (
     <Typography.Label
-      style={{ fontWeight: "bold" }}
+      style={{ fontWeight: 'bold' }}
       color="textPrimary"
-      label={label || ""}
+      label={label || ''}
     />
   );
 
   const HeaderSort = (header: HeaderProps) => {
-    const field = header.field;
+    const { field } = header;
     return (
       <TableSortLabel
         classes={{ ...classesSortLabel }}
         active={orderBy === field}
-        direction={orderBy === field ? order : "asc"}
+        direction={orderBy === field ? order : 'asc'}
         onClick={handlerSort(field)}
       >
         {HeaderLabel(header.label)}
         {orderBy === field ? (
           <span className={classes.visuallyHidden}>
-            {order === "desc" ? "sorted descending" : "sorted ascending"}
+            {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
           </span>
         ) : null}
       </TableSortLabel>
@@ -58,7 +57,7 @@ const DataTableHeader = (props: DataTableHeaderProps) => {
           <TableCell
             classes={{ ...classesTableCell }}
             key={header.field}
-            align={header.align || "left"}
+            align={header.align || 'left'}
             width={header.width}
             sortDirection={orderBy === header.field ? order : false}
           >

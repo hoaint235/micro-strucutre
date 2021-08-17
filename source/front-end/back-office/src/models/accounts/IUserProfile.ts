@@ -1,4 +1,4 @@
-import { IProfile } from "./IProfile";
+import { IProfile } from './IProfile';
 
 export interface IUserProfile extends IProfile {
   firstName: string;

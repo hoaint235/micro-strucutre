@@ -3,6 +3,5 @@ export enum RoleType {
   MasterData = 2,
   Manager = 3,
   User = 4,
-
   Unknown = 100,
 }

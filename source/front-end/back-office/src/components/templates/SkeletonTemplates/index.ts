@@ -1,5 +1,5 @@
-import FormSkeleton from "./FormSkeleton";
-import ListSkeleton from "./ListSkeleton";
+import FormSkeleton from './FormSkeleton';
+import ListSkeleton from './ListSkeleton';
 
 type Props = {
   Form: typeof FormSkeleton;

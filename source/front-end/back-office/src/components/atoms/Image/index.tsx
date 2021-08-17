@@ -1,4 +1,4 @@
-import { CardMedia } from "@material-ui/core";
+import { CardMedia } from '@material-ui/core';
 
 type ImageProps = {
   src: string;

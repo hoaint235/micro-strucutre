@@ -1,6 +1,6 @@
-import Search from "./Search";
-import Input from "./Input";
-import Password from "./Password";
+import Search from './Search';
+import Input from './Input';
+import Password from './Password';
 
 type Props = {
   Input: typeof Input;
@@ -9,9 +9,9 @@ type Props = {
 };
 
 const Field: Props = {
-  Input: Input,
-  Search: Search,
-  Password: Password,
+  Input,
+  Search,
+  Password,
 };
 
 export default Field;

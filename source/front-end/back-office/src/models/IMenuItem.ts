@@ -1,4 +1,4 @@
-import { PermissionType } from "./PermissionType";
+import { PermissionType } from './PermissionType';
 
 export interface IMenuItem {
   label: string;

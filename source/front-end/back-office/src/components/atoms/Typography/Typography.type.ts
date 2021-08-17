@@ -1,11 +1,11 @@
 export type TypographyColor =
-  | "initial"
-  | "inherit"
-  | "primary"
-  | "secondary"
-  | "textPrimary"
-  | "textSecondary"
-  | "error";
+  | 'initial'
+  | 'inherit'
+  | 'primary'
+  | 'secondary'
+  | 'textPrimary'
+  | 'textSecondary'
+  | 'error';
 
 export type TypographyProps = {
   label: string;

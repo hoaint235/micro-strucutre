@@ -1,9 +1,9 @@
-import get from "lodash/get";
-import { useCallback } from "react";
-import { useController } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { Select } from "../../components/molecules";
-import { AutoAsynchronousFormProps } from "../form.type";
+import get from 'lodash/get';
+import { useCallback } from 'react';
+import { useController } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { Select } from '../../components/molecules';
+import { AutoAsynchronousFormProps } from '../form.type';
 
 const SelectAsynchronous = (props: AutoAsynchronousFormProps) => {
   const {

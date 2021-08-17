@@ -1,10 +1,10 @@
-import { Card, CardContent, CardHeader, Grid } from "@material-ui/core";
-import { useCallback, useState } from "react";
-import { UseFormReturn } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import Form from "../../../hook-forms";
-import { countries, Roles } from "../../../utils";
-import { Typography } from "../../atoms";
+import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
+import { useCallback, useState } from 'react';
+import { UseFormReturn } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import Form from '../../../hook-forms';
+import { countries, Roles } from '../../../utils';
+import { Typography } from '../../atoms';
 
 type Props = {
   form: UseFormReturn<any>;
@@ -14,7 +14,7 @@ type Props = {
 const UserInfoForm = (props: Props) => {
   const { form, editMode } = props;
   const { t } = useTranslation();
-  const [roles, setRoles] = useState<string[]>([]);
+  const [roles] = useState<string[]>([]);
 
   // const fetchRoles = async () => {
   //   const response = await AccountService.gerCurrentUserRoles();
@@ -27,14 +27,13 @@ const UserInfoForm = (props: Props) => {
 
   const getRoles = useCallback(() => {
     const result = Object.keys(Roles)
-      .filter((x) => x !== "MasterData")
+      .filter((x) => x !== 'MasterData')
       .map((key) => ({
         key: Roles[key].toLowerCase(),
         value: t(`roles.${key.toLowerCase()}`),
       }))
       .filter((x) => roles.includes(x.key));
     return result;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roles, t]);
 
   return (

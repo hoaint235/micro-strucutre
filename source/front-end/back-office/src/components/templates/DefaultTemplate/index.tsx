@@ -5,9 +5,9 @@ import {
   Grid,
   Hidden,
   Paper,
-} from "@material-ui/core";
-import { BackgroundImage, LoadingProvider } from "../../organisms";
-import useStyles from "./DefaultTemplate.style";
+} from '@material-ui/core';
+import { BackgroundImage, LoadingProvider } from '../../organisms';
+import useStyles from './DefaultTemplate.style';
 
 type Props = {
   children: JSX.Element;

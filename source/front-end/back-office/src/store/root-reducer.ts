@@ -1,8 +1,8 @@
-import { combineReducers } from "redux";
-import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { combineReducers } from 'redux';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import applicationReducer, {
   State as ApplicationState,
-} from "./application/reducer";
+} from './application/reducer';
 
 export type RootState = {
   appState: ApplicationState;

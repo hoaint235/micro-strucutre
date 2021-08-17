@@ -1,6 +1,6 @@
-import { Box, Grid } from "@material-ui/core";
-import sortBy from "lodash/sortBy";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
+import { Box, Grid } from '@material-ui/core';
+import sortBy from 'lodash/sortBy';
 import {
   SkeletonTemplate,
   ListCategories as Categories,
@@ -11,37 +11,37 @@ import {
   Button,
   Field,
   HeaderProps,
-} from "../../../components";
-import { ListingRequest, ListingResponse } from "../../../models";
-import { ICategory } from "../../../models/category";
-import { categoryService } from "../../../services";
+} from '../../../components';
+import { ListingRequest, ListingResponse } from '../../../models';
+import { ICategory } from '../../../models/category';
+import { categoryService } from '../../../services';
 
 const headers: HeaderProps[] = [
   {
-    field: "name",
-    label: "table.name",
+    field: 'name',
+    label: 'table.name',
     sort: true,
   },
   {
-    field: "level",
-    label: "table.level",
+    field: 'level',
+    label: 'table.level',
     sort: true,
   },
   {
-    field: "parent.name",
-    label: "table.parent",
+    field: 'parent.name',
+    label: 'table.parent',
     sort: true,
   },
   {
-    field: "action",
-    label: "table.action",
+    field: 'action',
+    label: 'table.action',
   },
 ];
 
 const ListCategories = () => {
   const [data, setData] = useState<ListingResponse<ICategory> | null>(null);
   const [stateForm, setStateForm] = useState<DialogStateProps>({
-    mode: "Add",
+    mode: 'Add',
     open: false,
   });
 
@@ -53,21 +53,19 @@ const ListCategories = () => {
     const payload = { ...defaultRequest, ...request };
     const categories = await categoryService.getCategories(payload);
     setData({ ...data, ...categories });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDelete = async (categoryId?: string) => {};
 
   const onViewDetail = (categoryId?: string) => {
-    setStateForm({ open: true, mode: "Update", params: { id: categoryId } });
+    setStateForm({ open: true, mode: 'Update', params: { id: categoryId } });
   };
 
-  const onSearch = async (value: string) => {};
+  // const onSearch = async (value: string) => {};
 
   const onPaging = async (data: PagingProps) => {
     await fetchCategories({
@@ -79,7 +77,7 @@ const ListCategories = () => {
   const onSort = async (options: SortProps) => {
     const { order, orderBy } = options;
     const result =
-      order === "asc"
+      order === 'asc'
         ? sortBy(data?.data, [orderBy])
         : sortBy(data?.data, [orderBy]).reverse();
     setData({ totalItems: result.length, data: [...result] });
@@ -92,14 +90,14 @@ const ListCategories = () => {
           <Grid item xs={12} md={5}>
             <Field.Search
               label="listCategoryPage.searchText"
-              onSubmit={() => console.log("")}
+              onSubmit={() => console.log('')}
             />
           </Grid>
           <Grid container item xs={12} md={7} justifyContent="flex-end">
             <Button.Primary
               name="addCategory"
               label="listCategoryPage.addCategory"
-              onClick={() => setStateForm({ mode: "Add", open: true })}
+              onClick={() => setStateForm({ mode: 'Add', open: true })}
             />
           </Grid>
           <Grid item xs={12}>
@@ -124,7 +122,7 @@ const ListCategories = () => {
         <ManageCategoryForm
           state={stateForm}
           onClose={() => setStateForm({ ...stateForm, open: false })}
-          onSubmit={(data) => console.log("submit", data)}
+          onSubmit={(data) => console.log('submit', data)}
         />
       )}
     </MainContainer>

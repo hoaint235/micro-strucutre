@@ -1,7 +1,7 @@
-import { ChevronRight, ExpandMore } from "@material-ui/icons";
-import DefaultTreeView, { TreeViewProps } from "@material-ui/lab/TreeView";
-import { useState } from "react";
-import { TreeViewItem } from "../../atoms";
+import { ChevronRight, ExpandMore } from '@material-ui/icons';
+import DefaultTreeView, { TreeViewProps } from '@material-ui/lab/TreeView';
+import { useState } from 'react';
+import { TreeViewItem } from '../../atoms';
 
 type Props = TreeViewProps & {
   data: TreeItem[];
@@ -35,7 +35,7 @@ const TreeView = (props: Props) => {
       if (Array.isArray(nodes.nodes)) {
         let result = null;
         nodes.nodes.forEach((node) => {
-          if (!!getNodeById(node, id)) {
+          if (getNodeById(node, id)) {
             result = getNodeById(node, id);
           }
         });

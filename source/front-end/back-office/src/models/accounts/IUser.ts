@@ -1,5 +1,5 @@
-import { IAddress } from "../IAddress";
-import { IUserProfile } from "./IUserProfile";
+import { IAddress } from '../IAddress';
+import { IUserProfile } from './IUserProfile';
 
 export type Role = string;
 

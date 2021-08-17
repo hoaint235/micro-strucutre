@@ -1,5 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse } from "axios";
-import axios from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export class BaseService {
   protected api: string;
@@ -17,7 +16,7 @@ export class BaseService {
   ): Promise<TResponse> {
     const response = await axios.get<TRequest, AxiosResponse<TResponse>>(
       this.buildingUrlApi(url),
-      Object.assign({ ...config }, { data: { cancelLoading: !loading } })
+      { ...config, data: { cancelLoading: !loading } }
     );
     return response.data;
   }
@@ -63,7 +62,7 @@ export class BaseService {
   ): Promise<TResponse> {
     const response = await axios.delete<TRequest, AxiosResponse<TResponse>>(
       this.buildingUrlApi(url),
-      Object.assign({ ...config }, { data: { cancelLoading: !loading } })
+      { ...config, data: { cancelLoading: !loading } }
     );
     return response.data;
   }

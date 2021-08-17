@@ -1,6 +1,6 @@
-import { RoleType } from "../models";
+import { RoleType } from '../models';
 
-const CURRENT_ROLE = "role";
+const CURRENT_ROLE = 'role';
 class StorageService {
   getCurrentRole() {
     return localStorage.getItem(CURRENT_ROLE);
