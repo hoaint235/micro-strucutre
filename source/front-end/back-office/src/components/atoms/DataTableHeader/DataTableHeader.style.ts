@@ -8,7 +8,7 @@ export const useStylesSortLabel = makeStyles((theme: Theme) => ({
 
 export const useStylesTableCell = makeStyles((theme: Theme) => ({
   root: {
-    fontWeight: theme.typography.fontWeightBold,
+    // fontWeight: theme.typography.fontWeightBold,
     position: 'relative',
   },
 }));

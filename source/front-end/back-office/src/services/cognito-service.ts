@@ -5,7 +5,7 @@ async function interceptor(callback: Promise<any>) {
   try {
     window.dispatchEvent(new CustomEvent(WindowEvents.INCREASE_LOADING));
     return await callback;
-  } catch (error) {
+  } catch (error: any) {
     window.dispatchEvent(
       new CustomEvent(WindowEvents.TOAST_ERROR, { detail: error.code })
     );
