@@ -1,5 +1,6 @@
 const Pages = {
-  DEFAULT: '/admin/dashboard',
+  DEFAULT: '/',
+  MAIN: '/admin/dashboard',
   DASH_BOARD: '/admin/dashboard',
   NOT_FOUND: '/not-found',
   PROFILE: '/profile',

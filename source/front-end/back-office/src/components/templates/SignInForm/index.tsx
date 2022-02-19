@@ -67,12 +67,12 @@ const SignInForm = (props: HandleStepProps<SignInStatus>) => {
       return;
     }
 
-    history.push(Pages.DEFAULT);
+    history.push(Pages.MAIN);
   };
 
   const navigateForgotPasswordPage = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    history.push('/forgot-password');
+    history.push(Pages.FORGOT_PASSWORD);
   };
 
   return (

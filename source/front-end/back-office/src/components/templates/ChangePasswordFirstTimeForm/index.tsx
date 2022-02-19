@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Errors, Pages, Regex } from '../../../utils';
-import { DefaultContainer } from '../../organisms';
-import { accountService, cognitoService } from '../../../services';
-import { Button, Typography } from '../../atoms';
-import Form from '../../../hook-forms';
-import { SignInStatus } from '../../../models';
+import { Errors, Pages, Regex } from '@utils';
+import { DefaultContainer } from '@organisms';
+import { accountService, cognitoService } from '@services';
+import { Button, Typography } from '@atoms';
+import Form from '@hook-forms';
+import { SignInStatus } from '@models';
 
 const schema = yup.object().shape({
   password: yup
@@ -62,7 +62,7 @@ const ChangePasswordFirstTimeForm = (props: HandleStepProps<SignInStatus>) => {
     }
 
     await accountService.updateStatus(email, 2);
-    history.push(Pages.DEFAULT);
+    history.push(Pages.MAIN);
   };
 
   return (

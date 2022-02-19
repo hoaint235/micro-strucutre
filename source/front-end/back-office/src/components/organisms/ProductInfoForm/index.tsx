@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
 import { UseFormReturn } from 'react-hook-form';
-import Form from '../../../hook-forms';
-import { Typography } from '../../atoms';
+import Form from '@hook-forms';
+import { Typography } from '@atoms';
 
 const units: SelectionProps[] = [
   {

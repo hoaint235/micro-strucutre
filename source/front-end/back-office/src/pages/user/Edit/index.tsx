@@ -1,14 +1,14 @@
 import { Grid } from '@material-ui/core';
 import { useHistory, useParams } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
-import { Pages, toastHelper } from '../../../utils';
-import { accountService } from '../../../services';
+import { Pages, toastHelper } from '@utils';
+import { accountService } from '@services';
 import {
   ManageUserForm,
   SkeletonTemplate,
   MainContainer,
-} from '../../../components';
-import { IUser } from '../../../models/accounts';
+} from '@components';
+import { IUser } from '@models';
 
 const EditUser = () => {
   const history = useHistory();

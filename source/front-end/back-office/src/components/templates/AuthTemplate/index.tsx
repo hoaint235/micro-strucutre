@@ -7,8 +7,8 @@ import {
   LoadingProvider,
   Navbar,
   ToastProvider,
-} from '../../organisms';
-import { useGuard, useMobile } from '../../../hooks';
+} from '@organisms';
+import { useGuard, useMobile } from '@hooks';
 
 const useStyles = (openMenu: boolean) =>
   makeStyles((theme: Theme) => ({

@@ -3,7 +3,7 @@ import { useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import get from 'lodash/get';
 import { SelectFormProps } from '../form.type';
-import { Select } from '../../components/molecules';
+import { Select } from '@molecules';
 
 const MultipleSelect = (props: SelectFormProps) => {
   const {

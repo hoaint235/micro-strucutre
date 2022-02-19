@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useGuard } from '../hooks';
+import { useGuard } from '@hooks';
 import SuspenseRoute from './SuspenseRoute';
-import { IMenuItem, PermissionType } from '../models';
-import { useStateSelector } from '../store';
-import { Menus } from '../configurations';
-import { setCurrentPermission } from '../store/application';
+import { IMenuItem, PermissionType } from '@models';
+import { useStateSelector } from '@store';
+import { Menus } from '@configurations';
+import { setCurrentPermission } from '@store/application';
 
 type Props = RouteProps & {
   component: React.LazyExoticComponent<() => JSX.Element>;

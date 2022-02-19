@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from '../../atoms';
-import { VendorAddressForm, VendorInfoForm } from '../../organisms';
-import { Errors, Regex } from '../../../utils';
-import { IVendor } from '../../../models/vendors';
+import { Button } from '@atoms';
+import { VendorAddressForm, VendorInfoForm } from '@organisms';
+import { Errors, Regex } from '@utils';
+import { IVendor } from '@models';
 
 const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),

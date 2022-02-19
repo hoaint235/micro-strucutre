@@ -1,4 +1,4 @@
-import { accountService } from '../../services';
+import { accountService } from '@services';
 import { AsyncAction, Dispatch, StateFetcher } from '../app-type';
 import {
   GET_ROLES,
@@ -10,7 +10,7 @@ import {
   GET_ACTIONS,
   RESET_ALL_PERMISSION,
 } from './type';
-import { PermissionType, RoleType } from '../../models';
+import { PermissionType, RoleType } from '@models';
 
 export const showLoading =
   (): AsyncAction => (dispatch: Dispatch, _: StateFetcher) => {

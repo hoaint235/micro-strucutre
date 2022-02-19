@@ -5,12 +5,12 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { useState } from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Form from '../../../hook-forms';
-import { cognitoService } from '../../../services';
-import { Button, Typography } from '../../atoms';
-import { DefaultContainer } from '../../organisms';
-import { Errors } from '../../../utils';
-import { ForgotStatus } from '../../../models';
+import Form from '@hook-forms';
+import { cognitoService } from '@services';
+import { Button, Typography } from '@atoms';
+import { DefaultContainer } from '@organisms';
+import { Errors } from '@utils';
+import { ForgotStatus } from '@models';
 
 const schema = yup.object().shape({
   email: yup

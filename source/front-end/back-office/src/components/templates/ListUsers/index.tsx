@@ -5,11 +5,10 @@ import {
   HighlightOff,
   Visibility,
 } from '@material-ui/icons';
-import { ListingResponse } from '../../../models';
-import { IUser } from '../../../models/accounts';
-import { Roles, Statuses } from '../../../utils';
-import { HeaderProps, Status, Typography } from '../../atoms';
-import { DataTable, IconButton, SortProps, PagingProps } from '../../molecules';
+import { ListingResponse, IUser } from '@models';
+import { Roles, Statuses } from '@utils';
+import { HeaderProps, Status, Typography } from '@atoms';
+import { DataTable, IconButton, SortProps, PagingProps } from '@molecules';
 
 type Props = {
   data: ListingResponse<IUser>;

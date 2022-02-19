@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import { useCallback } from 'react';
 import { useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Select } from '../../components/molecules';
+import { Select } from '@molecules';
 import { AutoAsynchronousFormProps } from '../form.type';
 
 const SelectAsynchronous = (props: AutoAsynchronousFormProps) => {

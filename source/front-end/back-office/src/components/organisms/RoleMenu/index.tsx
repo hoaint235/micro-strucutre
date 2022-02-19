@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import lowerFirst from 'lodash/lowerFirst';
 import { useTranslation } from 'react-i18next';
-import { useConfirm } from '../../../hooks';
-import { RoleType } from '../../../models';
-import { storageService } from '../../../services';
-import { useStateSelector } from '../../../store';
+import { useConfirm } from '@hooks';
+import { RoleType } from '@models';
+import { storageService } from '@services';
+import { useStateSelector } from '@store';
 import {
   getPermissions,
   getRoles,
   setCurrentRole as setRole,
-} from '../../../store/application';
-import { Typography } from '../../atoms';
-import { IconMenu } from '../../molecules';
+} from '@store/application';
+import { Typography } from '@atoms';
+import { IconMenu } from '@molecules';
 
 const RoleMenu = () => {
   const { roles } = useStateSelector((state) => state.appState);

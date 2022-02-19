@@ -1,6 +1,6 @@
 import { TextFieldProps } from '@material-ui/core';
 import { AutocompleteProps as DefaultAutocompleteProps } from '@material-ui/lab';
-import { InputProps } from '../../atoms';
+import { InputProps } from '@atoms';
 
 export type SelectProps = Exclude<TextFieldProps, 'onChange'> & {
   items: Array<SelectionProps>;

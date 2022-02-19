@@ -6,7 +6,7 @@ import {
 import { useCallback, useEffect, useState } from 'react';
 import debounceFn from 'lodash/debounce';
 import { useTranslation } from 'react-i18next';
-import { Field } from '../../atoms';
+import { Field } from '@atoms';
 import { AutoAsynchronousProps } from './Select.type';
 
 const Asynchronous = (props: AutoAsynchronousProps) => {

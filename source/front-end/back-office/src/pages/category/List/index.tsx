@@ -11,10 +11,9 @@ import {
   Button,
   Field,
   HeaderProps,
-} from '../../../components';
-import { ListingRequest, ListingResponse } from '../../../models';
-import { ICategory } from '../../../models/category';
-import { categoryService } from '../../../services';
+} from '@components';
+import { ListingRequest, ListingResponse, ICategory } from '@models';
+import { categoryService } from '@services';
 
 const headers: HeaderProps[] = [
   {

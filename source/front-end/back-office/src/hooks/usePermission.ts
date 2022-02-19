@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ActionType } from '../models';
-import { useStateSelector } from '../store';
-import { accountService } from '../services';
+import { ActionType } from '@models';
+import { useStateSelector } from '@store';
+import { accountService } from '@services';
 
 const usePermission = () => {
   const [actions, setActions] = useState<ActionType[]>([]);

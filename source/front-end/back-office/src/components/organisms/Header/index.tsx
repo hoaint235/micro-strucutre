@@ -8,11 +8,12 @@ import {
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
-import { Logo } from '../../atoms';
-import { IconButton } from '../../molecules';
+import { Logo } from '@atoms';
+import { IconButton } from '@molecules';
 import LanguageMenu from '../LanguageMenu';
 import RoleMenu from '../RoleMenu';
 import SettingMenu from '../SettingMenu';
+import { Pages } from '@utils';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -56,7 +57,7 @@ const Header = (props: Props) => {
 
   const navigateDefaultPage = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    history.push('/');
+    history.push(Pages.DEFAULT);
   };
 
   return (

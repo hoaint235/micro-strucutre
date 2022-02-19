@@ -1,18 +1,18 @@
 import { lazy } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { AuthTemplate, DefaultTemplate, SuspenseLoading } from '../components';
-import { Pages } from '../utils';
+import { AuthTemplate, DefaultTemplate, SuspenseLoading } from '@components';
+import { Pages } from '@utils';
 import PrivateRoute from './PrivateRoute';
 import SuspenseRoute from './SuspenseRoute';
 
-const NotFound = lazy(() => import('../pages/not-found'));
-const Dashboard = lazy(() => import('../pages/dashboard'));
-const User = lazy(() => import('../pages/user'));
-const Vendor = lazy(() => import('../pages/vendor'));
-const Category = lazy(() => import('../pages/category'));
-const Product = lazy(() => import('../pages/product'));
-const Authenticate = lazy(() => import('../pages/authenticate'));
-const Permission = lazy(() => import('../pages/permission'));
+const NotFound = lazy(() => import('@pages/not-found'));
+const Dashboard = lazy(() => import('@pages/dashboard'));
+const User = lazy(() => import('@pages/user'));
+const Vendor = lazy(() => import('@pages/vendor'));
+const Category = lazy(() => import('@pages/category'));
+const Product = lazy(() => import('@pages/product'));
+const Authenticate = lazy(() => import('@pages/authenticate'));
+const Permission = lazy(() => import('@pages/permission'));
 
 const Routes = () => (
   <Switch>
@@ -37,7 +37,7 @@ const Routes = () => (
       <DefaultTemplate>
         <Switch>
           <Route exact path="/">
-            <Redirect to={Pages.DEFAULT} />
+            <Redirect to={Pages.MAIN} />
           </Route>
 
           <SuspenseLoading>
@@ -53,4 +53,5 @@ const Routes = () => (
   </Switch>
 );
 
+export { default as PrivateRoute } from './PrivateRoute';
 export default Routes;

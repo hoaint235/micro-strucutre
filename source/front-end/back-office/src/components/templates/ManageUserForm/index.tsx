@@ -3,10 +3,10 @@ import * as yup from 'yup';
 import { Box, Grid } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { AddressInfoForm, UserInfoForm } from '../../organisms';
-import { Button } from '../../atoms';
-import { Errors, Regex } from '../../../utils';
-import { IUser } from '../../../models/accounts';
+import { AddressInfoForm, UserInfoForm } from '@organisms';
+import { Button } from '@atoms';
+import { Errors, Regex } from '@utils';
+import { IUser } from '@models/accounts';
 
 const schema = yup.object().shape({
   profile: yup.object().shape({

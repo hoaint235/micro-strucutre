@@ -1,5 +1,5 @@
 import { Card as Control, CardContent, CardHeader } from '@material-ui/core';
-import { Typography } from '../../atoms';
+import { Typography } from '@atoms';
 
 type CardProps = {
   children: React.ReactNode;

@@ -1,5 +1,5 @@
 import Amplify from '@aws-amplify/auth';
-import { WindowEvents } from '../utils';
+import { WindowEvents } from '@utils';
 
 async function interceptor(callback: Promise<any>) {
   try {

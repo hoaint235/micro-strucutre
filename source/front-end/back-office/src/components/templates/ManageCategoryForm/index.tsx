@@ -11,10 +11,10 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import toInteger from 'lodash/toInteger';
-import Form from '../../../hook-forms';
-import { Errors } from '../../../utils';
-import { Button, Typography } from '../../atoms';
-import { ICategory } from '../../../models/category';
+import Form from '@hook-forms';
+import { Errors } from '@utils';
+import { Button, Typography } from '@atoms';
+import { ICategory } from '@models/category';
 
 const LEVEL_MASTER: number = 0;
 const schema = yup.object().shape({

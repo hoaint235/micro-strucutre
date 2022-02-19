@@ -1,6 +1,5 @@
-import { ActionType } from '../../models/ActionType';
 import { Action } from '../app-type';
-import { PermissionType, RoleType } from '../../models';
+import { PermissionType, RoleType, ActionType } from '@models';
 import {
   SHOW_LOADING,
   HIDE_LOADING,

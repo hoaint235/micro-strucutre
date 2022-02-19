@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Store } from 'redux';
-import { cognitoService } from '../../services';
-import { WindowEvents } from '../constants';
-import { hideLoading, showLoading } from '../../store/application';
+import { cognitoService } from '@services';
+import { WindowEvents } from '@utils';
+import { hideLoading, showLoading } from '@store/application';
 
 const AxiosInterceptor = {
   setup(store: Store) {

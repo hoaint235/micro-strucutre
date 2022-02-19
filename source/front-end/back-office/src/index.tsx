@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import configureStore from './store';
-import AxiosInterceptor from './utils/http-interceptor';
-import { cognitoService } from './services';
+import configureStore from '@store';
+import { AxiosInterceptor } from '@utils';
+import { cognitoService } from '@services';
 import React from 'react';
 
 const store = configureStore({});

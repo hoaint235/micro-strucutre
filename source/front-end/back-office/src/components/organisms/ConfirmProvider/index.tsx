@@ -4,7 +4,7 @@ import {
   ConfirmationDialog,
   ConfirmationOptionsProps,
   InformationConfirmationProps,
-} from '../../molecules';
+} from '@molecules';
 
 const DEFAULT_OPTIONS: ConfirmationOptionsProps = {
   confirmationText: 'buttons.confirm',

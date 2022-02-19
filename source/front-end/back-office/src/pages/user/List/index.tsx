@@ -10,11 +10,10 @@ import {
   PagingProps,
   SortProps,
   MainContainer,
-} from '../../../components';
-import { ListingRequest, ListingResponse } from '../../../models';
-import { IUser } from '../../../models/accounts';
-import { accountService } from '../../../services';
-import { Pages } from '../../../utils';
+} from '@components';
+import { ListingRequest, ListingResponse, IUser } from '@models';
+import { accountService } from '@services';
+import { Pages } from '@utils';
 
 const headers: HeaderProps[] = [
   {

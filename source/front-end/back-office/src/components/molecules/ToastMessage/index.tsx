@@ -1,6 +1,6 @@
 import { Grid, makeStyles, Theme } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
-import { Typography } from '../../atoms';
+import { Typography } from '@atoms';
 
 const useStyles = makeStyles((theme: Theme) => ({
   btnClose: {

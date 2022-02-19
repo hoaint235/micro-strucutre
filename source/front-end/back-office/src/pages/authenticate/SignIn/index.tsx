@@ -2,9 +2,9 @@ import {
   SignInForm,
   ChangePasswordFirstTimeForm,
   VerifySMSForm,
-} from '../../../components';
-import { useStepForm } from '../../../hooks';
-import { SignInStatus } from '../../../models';
+} from '@components';
+import { useStepForm } from '@hooks';
+import { SignInStatus } from '@models';
 
 const SignIn = () => {
   const Component = useStepForm<SignInStatus>({

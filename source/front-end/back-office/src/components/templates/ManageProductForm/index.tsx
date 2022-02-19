@@ -3,10 +3,10 @@ import { ManageForm } from 'form';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from '../../atoms';
-import { ProductInfoForm, ProductImagesForm } from '../../organisms';
-import { Errors } from '../../../utils';
-import { IProduct } from '../../../models/product';
+import { Button } from '@atoms';
+import { ProductInfoForm, ProductImagesForm } from '@organisms';
+import { Errors } from '@utils';
+import { IProduct } from '@models';
 
 const schema = yup.object().shape({
   name: yup.string().trim().required(Errors.required),

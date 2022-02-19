@@ -6,7 +6,7 @@ import {
   MenuItem,
   Theme,
 } from '@material-ui/core';
-import { Field } from '../../atoms';
+import { Field } from '@atoms';
 import { SelectProps } from './Select.type';
 
 const useStyles = makeStyles({

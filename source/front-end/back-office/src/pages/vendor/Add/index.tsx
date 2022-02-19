@@ -1,9 +1,9 @@
 import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { MainContainer, ManageVendorForm } from '../../../components';
-import { IVendor } from '../../../models/vendors';
-import { vendorService } from '../../../services';
-import { Pages, toastHelper } from '../../../utils';
+import { MainContainer, ManageVendorForm } from '@components';
+import { IVendor } from '@models';
+import { vendorService } from '@services';
+import { Pages, toastHelper } from '@utils';
 
 const AddVendor = () => {
   const history = useHistory();

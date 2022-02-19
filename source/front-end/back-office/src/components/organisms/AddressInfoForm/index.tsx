@@ -1,8 +1,8 @@
 import { Grid } from '@material-ui/core';
 import { useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import Form from '../../../hook-forms';
-import { Card } from '../../molecules';
+import Form from '@hook-forms';
+import { Card } from '@molecules';
 
 type Props = {
   form: UseFormReturn<any>;

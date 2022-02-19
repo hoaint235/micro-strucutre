@@ -4,12 +4,12 @@ import { useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Typography } from '../../atoms';
-import Form from '../../../hook-forms';
-import { DefaultContainer } from '../../organisms';
-import { cognitoService } from '../../../services';
-import { Errors, Regex } from '../../../utils';
-import { ForgotStatus } from '../../../models';
+import { Button, Typography } from '@atoms';
+import Form from '@hook-forms';
+import { DefaultContainer } from '@organisms';
+import { cognitoService } from '@services';
+import { Errors, Regex } from '@utils';
+import { ForgotStatus } from '@models';
 
 const schema = yup.object().shape({
   email: yup

@@ -1,11 +1,11 @@
 import { useHistory } from 'react-router-dom';
 import { Settings } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
-import IconMenu from '../../molecules/IconMenu';
-import { Typography } from '../../atoms';
-import { cognitoService } from '../../../services';
-import Pages from '../../../utils/constants/pages';
-import { resetAllPermission } from '../../../store/application';
+import { IconMenu } from '@molecules';
+import { Typography } from '@atoms';
+import { cognitoService } from '@services';
+import { Pages } from '@utils';
+import { resetAllPermission } from '@store/application';
 
 const SettingMenu = () => {
   const history = useHistory();

@@ -1,4 +1,4 @@
-import { Regex } from '../constants';
+import { Regex } from '@utils';
 
 const stringHelper = {
   generateCognitoError(code: string): string {

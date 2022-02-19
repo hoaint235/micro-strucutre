@@ -4,7 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { useTranslation } from 'react-i18next';
 import { DataTableProps, PagingProps } from './DataTable.type';
-import { DataTableHeader, DataTableBody, OrderProps } from '../../atoms';
+import { DataTableHeader, DataTableBody, OrderProps } from '@atoms';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

@@ -3,7 +3,8 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import ErrorProvider from '../ErrorProvider';
-import { Logo, Typography } from '../../atoms';
+import { Logo, Typography } from '@atoms';
+import { Pages } from '@utils';
 
 const useStyles = makeStyles((theme: Theme) => ({
   header: {
@@ -31,7 +32,7 @@ const DefaultContainer = (props: Props) => {
 
   const handleLogoClick = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    history.push('/');
+    history.push(Pages.DEFAULT);
   };
 
   const Header = useMemo(

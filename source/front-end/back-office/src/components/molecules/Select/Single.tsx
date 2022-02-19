@@ -1,6 +1,6 @@
 import { makeStyles, MenuItem, Theme } from '@material-ui/core';
 import React from 'react';
-import { Field } from '../../atoms';
+import { Field } from '@atoms';
 import { SelectProps } from './Select.type';
 
 const usePaperStyles = makeStyles((theme: Theme) => ({

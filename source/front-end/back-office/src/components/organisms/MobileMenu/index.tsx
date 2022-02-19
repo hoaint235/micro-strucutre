@@ -1,7 +1,7 @@
 import { Box, Drawer, makeStyles, Paper } from '@material-ui/core';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { WindowEvents } from '../../../utils';
+import { Pages, WindowEvents } from '@utils';
 import { Logo } from '../../atoms';
 import MenuList from '../MenuList';
 
@@ -30,7 +30,7 @@ const MobileMenu = (props: Props) => {
 
   const navigateDefaultPage = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    history.push('/');
+    history.push(Pages.DEFAULT);
   };
 
   useEffect(() => {

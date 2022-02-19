@@ -1,6 +1,6 @@
 import { Card, CardContent, Grid } from '@material-ui/core';
 import { Bar, PolarArea } from 'react-chartjs-2';
-import { MainContainer } from '../../components';
+import { MainContainer } from '@components';
 
 const data = {
   labels: ['1', '2', '3', '4', '5', '6'],

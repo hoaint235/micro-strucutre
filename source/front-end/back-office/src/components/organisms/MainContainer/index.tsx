@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, Paper } from '@material-ui/core';
-import { Typography } from '../../atoms';
+import { Typography } from '@atoms';
 import {
   useStyleCardHeader,
   useStylePaper,

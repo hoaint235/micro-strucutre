@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Typography } from '../components/atoms';
+import { Typography } from '@atoms';
 
 type FunctionStepForm<TStatus> = React.FunctionComponent<
   HandleStepProps<TStatus>

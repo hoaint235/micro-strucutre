@@ -11,9 +11,8 @@ import {
 import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons';
 import { useCallback, useState } from 'react';
 import uniq from 'lodash/uniq';
-import { ActionType, PermissionType, RoleType } from '../../../models';
-import { Typography } from '../../atoms';
-import { IListPermission } from '../../../models/accounts';
+import { ActionType, PermissionType, RoleType, IListPermission } from '@models';
+import { Typography } from '@atoms';
 import { useCellStyles, useRowStyles } from './ListPermissions.style';
 
 export type FieldsChecked = { [x: string]: boolean };

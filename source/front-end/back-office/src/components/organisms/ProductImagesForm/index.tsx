@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from '@material-ui/core';
 import { UseFormReturn } from 'react-hook-form';
-import { Typography } from '../../atoms';
+import { Typography } from '@atoms';
 
 type Props = {
   form: UseFormReturn<any>;

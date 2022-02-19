@@ -6,12 +6,11 @@ import {
   MainContainer,
   SkeletonTemplate,
   FieldsChecked,
-} from '../../../components';
-import { useConfirm, usePermission } from '../../../hooks';
-import { ActionType, PermissionType, RoleType } from '../../../models';
-import { IListPermission } from '../../../models/accounts';
-import { accountService } from '../../../services';
-import { toastHelper } from '../../../utils';
+} from '@components';
+import { useConfirm, usePermission } from '@hooks';
+import { ActionType, PermissionType, RoleType, IListPermission } from '@models';
+import { accountService } from '@services';
+import { toastHelper } from '@utils';
 
 const ListPermission = () => {
   const { hasEdit } = usePermission();

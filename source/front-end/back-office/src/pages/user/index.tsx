@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Switch } from 'react-router-dom';
-import PrivateRoute from '../../routes/PrivateRoute';
-import { Pages } from '../../utils';
+import { PrivateRoute } from '@routes';
+import { Pages } from '@utils';
 
 const AddUser = lazy(() => import('./Add'));
 const ListUser = lazy(() => import('./List'));

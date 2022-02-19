@@ -5,10 +5,9 @@ import {
   HighlightOff,
   Visibility,
 } from '@material-ui/icons';
-import { ListingResponse } from '../../../models';
-import { IProduct } from '../../../models/product';
-import { HeaderProps, Status } from '../../atoms';
-import { DataTable, IconButton, SortProps, PagingProps } from '../../molecules';
+import { ListingResponse, IProduct } from '@models';
+import { HeaderProps, Status } from '@atoms';
+import { DataTable, IconButton, SortProps, PagingProps } from '@molecules';
 
 type Props = {
   data: ListingResponse<IProduct>;

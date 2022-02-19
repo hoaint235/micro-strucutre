@@ -1,9 +1,9 @@
 import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { Pages, toastHelper } from '../../../utils';
-import { accountService } from '../../../services';
-import { ManageUserForm, MainContainer } from '../../../components';
-import { IUser } from '../../../models/accounts';
+import { Pages, toastHelper } from '@utils';
+import { accountService } from '@services';
+import { ManageUserForm, MainContainer } from '@components';
+import { IUser } from '@models';
 
 const AddUser = () => {
   const history = useHistory();

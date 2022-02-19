@@ -1,12 +1,12 @@
 import { Grid } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import Form from '../../../hook-forms';
-import { SignInStatus } from '../../../models';
-import { cognitoService } from '../../../services';
-import { Pages } from '../../../utils';
-import { Typography } from '../../atoms';
-import { DefaultContainer } from '../../organisms';
+import Form from '@hook-forms';
+import { SignInStatus } from '@models';
+import { cognitoService } from '@services';
+import { Pages } from '@utils';
+import { Typography } from '@atoms';
+import { DefaultContainer } from '@organisms';
 
 const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
   const history = useHistory();
@@ -19,7 +19,7 @@ const VerifySMSForm = (props: HandleStepProps<SignInStatus>) => {
   const onSubmit = async ({ otpCode = '' }) => {
     const user = stepObj?.data?.user;
     await cognitoService.confirmMFACode(user, otpCode);
-    history.push(Pages.DEFAULT);
+    history.push(Pages.MAIN);
   };
 
   return (

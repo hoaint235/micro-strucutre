@@ -11,10 +11,9 @@ import {
   MainContainer,
   SkeletonTemplate,
   ListProducts as Products,
-} from '../../../components';
-import { ListingResponse } from '../../../models';
-import { IProduct } from '../../../models/product';
-import { Pages } from '../../../utils';
+} from '@components';
+import { ListingResponse, IProduct } from '@models';
+import { Pages } from '@utils';
 
 const headers: HeaderProps[] = [
   {

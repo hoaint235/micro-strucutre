@@ -1,7 +1,7 @@
 import { ChevronRight, ExpandMore } from '@material-ui/icons';
 import DefaultTreeView, { TreeViewProps } from '@material-ui/lab/TreeView';
 import { useState } from 'react';
-import { TreeViewItem } from '../../atoms';
+import { TreeViewItem } from '@atoms';
 
 type Props = TreeViewProps & {
   data: TreeItem[];

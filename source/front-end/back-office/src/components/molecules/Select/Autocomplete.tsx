@@ -1,5 +1,5 @@
 import { Autocomplete as Control } from '@material-ui/lab';
-import { Field } from '../../atoms';
+import { Field } from '@atoms';
 import { AutocompleteProps } from './Select.type';
 
 const Autocomplete = (props: AutocompleteProps) => {

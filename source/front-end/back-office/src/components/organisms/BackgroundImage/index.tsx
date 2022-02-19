@@ -1,5 +1,5 @@
 import { Box, Grid } from '@material-ui/core';
-import { Typography } from '../../atoms';
+import { Typography } from '@atoms';
 import useStyles from './BackgroundImage.style';
 
 const BackgroundImage = () => {

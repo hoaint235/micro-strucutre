@@ -1,9 +1,9 @@
 import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { Pages } from '../../../utils';
-import { vendorService, categoryService } from '../../../services';
-import { ManageProductForm, MainContainer } from '../../../components';
-import { IProduct } from '../../../models/product';
+import { Pages } from '@utils';
+import { vendorService, categoryService } from '@services';
+import { ManageProductForm, MainContainer } from '@components';
+import { IProduct } from '@models';
 
 const AddProduct = () => {
   const history = useHistory();

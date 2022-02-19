@@ -1,5 +1,4 @@
-import { ListingRequest, ListingResponse } from '../models';
-import { IVendor } from '../models/vendors';
+import { ListingRequest, ListingResponse, IVendor } from '@models';
 import { BaseService } from './base-service';
 
 class VendorService extends BaseService {

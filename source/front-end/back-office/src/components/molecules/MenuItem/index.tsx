@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import { FiberManualRecord, ExpandMore, ExpandLess } from '@material-ui/icons';
 import clsx from 'clsx';
-import { WindowEvents } from '../../../utils';
+import { Pages, WindowEvents } from '@utils';
 import {
   useStyleListItem,
   useStyleItemIconParent,
@@ -59,7 +59,7 @@ const MenuItem = (props: IMenuItem) => {
     permission?: PermissionType
   ) => {
     event.preventDefault();
-    history.push(path || '/', { permission });
+    history.push(path || Pages.DEFAULT, { permission });
     window.dispatchEvent(new CustomEvent(WindowEvents.CLOSE_MOBILE_MENU));
   };
 

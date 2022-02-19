@@ -5,7 +5,7 @@ import {
   makeStyles,
   Theme,
 } from '@material-ui/core';
-import { useStateSelector } from '../../../store';
+import { useStateSelector } from '@store';
 
 const useStyles = makeStyles((theme: Theme) => ({
   backdrop: {

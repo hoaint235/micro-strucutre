@@ -1,8 +1,7 @@
 import { Box } from '@material-ui/core';
 import { useCallback, useEffect, useState } from 'react';
-import { stringHelper } from '../../../utils';
-import { WindowEvents } from '../../../utils/constants';
-import { ErrorMessage } from '../../molecules';
+import { stringHelper, WindowEvents } from '@utils';
+import { ErrorMessage } from '@molecules';
 
 const ErrorProvider = () => {
   const [errorMessage, setErrorMessage] = useState('');

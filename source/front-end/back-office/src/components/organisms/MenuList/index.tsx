@@ -1,10 +1,10 @@
 import { Grid, makeStyles, Theme } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import times from 'lodash/times';
-import { MenuItem } from '../../molecules';
-import { Menus } from '../../../configurations';
-import { IMenuItem } from '../../../models';
-import { useStateSelector } from '../../../store';
+import { MenuItem } from '@molecules';
+import { Menus } from '@configurations';
+import { IMenuItem } from '@models';
+import { useStateSelector } from '@store';
 
 const MenuListSkeleton = () => {
   const children = () => (
