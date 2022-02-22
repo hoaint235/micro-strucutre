@@ -36,7 +36,9 @@
       "@templates": ["./components/templates"],
       "@routes": ["./routes"],
       "@models": ["./models"],
-      "@configurations": ["./configurations"]
+      "@configurations": ["./configurations"],
+      "@contexts": ["./contexts"],
+      "@providers": ["./providers"],
     }
   },
   "include": [
