@@ -6,6 +6,7 @@ import {
   DialogTitle,
 } from '@material-ui/core';
 import { Button, Typography, ButtonProps } from '@atoms';
+import { DialogResult } from '@contexts';
 
 export type ConfirmationOptionsProps = {
   confirmationText?: string;
@@ -15,29 +16,23 @@ export type ConfirmationOptionsProps = {
   cancellationButtonProps?: Omit<ButtonProps, 'name' | 'label'>;
 };
 
-export type InformationConfirmationProps = {
+export type ConfirmationProps = {
   title: string;
   description: string;
-};
-
-export type ConfirmationProps = {
-  info: InformationConfirmationProps;
   open: boolean;
-  onCancel: React.MouseEventHandler<HTMLButtonElement>;
-  onConfirm: React.MouseEventHandler<HTMLButtonElement>;
-  onClose: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+  onClose: (payload: DialogResult | null) => void;
   options: ConfirmationOptionsProps;
 };
 
 const ConfirmationDialog = (props: ConfirmationProps) => {
-  const { info, open, onCancel, onConfirm, onClose, options } = props;
+  const { title, description, open, onClose, options } = props;
 
   const {
     dialogProps,
     confirmationButtonProps,
     cancellationButtonProps,
-    confirmationText,
-    cancellationText,
+    confirmationText = 'buttons.confirm',
+    cancellationText = 'buttons.cancel',
   } = options;
 
   return (
@@ -49,21 +44,21 @@ const ConfirmationDialog = (props: ConfirmationProps) => {
       onClose={onClose}
     >
       <DialogTitle>
-        <Typography.Subtitle label={info.title} />
+        <Typography.Subtitle label={title} />
       </DialogTitle>
       <DialogContent>
-        <Typography.Body label={info.description} />
+        <Typography.Body label={description} />
       </DialogContent>
       <DialogActions>
         <Button.Default
           name="confirm-default"
-          onClick={onCancel}
+          onClick={() => onClose(null)}
           label={cancellationText}
           {...cancellationButtonProps}
         />
         <Button.Default
           name="confirm-submit"
-          onClick={onConfirm}
+          onClick={() => onClose({ success: true })}
           label={confirmationText}
           {...confirmationButtonProps}
         />

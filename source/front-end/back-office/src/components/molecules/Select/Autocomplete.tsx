@@ -9,7 +9,7 @@ const Autocomplete = (props: AutocompleteProps) => {
     <Control
       options={items}
       value={value}
-      getOptionLabel={(option) => option.value}
+      getOptionLabel={(option) => option?.value || ''}
       getOptionSelected={(option, value) => option.key === value.key}
       renderInput={(params) => (
         <Field.Input

@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Box, Dialog, Grid } from '@material-ui/core';
 import { useState, useEffect, useMemo } from 'react';
 import {
   Button,
@@ -7,7 +7,7 @@ import {
   SkeletonTemplate,
   FieldsChecked,
 } from '@components';
-import { useConfirm, usePermission } from '@hooks';
+import { useDialog, usePermission } from '@hooks';
 import { ActionType, PermissionType, RoleType, IListPermission } from '@models';
 import { accountService } from '@services';
 import { toastHelper } from '@utils';
@@ -16,7 +16,7 @@ const ListPermission = () => {
   const { hasEdit } = usePermission();
   const [data, setData] = useState<IListPermission[] | null>(null);
   const [fieldsChecked, setFieldsChecked] = useState<FieldsChecked>({});
-  const confirm = useConfirm();
+  const dialog = useDialog();
 
   useEffect(() => {
     (async () => {
@@ -25,28 +25,29 @@ const ListPermission = () => {
     })();
   }, []);
 
-  const onSave = () => {
-    confirm({
-      title: 'permissionPage.saveTitle',
-      description: 'permissionPage.saveDescription',
-      onSubmit: async () => {
-        const payload = Object.entries(fieldsChecked).map((field) => {
-          const fields = field[0].replace('.row', '').split('.');
-          return {
-            isActive: field[1],
-            role: fields[0].toEnum(RoleType),
-            permission: fields[1].toEnum(PermissionType),
-            action: fields[2].toEnum(ActionType),
-          };
-        }) as IListPermission[];
+  const onSave = async () => {
+    const result = await dialog.confirm(
+      'permissionPage.saveTitle',
+      'permissionPage.saveDescription', {
+      confirmationButtonProps: { color: 'primary' },
+    },
+    );
 
-        await accountService.updatePermissions(payload);
-        toastHelper.success('permissionPage.saveSuccess');
-      },
-      options: {
-        confirmationButtonProps: { color: 'primary' },
-      },
-    });
+    if (result.success) {
+      const payload = Object.entries(fieldsChecked).map((field) => {
+        const [permissions, isActive] = field;
+        const [role, permission, action] = permissions.replace('.row', '').split('.');
+        return {
+          isActive,
+          role: role.toEnum(RoleType),
+          permission: permission.toEnum(PermissionType),
+          action: action.toEnum(ActionType),
+        };
+      }) as IListPermission[];
+
+      await accountService.updatePermissions(payload);
+      toastHelper.success('permissionPage.saveSuccess');
+    }
   };
 
   const Permissions = useMemo(

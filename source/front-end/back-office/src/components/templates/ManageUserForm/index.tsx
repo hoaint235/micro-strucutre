@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { AddressInfoForm, UserInfoForm } from '@organisms';
 import { Button } from '@atoms';
 import { Errors, Regex } from '@utils';
-import { IUser } from '@models/accounts';
+import { IUser } from '@models';
 
 const schema = yup.object().shape({
   profile: yup.object().shape({

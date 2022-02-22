@@ -5,14 +5,14 @@ import { Pages } from '@utils';
 import PrivateRoute from './PrivateRoute';
 import SuspenseRoute from './SuspenseRoute';
 
-const NotFound = lazy(() => import('@pages/not-found'));
-const Dashboard = lazy(() => import('@pages/dashboard'));
-const User = lazy(() => import('@pages/user'));
-const Vendor = lazy(() => import('@pages/vendor'));
-const Category = lazy(() => import('@pages/category'));
-const Product = lazy(() => import('@pages/product'));
-const Authenticate = lazy(() => import('@pages/authenticate'));
-const Permission = lazy(() => import('@pages/permission'));
+const NotFound = lazy(() => import('../pages/not-found'));
+const Dashboard = lazy(() => import('../pages/dashboard'));
+const User = lazy(() => import('../pages/user'));
+const Vendor = lazy(() => import('../pages/vendor'));
+const Category = lazy(() => import('../pages/category'));
+const Product = lazy(() => import('../pages/product'));
+const Authenticate = lazy(() => import('../pages/authenticate'));
+const Permission = lazy(() => import('../pages/permission'));
 
 const Routes = () => (
   <Switch>

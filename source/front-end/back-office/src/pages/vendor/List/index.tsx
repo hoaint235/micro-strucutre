@@ -11,7 +11,7 @@ import {
   PagingProps,
   SortProps,
 } from '@components';
-import { useConfirm } from '@hooks';
+import { useDialog } from '@hooks';
 import { ListingRequest, ListingResponse, IVendor } from '@models';
 import { vendorService } from '@services';
 import { Pages } from '@utils';
@@ -46,7 +46,7 @@ const headers: HeaderProps[] = [
 const ListVendors = () => {
   const [data, setData] = useState<ListingResponse<IVendor> | null>(null);
   const history = useHistory();
-  const confirm = useConfirm();
+  const dialog = useDialog();
 
   const fetchVendors = useCallback(async (request?: ListingRequest) => {
     const defaultRequest = {
@@ -62,19 +62,13 @@ const ListVendors = () => {
     fetchVendors();
   }, []);
 
-  const onDeactivate = async (userId: string) => {};
+  const onDeactivate = async (userId: string) => { };
 
-  const onActivate = async (userId: string) => {};
+  const onActivate = async (userId: string) => { };
 
   const onDelete = async (userId: string) => {
     try {
-      confirm({
-        title: 'Are you sure',
-        description: 'This action is permanent!',
-        onSubmit: () => {
-          throw new Error();
-        },
-      });
+      await dialog.confirm('Are you sure', 'This action is permanent!');
     } catch (err) {
       console.log(err);
     }
@@ -82,13 +76,13 @@ const ListVendors = () => {
 
   const onViewDetail = (userId: string) => history.push(Pages.GET_USER(userId));
 
-  const onSearch = async (value: string) => {};
+  const onSearch = async (value: string) => { };
 
   const onPaging = async (data: PagingProps) => {
     await fetchVendors({ limit: data.limit, offset: data.offset / data.limit });
   };
 
-  const onSort = async (data: SortProps) => {};
+  const onSort = async (data: SortProps) => { };
 
   const navigateAddVendorPage = () => history.push(Pages.CREATE_VENDOR);
 

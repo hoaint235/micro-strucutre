@@ -93,7 +93,6 @@ const ManageVendorForm = (props: ManageForm<IVendor | any>) => {
           xs={12}
           container
           justifyContent="flex-end"
-          style={{ display: 'flex' }}
         >
           <Box mr={2}>
             <Button.Default onClick={onBack} label="buttons.back" name="back" />

@@ -82,6 +82,7 @@
   },
   "permissionPage": {
     "title": "Permissions",
+    "addNewPermission": "Add new permission",
     "saveTitle": "Change permissions",
     "saveDescription": "Do you want change permission ?",
     "saveSuccess": "Save permission success"

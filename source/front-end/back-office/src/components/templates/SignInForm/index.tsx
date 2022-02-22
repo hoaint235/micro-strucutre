@@ -5,13 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Form from '../../../hook-forms';
-import { cognitoService } from '../../../services';
-import { Errors, Pages } from '../../../utils';
-import { Button } from '../../atoms';
-import { DefaultContainer } from '../../organisms';
-import { SignInStatus } from '../../../models';
-import { Certificate } from '../../../models/accounts';
+import Form from '@hook-forms';
+import { cognitoService } from '@services';
+import { Errors, Pages } from '@utils';
+import { Button } from '@atoms';
+import { DefaultContainer } from '@organisms';
+import { SignInStatus, Certificate } from '@models';
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkForgotContainer: {

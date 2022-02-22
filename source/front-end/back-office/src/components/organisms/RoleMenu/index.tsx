@@ -1,9 +1,9 @@
 import { SwapHoriz } from '@material-ui/icons';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import lowerFirst from 'lodash/lowerFirst';
 import { useTranslation } from 'react-i18next';
-import { useConfirm } from '@hooks';
+import { useDialog } from '@hooks';
 import { RoleType } from '@models';
 import { storageService } from '@services';
 import { useStateSelector } from '@store';
@@ -19,19 +19,22 @@ const RoleMenu = () => {
   const { roles } = useStateSelector((state) => state.appState);
   const [currentRole, setCurrentRole] = useState('');
   const dispatch = useDispatch();
-  const confirm = useConfirm();
+  const dialog = useDialog();
   const { t } = useTranslation();
 
-  const rolesTransfer = roles.map((role) => ({
-    key: role,
-    value: t(`roles.${lowerFirst(RoleType[role].toString())}`),
-  })) as SelectionProps<RoleType>[];
+  const renderRoles = useMemo(() => (
+    roles.map((role) => ({
+      key: role,
+      value: t(`roles.${lowerFirst(RoleType[role].toString())}`),
+    })) as SelectionProps<RoleType>[]
+  ), [roles, t]);
 
-  const loadPermission = (role: RoleType) => {
-    dispatch(setRole(role));
-    dispatch(getPermissions(role));
-    storageService.setCurrentRole(role);
-    setCurrentRole(role.toString().toEnum(RoleType).toString());
+  const loadPermission = (role: string) => {
+    const parseRole = role.toEnum(RoleType);
+    dispatch(setRole(parseRole));
+    dispatch(getPermissions(parseRole));
+    storageService.setCurrentRole(parseRole);
+    setCurrentRole(parseInt(role) > 0 ? role.toEnum(RoleType).toString() : role);
   };
 
   useEffect(() => {
@@ -45,40 +48,39 @@ const RoleMenu = () => {
 
     const role = storageService.getCurrentRole();
     if (role) {
-      loadPermission(role.toEnum(RoleType));
+      loadPermission(role);
       return;
     }
 
     const defaultRole = roles[0];
     if (defaultRole) {
-      loadPermission(defaultRole);
+      loadPermission(defaultRole.toString());
     }
   }, [roles]);
 
-  const selectRole = (item: SelectionProps<RoleType>) => {
+  const selectRole = async (item: SelectionProps<RoleType>) => {
     if (currentRole === item.key.toString().toEnum(RoleType).toString()) {
       return;
     }
 
-    confirm({
-      title: 'commons.switchRole.title',
-      description: t('commons.switchRole.description', { role: item.value }),
-      onSubmit: () => {
-        loadPermission(item.key);
-      },
-      options: {
-        cancellationText: 'buttons.no',
-        confirmationText: 'buttons.yes',
-      },
+    const result = await dialog.confirm(
+      'commons.switchRole.title',
+      t('commons.switchRole.description', { role: item.value }), {
+      cancellationText: 'buttons.no',
+      confirmationText: 'buttons.yes',
     });
+
+    if (result.success) {
+      loadPermission(item.key.toString());
+    }
   };
 
   return (
-    <>
+    <Fragment>
       {roles.length > 1 ? (
         <IconMenu
-          items={rolesTransfer}
-          onItemClick={(item) => selectRole(item)}
+          items={renderRoles}
+          onItemClick={selectRole}
           renderItem={(item) => <Typography.Body label={item.value} />}
         >
           <SwapHoriz />
@@ -86,7 +88,7 @@ const RoleMenu = () => {
       ) : (
         <Typography.Label label={currentRole} color="textPrimary" />
       )}
-    </>
+    </Fragment>
   );
 };
 

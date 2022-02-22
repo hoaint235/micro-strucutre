@@ -1,14 +1,14 @@
 import { Box, makeStyles, Theme } from '@material-ui/core';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, Fragment } from 'react';
 import {
-  ConfirmProvider,
   Header,
   LoadingProvider,
   Navbar,
   ToastProvider,
 } from '@organisms';
 import { useGuard, useMobile } from '@hooks';
+import { DialogProvider } from '@providers';
 
 const useStyles = (openMenu: boolean) =>
   makeStyles((theme: Theme) => ({
@@ -52,9 +52,9 @@ const AuthTemplate = (props: Props) => {
   }, [isMobile, openDesktopMenu]);
 
   return (
-    <>
+    <Fragment>
       {isAuth && (
-        <ConfirmProvider>
+        <DialogProvider>
           <div className={classes.root}>
             <Header onToggle={onToggleMenu} />
             <Navbar
@@ -79,9 +79,9 @@ const AuthTemplate = (props: Props) => {
             <LoadingProvider />
             <ToastProvider />
           </div>
-        </ConfirmProvider>
+        </DialogProvider>
       )}
-    </>
+    </Fragment>
   );
 };
 

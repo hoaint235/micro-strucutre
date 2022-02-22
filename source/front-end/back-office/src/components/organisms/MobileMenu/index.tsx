@@ -2,7 +2,7 @@ import { Box, Drawer, makeStyles, Paper } from '@material-ui/core';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Pages, WindowEvents } from '@utils';
-import { Logo } from '../../atoms';
+import { Logo } from '@atoms';
 import MenuList from '../MenuList';
 
 const useStyles = makeStyles(() => ({
