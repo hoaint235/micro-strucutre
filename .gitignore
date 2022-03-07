@@ -1,13 +1,13 @@
 /source/front-end/back-office/bootstrap-container/*.lock
-/source/back-end/Account/.vs
-/source/back-end/Account/MicroArchitecture.Account.API/bin
-/source/back-end/Account/MicroArchitecture.Account.API/obj
-/source/back-end/Account/MicroArchitecture.Account.Domain/bin
-/source/back-end/Account/MicroArchitecture.Account.Domain/obj
-/source/back-end/Account/MicroArchitecture.Account.Infrastructure/bin
-/source/back-end/Account/MicroArchitecture.Account.Infrastructure/obj
-/source/back-end/Account/MicroArchitecture.Account.Application/bin
-/source/back-end/Account/MicroArchitecture.Account.Application/obj
+/source/back-end/API/.vs
+/source/back-end/API/MicroArchitecture.API.API/bin
+/source/back-end/API/MicroArchitecture.API.API/obj
+/source/back-end/API/MicroArchitecture.API.Domain/bin
+/source/back-end/API/MicroArchitecture.API.Domain/obj
+/source/back-end/API/MicroArchitecture.API.Infrastructure/bin
+/source/back-end/API/MicroArchitecture.API.Infrastructure/obj
+/source/back-end/API/MicroArchitecture.API.Application/bin
+/source/back-end/API/MicroArchitecture.API.Application/obj
 
 /source/front-end/back-office/modules/mra-authentication/*.lock
 /source/front-end/back-office/modules/mra-utility/*.lock
@@ -24,3 +24,5 @@
 /source/front-end/back-office/yarn-error.log
 /source/front-end/back-office/yarn.lock
 /source/front-end/back-office/build
+/source/back-end/API/MicroArchitecture.API/obj
+/source/back-end/API/MicroArchitecture.API/bin

@@ -2,8 +2,8 @@
   "commons": {
     "loadingText": "Loading...",
     "switchRole": {
-      "title": "Are you sure",
-      "description": "Do you want switch to role {{role}}"
+      "title": "Are you sure ?",
+      "description": "Do you want switch to role {{role}} ?"
     }
   },
   "background": {
@@ -88,7 +88,7 @@
     "saveSuccess": "Save permission success"
   },
   "roles": {
-    "masterData": "Master Data",
+    "masterdata": "Master Data",
     "admin": "Admin",
     "user": "User",
     "manager": "Manager"

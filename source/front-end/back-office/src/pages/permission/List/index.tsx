@@ -63,6 +63,8 @@ const ListPermission = () => {
     [data, hasEdit]
   );
 
+  const hasChange = useMemo(() => Object.keys(fieldsChecked).length > 0, [fieldsChecked]);
+
   return (
     <MainContainer title="permissionPage.title">
       {data ? (
@@ -72,7 +74,7 @@ const ListPermission = () => {
               <Button.Primary
                 name="edit"
                 label="buttons.save"
-                disabled={!(Object.keys(fieldsChecked).length > 0)}
+                disabled={!hasChange}
                 onClick={onSave}
               />
             </Grid>

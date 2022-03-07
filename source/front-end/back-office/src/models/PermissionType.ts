@@ -1,3 +1,5 @@
+import { UnknownType } from './UnknownType';
+
 export enum PermissionType {
   Account = 1,
   Vendor = 2,
@@ -9,5 +11,5 @@ export enum PermissionType {
   PurchaseOrder = 8,
   SaleOrder = 9,
 
-  Unknown = 100,
+  Unknown = UnknownType.Unknown
 }

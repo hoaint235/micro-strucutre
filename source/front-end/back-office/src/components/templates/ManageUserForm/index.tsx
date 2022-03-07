@@ -77,8 +77,21 @@ const ManageUserForm = (props: Props) => {
     }
   }, []);
 
+  const onSave = (data: IUser) => {
+    const countryCode = (data?.profile?.countryCode as any)?.key;
+    const payload = {
+      ...data,
+      profile: {
+        ...data.profile,
+        countryCode
+      }
+    };
+
+    onSubmit(payload);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSave)}>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} md={6}>
           <UserInfoForm form={form} editMode={editMode} />

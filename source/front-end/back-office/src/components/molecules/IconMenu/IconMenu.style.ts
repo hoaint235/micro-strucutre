@@ -22,6 +22,22 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+export const useStylesMenuList = makeStyles((theme: Theme) => ({
+  root: {
+    padding: 0
+  }
+}));
+
+export const useStylesMenuItem = makeStyles((theme: Theme) => ({
+  root: {
+  },
+  selected: {
+    backgroundColor: alpha(theme.palette.primary.main, 0.2),
+    margin: theme.spacing(1),
+    borderRadius: theme.spacing(1)
+  }
+}));
+
 export const useStylesAvatar = makeStyles(() => ({
   root: {
     borderRadius: '30%',

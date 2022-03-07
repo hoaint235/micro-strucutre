@@ -1069,7 +1069,7 @@ const countries = [
 const getCountries = (): SelectionProps<string>[] =>
   countries.map((item) => ({
     key: item.portalCode,
-    value: `${item.portalCode} (${item.countryName}) ${item.countryCode}`,
+    value: `${item.portalCode} (${item.countryCode}) ${item.countryName}`,
   }));
 
 export default getCountries();

@@ -1,36 +1,22 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
+const apiEndpoints = [
+  'roles',
+  'users',
+  'categories'
+];
+
 module.exports = function (app) {
-  app.use(
-    '/account',
-    createProxyMiddleware({
-      target: process.env.REACT_APP_API_ACCOUNT,
-      changeOrigin: true,
-      pathRewrite: {
-        '^/account': '/api',
-      },
-    })
-  );
-
-  app.use(
-    '/vendor',
-    createProxyMiddleware({
-      target: process.env.REACT_APP_API_MASTER_DATA,
-      changeOrigin: true,
-      pathRewrite: {
-        '^/vendor': '/',
-      },
-    })
-  );
-
-  app.use(
-    '/category',
-    createProxyMiddleware({
-      target: process.env.REACT_APP_API_PRODUCT,
-      changeOrigin: true,
-      pathRewrite: {
-        '^/category': '/',
-      },
-    })
-  );
+  apiEndpoints.forEach(endPoint => {
+    app.use(
+      `/admin/${endPoint}`,
+      createProxyMiddleware({
+        target: process.env.REACT_APP_API_URL,
+        changeOrigin: true,
+        pathRewrite: {
+          [`^/admin/${endPoint}`]: `/api/${endPoint}`,
+        },
+      })
+    );
+  });
 };

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.0" />
+    <PackageReference Include="MediatR" Version="8.1.0" />
+    <PackageReference Include="MassTransit" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroArchitecture.API.Infrastructure\MicroArchitecture.API.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

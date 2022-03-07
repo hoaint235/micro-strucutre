@@ -25,7 +25,7 @@ const RoleMenu = () => {
   const renderRoles = useMemo(() => (
     roles.map((role) => ({
       key: role,
-      value: t(`roles.${lowerFirst(RoleType[role].toString())}`),
+      value: t(`roles.${lowerFirst(RoleType[role].toString().toLowerCase())}`),
     })) as SelectionProps<RoleType>[]
   ), [roles, t]);
 
@@ -68,6 +68,7 @@ const RoleMenu = () => {
       t('commons.switchRole.description', { role: item.value }), {
       cancellationText: 'buttons.no',
       confirmationText: 'buttons.yes',
+      confirmationButtonProps: { color: 'primary' }
     });
 
     if (result.success) {

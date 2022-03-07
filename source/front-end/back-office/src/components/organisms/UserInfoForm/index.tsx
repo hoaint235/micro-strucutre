@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import Form from '@hook-forms';
@@ -14,27 +14,15 @@ type Props = {
 const UserInfoForm = (props: Props) => {
   const { form, editMode } = props;
   const { t } = useTranslation();
-  const [roles] = useState<string[]>([]);
-
-  // const fetchRoles = async () => {
-  //   const response = await AccountService.gerCurrentUserRoles();
-  //   setRoles(response);
-  // };
-
-  // useEffect(() => {
-  //   fetchRoles();
-  // }, []);
 
   const getRoles = useCallback(() => {
     const result = Object.keys(Roles)
-      .filter((x) => x !== 'MasterData')
       .map((key) => ({
         key: Roles[key].toLowerCase(),
         value: t(`roles.${key.toLowerCase()}`),
-      }))
-      .filter((x) => roles.includes(x.key));
+      }));
     return result;
-  }, [roles, t]);
+  }, [t]);
 
   return (
     <Card>

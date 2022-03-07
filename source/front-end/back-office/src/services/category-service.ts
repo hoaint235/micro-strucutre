@@ -1,15 +1,11 @@
 import { ListingRequest, ListingResponse, ICategory } from '@models';
 import { BaseService } from './base-service';
 
-class CategoryService extends BaseService {
-  constructor() {
-    super('category');
-  }
-
+class CategoryService {
   async getCategories(
     request: ListingRequest
   ): Promise<ListingResponse<ICategory>> {
-    return await super.get<ListingRequest, ListingResponse<ICategory>>(
+    return await BaseService.get<ListingRequest, ListingResponse<ICategory>>(
       'categories',
       false,
       {
@@ -22,7 +18,7 @@ class CategoryService extends BaseService {
   }
 
   async loadSuggest(query: string): Promise<ICategory[]> {
-    const response = await super.get<string, ListingResponse<ICategory>>(
+    const response = await BaseService.get<string, ListingResponse<ICategory>>(
       'categories',
       false,
       {
